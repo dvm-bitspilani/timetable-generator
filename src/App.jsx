@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Input from './components/JSX/Input'
 import './App.css'
-import Courses from './components/Courses/Courses';
+import Courses from './components/JSX/Courses';
 
 
 
