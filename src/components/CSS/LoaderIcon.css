@@ -2,17 +2,85 @@
   /* width: 100px;
   height: 100px; */
   box-sizing: border-box;
-  /* animation: wrapper 10s linear infinite; */
 }
-.loader-line{
-  width: 100px;
-  transform-origin: right;
+.loader-icon{
+	width:100px;
+	height:100px;
+	margin:30px auto;
+	position:relative;
 }
-.stick{
-  background-color: #ffffff;
-  box-shadow: 0px 5px 5px #111111;
-  height: 25px;
-  width: 80px;
-  border-radius: 10px;
-  margin: 10px;
+.loader-icon div{
+  width: 10px;
+  height: 15px;
+  border-radius: 20px;
+  background: #ffffff;
+  position: absolute;
+  top: 35px;
+  left: 45px;
+  -webkit-animation: fadeit 4s ease infinite;
+  animation: fadeit 4s ease infinite;
+}
+.loader-icon div:nth-child(1){
+  opacity: 1;
+  -webkit-transform: rotate(0deg) translate(0, -30px);
+  transform: rotate(0deg) translate(0, -30px);
+  -webkit-animation-delay:0.5s;
+  animation-delay:0.5s;
+}
+.loader-icon div:nth-child(2){
+  opacity: 0.66;
+  -webkit-transform: rotate(45deg) translate(0, -30px);
+  transform: rotate(45deg) translate(0, -30px);
+  -webkit-animation-delay:1s;
+  animation-delay:1;
+}
+.loader-icon div:nth-child(3){
+  opacity: 0.33;
+  -webkit-transform: rotate(90deg) translate(0, -30px);
+  transform: rotate(90deg) translate(0, -30px);
+  -webkit-animation-delay:1.5s;
+  animation-delay:1.5s;
+}
+.loader-icon div:nth-child(4){
+  opacity: 0;
+  -webkit-transform: rotate(135deg) translate(0, -30px);
+  transform: rotate(135deg) translate(0, -30px);
+  -webkit-animation-delay:2s;
+  animation-delay:2s;
+}
+.loader-icon div:nth-child(5){
+  opacity: 1;
+  -webkit-transform: rotate(180deg) translate(0, -30px);
+  transform: rotate(180deg) translate(0, -30px);
+  -webkit-animation-delay:2.5s;
+  animation-delay:2.5s;
+}
+.loader-icon div:nth-child(6){
+  opacity: 0.66;
+  -webkit-transform: rotate(225deg) translate(0, -30px);
+  transform: rotate(225deg) translate(0, -30px);
+  -webkit-animation-delay:3s;
+  animation-delay:3s;
+}
+.loader-icon div:nth-child(7){
+  opacity: 0.33;
+  -webkit-transform: rotate(270deg) translate(0, -30px);
+  transform: rotate(270deg) translate(0, -30px);
+  -webkit-animation-delay:3.5s;
+  animation-delay:3.5s;
+}
+.loader-icon div:nth-child(8){
+  opacity: 0;
+  -webkit-transform: rotate(315deg) translate(0, -30px);
+  transform: rotate(315deg) translate(0, -30px);
+  -webkit-animation-delay:4s;
+  animation-delay:4s;
+}
+@-webkit-keyframes fadeit{
+  1%{ opacity:1; }
+	100%{ opacity:0;}
+}
+@keyframes fadeit{
+  1%{ opacity:1; }
+	100%{ opacity:0;}
 }
