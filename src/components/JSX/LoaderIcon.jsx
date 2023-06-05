@@ -1,5 +1,5 @@
 import React from "react";
-import "./LoaderIcon.css"
+import "../CSS/LoaderIcon.css"
 const LoaderIcon = () => {
   return (
     <div className="loader-wrapper">
