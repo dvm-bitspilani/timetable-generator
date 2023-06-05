@@ -1,0 +1,18 @@
+.loader-wrapper{
+  /* width: 100px;
+  height: 100px; */
+  box-sizing: border-box;
+  /* animation: wrapper 10s linear infinite; */
+}
+.loader-line{
+  width: 100px;
+  transform-origin: right;
+}
+.stick{
+  background-color: #ffffff;
+  box-shadow: 0px 5px 5px #111111;
+  height: 25px;
+  width: 80px;
+  border-radius: 10px;
+  margin: 10px;
+}
