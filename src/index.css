@@ -1,7 +1,7 @@
-/* :root {
-
-} */
+:root {
+  --bg--color: #343540
+}
 body{
-  background-color: #1e1e1e;
+  background-color: var(--bg--color);
   background-image: url(assets/background.png);
 }
