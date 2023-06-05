@@ -15,6 +15,7 @@
     align-items: center;
     background: #303140;
     border-radius: 50%;
+    flex-shrink:0;
 }
 .input-area form{
     width: 95%;
