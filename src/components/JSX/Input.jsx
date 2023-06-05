@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import "..//CSS/Input.css"
 
-function Input() {
+function Input({setShowInputBox}) {
 
-    const [id, setID] = useState('');
+  const goToCourses = ()=>{
+    setShowInputBox(false);
+  }
+    
   return (
     <div className="input-area">
         <div className="logo">
@@ -11,7 +14,7 @@ function Input() {
         </div>
         <form>
             <input type="text" placeholder='Enter your ID Number' />
-            <button type="submit" className='btn-icon'><img src="src\assets\button-icon.svg" alt="" /></button>
+            <button type="submit" className='btn-icon' onClick={goToCourses}><img src="src\assets\button-icon.svg" alt="" /></button>
         </form>
     </div>
   )

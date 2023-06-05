@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Input from './components/JSX/Input'
+import InputParent from './components/JSX/InputParent';
 import './App.css'
 import Courses from './components/JSX/Courses';
 
@@ -15,14 +15,16 @@ import Courses from './components/JSX/Courses';
 
 
 function App() {
-  // const [count, setCount] = useState(0)
+
+  const [showInputBox, setShowInputBox] = useState(true);
 
   return (
     <>
-      <div className="App">
-        <h1 className='heading'>Timetable Generator</h1>
-        <Input />
-      </div>
+      {showInputBox ? (
+        <InputParent setShowInputBox={setShowInputBox} />
+      ) : (
+        <Courses />
+      )}
     </>
   )
 }
