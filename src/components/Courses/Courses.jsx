@@ -1,6 +1,6 @@
 import React from "react";
 import Async from "react-async"
-import Loader from "./loader";
+import Loader from "./Loader";
 
 const onInputID = () =>{
   fetch("https://jsonplaceholder.typicode.com/users")
