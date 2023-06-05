@@ -1,0 +1,48 @@
+.input-area{
+    height: 70px;
+    width: 60%;
+    background-color: #40414E;
+    display: flex;
+    align-items: center;
+    padding: .5rem;
+    border-radius: 2.5rem;
+}
+.logo{
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #303140;
+    border-radius: 50%;
+}
+.input-area form{
+    width: 95%;
+    height: 100%;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+}
+.input-area form input{
+    width: 100%;
+    height: 100%;
+    background-color: #40414E;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 300;
+    outline: none;
+    border: none;
+}
+.input-area form input::placeholder{
+    color: #AFAFB2;
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+.btn-icon{
+    cursor: pointer;
+    height: 100%;
+    width: 10%;
+    background: transparent;
+    border: none;
+    outline: none;
+}
