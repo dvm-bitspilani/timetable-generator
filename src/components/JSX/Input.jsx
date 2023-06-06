@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import "..//CSS/Input.css";
+import dvmlogo from "../../../src/assets/dvm-logo.svg"
+import submitbtn from "../../../src/assets/button-icon.svg";
 
 function Input({setShowInputBox}) {
 
@@ -17,13 +19,13 @@ function Input({setShowInputBox}) {
     
   return (
     <div className="input-area">
-        <div className="logo">
-            <img src="src\assets\dvm-logo.svg" alt="" />
-        </div>
-        <form>
-            <input type="text" placeholder='Enter your ID Number' value={inputValue} onChange={handleInputChange} />
-            <button type="submit" className='btn-icon' onClick={goToCourses}><img src="src\assets\button-icon.svg" alt="" /></button>
-        </form>
+      <div className="logo">
+        <img src={dvmlogo} alt="" />
+      </div>
+      <form>
+        <input type="text" placeholder='Enter your ID Number' value={inputValue} onChange={handleInputChange} />
+        <button type="submit" className='btn-icon' onClick={goToCourses}><img src={submitbtn} alt="" /></button>
+      </form>
     </div>
   )
 }
