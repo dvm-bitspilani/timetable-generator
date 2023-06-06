@@ -5,7 +5,7 @@ const Loader = () =>{
   return(
     <>
       <LoaderIcon />
-      <h3>Getting Courses</h3>
+      {/* <h3>Getting Courses</h3> */}
     </>
   );
 };

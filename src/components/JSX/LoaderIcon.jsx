@@ -13,6 +13,7 @@ const LoaderIcon = () => {
         <div></div>
         <div></div>
       </div>
+      <h3>Getting Courses</h3>
     </div>
   )
 };

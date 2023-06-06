@@ -1,86 +1,95 @@
 .loader-wrapper{
-  /* width: 100px;
-  height: 100px; */
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   box-sizing: border-box;
 }
+.loader-wrapper h3{
+  font-size: 1.25rem;
+  font-weight: 600;
+}
 .loader-icon{
-	width:100px;
-	height:100px;
+	width:40px;
+	height:40px;
 	margin:30px auto;
 	position:relative;
 }
 .loader-icon div{
-  width: 10px;
-  height: 15px;
+  width: 4px;
+  height: 10px;
   border-radius: 20px;
   background: #ffffff;
   position: absolute;
-  top: 35px;
-  left: 45px;
-  -webkit-animation: fadeit 4s ease infinite;
-  animation: fadeit 4s ease infinite;
+  top: 40%;
+  left: 42%;
+  -webkit-animation: fadeit 1s ease infinite;
+  animation: fadeit 1s ease infinite;
+  transition: height 1s ease-in;
 }
 .loader-icon div:nth-child(1){
   opacity: 1;
-  -webkit-transform: rotate(0deg) translate(0, -30px);
-  transform: rotate(0deg) translate(0, -30px);
-  -webkit-animation-delay:0.5s;
-  animation-delay:0.5s;
+  -webkit-transform: rotate(0deg) translate(0, -15px);
+  transform: rotate(0deg) translate(0, -15px);
+  -webkit-animation-delay:0.125s;
+  animation-delay:0.125s;
 }
 .loader-icon div:nth-child(2){
   opacity: 0.66;
-  -webkit-transform: rotate(45deg) translate(0, -30px);
-  transform: rotate(45deg) translate(0, -30px);
-  -webkit-animation-delay:1s;
-  animation-delay:1;
+  -webkit-transform: rotate(45deg) translate(0, -15px);
+  transform: rotate(45deg) translate(0, -15px);
+  -webkit-animation-delay:0.25s;
+  animation-delay:0.25s;
 }
 .loader-icon div:nth-child(3){
   opacity: 0.33;
-  -webkit-transform: rotate(90deg) translate(0, -30px);
-  transform: rotate(90deg) translate(0, -30px);
-  -webkit-animation-delay:1.5s;
-  animation-delay:1.5s;
+  -webkit-transform: rotate(90deg) translate(0, -15px);
+  transform: rotate(90deg) translate(0, -15px);
+  -webkit-animation-delay:0.375s;
+  animation-delay:0.375s;
 }
 .loader-icon div:nth-child(4){
   opacity: 0;
-  -webkit-transform: rotate(135deg) translate(0, -30px);
-  transform: rotate(135deg) translate(0, -30px);
-  -webkit-animation-delay:2s;
-  animation-delay:2s;
+  -webkit-transform: rotate(135deg) translate(0, -15px);
+  transform: rotate(135deg) translate(0, -15px);
+  -webkit-animation-delay:0.5s;
+  animation-delay:0.5s;
 }
 .loader-icon div:nth-child(5){
-  opacity: 1;
-  -webkit-transform: rotate(180deg) translate(0, -30px);
-  transform: rotate(180deg) translate(0, -30px);
-  -webkit-animation-delay:2.5s;
-  animation-delay:2.5s;
+  opacity: 0;
+  -webkit-transform: rotate(180deg) translate(0, -15px);
+  transform: rotate(180deg) translate(0, -15px);
+  -webkit-animation-delay:0.625s;
+  animation-delay:0.625s;
 }
 .loader-icon div:nth-child(6){
-  opacity: 0.66;
-  -webkit-transform: rotate(225deg) translate(0, -30px);
-  transform: rotate(225deg) translate(0, -30px);
-  -webkit-animation-delay:3s;
-  animation-delay:3s;
+  opacity: 0;
+  -webkit-transform: rotate(225deg) translate(0, -15px);
+  transform: rotate(225deg) translate(0, -15px);
+  -webkit-animation-delay:0.75s;
+  animation-delay:0.75s;
 }
 .loader-icon div:nth-child(7){
-  opacity: 0.33;
-  -webkit-transform: rotate(270deg) translate(0, -30px);
-  transform: rotate(270deg) translate(0, -30px);
-  -webkit-animation-delay:3.5s;
-  animation-delay:3.5s;
+  opacity: 0;
+  -webkit-transform: rotate(270deg) translate(0, -15px);
+  transform: rotate(270deg) translate(0, -15px);
+  -webkit-animation-delay:0.875s;
+  animation-delay:0.875s;
 }
 .loader-icon div:nth-child(8){
   opacity: 0;
-  -webkit-transform: rotate(315deg) translate(0, -30px);
-  transform: rotate(315deg) translate(0, -30px);
-  -webkit-animation-delay:4s;
-  animation-delay:4s;
+  -webkit-transform: rotate(315deg) translate(0, -15px);
+  transform: rotate(315deg) translate(0, -15px);
+  -webkit-animation-delay:1s;
+  animation-delay:1s;
 }
 @-webkit-keyframes fadeit{
-  1%{ opacity:1; }
-	100%{ opacity:0;}
+  1%{ opacity:1;  }
+	100%{ opacity:0.4; }
 }
 @keyframes fadeit{
-  1%{ opacity:1; }
-	100%{ opacity:0;}
+  1%{ opacity:1;  }
+	100%{ opacity:0.4; }
 }
