@@ -1,0 +1,25 @@
+.courses-heading{
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.courses-heading span{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.courses-heading span img{
+  width: 25px;
+  height: 25px;
+  margin-right: 0.75rem;
+}
+.horizontal-line{
+  width: 75vw;
+  height: 2px;
+  background-color: #5C5F66;
+  margin: 2vh auto 6vh;
+}
