@@ -20,4 +20,5 @@ body{
   background-image: url(assets/background.png);
   font-family: "Montserrat";
   color: white;
+  background-size: cover;
 }

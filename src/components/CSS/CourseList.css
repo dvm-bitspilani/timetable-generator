@@ -1,3 +1,8 @@
+.course-list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .courses-heading{
   font-size: 2rem;
   font-weight: 600;

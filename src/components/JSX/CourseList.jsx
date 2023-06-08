@@ -9,7 +9,7 @@ import GenerateButtons from "./GenerateButtons";
 
 const CourseList = () =>{
   return(
-    <>
+    <div className="course-list">
       <h2 className="courses-heading"><span><img src={IconCDCs} alt="Icon" /></span>Your CDCs</h2>
       <CDCs />
       <div className="horizontal-line"></div>
@@ -18,7 +18,7 @@ const CourseList = () =>{
       <FreeDay />
       <PercentageBar />
       <GenerateButtons />
-    </>
+    </div>
   );
 };
 
