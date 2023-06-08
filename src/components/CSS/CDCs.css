@@ -1,6 +1,6 @@
 .courses-container{
   width: 75vw;
-  margin: 0 auto;
+  margin: 0 auto 2vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
