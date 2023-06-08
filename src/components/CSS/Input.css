@@ -1,4 +1,4 @@
-.input-id{
+.input-area{
     width: 60%;
     height: 20vh;
     display: flex;
@@ -6,7 +6,7 @@
     align-items: center;
     position: relative;
 }
-.input-area{
+.input-id{
     height: 70px;
     width: 100%;
     background-color: #40414E;
@@ -15,6 +15,9 @@
     align-items: center;
     padding: .5rem;
     border-radius: 2.5rem;
+}
+.error-animation{
+    animation: wiggle .5s ease 1;
 }
 .logo{
     width: 60px;
@@ -63,4 +66,18 @@
     bottom: 0;
     color: #F7E188;
     font-size: 1.25rem;
+}
+@keyframes wiggle{
+    0%{
+        transform: translateX(0);
+    }
+    33%{
+        transform: translateX(2vw);
+    }
+    66%{
+        transform: translateX(-2vw);
+    }
+    100%{
+        transform: translateX(0);
+    }
 }

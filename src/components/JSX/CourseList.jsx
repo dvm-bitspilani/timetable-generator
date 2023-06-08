@@ -8,7 +8,7 @@ import PercentageBar from "./PercentageBar";
 import GenerateButtons from "./GenerateButtons";
 
 const CourseList = () => {
-  const [freeDay, setFreeDay] = useState('');
+  const [freeDay, setFreeDay] = useState("");
   console.log(freeDay);
 
   return (

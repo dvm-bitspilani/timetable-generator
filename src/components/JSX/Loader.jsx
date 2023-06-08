@@ -1,8 +1,8 @@
 import React from "react";
 import LoaderIcon from "./LoaderIcon";
 
-const Loader = () =>{
-  return(
+const Loader = () => {
+  return (
     <>
       <LoaderIcon />
     </>

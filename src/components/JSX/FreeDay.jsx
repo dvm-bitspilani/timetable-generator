@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import "../CSS/FreeDay.css";
 
 const FreeDay = ({ setFreeDay }) => {
-  var days = document.querySelectorAll('.free-day-box > div');
+  var days = document.querySelectorAll(".free-day-box > div");
   const handleClick = (e) => {
     if (!e.target.className) {
-      days.forEach(element => {
-        element.className = '';
+      days.forEach((element) => {
+        element.className = "";
       });
       e.target.className = "selected-day";
       setFreeDay(e.target.id);
     } else {
-      e.target.className = '';
-      setFreeDay('');
+      e.target.className = "";
+      setFreeDay("");
     }
   };
   return (
