@@ -10,7 +10,7 @@
     font-size: 1.25rem;
     font-weight: 400;
     line-height: 1.25rem;
-    margin-bottom: .5rem;
+    margin-bottom: .75rem;
 }
 .free-day-box{
     background: #40414E;
@@ -21,21 +21,19 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 0 .5rem;
 }
 .free-day-box > div{
     font-size: 1.5rem;
     font-weight: 600;
     display: flex;
     justify-content: center;
+    align-items: center;
     width: 45px;
     cursor: pointer;
 }
 .selected-day{
     background: #F7E188;
     border-radius: 5px;
-    /* height: 50px;
-    width: 45px; */
-    position: absolute;
-    left: 0.5rem;
+    height: 50px;
+    color: #474747;
 }
