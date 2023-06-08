@@ -1,9 +1,9 @@
 .App{
     width: 100vw;
-    height: 55vh;
+    height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: center;
     flex-direction: column;
 }
 
@@ -13,3 +13,5 @@
     line-height: 3rem;
     margin-bottom: 5rem;
 }
+
+
