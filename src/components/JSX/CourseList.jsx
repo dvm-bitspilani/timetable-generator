@@ -7,21 +7,60 @@ import FreeDay from "./FreeDay";
 import PercentageBar from "./PercentageBar";
 import GenerateButtons from "./GenerateButtons";
 import CourseDetail from "./CourseDetail";
+import AddMoreCourse from "./AddMoreCourse";
 
 const CourseList = () => {
   const [freeDay, setFreeDay] = useState("");
   console.log(freeDay);
 
   const [courseSelected, setCourseSelected] = useState(false);
+  const [addMoreCourse, setAddMoreCourse] = useState(false);
 
   const onCourseClick = () => {
     setCourseSelected(true);
   };
+  const onCourseClickClose = () => {
+    setCourseSelected(false);
+  };
+  const onAddMoreCourse = () =>{
+    setAddMoreCourse(true);
+  };
+
+  // return (
+  //   <>
+  //     {courseSelected ? (
+  //       <CourseDetail />
+  //     ) : (
+  //       <div className="course-list">
+  //         <h2 className="courses-heading">
+  //           <span>
+  //             <img src={IconCDCs} alt="Icon" />
+  //           </span>
+  //           Your CDCs
+  //         </h2>
+  //         <CDCs onCourseClick={onCourseClick} />
+  //         <div className="horizontal-line"></div>
+  //         <h2 className="courses-heading">
+  //           <span>
+  //             <img src={IconCDCs} alt="Icon" />
+  //           </span>
+  //           More Courses
+  //         </h2>
+  //         <MoreCourses />
+  //         <FreeDay setFreeDay={setFreeDay} />
+  //         <PercentageBar />
+  //         <GenerateButtons />
+  //       </div>
+  //     )}
+  //   </>
+  // );
 
   return (
     <>
       {courseSelected ? (
-        <CourseDetail />
+        <CourseDetail onCourseClickClose={onCourseClickClose} />
+      ) : addMoreCourse ? (
+        <AddMoreCourse />
       ) : (
         <div className="course-list">
           <h2 className="courses-heading">
@@ -38,14 +77,17 @@ const CourseList = () => {
             </span>
             More Courses
           </h2>
-          <MoreCourses />
+          <MoreCourses onCourseClick={onCourseClick} />
           <FreeDay setFreeDay={setFreeDay} />
           <PercentageBar />
-          <GenerateButtons />
+          <GenerateButtons onAddMoreCourse={onAddMoreCourse} />
         </div>
       )}
     </>
   );
+
+
+
 };
 
 export default CourseList;

@@ -17,6 +17,9 @@
   justify-content: center;
   align-items: center;
 }
+.course-buttons:hover{
+  cursor: pointer;
+}
 .course-buttons img{
   margin-left: 0.5rem;
 }

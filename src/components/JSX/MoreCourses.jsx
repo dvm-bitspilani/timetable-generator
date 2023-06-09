@@ -3,7 +3,7 @@ import IconBook from "../../assets/IconBook.svg";
 import IconBookWhite from "../../assets/IconBookWhite.svg";
 import "../CSS/CDCs.css";
 
-const MoreCourses = () => {
+const MoreCourses = ({onCourseClick}) => {
   let array = [
     { id: 6, title: "General Chemistry" },
     { id: 7, title: "General Chemistry" },
@@ -13,7 +13,7 @@ const MoreCourses = () => {
   return (
     <div className="courses-container">
       {array.map((item) => (
-        <div key={item.id} className="course-div">
+        <div key={item.id} className="course-div" onClick={onCourseClick}>
           <img src={IconBookWhite} alt="book" />
           <h3>{item.title}</h3>
         </div>
