@@ -1,0 +1,70 @@
+.course-detail-invisible-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+}
+.course-detail-container{
+  width: 78vw;
+  height: 78vh;
+  background: #40414E;
+  border: 3px solid #737780;
+  border-radius: 10px;
+  position: relative;
+}
+.course-detail-container h3{
+  font-weight: 700;
+  font-size: 24px;
+  color: #ECECF1;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+.cross-icon{
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 12px;
+  height: 12px;
+}
+.cross-icon:hover{
+  cursor: pointer;
+}
+.course-btns-container{
+  position: absolute;
+  bottom: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 1.25rem;
+}
+.prev-next-course-btn{
+  background: #F7E188;
+  border-radius: 7.2px;
+  color: #343540;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.lecture-tut-btns{
+  background: #474747;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.lect-tut-selected{
+  background: #F7E188;
+  border-radius: 10px;  
+  color: #343540 !important;
+}
+.lecture-btn,
+.tut-btn{
+  padding: 8px 42px;
+  font-weight: 600;
+  font-size: 12px;
+}
