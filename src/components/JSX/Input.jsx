@@ -11,6 +11,9 @@ function Input({ setShowInputBox }) {
   const handleInputChange = (event) => {
     const capitalizedValue = event.target.value.toUpperCase();
     setInputValue(capitalizedValue);
+    if (showError) {
+      setShowError(""); 
+    }
   };
 
   const validateForm = (e) => {
@@ -21,6 +24,7 @@ function Input({ setShowInputBox }) {
 
     if (!idRegex.test(inputValue)) {
       setShowError("Enter a valid ID!");
+      setInputValue("");
     } else {
       setShowError("");
       setShowInputBox(false);
@@ -35,6 +39,7 @@ function Input({ setShowInputBox }) {
         </div>
         <form onSubmit={validateForm}>
           <input
+            id="bitsIdInput"
             type="text"
             placeholder="Enter your ID Number"
             value={inputValue}
