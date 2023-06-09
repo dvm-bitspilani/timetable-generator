@@ -1,16 +1,15 @@
 import React from "react";
-import IconBolt from "../../assets/IconBolt.svg";
-import IconPlus from "../../assets/IconPlus.svg";
 import "../CSS/PercentageBar.css";
 
 const PercentageBar = () => {
   return (
-    <div className="course-buttons-container">
-      <div className="course-buttons">
-        Generate Timetable <img src={IconBolt} alt="Lightning Bolt" />
-      </div>
-      <div className="course-buttons">
-        Add More Courses <img src={IconPlus} alt="Plus" />
+    <div className="percentage-bar">
+      <div className="percentage-bar-box"></div>
+      <div className="percentage-bar-content">
+        <div className="percentage-box">
+          <div className="percentage-box1"></div>
+          <div className="percentage-box2"></div>
+        </div>
       </div>
     </div>
   );

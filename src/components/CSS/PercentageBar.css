@@ -1,22 +1,49 @@
-.course-buttons-container{
-  display: flex;
-  gap: 0.75rem;
+.percentage-bar{
   position: fixed;
   bottom: 0;
-  margin-bottom: 2vh;
+  margin-bottom: 11vh;
+  width: 75vw;
+  height: 0.5rem;
 }
-.course-buttons{
+.percentage-bar-box{
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #F2F4F7;
+  border-radius: 4px;
+}
+.percentage-bar-content{
   background: #F7E188;
-  border-radius: 10px;
-  padding: 1rem 2rem;
-  width: 18vw;
-  color: #343540;
-  font-size: 1rem;
-  font-weight: 600;
+  border-radius: 4px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 25%;
+}
+.percentage-box{
+  position: absolute;
+  top: -1rem;
+  right: -2px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.course-buttons img{
-  margin-left: 0.5rem;
+.percentage-box1{
+  background: #FFFFFF;
+  border-radius: 1px;
+  transform: rotate(45deg);
+  width: 12px;
+  height: 12px;
+}
+.percentage-box2{
+  background: #FFFFFF;
+  border-radius: 8px;
+  width: 50px;
+  height: 34px;
+  position: absolute;
+  top: -1.65rem;
 }

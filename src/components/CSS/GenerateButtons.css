@@ -1,6 +1,22 @@
-.buttons-container{
-
+.course-buttons-container{
+  display: flex;
+  gap: 0.75rem;
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 2vh;
 }
-.generate-buttons{
-  width: 20vw;
+.course-buttons{
+  background: #F7E188;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  width: 18vw;
+  color: #343540;
+  font-size: 1rem;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.course-buttons img{
+  margin-left: 0.5rem;
 }
