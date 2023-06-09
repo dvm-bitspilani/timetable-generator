@@ -1,9 +1,8 @@
 import React from "react";
-import IconBook from "../../assets/IconBook.svg";
 import IconBookWhite from "../../assets/IconBookWhite.svg";
 import "../CSS/CDCs.css";
 
-const CDCs = () => {
+const CDCs = ({ onCourseClick }) => {
   let array = [
     { id: 1, title: "General Chemistry" },
     { id: 2, title: "General Chemistry" },
@@ -15,7 +14,7 @@ const CDCs = () => {
   return (
     <div className="courses-container">
       {array.map((item) => (
-        <div key={item.id} className="course-div">
+        <div key={item.id} className="course-div" onClick={onCourseClick}>
           <img src={IconBookWhite} alt="book" />
           <h3>{item.title}</h3>
         </div>
