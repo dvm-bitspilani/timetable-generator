@@ -1,0 +1,15 @@
+.add-more-courses-container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.add-more-courses{
+  width: 78vw;
+  height: 78vh;
+  background: #40414E;
+  border: 3px solid #737780;
+  border-radius: 10px;
+  position: relative;
+}
