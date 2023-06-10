@@ -12,6 +12,8 @@
   border: 3px solid #737780;
   border-radius: 10px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 .amc-searchbox{
   margin: 5vh auto;
@@ -69,12 +71,14 @@
 .all-courses h3{
   font-weight: 600;
   font-size: 18px;
-  margin: 0.75rem 0 0.75rem 0.75rem;
+  padding: 0.75rem 0 0.75rem 0.75rem;
+  user-select: none;
 }
 .all-courses p{
   font-weight: 500;
   font-size: 14px;
-  margin: 0 0.75rem 1rem 0.75rem;
+  padding: 0 0.75rem 1rem 0.75rem;
+  user-select: none;
 }
 .all-courses:hover{
   border: 2px solid #F7E188;
@@ -83,11 +87,17 @@
   background: #343540;
   border-radius: 10px;
   padding: 1rem 2rem;
-  width: 6.5rem;
+  display: inline-block;
   height: 3.2rem;
   margin: 0 auto;
   margin-top: 1rem;
+  font-weight: 600;
+  font-size: 16px;
 }
 .amc-add-btn:hover{
   cursor: pointer;
+}
+.course-added{
+  background: #F7E188 !important;
+  color: #343540 !important;
 }

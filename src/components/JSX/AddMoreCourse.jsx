@@ -26,7 +26,33 @@ const AddMoreCourse = ({onAddMoreCourseBack}) =>{
       onAddMoreCourseBack();
     }
   };
-
+  const onCoursesClick = (e) =>{
+    const courseElements = document.getElementsByClassName("all-courses course-added");
+    if (courseElements.length === 0) {
+      setNumberOfCourses("Back");
+      document.getElementsByClassName("amc-add-btn")[0].className = "amc-add-btn"
+    } else if(courseElements.length === 1){
+      setNumberOfCourses(`Add ${courseElements.length} Course`);
+      document.getElementsByClassName("amc-add-btn")[0].className = "amc-add-btn course-added"
+    } else {
+      setNumberOfCourses(`Add ${courseElements.length} Courses`);
+      document.getElementsByClassName("amc-add-btn")[0].className = "amc-add-btn course-added"
+    }
+    if(e.target.className === "all-courses"){
+      e.target.className = "all-courses course-added"
+    }
+    if(e.target.className === "all-courses course-added"){
+      e.target.className = "all-courses"
+    }
+  };
+  const onCourseChildClick = (e) => {
+    const targetDiv = e.currentTarget.parentElement;
+    if (targetDiv.className === "all-courses") {
+      targetDiv.className = "all-courses course-added";
+    } else if (targetDiv.className === "all-courses course-added") {
+      targetDiv.className = "all-courses";
+    }
+  };
 
   return(
     <div className="add-more-courses-container">
@@ -41,9 +67,9 @@ const AddMoreCourse = ({onAddMoreCourseBack}) =>{
         </div>
         <div className="amc-courses-container">
           {courseArray.map(item => (
-            <div key={item.id} className="all-courses" >
-              <h3>{item.title}</h3>
-              <p>{item.Name}</p>
+            <div key={item.id} className="all-courses" onClick={onCoursesClick}>
+              <h3 onClick={onCourseChildClick}>{item.title}</h3>
+              <p onClick={onCourseChildClick}>{item.Name}</p>
             </div>
           ))}
         </div>
