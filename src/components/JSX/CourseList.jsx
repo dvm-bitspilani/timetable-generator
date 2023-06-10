@@ -25,6 +25,11 @@ const CourseList = () => {
   const onAddMoreCourse = () =>{
     setAddMoreCourse(true);
   };
+  const onAddMoreCourseBack = () =>{
+    
+    setAddMoreCourse(false);
+  };
+  
 
   // return (
   //   <>
@@ -60,7 +65,7 @@ const CourseList = () => {
       {courseSelected ? (
         <CourseDetail onCourseClickClose={onCourseClickClose} />
       ) : addMoreCourse ? (
-        <AddMoreCourse />
+        <AddMoreCourse onAddMoreCourseBack={onAddMoreCourseBack} />
       ) : (
         <div className="course-list">
           <h2 className="courses-heading">
