@@ -20,7 +20,7 @@ const CourseDetail = ({onCourseClickClose}) =>{
   return(
   <div className="course-detail-invisible-container">
     <div className="course-detail-container">
-      <h3>General Chemistry</h3>
+      <h3 className="course-detail-title">General Chemistry</h3>
       <img src={IconCross} alt="Close" className="cross-icon" onClick={onCourseClickClose}/>
       {lectureSelected? <Lectures /> : <Tutorials /> }
       <div className="course-btns-container">
