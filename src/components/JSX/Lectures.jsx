@@ -4,10 +4,10 @@ import "../CSS/Lectures.css";
 const Lectures = () =>{
 
   const lectureArray = [
-    {id:1, lecture: "L 2" , room: 6101 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
-    {id:2, lecture: "L 2" , room: 6101 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
-    {id:3, lecture: "L 2" , room: 6101 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
-    {id:4, lecture: "L 2" , room: 6101 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"}
+    {id:1, lecture: "L 2" , room: 5101 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
+    {id:2, lecture: "L 2" , room: 5101 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
+    {id:3, lecture: "L 2" , room: 5101 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
+    {id:4, lecture: "L 2" , room: 5101 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"}
   ];
 
   const onLectureClick = (e) =>{
