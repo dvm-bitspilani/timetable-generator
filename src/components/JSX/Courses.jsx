@@ -8,6 +8,7 @@ const onInputID = () => {
 
   return new Promise((resolve) => {
     setTimeout(() => {
+      localStorage.clear();
       fetch(
         "https://raw.githubusercontent.com/dr5hn/countries-states-cities-database/master/countries%2Bstates.json"
       )
