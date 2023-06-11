@@ -1,7 +1,7 @@
 import React ,{useEffect} from "react";
 import "../CSS/Lectures.css";
 
-const Lectures = () =>{
+const Lectures = ({courseId}) =>{
 
   const lectureArray = [
     {id:1, lecture: "L 1" , room: 5101 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
@@ -63,10 +63,10 @@ const Lectures = () =>{
 
 
   return(
-    <div className="lectures">
+    <div className="lectures" id={courseId}>
       <div className="lectures-container">
         {lectureArray.map(item=>(
-          <div key={item.id} id={`lecture-card${item.id}`} className="lecture-card">
+          <div key={item.id} id={`lecture-card${item.id}${courseId.replace(/ +/g, "")}`} className="lecture-card">
             <div className="lecture-room">
               <h3 className="font-weight-600" onClick={onLectureClick2}>{item.lecture}</h3>
               <h3 className="font-weight-500" onClick={onLectureClick2}>{item.room}</h3>

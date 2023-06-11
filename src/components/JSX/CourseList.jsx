@@ -15,12 +15,15 @@ const CourseList = () => {
 
   const [courseSelected, setCourseSelected] = useState(false);
   const [addMoreCourse, setAddMoreCourse] = useState(false);
+  const [selectedCourseId, setSelectedCourseId] = useState(null);
 
-  const onCourseClick = () => {
+  const onCourseClick = (id) => {
     setCourseSelected(true);
+    setSelectedCourseId(id);
   };
   const onCourseClickClose = () => {
     setCourseSelected(false);
+    setSelectedCourseId(null);
   };
   const onAddMoreCourse = () =>{
     setAddMoreCourse(true);
@@ -31,39 +34,11 @@ const CourseList = () => {
   };
   
 
-  // return (
-  //   <>
-  //     {courseSelected ? (
-  //       <CourseDetail />
-  //     ) : (
-  //       <div className="course-list">
-  //         <h2 className="courses-heading">
-  //           <span>
-  //             <img src={IconCDCs} alt="Icon" />
-  //           </span>
-  //           Your CDCs
-  //         </h2>
-  //         <CDCs onCourseClick={onCourseClick} />
-  //         <div className="horizontal-line"></div>
-  //         <h2 className="courses-heading">
-  //           <span>
-  //             <img src={IconCDCs} alt="Icon" />
-  //           </span>
-  //           More Courses
-  //         </h2>
-  //         <MoreCourses />
-  //         <FreeDay setFreeDay={setFreeDay} />
-  //         <PercentageBar />
-  //         <GenerateButtons />
-  //       </div>
-  //     )}
-  //   </>
-  // );
 
   return (
     <>
       {courseSelected ? (
-        <CourseDetail onCourseClickClose={onCourseClickClose} />
+        <CourseDetail onCourseClickClose={onCourseClickClose} courseId={selectedCourseId} />
       ) : addMoreCourse ? (
         <AddMoreCourse onAddMoreCourseBack={onAddMoreCourseBack} />
       ) : (
