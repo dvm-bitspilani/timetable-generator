@@ -12,6 +12,10 @@
   justify-content: center;
   align-items: center;
 }
+#more-courses-heading{
+  margin-top: 2vh;
+  margin-bottom: 4vh;
+}
 .courses-heading span{
   display: flex;
   justify-content: center;

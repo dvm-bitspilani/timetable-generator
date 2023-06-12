@@ -51,7 +51,7 @@ const CourseList = () => {
           </h2>
           <CDCs onCourseClick={onCourseClick} />
           <div className="horizontal-line"></div>
-          <h2 className="courses-heading">
+          <h2 className="courses-heading" id="more-courses-heading">
             <span>
               <img src={IconCDCs} alt="Icon" />
             </span>

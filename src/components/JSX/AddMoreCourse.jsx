@@ -35,6 +35,15 @@ const AddMoreCourse = ({onAddMoreCourseBack}) =>{
 
   const handleBackButtonClick = () => {
     if (numberOfCourses === "Back") {
+      const courseElements = document.getElementsByClassName("all-courses course-added");
+      const selectedCourses = Array.from(courseElements).map((element) => {
+        return {
+          id: element.id.split('-')[2],
+          title: element.querySelector('h3').innerText,
+          name: element.querySelector('p').innerText,
+        };
+      });
+      localStorage.setItem("storedMoreCourses", JSON.stringify(selectedCourses));
       onAddMoreCourseBack();
     } else {
       const courseElements = document.getElementsByClassName("all-courses course-added");
