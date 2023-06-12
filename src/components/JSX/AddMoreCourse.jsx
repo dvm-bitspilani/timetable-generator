@@ -1,28 +1,51 @@
-import React , {useState} from "react";
+import React , {useState, useEffect} from "react";
 import "../CSS/AddMoreCourse.css";
 import IconSearch from "../../assets/IconSearch.svg"
 
 const AddMoreCourse = ({onAddMoreCourseBack}) =>{
 
   let courseArray = [
-    {id: 1, title: "PHY F111", Name: "Mechanic Oscillations & Waves"},
-    {id: 2, title: "PHY F111", Name: "Mechanic Oscillations & Waves"},
-    {id: 3, title: "PHY F111", Name: "Mechanic Oscillations & Waves"},
-    {id: 4, title: "PHY F111", Name: "Mechanic Oscillations & Waves"},
-    {id: 5, title: "PHY F111", Name: "Mechanic Oscillations & Waves"},
-    {id: 6, title: "PHY F111", Name: "Mechanic Oscillations & Waves"},
-    {id: 7, title: "PHY F111", Name: "Mechanic Oscillations & Waves"},
-    {id: 8, title: "PHY F111", Name: "Mechanic Oscillations & Waves"},
-    {id: 9, title: "PHY F111", Name: "Mechanic Oscillations & Waves"},
-    {id: 10, title: "PHY F111", Name: "Mechanic Oscillations & Waves"},
-    {id: 11, title: "PHY F111", Name: "Mechanic Oscillations & Waves"},
-    {id: 12, title: "PHY F111", Name: "Mechanic Oscillations & Waves"}
+    {id: 1, title: "PHY F111", Name: "General Chemistry"},
+    {id: 2, title: "PHY F112", Name: "General Chemistry"},
+    {id: 3, title: "PHY F113", Name: "General Chemistry"},
+    {id: 4, title: "PHY F114", Name: "General Chemistry"},
+    {id: 5, title: "PHY F115", Name: "General Chemistry"},
+    {id: 6, title: "PHY F116", Name: "General Chemistry"},
+    {id: 7, title: "PHY F117", Name: "General Chemistry"},
+    {id: 8, title: "PHY F118", Name: "General Chemistry"},
+    {id: 9, title: "PHY F119", Name: "General Chemistry"},
+    {id: 10, title: "PHY F121", Name: "General Chemistry"},
+    {id: 11, title: "PHY F131", Name: "General Chemistry"},
+    {id: 12, title: "PHY F141", Name: "General Chemistry"}
   ];
 
   const [numberOfCourses , setNumberOfCourses] = useState("Back");
 
+  useEffect(() => {
+    const storedMoreCourses = JSON.parse(localStorage.getItem('storedMoreCourses')) || [];
+    storedMoreCourses.forEach(course => {
+      const targetDiv = document.getElementById(`more-courses-${course.id}`);
+      if (targetDiv) {
+        targetDiv.classList.add('course-added');
+      }
+    });
+  }, []);
+
+
+
   const handleBackButtonClick = () => {
     if (numberOfCourses === "Back") {
+      onAddMoreCourseBack();
+    } else {
+      const courseElements = document.getElementsByClassName("all-courses course-added");
+      const selectedCourses = Array.from(courseElements).map((element) => {
+        return {
+          id: element.id.split('-')[2],
+          title: element.querySelector('h3').innerText,
+          name: element.querySelector('p').innerText,
+        };
+      });
+      localStorage.setItem("storedMoreCourses", JSON.stringify(selectedCourses));
       onAddMoreCourseBack();
     }
   };
@@ -67,7 +90,7 @@ const AddMoreCourse = ({onAddMoreCourseBack}) =>{
         </div>
         <div className="amc-courses-container">
           {courseArray.map(item => (
-            <div key={item.id} className="all-courses" onClick={onCoursesClick}>
+            <div key={item.id} className="all-courses" id={`more-courses-${item.title.replace(/ +/g, "")}`} onClick={onCoursesClick}>
               <h3 onClick={onCourseChildClick}>{item.title}</h3>
               <p onClick={onCourseChildClick}>{item.Name}</p>
             </div>
