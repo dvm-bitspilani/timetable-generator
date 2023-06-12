@@ -21,7 +21,7 @@ const Tutorials = ({courseId}) =>{
   }, []);
 
   const onTutorialClick = (e) =>{
-    const targetDiv = e.currentTarget.parentElement;
+    const targetDiv = e.currentTarget;
     if (targetDiv.className === "lecture-card") {
       targetDiv.className = "lecture-card lecture-card-selected";
 
@@ -40,40 +40,17 @@ const Tutorials = ({courseId}) =>{
       }
     }
   };
-  const onTutorialClick2 = (e) =>{
-    const targetDiv = e.currentTarget.parentElement.parentElement;
-    if (targetDiv.className === "lecture-card") {
-      targetDiv.className = "lecture-card lecture-card-selected";
-
-      let storedDivs = JSON.parse(localStorage.getItem('clickedDivs')) || [];
-      storedDivs.push(targetDiv.id);
-      localStorage.setItem('clickedDivs', JSON.stringify(storedDivs));
-
-    } else if (targetDiv.className === "lecture-card lecture-card-selected") {
-      targetDiv.className = "lecture-card";
-
-      let storedDivs = JSON.parse(localStorage.getItem('clickedDivs')) || [];
-      const index = storedDivs.indexOf(targetDiv.id);
-      if (index > -1) {
-        storedDivs.splice(index, 1);
-        localStorage.setItem('clickedDivs', JSON.stringify(storedDivs));
-      }
-    }
-  };
-
-
-
   return(
     <div className="lectures">
       <div className="lectures-container">
         {tutorialArray.map(item=>(
-          <div key={item.id} id={`tutorial-card${item.id}${courseId.replace(/ +/g, "")}`} className="lecture-card">
+          <div key={item.id} id={`tutorial-card${item.id}${courseId.replace(/ +/g, "")}`} className="lecture-card" onClick={onTutorialClick}>
             <div className="lecture-room">
-              <h3 className="font-weight-600" onClick={onTutorialClick2}>{item.lecture}</h3>
-              <h3 className="font-weight-500" onClick={onTutorialClick2}>{item.room}</h3>
+              <h3 className="font-weight-600">{item.lecture}</h3>
+              <h3 className="font-weight-500">{item.room}</h3>
             </div>
-            <h2 onClick={onTutorialClick}>{item.faculty}</h2>
-            <h2 className="margin-bottom-1rem" onClick={onTutorialClick}>{item.hours}</h2>
+            <h2>{item.faculty}</h2>
+            <h2 className="margin-bottom-1rem">{item.hours}</h2>
           </div>
         ))}
       </div>

@@ -3,6 +3,7 @@
   height: 90%; 
   /* height may change after adding want or not want button */
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -20,6 +21,7 @@
   background: #4B4C5C;
   border-radius: 10px;
   border: 2px solid transparent;
+  cursor: pointer;
 }
 .lecture-room{
   display: flex;
@@ -50,4 +52,6 @@
 .lecture-card-selected{
   background: #F7E188 !important;
   color: #36373B !important;
+}
+.want-or-not-container{
 }
