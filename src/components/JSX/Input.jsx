@@ -12,7 +12,7 @@ function Input({ setShowInputBox }) {
     const capitalizedValue = event.target.value.toUpperCase();
     setInputValue(capitalizedValue);
     if (showError) {
-      setShowError(""); 
+      setShowError("");
     }
   };
 
@@ -20,14 +20,14 @@ function Input({ setShowInputBox }) {
     e.preventDefault();
 
     const idRegex =
-      /^20[12][1237890]([BD][1-5])?[ABD][1-8AB][PT]S[0-9]{4}[PGH]$/;
+      /^20[12][1237890]([BD][1-5])?[ABD][1-8AB]([PT]S)?[0-9]{4}[PGH]$/;
 
-    if (!idRegex.test(inputValue)) {
-      setShowError("Enter a valid ID!");
-      setInputValue("");
-    } else {
+    if (idRegex.test(inputValue) && inputValue.length == 13) {
       setShowError("");
       setShowInputBox(false);
+    } else {
+      setShowError("Enter a valid ID!");
+      setInputValue("");
     }
   };
 
