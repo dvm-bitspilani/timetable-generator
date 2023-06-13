@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .add-more-courses{
   width: 78vw;
@@ -14,6 +15,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
+  cursor: default;
 }
 .amc-searchbox{
   margin: 5vh auto;
@@ -57,7 +59,7 @@
 .amc-courses-container{
   display: flex;
   width: 90%;
-  margin: 0 auto;
+  margin: 2vh auto;
   flex-wrap: wrap;
   justify-content: space-between;
 }

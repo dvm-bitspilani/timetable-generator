@@ -4,6 +4,7 @@
   align-items: center;
   width: 100vw;
   height: 100vh;
+  cursor: pointer;
 }
 .course-detail-container{
   width: 78vw;
@@ -12,6 +13,7 @@
   border: 3px solid #737780;
   border-radius: 10px;
   position: relative;
+  cursor: default;
 }
 .course-detail-title{
   font-weight: 700;
@@ -58,6 +60,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  cursor: pointer;
 }
 .lect-tut-selected{
   background: #F7E188;
