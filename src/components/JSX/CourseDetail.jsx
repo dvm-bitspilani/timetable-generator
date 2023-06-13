@@ -6,7 +6,7 @@ import RightArrow from "../../assets/IconRightArrow.svg";
 import Lectures from "./Lectures";
 import Tutorials from "./Tutorials";
 
-const CourseDetail = ({courseId,onCourseClickClose}) =>{
+const CourseDetail = ({courseId,onCourseClickClose , onCourseClickClose2}) =>{
 
   const [ lectureSelected , setLectureSelected ] = useState(true)
 
@@ -18,7 +18,7 @@ const CourseDetail = ({courseId,onCourseClickClose}) =>{
   };
 
   return(
-  <div className="course-detail-invisible-container">
+  <div className="course-detail-invisible-container" onClick={onCourseClickClose2}>
     <div className="course-detail-container">
       <h3 className="course-detail-title">{courseId}</h3>
       <img src={IconCross} alt="Close" className="cross-icon" onClick={onCourseClickClose}/>

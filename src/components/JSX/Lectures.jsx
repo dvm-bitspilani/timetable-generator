@@ -139,7 +139,7 @@ const Lectures = ({ courseId }) => {
       <div className="want-or-not-container">
         <input type="checkbox" id="switch" />
         <label
-          for="switch"
+          htmlFor="switch"
           onClick={() => {
             if (want == true) {
               setWant(false);

@@ -2,7 +2,7 @@ import React , {useState, useEffect} from "react";
 import "../CSS/AddMoreCourse.css";
 import IconSearch from "../../assets/IconSearch.svg"
 
-const AddMoreCourse = ({onAddMoreCourseBack}) =>{
+const AddMoreCourse = ({onAddMoreCourseBack , onCourseClickClose3}) =>{
 
   let courseArray = [
     {id: 1, title: "PHY F111", Name: "General Chemistry"},
@@ -87,7 +87,7 @@ const AddMoreCourse = ({onAddMoreCourseBack}) =>{
   };
 
   return(
-    <div className="add-more-courses-container">
+    <div className="add-more-courses-container" onClick={onCourseClickClose3}>
       <div className="add-more-courses">
         <div className="amc-searchbox">
           <form action="">
