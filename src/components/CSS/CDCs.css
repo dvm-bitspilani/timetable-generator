@@ -5,7 +5,7 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   max-height: 19vh;
-  overflow: auto;
+  /* overflow: auto; */
   /* scrollbar-width: none; */
 }
 /* .courses-container::-webkit-scrollbar{
