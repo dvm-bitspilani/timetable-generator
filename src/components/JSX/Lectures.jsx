@@ -68,8 +68,6 @@ const Lectures = ({ courseId }) => {
   }, [want]);
 
   const onLectureClick = (e) => {
-    console.log(e.currentTarget);
-    console.log(e.target);
     const targetDiv = e.currentTarget;
     if (targetDiv.className === "lecture-card") {
       targetDiv.className = "lecture-card lecture-card-selected";
