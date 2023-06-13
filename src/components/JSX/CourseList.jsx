@@ -44,12 +44,19 @@ const CourseList = () => {
     setAddMoreCourse(false);
   };
   
+  let array = [
+    { id: 1, title: "General Chemistry" },
+    { id: 2, title: "General Biology" },
+    { id: 3, title: "Mathematics 2" },
+    { id: 4, title: "Workshop Practice" },
+    { id: 5, title: "Mathematics 1" },
+  ];
 
 
   return (
     <>
       {courseSelected ? (
-        <CourseDetail onCourseClickClose={onCourseClickClose} onCourseClickClose2={onCourseClickClose2} courseId={selectedCourseId} />
+        <CourseDetail onCourseClick={onCourseClick} onCourseClickClose={onCourseClickClose} onCourseClickClose2={onCourseClickClose2} courseId={selectedCourseId} courseArray={array} />
       ) : addMoreCourse ? (
         <AddMoreCourse onAddMoreCourseBack={onAddMoreCourseBack} onCourseClickClose3={onCourseClickClose3} />
       ) : (
@@ -60,7 +67,7 @@ const CourseList = () => {
             </span>
             Your CDCs
           </h2>
-          <CDCs onCourseClick={onCourseClick} />
+          <CDCs onCourseClick={onCourseClick} array={array} />
           <div className="horizontal-line"></div>
           <h2 className="courses-heading" id="more-courses-heading">
             <span>
