@@ -6,12 +6,12 @@ const FreeDay = ({ setFreeDay }) => {
   const handleClick = (e) => {
     if (!e.target.className) {
       days.forEach((element) => {
-        element.className = "";
+        element.classList.remove("selected-day");
       });
-      e.target.className = "selected-day";
+      e.target.classList.add("selected-day");
       setFreeDay(e.target.id);
     } else {
-      e.target.className = "";
+      e.target.classList.remove("selected-day");
       setFreeDay("");
     }
   };
