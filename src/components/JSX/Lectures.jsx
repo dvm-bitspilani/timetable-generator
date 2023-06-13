@@ -31,12 +31,19 @@ const Lectures = ({ courseId }) => {
       faculty: "Prof Shivang Rai",
       hours: "0900Hrs - 0950Hrs",
     },
-    // {id:5, lecture: "L 4" , room: 5104 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
-    // {id:6, lecture: "L 1" , room: 5101 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
-    // {id:7, lecture: "L 2" , room: 5102 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
-    // {id:8, lecture: "L 3" , room: 5103 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
-    // {id:9, lecture: "L 4" , room: 5104 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
-    // {id:10, lecture: "L 4" , room: 5104 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"}
+    {id:5, lecture: "L 5" , room: 5104 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
+    {id:6, lecture: "L 6" , room: 5101 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
+    {id:7, lecture: "L 7" , room: 5102 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
+    {id:8, lecture: "L 8" , room: 5103 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
+    {id:9, lecture: "L 9" , room: 5104 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
+    {id:10, lecture: "L 10" , room: 5104 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
+    {id:11, lecture: "L 11" , room: 5104 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
+    {id:12, lecture: "L 12" , room: 5101 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
+    {id:13, lecture: "L 13" , room: 5102 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
+    {id:14, lecture: "L 14" , room: 5103 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
+    {id:15, lecture: "L 15" , room: 5104 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
+    {id:16, lecture: "L 16" , room: 5104 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"}
+
   ];
 
   const [want, setWant] = useState(true);

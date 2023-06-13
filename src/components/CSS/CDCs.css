@@ -4,9 +4,19 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  max-height: 19vh;
+  overflow: auto;
+  /* scrollbar-width: none; */
 }
+/* .courses-container::-webkit-scrollbar{
+  display: none;
+} */
+
+/* Show scrollbar or not */
+
 .course-div{
   width: 20vw;
+  height: 8vh;
   margin-right: 7.5vw;
   margin-bottom: 2vh;
   background-color: #40414E;

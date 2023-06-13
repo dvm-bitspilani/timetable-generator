@@ -11,7 +11,7 @@ import AddMoreCourse from "./AddMoreCourse";
 
 const CourseList = () => {
   const [freeDay, setFreeDay] = useState("");
-  console.log(freeDay);
+  // console.log(freeDay);
 
   const [courseSelected, setCourseSelected] = useState(false);
   const [addMoreCourse, setAddMoreCourse] = useState(false);
