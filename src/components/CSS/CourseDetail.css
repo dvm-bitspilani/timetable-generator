@@ -50,6 +50,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
+  cursor: pointer;
 }
 .lecture-tut-btns{
   background: #474747;
