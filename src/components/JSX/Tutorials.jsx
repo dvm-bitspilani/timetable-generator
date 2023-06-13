@@ -121,7 +121,7 @@ const Tutorials = ({ courseId }) => {
         {tutorialArray.map((item) => (
           <div
             key={item.id}
-            id={`tutorial-card${item.id}${courseId.replace(/ +/g, "")}`}
+            id={`tutorial-card-${item.lecture.replace(/ +/g, "")}-${courseId.replace(/ +/g, "")}`}
             className="lecture-card"
             onClick={onLectureClick}
           >
