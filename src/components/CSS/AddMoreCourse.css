@@ -62,7 +62,8 @@
   width: 90%;
   margin: 2vh auto;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 0 calc((100% - (4 * 22.5%)) / 3);
 }
 .all-courses{
   width: 22.5%;

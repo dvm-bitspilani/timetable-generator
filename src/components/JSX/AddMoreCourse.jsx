@@ -15,7 +15,7 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
     {id: 8, title: "PHY F118", Name: "General Chemistry"},
     {id: 9, title: "PHY F119", Name: "General Chemistry"},
     {id: 10, title: "PHY F121", Name: "General Chemistry"},
-    {id: 11, title: "PHY F131", Name: "General Chemistry"},
+    {id: 11, title: "PHY F131", Name: "General Biology"},
     {id: 12, title: "PHY F141", Name: "General Biology"}
   ];
 
