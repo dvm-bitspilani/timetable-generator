@@ -16,10 +16,11 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
     {id: 9, title: "PHY F119", Name: "General Chemistry"},
     {id: 10, title: "PHY F121", Name: "General Chemistry"},
     {id: 11, title: "PHY F131", Name: "General Chemistry"},
-    {id: 12, title: "PHY F141", Name: "General Chemistry"}
+    {id: 12, title: "PHY F141", Name: "General Biology"}
   ];
 
   const [numberOfCourses , setNumberOfCourses] = useState("Back");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const storedMoreCourses = JSON.parse(localStorage.getItem('storedMoreCourses')) || [];
@@ -91,7 +92,17 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
     }
   };
 
-  return(
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredCourses = courseArray.filter(
+    (item) =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.Name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  return (
     <div className="add-more-courses-container" onClick={onCourseClickClose3}>
       <div className="add-more-courses">
         <div className="amc-searchbox">
@@ -99,21 +110,34 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
             <button type="submit" className="amc-search-btn">
               <img src={IconSearch} alt="Search" />
             </button>
-            <input type="text" id="coursesSearchInput" placeholder="Search"/>
+            <input
+              type="text"
+              id="coursesSearchInput"
+              placeholder="Search"
+              value={searchQuery}
+              onChange={handleSearch}
+            />
           </form>
         </div>
         <div className="amc-courses-container">
-          {courseArray.map(item => (
-            <div key={item.id} className="all-courses" id={`more-courses-${item.title.replace(/ +/g, "")}`} onClick={onCoursesClick}>
+          {filteredCourses.map((item) => (
+            <div
+              key={item.id}
+              className="all-courses"
+              id={`more-courses-${item.title.replace(/ +/g, "")}`}
+              onClick={onCoursesClick}
+            >
               <h3 onClick={onCourseChildClick}>{item.title}</h3>
               <p onClick={onCourseChildClick}>{item.Name}</p>
             </div>
           ))}
         </div>
-        <div className="amc-add-btn" onClick={handleBackButtonClick} >{numberOfCourses}</div>
+        <div className="amc-add-btn" onClick={handleBackButtonClick}>
+          {numberOfCourses}
+        </div>
       </div>
     </div>
-  )
+  );
 };
 
 export default AddMoreCourse;
