@@ -8,6 +8,9 @@
     justify-content: center;
     align-items: center;
 }
+.free-day-container:hover{
+    z-index: 2;
+}
 .free-day-heading{
     font-size: 1.25rem;
     font-weight: 400;
