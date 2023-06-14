@@ -2,7 +2,7 @@ import React , {useState, useEffect} from "react";
 import "../CSS/AddMoreCourse.css";
 import IconSearch from "../../assets/IconSearch.svg"
 
-const AddMoreCourse = ({onAddMoreCourseBack , onCourseClickClose3}) =>{
+const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded , onCourseClickClose3}) =>{
 
   let courseArray = [
     {id: 1, title: "PHY F111", Name: "General Chemistry"},
@@ -45,6 +45,9 @@ const AddMoreCourse = ({onAddMoreCourseBack , onCourseClickClose3}) =>{
       });
       localStorage.setItem("storedMoreCourses", JSON.stringify(selectedCourses));
       onAddMoreCourseBack();
+      if(courseElements.length === 0 ){
+        moreCourseNotAdded();
+      }
     } else {
       const courseElements = document.getElementsByClassName("all-courses course-added");
       const selectedCourses = Array.from(courseElements).map((element) => {
@@ -56,6 +59,7 @@ const AddMoreCourse = ({onAddMoreCourseBack , onCourseClickClose3}) =>{
       });
       localStorage.setItem("storedMoreCourses", JSON.stringify(selectedCourses));
       onAddMoreCourseBack();
+      moreCourseAdded();
     }
   };
   const onCoursesClick = (e) =>{

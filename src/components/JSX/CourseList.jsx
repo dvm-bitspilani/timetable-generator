@@ -16,6 +16,7 @@ const CourseList = () => {
   const [courseSelected, setCourseSelected] = useState(false);
   const [addMoreCourse, setAddMoreCourse] = useState(false);
   const [selectedCourseId, setSelectedCourseId] = useState(null);
+  const [moreCoursesAdded, setMoreCoursesAdded] = useState(false);
 
   const onCourseClick = (id) => {
     setCourseSelected(true);
@@ -43,6 +44,12 @@ const CourseList = () => {
     
     setAddMoreCourse(false);
   };
+  const moreCourseAdded = ()=>{
+    setMoreCoursesAdded(true);
+  }
+  const moreCourseNotAdded = ()=>{
+    setMoreCoursesAdded(false);
+  }
   
   let array = [
     { id: 1, title: "General Chemistry" },
@@ -58,7 +65,7 @@ const CourseList = () => {
       {courseSelected ? (
         <CourseDetail onCourseClick={onCourseClick} onCourseClickClose={onCourseClickClose} onCourseClickClose2={onCourseClickClose2} courseId={selectedCourseId} courseArray={array} />
       ) : addMoreCourse ? (
-        <AddMoreCourse onAddMoreCourseBack={onAddMoreCourseBack} onCourseClickClose3={onCourseClickClose3} />
+        <AddMoreCourse moreCourseAdded={moreCourseAdded} moreCourseNotAdded={moreCourseNotAdded} onAddMoreCourseBack={onAddMoreCourseBack} onCourseClickClose3={onCourseClickClose3} />
       ) : (
         <div className="course-list">
           <h2 className="courses-heading">
@@ -68,14 +75,18 @@ const CourseList = () => {
             Your CDCs
           </h2>
           <CDCs onCourseClick={onCourseClick} array={array} />
-          <div className="horizontal-line"></div>
-          <h2 className="courses-heading" id="more-courses-heading">
-            <span>
-              <img src={IconCDCs} alt="Icon" />
-            </span>
-            More Courses
-          </h2>
-          <MoreCourses onCourseClick={onCourseClick}  />
+          {moreCoursesAdded? 
+            (<>
+              <div className="horizontal-line"></div>
+              <h2 className="courses-heading" id="more-courses-heading">
+                <span>
+                  <img src={IconCDCs} alt="Icon" />
+                </span>
+                More Courses
+              </h2>
+              <MoreCourses onCourseClick={onCourseClick}  />
+            </>):""
+          }
           <FreeDay setFreeDay={setFreeDay} />
           <PercentageBar />
           <GenerateButtons onAddMoreCourse={onAddMoreCourse} />
