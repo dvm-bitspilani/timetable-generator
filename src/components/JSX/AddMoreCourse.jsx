@@ -49,7 +49,9 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
       if(courseElements.length === 0 ){
         moreCourseNotAdded();
       }
-    } else {
+    } else if(numberOfCourses === "Max Courses"){
+      onAddMoreCourseBack();
+    }else{
       const courseElements = document.getElementsByClassName("all-courses course-added");
       const selectedCourses = Array.from(courseElements).map((element) => {
         return {
@@ -72,9 +74,11 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
     } else if(courseElements.length === 1){
       setNumberOfCourses(`Add ${courseElements.length} Course`);
       document.getElementsByClassName("amc-add-btn")[0].className = "amc-add-btn course-added"
-    } else {
+    } else if(courseElements.length < 6) {
       setNumberOfCourses(`Add ${courseElements.length} Courses`);
       document.getElementsByClassName("amc-add-btn")[0].className = "amc-add-btn course-added"
+    }else{
+      setNumberOfCourses(`Max Courses`);  
     }
     if(e.target.className === "all-courses"){
       e.target.className = "all-courses course-added"

@@ -5,17 +5,20 @@ const PercentageBar = ({ prop }) => {
   const [progressWidth, setProgressWidth] = useState(0);
 
   useEffect(() => {
-    setTimeout(() => {
-      
+    const interval = setInterval(() => {
       const totalCourses = document.querySelectorAll(".course-div");
       const greenCourses = document.querySelectorAll(".courseIsSelectedGreen");
       const totalCoursesLength = totalCourses.length;
       const greenCoursesLength = greenCourses.length;
       const newWidth = (greenCoursesLength / totalCoursesLength) * 100;
       setProgressWidth(newWidth);
-      console.log(prop);
     }, 50);
+  
+    return () => {
+      clearInterval(interval);
+    };
   }, [prop]);
+  
 
   return (
     <div className="percentage-bar">
