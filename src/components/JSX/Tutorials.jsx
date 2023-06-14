@@ -69,29 +69,44 @@ const Tutorials = ({ courseId }) => {
 
   const onLectureClick = (e) => {
     const targetDiv = e.currentTarget;
+    const targetCourse = targetDiv.id.slice(3);
+    const courseRegex = new RegExp(`^.+-${targetCourse}$`);
+    let wantedSections =
+      JSON.parse(localStorage.getItem("wantedSections")) || [];
+    let unwantedSections =
+      JSON.parse(localStorage.getItem("unwantedSections")) || [];
     if (targetDiv.className === "lecture-card") {
       targetDiv.className = "lecture-card lecture-card-selected";
 
       if (want == true) {
-        let wantedSections =
-          JSON.parse(localStorage.getItem("wantedSections")) || [];
         wantedSections.push(targetDiv.id);
         localStorage.setItem("wantedSections", JSON.stringify(wantedSections));
+        let updateUnwanted = unwantedSections.filter((element) => {
+          if (!courseRegex.test(element)) {
+            return element;
+          }
+        });
+        localStorage.setItem(
+          "unwantedSections",
+          JSON.stringify(updateUnwanted)
+        );
       } else {
-        let unwantedSections =
-          JSON.parse(localStorage.getItem("unwantedSections")) || [];
         unwantedSections.push(targetDiv.id);
         localStorage.setItem(
           "unwantedSections",
           JSON.stringify(unwantedSections)
         );
+        let updateWanted = wantedSections.filter((element) => {
+          if (!courseRegex.test(element)) {
+            return element;
+          }
+        });
+        localStorage.setItem("wantedSections", JSON.stringify(updateWanted));
       }
     } else if (targetDiv.className === "lecture-card lecture-card-selected") {
       targetDiv.className = "lecture-card";
 
       if (want == true) {
-        let wantedSections =
-          JSON.parse(localStorage.getItem("wantedSections")) || [];
         const index = wantedSections.indexOf(targetDiv.id);
         if (index > -1) {
           wantedSections.splice(index, 1);
@@ -101,8 +116,6 @@ const Tutorials = ({ courseId }) => {
           );
         }
       } else {
-        let unwantedSections =
-          JSON.parse(localStorage.getItem("unwantedSections")) || [];
         const index = unwantedSections.indexOf(targetDiv.id);
         if (index > -1) {
           unwantedSections.splice(index, 1);
@@ -121,7 +134,10 @@ const Tutorials = ({ courseId }) => {
         {tutorialArray.map((item) => (
           <div
             key={item.id}
-            id={`tutorial-card-${item.lecture.replace(/ +/g, "")}-${courseId.replace(/ +/g, "")}`}
+            id={`${item.lecture.replace(/ +/g, "")}-${courseId.replace(
+              / +/g,
+              ""
+            )}`}
             className="lecture-card"
             onClick={onLectureClick}
           >

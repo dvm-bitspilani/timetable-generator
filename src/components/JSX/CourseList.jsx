@@ -17,9 +17,12 @@ const CourseList = () => {
   const [addMoreCourse, setAddMoreCourse] = useState(false);
   const [selectedCourseId, setSelectedCourseId] = useState(null);
   const storedMoreCourses = localStorage.getItem("storedMoreCourses");
-  const initialMoreCoursesAdded = storedMoreCourses !== null && JSON.parse(storedMoreCourses).length !== 0;
+  const initialMoreCoursesAdded =
+    storedMoreCourses !== null && JSON.parse(storedMoreCourses).length !== 0;
 
-  const [moreCoursesAdded, setMoreCoursesAdded] = useState(initialMoreCoursesAdded);
+  const [moreCoursesAdded, setMoreCoursesAdded] = useState(
+    initialMoreCoursesAdded
+  );
 
   const onCourseClick = (id) => {
     setCourseSelected(true);
@@ -40,20 +43,19 @@ const CourseList = () => {
       setAddMoreCourse(false);
     }
   };
-  const onAddMoreCourse = () =>{
+  const onAddMoreCourse = () => {
     setAddMoreCourse(true);
   };
-  const onAddMoreCourseBack = () =>{
-    
+  const onAddMoreCourseBack = () => {
     setAddMoreCourse(false);
   };
-  const moreCourseAdded = ()=>{
+  const moreCourseAdded = () => {
     setMoreCoursesAdded(true);
-  }
-  const moreCourseNotAdded = ()=>{
+  };
+  const moreCourseNotAdded = () => {
     setMoreCoursesAdded(false);
-  }
-  
+  };
+
   let array = [
     { id: 1, title: "General Chemistry" },
     { id: 2, title: "General Biology" },
@@ -62,31 +64,46 @@ const CourseList = () => {
     { id: 5, title: "Mathematics 1" },
   ];
 
-
   const wantedSections = JSON.parse(localStorage.getItem("wantedSections"));
   const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections"));
 
   const courseIsSelectedGreen = (courseTitle) => {
-    const formattedCourseTitle = courseTitle.replace(/\s/g, ""); 
-    const lecturePattern = new RegExp(`^lecture-card-.+-${formattedCourseTitle}$`);
-    const tutorialPattern = new RegExp(`^tutorial-card-.+-${formattedCourseTitle}$`);
+    const formattedCourseTitle = courseTitle.replace(/\s/g, "");
+    const lecturePattern = new RegExp(`^.+-${formattedCourseTitle}$`);
+    const tutorialPattern = new RegExp(`^.+-${formattedCourseTitle}$`);
 
-  
-    const hasLecturedCard = (wantedSections && wantedSections.some((section) => lecturePattern.test(section))) || (unWantedSections && unWantedSections.some((section) => lecturePattern.test(section)));
+    const hasLecturedCard =
+      (wantedSections &&
+        wantedSections.some((section) => lecturePattern.test(section))) ||
+      (unWantedSections &&
+        unWantedSections.some((section) => lecturePattern.test(section)));
 
-    const hasTutorialCard = (wantedSections && wantedSections.some((section) => tutorialPattern.test(section))) || (unWantedSections && unWantedSections.some((section) => tutorialPattern.test(section)));
+    const hasTutorialCard =
+      (wantedSections &&
+        wantedSections.some((section) => tutorialPattern.test(section))) ||
+      (unWantedSections &&
+        unWantedSections.some((section) => tutorialPattern.test(section)));
 
     return hasLecturedCard && hasTutorialCard;
   };
-  
-  
 
   return (
     <>
       {courseSelected ? (
-        <CourseDetail onCourseClick={onCourseClick} onCourseClickClose={onCourseClickClose} onCourseClickClose2={onCourseClickClose2} courseId={selectedCourseId} courseArray={array} />
+        <CourseDetail
+          onCourseClick={onCourseClick}
+          onCourseClickClose={onCourseClickClose}
+          onCourseClickClose2={onCourseClickClose2}
+          courseId={selectedCourseId}
+          courseArray={array}
+        />
       ) : addMoreCourse ? (
-        <AddMoreCourse moreCourseAdded={moreCourseAdded} moreCourseNotAdded={moreCourseNotAdded} onAddMoreCourseBack={onAddMoreCourseBack} onCourseClickClose3={onCourseClickClose3} />
+        <AddMoreCourse
+          moreCourseAdded={moreCourseAdded}
+          moreCourseNotAdded={moreCourseNotAdded}
+          onAddMoreCourseBack={onAddMoreCourseBack}
+          onCourseClickClose3={onCourseClickClose3}
+        />
       ) : (
         <div className="course-list">
           <h2 className="courses-heading">
@@ -95,9 +112,13 @@ const CourseList = () => {
             </span>
             Your CDCs
           </h2>
-          <CDCs onCourseClick={onCourseClick} array={array} courseIsSelectedGreen={courseIsSelectedGreen} />
-          {moreCoursesAdded? 
-            (<>
+          <CDCs
+            onCourseClick={onCourseClick}
+            array={array}
+            courseIsSelectedGreen={courseIsSelectedGreen}
+          />
+          {moreCoursesAdded ? (
+            <>
               <div className="horizontal-line"></div>
               <h2 className="courses-heading" id="more-courses-heading">
                 <span>
@@ -105,9 +126,11 @@ const CourseList = () => {
                 </span>
                 More Courses
               </h2>
-              <MoreCourses onCourseClick={onCourseClick}  />
-            </>):""
-          }
+              <MoreCourses onCourseClick={onCourseClick} />
+            </>
+          ) : (
+            ""
+          )}
           <FreeDay setFreeDay={setFreeDay} />
           <PercentageBar />
           <GenerateButtons onAddMoreCourse={onAddMoreCourse} />
@@ -115,9 +138,6 @@ const CourseList = () => {
       )}
     </>
   );
-
-
-
 };
 
 export default CourseList;
