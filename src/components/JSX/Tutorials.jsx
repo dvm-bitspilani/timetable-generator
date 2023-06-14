@@ -70,7 +70,7 @@ const Tutorials = ({ courseId }) => {
   const onLectureClick = (e) => {
     const targetDiv = e.currentTarget;
     const targetCourse = targetDiv.id.slice(3);
-    const courseRegex = new RegExp(`^.+-${targetCourse}$`);
+    const courseRegex = new RegExp(`^T.+-${targetCourse}$`);
     let wantedSections =
       JSON.parse(localStorage.getItem("wantedSections")) || [];
     let unwantedSections =
