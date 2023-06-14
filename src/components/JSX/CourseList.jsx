@@ -16,7 +16,10 @@ const CourseList = () => {
   const [courseSelected, setCourseSelected] = useState(false);
   const [addMoreCourse, setAddMoreCourse] = useState(false);
   const [selectedCourseId, setSelectedCourseId] = useState(null);
-  const [moreCoursesAdded, setMoreCoursesAdded] = useState(false);
+  const storedMoreCourses = localStorage.getItem("storedMoreCourses");
+  const initialMoreCoursesAdded = storedMoreCourses !== null && JSON.parse(storedMoreCourses).length !== 0;
+
+  const [moreCoursesAdded, setMoreCoursesAdded] = useState(initialMoreCoursesAdded);
 
   const onCourseClick = (id) => {
     setCourseSelected(true);
