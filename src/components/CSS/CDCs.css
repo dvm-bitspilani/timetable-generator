@@ -13,7 +13,13 @@
 } */
 
 /* Show scrollbar or not */
-
+.courseIsSelectedGreen{
+  background-color: #59B386 !important;
+  color: #0C0C0D !important;
+}
+.courseIsSelectedGreen img{
+  filter: brightness(0%);
+}
 .course-div{
   width: 20vw;
   height: 8vh;

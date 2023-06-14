@@ -63,6 +63,24 @@ const CourseList = () => {
   ];
 
 
+  const wantedSections = JSON.parse(localStorage.getItem("wantedSections"));
+  const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections"));
+
+  const courseIsSelectedGreen = (courseTitle) => {
+    const formattedCourseTitle = courseTitle.replace(/\s/g, ""); 
+    const lecturePattern = new RegExp(`^lecture-card-.+-${formattedCourseTitle}$`);
+    const tutorialPattern = new RegExp(`^tutorial-card-.+-${formattedCourseTitle}$`);
+
+  
+    const hasLecturedCard = (wantedSections && wantedSections.some((section) => lecturePattern.test(section))) || (unWantedSections && unWantedSections.some((section) => lecturePattern.test(section)));
+
+    const hasTutorialCard = (wantedSections && wantedSections.some((section) => tutorialPattern.test(section))) || (unWantedSections && unWantedSections.some((section) => tutorialPattern.test(section)));
+
+    return hasLecturedCard && hasTutorialCard;
+  };
+  
+  
+
   return (
     <>
       {courseSelected ? (
@@ -77,7 +95,7 @@ const CourseList = () => {
             </span>
             Your CDCs
           </h2>
-          <CDCs onCourseClick={onCourseClick} array={array} />
+          <CDCs onCourseClick={onCourseClick} array={array} courseIsSelectedGreen={courseIsSelectedGreen} />
           {moreCoursesAdded? 
             (<>
               <div className="horizontal-line"></div>
