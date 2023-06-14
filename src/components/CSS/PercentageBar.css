@@ -46,4 +46,10 @@
   height: 34px;
   position: absolute;
   top: -1.65rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #344054;
+  font-weight: 600;
+  font-size: 12px;
 }

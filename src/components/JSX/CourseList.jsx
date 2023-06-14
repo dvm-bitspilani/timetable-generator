@@ -20,10 +20,12 @@ const CourseList = () => {
   const initialMoreCoursesAdded =
     storedMoreCourses !== null && JSON.parse(storedMoreCourses).length !== 0;
 
-  const [moreCoursesAdded, setMoreCoursesAdded] = useState(
-    initialMoreCoursesAdded
-  );
+  const [moreCoursesAdded, setMoreCoursesAdded] = useState(initialMoreCoursesAdded);
+  const [key , setKey] = useState(0);
 
+  const updateKey = () => {
+    setKey(prev=>prev+1);
+  };
   const onCourseClick = (id) => {
     setCourseSelected(true);
     setSelectedCourseId(id);
@@ -103,6 +105,7 @@ const CourseList = () => {
           moreCourseNotAdded={moreCourseNotAdded}
           onAddMoreCourseBack={onAddMoreCourseBack}
           onCourseClickClose3={onCourseClickClose3}
+          updateKey={updateKey}
         />
       ) : (
         <div className="course-list">
@@ -126,13 +129,13 @@ const CourseList = () => {
                 </span>
                 More Courses
               </h2>
-              <MoreCourses onCourseClick={onCourseClick} />
+              <MoreCourses onCourseClick={onCourseClick} courseIsSelectedGreen={courseIsSelectedGreen} />
             </>
           ) : (
             ""
           )}
           <FreeDay setFreeDay={setFreeDay} />
-          <PercentageBar />
+          <PercentageBar key={key} prop={key} />
           <GenerateButtons onAddMoreCourse={onAddMoreCourse} />
         </div>
       )}

@@ -3,7 +3,7 @@ import IconBook from "../../assets/IconBook.svg";
 import IconBookWhite from "../../assets/IconBookWhite.svg";
 import "../CSS/CDCs.css";
 
-const MoreCourses = ({onCourseClick}) => {
+const MoreCourses = ({onCourseClick,courseIsSelectedGreen}) => {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const MoreCourses = ({onCourseClick}) => {
   return (
     <div className="courses-container">
       {courses.map((item) => (
-        <div key={item.id} className="course-div" onClick={()=> courseClickUnique(item.title)}>
+        <div key={item.id} className={`course-div ${courseIsSelectedGreen(item.title) ? "courseIsSelectedGreen" : ""}`} onClick={()=> courseClickUnique(item.title)}>
           <img src={IconBookWhite} alt="book" />
           <h3>{item.name}</h3>
         </div>

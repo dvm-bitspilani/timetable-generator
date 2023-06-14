@@ -2,7 +2,7 @@ import React , {useState, useEffect} from "react";
 import "../CSS/AddMoreCourse.css";
 import IconSearch from "../../assets/IconSearch.svg"
 
-const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded , onCourseClickClose3}) =>{
+const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded , onCourseClickClose3,updateKey}) =>{
 
   let courseArray = [
     {id: 1, title: "PHY F111", Name: "General Chemistry"},
@@ -61,6 +61,7 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
       onAddMoreCourseBack();
       moreCourseAdded();
     }
+    updateKey();
   };
   const onCoursesClick = (e) =>{
     const courseElements = document.getElementsByClassName("all-courses course-added");
