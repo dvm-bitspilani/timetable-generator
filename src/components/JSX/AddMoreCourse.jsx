@@ -1,6 +1,7 @@
 import React , {useState, useEffect} from "react";
 import "../CSS/AddMoreCourse.css";
-import IconSearch from "../../assets/IconSearch.svg"
+import IconSearch from "../../assets/IconSearch.svg";
+import Oops from "../../assets/Groupoops.svg";
 
 const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded , onCourseClickClose3,updateKey}) =>{
 
@@ -21,6 +22,19 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
 
   const [numberOfCourses , setNumberOfCourses] = useState("Back");
   const [searchQuery, setSearchQuery] = useState("");
+  const [areCoursesAvailable, setAreCoursesAvailable] = useState(true);
+
+  const filteredCourses = courseArray.filter(
+    (item) =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.Name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  useEffect(() => {
+    const areCoursesAvailable = filteredCourses.length > 0;
+    setAreCoursesAvailable(areCoursesAvailable);
+  }, [filteredCourses]);
+  
 
   useEffect(() => {
     const storedMoreCourses = JSON.parse(localStorage.getItem('storedMoreCourses')) || [];
@@ -100,11 +114,6 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
     setSearchQuery(e.target.value);
   };
 
-  const filteredCourses = courseArray.filter(
-    (item) =>
-      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.Name.toLowerCase().includes(searchQuery.toLowerCase())
-  );
 
   return (
     <div className="add-more-courses-container" onClick={onCourseClickClose3}>
@@ -124,18 +133,29 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
           </form>
         </div>
         <div className="amc-courses-container">
-          {filteredCourses.map((item) => (
-            <div
-              key={item.id}
-              className="all-courses"
-              id={`more-courses-${item.title.replace(/ +/g, "")}`}
-              onClick={onCoursesClick}
-            >
-              <h3 onClick={onCourseChildClick}>{item.title}</h3>
-              <p onClick={onCourseChildClick}>{item.Name}</p>
+          {areCoursesAvailable ? (
+            filteredCourses.map((item) => (
+              <div
+                key={item.id}
+                className="all-courses"
+                id={`more-courses-${item.title.replace(/ +/g, "")}`}
+                onClick={onCoursesClick}
+              >
+                <h3 onClick={onCourseChildClick}>{item.title}</h3>
+                <p onClick={onCourseChildClick}>{item.Name}</p>
+              </div>
+            ))
+          ) : (
+            <div className="no-course-found">
+              <img src={Oops} alt="No Courses" className="no-courses-image" />
+              <div className="no-course-text">
+                <h2>OOPS!</h2>
+                <p>No Course found</p>
+              </div>
             </div>
-          ))}
+          )}
         </div>
+
         <div className="amc-add-btn" onClick={handleBackButtonClick}>
           {numberOfCourses}
         </div>

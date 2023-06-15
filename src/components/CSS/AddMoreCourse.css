@@ -99,7 +99,7 @@
   font-weight: 600;
   font-size: 16px;
   position: absolute;
-  bottom: 10%;
+  bottom: 8%;
 }
 .amc-add-btn:hover{
   cursor: pointer;
@@ -107,4 +107,23 @@
 .course-added{
   background: #F7E188 !important;
   color: #343540 !important;
+}
+.no-course-found{
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.no-course-text h2{
+  font-size: 4.5rem;
+  font-weight: 600;
+  color: #F7E188;
+}
+.no-course-text p{
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: #F7E188;
+  padding: 0 0.5rem;
 }
