@@ -16,6 +16,7 @@
 .courseIsSelectedGreen{
   background-color: #59B386 !important;
   color: #0C0C0D !important;
+  
 }
 .courseIsSelectedGreen img{
   filter: brightness(0%);
@@ -23,6 +24,8 @@
 .course-div{
   width: 20vw;
   height: 8vh;
+  position: relative;
+  transition: transform .2s;
   margin-right: 7.5vw;
   margin-bottom: 2vh;
   background-color: #40414E;
@@ -38,13 +41,52 @@
   font-weight: 600;
   padding:  1rem 0;
   margin-right: 1rem;
+  transition: opacity .2s;
 }
 .course-div img{
   width: 16px;
   height: auto;
   margin-right: 0.75rem;
   margin-left: 1rem;
+  transition: opacity .2s;
 }
 .course-div:nth-child(3n){
   margin-right: 0 !important;
+}
+.course-div-overlay{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  opacity: 0;
+  /* overflow: hidden; */
+  transition: opacity .2s;
+  transition: transform .2s ease-out;
+}
+.course-overlay-content{
+  position: absolute;
+  top: 0;
+  display: flex;
+  gap: .5rem;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.courseIsSelectedGreen:hover{
+  transform: scaleY(2.5) scaleX(1.2);
+  z-index: 10;
+}
+.courseIsSelectedGreen:hover .course-overlay-content{
+  transform: scaleY(0.41) scaleX(0.834);
+}
+.courseIsSelectedGreen:hover .course-div-overlay{
+  opacity: 1;
+}
+.courseIsSelectedGreen:hover h3{
+  opacity: 0;
+}
+.courseIsSelectedGreen:hover img{
+  opacity: 0;
 }
