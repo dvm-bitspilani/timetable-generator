@@ -3,31 +3,18 @@ import "../CSS/AddMoreCourse.css";
 import IconSearch from "../../assets/IconSearch.svg";
 import Oops from "../../assets/Groupoops.svg";
 
-const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded , onCourseClickClose3,updateKey}) =>{
+const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded , onCourseClickClose3,updateKey , fetchedArray}) =>{
 
-  let courseArray = [
-    {id: 1, title: "PHY F111", Name: "General Chemistry"},
-    {id: 2, title: "PHY F112", Name: "General Chemistry"},
-    {id: 3, title: "PHY F113", Name: "General Chemistry"},
-    {id: 4, title: "PHY F114", Name: "General Chemistry"},
-    {id: 5, title: "PHY F115", Name: "General Chemistry"},
-    {id: 6, title: "PHY F116", Name: "General Chemistry"},
-    {id: 7, title: "PHY F117", Name: "General Chemistry"},
-    {id: 8, title: "PHY F118", Name: "General Chemistry"},
-    {id: 9, title: "PHY F119", Name: "General Chemistry"},
-    {id: 10, title: "PHY F121", Name: "General Chemistry"},
-    {id: 11, title: "PHY F131", Name: "General Biology"},
-    {id: 12, title: "PHY F141", Name: "General Biology"}
-  ];
+  const moreCoursesArray = fetchedArray.courses;
 
   const [numberOfCourses , setNumberOfCourses] = useState("Back");
   const [searchQuery, setSearchQuery] = useState("");
   const [areCoursesAvailable, setAreCoursesAvailable] = useState(true);
 
-  const filteredCourses = courseArray.filter(
+  const filteredCourses = moreCoursesArray.filter(
     (item) =>
-      item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      item.Name.toLowerCase().includes(searchQuery.toLowerCase())
+      item.course_no.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      item.course_title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   useEffect(() => {
@@ -136,13 +123,13 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
           {areCoursesAvailable ? (
             filteredCourses.map((item) => (
               <div
-                key={item.id}
+                key={item.course_id}
                 className="all-courses"
-                id={`more-courses-${item.title.replace(/ +/g, "")}`}
+                id={`more-courses-${item.course_title.replace(/ +/g, "")}`}
                 onClick={onCoursesClick}
               >
-                <h3 onClick={onCourseChildClick}>{item.title}</h3>
-                <p onClick={onCourseChildClick}>{item.Name}</p>
+                <h3 onClick={onCourseChildClick}>{item.course_no}</h3>
+                <p onClick={onCourseChildClick}>{item.course_title}</p>
               </div>
             ))
           ) : (

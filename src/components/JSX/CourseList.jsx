@@ -99,6 +99,7 @@ const CourseList = ({fetchedArray}) => {
           onAddMoreCourseBack={onAddMoreCourseBack}
           onCourseClickClose3={onCourseClickClose3}
           updateKey={updateKey}
+          fetchedArray={fetchedArray}
         />
       ) : (
         <div className="course-list">
