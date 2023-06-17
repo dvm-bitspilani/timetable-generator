@@ -16,8 +16,8 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
     onCourseClick(id);
   };
 
-  const wantedSections = JSON.parse(localStorage.getItem("wantedSections"));
-  const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections"));
+  const wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
+  const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections")) || [];
 
   const getWantedSection = (title) => {
     const formattedTitle = title.replace(/\s/g, "");

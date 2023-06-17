@@ -6,15 +6,14 @@
 .courses-heading{
   font-size: 2rem;
   font-weight: 600;
-  margin-top: 5vh;
-  margin-bottom: 5vh;
+  margin-top: 4vh;
+  margin-bottom: 4vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 #more-courses-heading{
-  margin-top: 2vh;
-  margin-bottom: 4vh;
+  margin-bottom: 3vh;
 }
 .courses-heading span{
   display: flex;

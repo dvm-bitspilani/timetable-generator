@@ -7,8 +7,8 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
     onCourseClick(id);
   };
 
-  const wantedSections = JSON.parse(localStorage.getItem("wantedSections"));
-  const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections"));
+  const wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
+  const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections")) || [];
 
   const getWantedSection = (title) => {
     const formattedTitle = title.replace(/\s/g, "");
@@ -64,8 +64,14 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
               )}
             </div>
           </div>
-          <img src={IconBookWhite} alt="book" />
-          <h3>{item.course_title}</h3>
+          <div className="course-div-main-content">
+            <img src={IconBookWhite} alt="book" />
+            <h3>{item.course_title}</h3>
+          </div>
+          <div className="course-div-detail">
+            <h6>{item.course_no}</h6>
+            <p>3 Credits</p>
+          </div>
         </div>
       ))}
     </div>
