@@ -75,11 +75,11 @@
   justify-content: space-evenly;
 }
 .courseIsSelectedGreen:hover{
-  transform: scaleY(2.5) scaleX(1.2);
+  transform: scaleY(1.5) scaleX(1.2);
   z-index: 10;
 }
 .courseIsSelectedGreen:hover .course-overlay-content{
-  transform: scaleY(0.41) scaleX(0.834);
+  transform: scaleY(0.67) scaleX(0.834);
 }
 .courseIsSelectedGreen:hover .course-div-overlay{
   opacity: 1;
@@ -88,6 +88,9 @@
   opacity: 0;
 }
 .courseIsSelectedGreen:hover img{
+  opacity: 0;
+}
+.courseIsSelectedGreen:hover .course-div-detail{
   opacity: 0;
 }
 .course-div-main-content{

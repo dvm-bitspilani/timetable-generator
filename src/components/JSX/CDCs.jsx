@@ -17,7 +17,7 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
       courseRegex.test(section)
     );
     let formattedArray = wantedArray
-      .map((section) => section.slice(0, 2))
+      .map((section) => section.slice(0, 3))
       .join(", ");
     return formattedArray;
   };

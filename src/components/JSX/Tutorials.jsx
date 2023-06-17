@@ -69,7 +69,7 @@ const Tutorials = ({ courseId }) => {
 
   const onLectureClick = (e) => {
     const targetDiv = e.currentTarget;
-    const targetCourse = targetDiv.id.slice(3);
+    const targetCourse = targetDiv.id.slice(4);
     const courseRegex = new RegExp(`^T.+-${targetCourse}$`);
     let wantedSections =
       JSON.parse(localStorage.getItem("wantedSections")) || [];
@@ -134,7 +134,7 @@ const Tutorials = ({ courseId }) => {
         {tutorialArray.map((item) => (
           <div
             key={item.id}
-            id={`${item.lecture.replace(/ +/g, "")}-${courseId.replace(
+            id={`${item.lecture.replace(/ +/g, "")} -${courseId.replace(
               / +/g,
               ""
             )}`}
