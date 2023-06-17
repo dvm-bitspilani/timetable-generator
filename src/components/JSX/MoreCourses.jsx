@@ -38,8 +38,8 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
       courseRegex.test(section)
     );
     let formattedArray = wantedArray
-      .map((section) => section.slice(0, 2))
-      .join(", "); //Check for 2 digit sections
+      .map((section) => section.slice(0, 3))
+      .join(", ");
     return formattedArray;
   };
 

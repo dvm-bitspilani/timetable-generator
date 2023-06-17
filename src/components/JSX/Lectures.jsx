@@ -212,7 +212,7 @@ const Lectures = ({ courseId }) => {
         {lectureArray.map((item) => (
           <div
             key={item.id}
-            id={`${item.lecture.replace(/ +/g, "")}-${courseId.replace(
+            id={`${item.lecture.replace(/ +/g, "")} -${courseId.replace(
               / +/g,
               ""
             )}`}
