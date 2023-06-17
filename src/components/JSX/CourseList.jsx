@@ -90,7 +90,7 @@ const CourseList = ({fetchedArray}) => {
           onCourseClickClose={onCourseClickClose}
           onCourseClickClose2={onCourseClickClose2}
           courseId={selectedCourseId}
-          courseArray={array}
+          courseArray={fetchedArray}
         />
       ) : addMoreCourse ? (
         <AddMoreCourse

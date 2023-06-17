@@ -6,7 +6,7 @@ import RightArrow from "../../assets/IconRightArrow.svg";
 import Lectures from "./Lectures";
 import Tutorials from "./Tutorials";
 
-const CourseDetail = ({courseId,onCourseClickClose , onCourseClickClose2 , courseArray , onCourseClick}) =>{
+const CourseDetail = ({courseId,onCourseClickClose , onCourseClickClose2 , courseArray , onCourseClick }) =>{
 
   const [ lectureSelected , setLectureSelected ] = useState(true)
 

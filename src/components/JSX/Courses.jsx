@@ -20,11 +20,11 @@ const onInputID = ({inputValue}) => {
           const fetchedArray = data;
 
           console.log('fetchedArray:', fetchedArray);
-          resolve(data); // Resolve the promise with the fetched data
+          resolve(data);
         })
         .catch((error) => {
           console.error('An error occurred:', error);
-          resolve({ error }); // Resolve the promise with the error
+          resolve({ error }); 
         });
     }, delay);
   });
