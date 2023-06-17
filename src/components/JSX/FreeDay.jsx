@@ -19,12 +19,12 @@ const FreeDay = ({ setFreeDay }) => {
     <div className="free-day-container">
       <h1 className="free-day-heading">Free Day?</h1>
       <div className="free-day-box" onClick={handleClick}>
-        <div id="1">M</div>
-        <div id="2">T</div>
-        <div id="3">W</div>
-        <div id="4">Th</div>
-        <div id="5">F</div>
-        <div id="6">S</div>
+        <div id="monday">M</div>
+        <div id="tuesday">T</div>
+        <div id="wednesday">W</div>
+        <div id="thursday">Th</div>
+        <div id="friday">F</div>
+        <div id="saturday">S</div>
       </div>
     </div>
   );
