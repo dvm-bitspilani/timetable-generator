@@ -9,9 +9,10 @@ import GenerateButtons from "./GenerateButtons";
 import CourseDetail from "./CourseDetail";
 import AddMoreCourse from "./AddMoreCourse";
 
-const CourseList = () => {
+const CourseList = ({fetchedArray}) => {
   const [freeDay, setFreeDay] = useState("");
   // console.log(freeDay);
+  // console.log(fetchedArray);
 
   const [courseSelected, setCourseSelected] = useState(false);
   const [addMoreCourse, setAddMoreCourse] = useState(false);
@@ -57,14 +58,6 @@ const CourseList = () => {
   const moreCourseNotAdded = () => {
     setMoreCoursesAdded(false);
   };
-
-  let array = [
-    { id: 1, title: "General Chemistry" },
-    { id: 2, title: "General Biology" },
-    { id: 3, title: "Mathematics 2" },
-    { id: 4, title: "Workshop Practice" },
-    { id: 5, title: "Mathematics 1" },
-  ];
 
   const wantedSections = JSON.parse(localStorage.getItem("wantedSections"));
   const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections"));
@@ -117,7 +110,7 @@ const CourseList = () => {
           </h2>
           <CDCs
             onCourseClick={onCourseClick}
-            array={array}
+            fetchedArray={fetchedArray}
             courseIsSelectedGreen={courseIsSelectedGreen}
           />
           {moreCoursesAdded ? (

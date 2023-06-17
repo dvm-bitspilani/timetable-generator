@@ -25,6 +25,7 @@ function Input({ setShowInputBox }) {
     if (idRegex.test(inputValue) && inputValue.length == 13) {
       setShowError("");
       setShowInputBox(false);
+      setInputValue(inputValue);
     } else {
       setShowError("Enter a valid ID!");
       setInputValue("");
