@@ -7,8 +7,8 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
     onCourseClick(id);
   };
 
-  const wantedSections = JSON.parse(localStorage.getItem("wantedSections"));
-  const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections"));
+  const wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
+  const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections")) || [];
 
   const getWantedSection = (title) => {
     const formattedTitle = title.replace(/\s/g, "");
@@ -29,8 +29,8 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
       courseRegex.test(section)
     );
     let formattedArray = wantedArray
-      .map((section) => section.slice(0, 2))
-      .join(", "); //Check for 2 digit sections
+      .map((section) => section.slice(0, 3))
+      .join(", ");
     return formattedArray;
   };
 

@@ -134,7 +134,7 @@ const Tutorials = ({ courseId }) => {
         {tutorialArray.map((item) => (
           <div
             key={item.id}
-            id={`${item.lecture.replace(/ +/g, "")}-${courseId.replace(
+            id={`${item.lecture.replace(/ +/g, "")} -${courseId.replace(
               / +/g,
               ""
             )}`}

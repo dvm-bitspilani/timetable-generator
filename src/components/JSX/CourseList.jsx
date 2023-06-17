@@ -64,8 +64,8 @@ const CourseList = ({fetchedArray}) => {
 
   const courseIsSelectedGreen = (courseTitle) => {
     const formattedCourseTitle = courseTitle.replace(/\s/g, "");
-    const lecturePattern = new RegExp(`^L\\d+-${formattedCourseTitle}$`);
-    const tutorialPattern = new RegExp(`^T\\d+-${formattedCourseTitle}$`);    
+    const lecturePattern = new RegExp(`^.+-${formattedCourseTitle}$`);
+    const tutorialPattern = new RegExp(`^.+-${formattedCourseTitle}$`);    
 
     const hasLecturedCard =
       (wantedSections &&
