@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useEffect } from "react";
 import "../CSS/CourseDetail.css";
 import IconCross from "../../assets/IconCross.svg";
 import LeftArrow from "../../assets/IconLeftArrow.svg";
@@ -6,8 +6,14 @@ import RightArrow from "../../assets/IconRightArrow.svg";
 import Lectures from "./Lectures";
 import Tutorials from "./Tutorials";
 
-const CourseDetail = ({courseId,onCourseClickClose , onCourseClickClose2 , courseArray , onCourseClick }) =>{
+const CourseDetail = ({courseId,onCourseClickClose , onCourseClickClose2 , fetchedArray , onCourseClick }) =>{
+  const [courseArray, setCourseArray] = useState([]);
 
+  useEffect(() => {
+    const storedMoreCourses = JSON.parse(localStorage.getItem("storedMoreCourses")) || [];
+    const fetchedCourseArray = fetchedArray.cdcs;
+    setCourseArray([...fetchedCourseArray, ...storedMoreCourses]);
+  }, [fetchedArray]);
   const [ lectureSelected , setLectureSelected ] = useState(true)
 
   const changeLectToTut = () =>{
@@ -18,20 +24,21 @@ const CourseDetail = ({courseId,onCourseClickClose , onCourseClickClose2 , cours
   };
 
   const getNextCourseId = () => {
-    const currentIndex = courseArray.findIndex((item) => item.title === courseId);
+    const currentIndex = courseArray.findIndex((item) => item.course_title === courseId);
     const nextIndex = (currentIndex + 1) % courseArray.length;
-    return courseArray[nextIndex].title;
+    return courseArray[nextIndex].course_title;
   };
   const handleNextCourse = () => {
+    console.log(typeof courseArray);
     const nextCourseId = getNextCourseId();
     onCourseClickClose();
     console.log(nextCourseId);
     onCourseClick(nextCourseId);
   };
   const getPreviousCourseId = () => {
-    const currentIndex = courseArray.findIndex((item) => item.title === courseId);
+    const currentIndex = courseArray.findIndex((item) => item.course_title === courseId);
     const previousIndex = (currentIndex - 1 + courseArray.length) % courseArray.length;
-    return courseArray[previousIndex].title;
+    return courseArray[previousIndex].course_title;
   };
   
   const handlePreviousCourse = () => {

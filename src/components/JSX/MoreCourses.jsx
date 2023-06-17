@@ -49,30 +49,36 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
         <div
           key={item.id}
           className={`course-div ${
-            courseIsSelectedGreen(item.title) ? "courseIsSelectedGreen" : ""
+            courseIsSelectedGreen(item.course_title) ? "courseIsSelectedGreen" : ""
           }`}
-          onClick={() => courseClickUnique(item.title)}
+          onClick={() => courseClickUnique(item.course_title)}
         >
           <div className="course-div-overlay">
             <div className="course-overlay-content">
-              {getWantedSection(item.title) != "" ? (
+              {getWantedSection(item.course_title) != "" ? (
                 <div className="want-content">
-                  Want: {getWantedSection(item.title)}
+                  Want: {getWantedSection(item.course_title)}
                 </div>
               ) : (
                 ""
               )}
-              {getUnWantedSection(item.title) != "" ? (
+              {getUnWantedSection(item.course_title) != "" ? (
                 <div className="want-content">
-                  Don't Want: {getUnWantedSection(item.title)}
+                  Don't Want: {getUnWantedSection(item.course_title)}
                 </div>
               ) : (
                 ""
               )}
             </div>
           </div>
-          <img src={IconBookWhite} alt="book" />
-          <h3>{item.name}</h3>
+          <div className="course-div-main-content">
+            <img src={IconBookWhite} alt="book" />
+            <h3>{item.course_title}</h3>
+          </div>
+          <div className="course-div-detail">
+            <h6>{item.course_no}</h6>
+            <p>3 Credits</p>
+          </div>
         </div>
       ))}
     </div>
