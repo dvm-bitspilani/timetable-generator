@@ -41,8 +41,8 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
       const selectedCourses = Array.from(courseElements).map((element) => {
         return {
           id: element.id.split('-')[2],
-          title: element.querySelector('h3').innerText,
-          name: element.querySelector('p').innerText,
+          course_no: element.querySelector('h3').innerText,
+          course_title: element.querySelector('p').innerText,
         };
       });
       localStorage.setItem("storedMoreCourses", JSON.stringify(selectedCourses));

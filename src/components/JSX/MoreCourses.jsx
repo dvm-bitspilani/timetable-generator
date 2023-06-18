@@ -17,10 +17,14 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
   };
 
   function titleCase(str) {
+    if (!str) {
+      return '';
+    }
     return str.toLowerCase().split(' ').map(function(word) {
       return word.replace(word[0], word[0].toUpperCase());
     }).join(' ');
   }
+  
 
   const wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
   const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections")) || [];
@@ -47,10 +51,10 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
   
     const formattedTitle = title.replace(/\s/g, "");
     const courseRegex = new RegExp(`^..+-${formattedTitle}$`);
-    let wantedArray = wantedSections.filter((section) =>
+    let unwantedArray = unWantedSections.filter((section) =>
       courseRegex.test(section)
     );
-    let formattedArray = wantedArray
+    let formattedArray = unwantedArray
       .map((section) => section.slice(0, 2))
       .join(", ");
     return formattedArray;
