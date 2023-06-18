@@ -63,24 +63,29 @@ const CourseList = ({fetchedArray}) => {
   const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections"));
 
   const courseIsSelectedGreen = (courseTitle) => {
+    if (!courseTitle) {
+      return false;
+    }
+  
     const formattedCourseTitle = courseTitle.replace(/\s/g, "");
     const lecturePattern = new RegExp(`^L.+-${formattedCourseTitle}$`);
-    const tutorialPattern = new RegExp(`^T.+-${formattedCourseTitle}$`);    
-
+    const tutorialPattern = new RegExp(`^T.+-${formattedCourseTitle}$`);
+  
     const hasLecturedCard =
       (wantedSections &&
         wantedSections.some((section) => lecturePattern.test(section))) ||
       (unWantedSections &&
         unWantedSections.some((section) => lecturePattern.test(section)));
-
+  
     const hasTutorialCard =
       (wantedSections &&
         wantedSections.some((section) => tutorialPattern.test(section))) ||
       (unWantedSections &&
         unWantedSections.some((section) => tutorialPattern.test(section)));
-
+  
     return hasLecturedCard && hasTutorialCard;
   };
+  
 
   return (
     <>

@@ -20,6 +20,10 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
   const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections")) || [];
 
   const getWantedSection = (title) => {
+    if (!title) {
+      return '';
+    }
+  
     const formattedTitle = title.replace(/\s/g, "");
     const courseRegex = new RegExp(`^..+-${formattedTitle}$`);
     let wantedArray = wantedSections.filter((section) =>
@@ -30,18 +34,34 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
       .join(", ");
     return formattedArray;
   };
-
   const getUnWantedSection = (title) => {
+    if (!title) {
+      return '';
+    }
+  
     const formattedTitle = title.replace(/\s/g, "");
     const courseRegex = new RegExp(`^..+-${formattedTitle}$`);
-    let wantedArray = unWantedSections.filter((section) =>
+    let wantedArray = wantedSections.filter((section) =>
       courseRegex.test(section)
     );
     let formattedArray = wantedArray
-      .map((section) => section.slice(0, 3))
+      .map((section) => section.slice(0, 2))
       .join(", ");
     return formattedArray;
   };
+  
+
+  // const getUnWantedSection = (title) => {
+  //   const formattedTitle = title.replace(/\s/g, "");
+  //   const courseRegex = new RegExp(`^..+-${formattedTitle}$`);
+  //   let wantedArray = unWantedSections.filter((section) =>
+  //     courseRegex.test(section)
+  //   );
+  //   let formattedArray = wantedArray
+  //     .map((section) => section.slice(0, 3))
+  //     .join(", ");
+  //   return formattedArray;
+  // };
 
   return (
     <div className="courses-container">
