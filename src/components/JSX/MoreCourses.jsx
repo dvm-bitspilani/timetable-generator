@@ -49,19 +49,6 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
       .join(", ");
     return formattedArray;
   };
-  
-
-  // const getUnWantedSection = (title) => {
-  //   const formattedTitle = title.replace(/\s/g, "");
-  //   const courseRegex = new RegExp(`^..+-${formattedTitle}$`);
-  //   let wantedArray = unWantedSections.filter((section) =>
-  //     courseRegex.test(section)
-  //   );
-  //   let formattedArray = wantedArray
-  //     .map((section) => section.slice(0, 3))
-  //     .join(", ");
-  //   return formattedArray;
-  // };
 
   return (
     <div className="courses-container">

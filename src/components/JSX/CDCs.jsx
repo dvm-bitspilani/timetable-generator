@@ -7,6 +7,12 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
     onCourseClick(id);
   };
 
+  function titleCase(str) {
+    return str.toLowerCase().split(' ').map(function(word) {
+      return word.replace(word[0], word[0].toUpperCase());
+    }).join(' ');
+  }
+
   const wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
   const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections")) || [];
 
@@ -66,7 +72,7 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
           </div>
           <div className="course-div-main-content">
             <img src={IconBookWhite} alt="book" />
-            <h3>{item.course_title}</h3>
+            <h3>{titleCase(item.course_title)}</h3>
           </div>
           <div className="course-div-detail">
             <h6>{item.course_no}</h6>
