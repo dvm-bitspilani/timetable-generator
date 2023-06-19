@@ -4,8 +4,7 @@ import "..//CSS/Input.css";
 import dvmlogo from "../../../src/assets/dvm-logo.svg";
 import submitbtn from "../../../src/assets/button-icon.svg";
 
-function Input({ setShowInputBox }) {
-  const [inputValue, setInputValue] = useState("");
+function Input({ setShowInputBox, setInputValue, inputValue }) {
   const [showError, setShowError] = useState("");
 
   const handleInputChange = (event) => {

@@ -12,7 +12,7 @@ function App() {
   return (
     <>
       {showInputBox ? (
-        <InputParent setShowInputBox={setShowInputBox} setInputValue={setInputValue} />
+        <InputParent setShowInputBox={setShowInputBox} setInputValue={setInputValue} inputValue={inputValue}/>
       ) : (
         <Courses inputValue={inputValue} />
       )}
