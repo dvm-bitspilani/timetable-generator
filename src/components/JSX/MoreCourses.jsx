@@ -94,7 +94,7 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
           </div>
           <div className="course-div-detail">
             <h6>{item.course_no}</h6>
-            <p>3 Credits</p>
+            <p>{item.credits}</p>
           </div>
         </div>
       ))}

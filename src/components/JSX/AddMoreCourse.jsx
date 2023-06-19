@@ -42,7 +42,8 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
         return {
           id: element.id.split('-')[2],
           course_no: element.querySelector('h3').innerText,
-          course_title: element.querySelector('p').innerText,
+          course_title: element.querySelector('.amc-course-title').innerText,
+          credits: element.querySelector(".amc-credits").innerText
         };
       });
       localStorage.setItem("storedMoreCourses", JSON.stringify(selectedCourses));
@@ -58,7 +59,8 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
         return {
           id: element.id.split('-')[2],
           course_no: element.querySelector('h3').innerText,
-          course_title: element.querySelector('p').innerText,
+          course_title: element.querySelector('.amc-course-title').innerText,
+          credits: element.querySelector(".amc-credits").innerText
         };
       });
       localStorage.setItem("storedMoreCourses", JSON.stringify(selectedCourses));
@@ -129,7 +131,8 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
                 onClick={onCoursesClick}
               >
                 <h3 onClick={onCourseChildClick}>{item.course_no}</h3>
-                <p onClick={onCourseChildClick}>{item.course_title}</p>
+                <p className="amc-course-title" onClick={onCourseChildClick}>{item.course_title}</p>
+                <p className="amc-credits">{item.credits} Credits</p>
               </div>
             ))
           ) : (
