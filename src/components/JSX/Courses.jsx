@@ -1,51 +1,111 @@
-import React from 'react';
-import Async from 'react-async';
-import Loader from './Loader';
-import CourseList from './CourseList';
-
+import React, { useState, useEffect } from "react";
+import Loader from "./Loader";
+import CourseList from "./CourseList";
 
 const Courses = ({ inputValue }) => {
+  const [fetchedArray, setFetchedArray] = useState(null);
+  const [sectionArray, setSectionArray] = useState([]);
+  const [key2 , setKey] = useState(0);
+  // console.log(key);
 
-  const onInputID = () => {
-    const delay = 1800;
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ bits_id: `${inputValue}`}),
+  const updateKey = () => {
+    setKey(prev=>prev+1);
+  };
+
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const requestOptions1 = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ bits_id: inputValue }),
+        };
+  
+        const response1 = await fetch(
+          "https://timetable.bits-dvm.org/timetable/courses/",
+          requestOptions1
+        );
+        const data1 = await response1.json();
+        setFetchedArray(data1);
+  
+        const cdcsArray = data1.cdcs;
+        const storedMoreCourses = JSON.parse(
+          localStorage.getItem("storedMoreCourses")
+        );
+        const matchingCourses = data1.courses.filter((storedCourse) =>
+          storedMoreCourses.some(
+            (course) => course.course_no === storedCourse.course_no
+          )
+        );
+  
+        const request2Promises = cdcsArray.map((cdcsItem) => {
+          const requestOptions2 = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ course_id: Object.values(cdcsItem)[2] }),
+          };
+  
+          return fetch(
+            "https://timetable.bits-dvm.org/timetable/sections/",
+            requestOptions2
+          )
+            .then((response2) => response2.json())
+            .then((data2) => {
+              return data2;
+            });
+        });
+  
+        const request3Promises = matchingCourses.map((matchingCourse) => {
+          const requestOptions3 = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              course_id: Object.values(matchingCourse)[2],
+            }),
+          };
+  
+          return fetch(
+            "https://timetable.bits-dvm.org/timetable/sections/",
+            requestOptions3
+          )
+            .then((response3) => response3.json())
+            .then((data3) => {
+              return data3;
+            });
+        });
+  
+        const [sectionArray2, sectionArray3] = await Promise.all([
+          Promise.all(request2Promises),
+          Promise.all(request3Promises),
+        ]);
+  
+        setSectionArray([...sectionArray2, ...sectionArray3]);
+      } catch (error) {
+        console.error("Error executing request1:", error);
+      }
     };
   
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        fetch('https://timetable.bits-dvm.org/timetable/courses/', requestOptions)
-          .then((response) => response.json())
-          .then((data) => {
-            const fetchedArray = data;
+    fetchData();
+  }, [key2]);
   
-            console.log('fetchedArray:', fetchedArray);
-            resolve(data);
-          })
-          .catch((error) => {
-            console.error('An error occurred:', error);
-            resolve({ error }); 
-          });
-      }, delay);
-    });
-  };
+  // Rest of the component code...
   
 
-  // console.log(inputValue);
-  return (
-    <Async promiseFn={onInputID}>
-      {({ data, error, isLoading }) => {
-        if (isLoading) return <Loader />;
-        if (error) return `Something went wrong: ${error.message}`;
+  if (!fetchedArray) {
+    return <Loader />;
+  }
 
-        if (data) return <CourseList fetchedArray={data} />;
+  if (sectionArray.length > 0) {
+    console.log(fetchedArray);
+    console.log(sectionArray);
+    console.log(key2);
+    return (
+      <CourseList fetchedArray={fetchedArray} sectionArray={sectionArray} updateKey={updateKey} key2={key2} />
+    );
+  }
 
-        return null;
-      }}
-    </Async>
-  );
+  return null;
 };
 
 export default Courses;

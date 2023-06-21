@@ -9,10 +9,12 @@ import GenerateButtons from "./GenerateButtons";
 import CourseDetail from "./CourseDetail";
 import AddMoreCourse from "./AddMoreCourse";
 
-const CourseList = ({fetchedArray}) => {
+const CourseList = ({fetchedArray , sectionArray, updateKey , key2}) => {
   const [freeDay, setFreeDay] = useState("");
   // console.log(freeDay);
   // console.log(fetchedArray);
+  // console.log(fetchedArray);
+  // console.log(sectionArray);
 
   const [courseSelected, setCourseSelected] = useState(false);
   const [addMoreCourse, setAddMoreCourse] = useState(false);
@@ -22,11 +24,6 @@ const CourseList = ({fetchedArray}) => {
     storedMoreCourses !== null && JSON.parse(storedMoreCourses).length !== 0;
 
   const [moreCoursesAdded, setMoreCoursesAdded] = useState(initialMoreCoursesAdded);
-  const [key , setKey] = useState(0);
-
-  const updateKey = () => {
-    setKey(prev=>prev+1);
-  };
   const onCourseClick = (id) => {
     setCourseSelected(true);
     setSelectedCourseId(id);
@@ -45,6 +42,7 @@ const CourseList = ({fetchedArray}) => {
     if (e.target === e.currentTarget) {
       setAddMoreCourse(false);
     }
+    updateKey();
   };
   const onAddMoreCourse = () => {
     setAddMoreCourse(true);
@@ -134,7 +132,7 @@ const CourseList = ({fetchedArray}) => {
             ""
           )}
           <FreeDay setFreeDay={setFreeDay} />
-          <PercentageBar key={key} prop={key} />
+          <PercentageBar key={key2} prop={key2} />
           <GenerateButtons onAddMoreCourse={onAddMoreCourse} />
         </div>
       )}
