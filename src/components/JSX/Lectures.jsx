@@ -1,7 +1,40 @@
 import React, { useEffect, useState } from "react";
 import "../CSS/Lectures.css";
 
-const Lectures = ({ courseId }) => {
+const Lectures = ({ courseId, fetchedArray }) => {
+  const [courseLecTutData, setCourseLecTutData] = useState(null);
+
+  useEffect(() => {
+    fetchedArray.courses.forEach((item) => {
+      if (Object.values(item)[1] === courseId) {
+        console.log(Object.values(item)[1]);
+        console.log(Object.values(item)[2]);
+        const delay = 0;
+        const requestOptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ course_id: Object.values(item)[2] }),
+        };
+
+        setTimeout(() => {
+          fetch("https://timetable.bits-dvm.org/timetable/sections/", requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+              setCourseLecTutData(data); 
+              console.log("courseLecTutData:", data);
+            })
+            .catch((error) => {
+              console.error("An error occurred:", error);
+            });
+        }, delay);
+      }
+    });
+  }, [courseId, fetchedArray.courses]);
+
+
+
+
+
   const lectureArray = [
     {
       id: 1,
@@ -209,22 +242,19 @@ const Lectures = ({ courseId }) => {
   return (
     <div className="lectures" id={courseId}>
       <div className="lectures-container">
-        {lectureArray.map((item) => (
+        {courseLecTutData && courseLecTutData.lecture.map((item) => (
           <div
-            key={item.id}
-            id={`${item.lecture.replace(/ +/g, "")} -${courseId.replace(
-              / +/g,
-              ""
-            )}`}
+            key={item.sec_id}
+            id={`L${Object.values(item)[0] ? Object.values(item)[0] : ""}-${courseId ? courseId.replace(/ +/g, "") : ""}`}
             className="lecture-card"
             onClick={onLectureClick}
           >
             <div className="lecture-room">
-              <h3 className="font-weight-600">{item.lecture}</h3>
-              <h3 className="font-weight-500">{item.room}</h3>
+              <h3 className="font-weight-600">L-{item.sec}</h3>
+              {/* <h3 className="font-weight-500">{item.room}</h3> */}
             </div>
-            <h2>{item.faculty}</h2>
-            <h2 className="margin-bottom-1rem">{item.hours}</h2>
+            <h2>{item.instructors}</h2>
+            {/* <h2 className="margin-bottom-1rem">{item.hours}</h2> */}
           </div>
         ))}
       </div>

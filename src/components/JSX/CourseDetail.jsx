@@ -38,10 +38,8 @@ const CourseDetail = ({
     return courseArray[nextIndex].course_title;
   };
   const handleNextCourse = () => {
-    console.log(typeof courseArray);
     const nextCourseId = getNextCourseId();
     onCourseClickClose();
-    console.log(nextCourseId);
     onCourseClick(nextCourseId);
   };
   const getPreviousCourseId = () => {
@@ -73,9 +71,9 @@ const CourseDetail = ({
           onClick={onCourseClickClose}
         />
         {lectureSelected ? (
-          <Lectures courseId={courseId} key={courseId} />
+          <Lectures courseId={courseId} key={courseId} fetchedArray={fetchedArray} />
         ) : (
-          <Tutorials key={courseId} courseId={courseId} />
+          <Tutorials key={courseId} courseId={courseId} fetchedArray={fetchedArray} />
         )}
         <div className="course-btns-container">
           <div className="prev-next-course-btn" onClick={handlePreviousCourse}>
