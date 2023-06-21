@@ -149,9 +149,9 @@ const Lectures = ({ courseId, sectionArray }) => {
                 {/* <h3 className="font-weight-500">{item.room}</h3> */}
               </div>
               <h2>{item.instructors}</h2>
-              <h2 className="margin-bottom-1rem">
+              {item.slots[0] && <h2 className="margin-bottom-1rem">
                 {day} {startHour} - {endHour}
-              </h2>
+              </h2>}
             </div>
           );
         })}
