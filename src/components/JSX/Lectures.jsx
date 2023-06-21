@@ -117,7 +117,7 @@ const Lectures = ({ courseId, sectionArray }) => {
         {filteredSections && filteredSections[0].lecture.map((item) => (
           <div
             key={item.sec_id}
-            id={`L${Object.values(item)[0] ? Object.values(item)[0] : ""}-${courseId ? courseId.replace(/ +/g, "") : ""}`}
+            id={`L${Object.values(item)[0] ? Object.values(item)[0] : ""} -${courseId ? courseId.replace(/ +/g, "") : ""}`}
             className="lecture-card"
             onClick={onLectureClick}
           >
