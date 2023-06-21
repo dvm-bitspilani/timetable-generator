@@ -94,6 +94,7 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2}) => {
           onCourseClickClose2={onCourseClickClose2}
           courseId={selectedCourseId}
           fetchedArray={fetchedArray}
+          sectionArray={sectionArray}
         />
       ) : addMoreCourse ? (
         <AddMoreCourse

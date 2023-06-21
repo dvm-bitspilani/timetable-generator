@@ -12,6 +12,7 @@ const CourseDetail = ({
   onCourseClickClose2,
   fetchedArray,
   onCourseClick,
+  sectionArray
 }) => {
   const [courseArray, setCourseArray] = useState([]);
 
@@ -71,9 +72,9 @@ const CourseDetail = ({
           onClick={onCourseClickClose}
         />
         {lectureSelected ? (
-          <Lectures courseId={courseId} key={courseId} fetchedArray={fetchedArray} />
+          <Lectures courseId={courseId} key={courseId} fetchedArray={fetchedArray} sectionArray={sectionArray} />
         ) : (
-          <Tutorials key={courseId} courseId={courseId} fetchedArray={fetchedArray} />
+          <Tutorials key={courseId} courseId={courseId} fetchedArray={fetchedArray} sectionArray={sectionArray} />
         )}
         <div className="course-btns-container">
           <div className="prev-next-course-btn" onClick={handlePreviousCourse}>

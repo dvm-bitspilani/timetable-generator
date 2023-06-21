@@ -1,75 +1,26 @@
 import React, { useEffect, useState } from "react";
 import "../CSS/Lectures.css";
 
-const Tutorials = ({ courseId , fetchedArray }) => {
-
-  const [courseLecTutData, setCourseLecTutData] = useState(null);
-
+const Tutorials = ({ courseId , sectionArray }) => {
+  console.log(courseId);
+  console.log(sectionArray);
+  console.log(sectionArray[7].course_title);
+  const [filteredSections, setFilteredSections] = useState(null);
+  
   useEffect(() => {
-    fetchedArray.courses.forEach((item) => {
-      if (Object.values(item)[1] === courseId) {
-        console.log(Object.values(item)[1]);
-        console.log(Object.values(item)[2]);
-        const delay = 0;
-        const requestOptions = {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ course_id: Object.values(item)[2] }),
-        };
-
-        setTimeout(() => {
-          fetch("https://timetable.bits-dvm.org/timetable/sections/", requestOptions)
-            .then((response) => response.json())
-            .then((data) => {
-              setCourseLecTutData(data); 
-              console.log("courseLecTutData:", data);
-            })
-            .catch((error) => {
-              console.error("An error occurred:", error);
-            });
-        }, delay);
-      }
-    });
-  }, [courseId, fetchedArray.courses]);
+    const filteredData = sectionArray.filter(
+      (item) => item.course_title === courseId
+    );
+    setFilteredSections(filteredData);
+  }, [courseId, sectionArray]);
+  
+  console.log(filteredSections);
+  console.log(filteredSections && filteredSections[0].tutorial);
+  
 
 
 
-  // const tutorialArray = [
-  //   {
-  //     id: 1,
-  //     lecture: "T 1",
-  //     room: 6101,
-  //     faculty: "Prof Shivang Rai",
-  //     hours: "0900Hrs - 0950Hrs",
-  //   },
-  //   {
-  //     id: 2,
-  //     lecture: "T 2",
-  //     room: 6102,
-  //     faculty: "Prof Shivang Rai",
-  //     hours: "0900Hrs - 0950Hrs",
-  //   },
-  //   {
-  //     id: 3,
-  //     lecture: "T 3",
-  //     room: 6103,
-  //     faculty: "Prof Shivang Rai",
-  //     hours: "0900Hrs - 0950Hrs",
-  //   },
-  //   {
-  //     id: 4,
-  //     lecture: "T 4",
-  //     room: 6104,
-  //     faculty: "Prof Shivang Rai",
-  //     hours: "0900Hrs - 0950Hrs",
-  //   },
-  //   // {id:5, lecture: "L 4" , room: 5104 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
-  //   // {id:6, lecture: "L 1" , room: 5101 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
-  //   // {id:7, lecture: "L 2" , room: 5102 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
-  //   // {id:8, lecture: "L 3" , room: 5103 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
-  //   // {id:9, lecture: "L 4" , room: 5104 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"},
-  //   // {id:10, lecture: "L 4" , room: 5104 , faculty: "Prof Shivang Rai", hours: "0900Hrs - 0950Hrs"}
-  // ];
+
 
   const [want, setWant] = useState(true);
 
@@ -163,7 +114,7 @@ const Tutorials = ({ courseId , fetchedArray }) => {
   return (
     <div className="lectures" id={courseId}>
       <div className="lectures-container">
-        {courseLecTutData && courseLecTutData.tutorial.map((item) => (
+        {filteredSections && filteredSections[0].tutorial.map((item) => (
           <div
             key={item.sec_id}
             id={`L${Object.values(item)[0] ? Object.values(item)[0] : ""}-${courseId ? courseId.replace(/ +/g, "") : ""}`}
