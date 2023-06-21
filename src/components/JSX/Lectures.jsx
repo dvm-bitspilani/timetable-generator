@@ -4,7 +4,6 @@ import "../CSS/Lectures.css";
 const Lectures = ({ courseId, sectionArray }) => {
   console.log(courseId);
   console.log(sectionArray);
-  console.log(sectionArray[7].course_title);
   const [filteredSections, setFilteredSections] = useState(null);
   
   useEffect(() => {
@@ -25,26 +24,31 @@ const Lectures = ({ courseId, sectionArray }) => {
     allSections.forEach((section) => {
       section.classList.remove("lecture-card-selected");
     });
-    if (want == true) {
+    if (want) {
       const wantedSections =
         JSON.parse(localStorage.getItem("wantedSections")) || [];
-      wantedSections.forEach((divId) => {
-        const targetDiv = document.getElementById(divId);
-        if (targetDiv) {
-          targetDiv.classList.add("lecture-card-selected");
-        }
-      });
+      setTimeout(() => {
+        wantedSections.forEach((divId) => {
+          const targetDiv = document.getElementById(divId);
+          if (targetDiv) {
+            targetDiv.classList.add("lecture-card-selected");
+          }
+        });
+      }, 0);
     } else {
       const unwantedSections =
         JSON.parse(localStorage.getItem("unwantedSections")) || [];
-      unwantedSections.forEach((divId) => {
-        const targetDiv = document.getElementById(divId);
-        if (targetDiv) {
-          targetDiv.classList.add("lecture-card-selected");
-        }
-      });
+      setTimeout(() => {
+        unwantedSections.forEach((divId) => {
+          const targetDiv = document.getElementById(divId);
+          if (targetDiv) {
+            targetDiv.classList.add("lecture-card-selected");
+          }
+        });
+      }, 0);
     }
   }, [want]);
+  
 
   const onLectureClick = (e) => {
     const targetDiv = e.currentTarget;
@@ -118,7 +122,7 @@ const Lectures = ({ courseId, sectionArray }) => {
             onClick={onLectureClick}
           >
             <div className="lecture-room">
-              <h3 className="font-weight-600">L-{item.sec}</h3>
+              <h3 className="font-weight-600">L {item.sec}</h3>
               {/* <h3 className="font-weight-500">{item.room}</h3> */}
             </div>
             <h2>{item.instructors}</h2>

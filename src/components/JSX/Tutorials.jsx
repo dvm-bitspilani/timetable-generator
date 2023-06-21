@@ -4,7 +4,6 @@ import "../CSS/Lectures.css";
 const Tutorials = ({ courseId , sectionArray }) => {
   console.log(courseId);
   console.log(sectionArray);
-  console.log(sectionArray[7].course_title);
   const [filteredSections, setFilteredSections] = useState(null);
   
   useEffect(() => {
@@ -117,12 +116,12 @@ const Tutorials = ({ courseId , sectionArray }) => {
         {filteredSections && filteredSections[0].tutorial.map((item) => (
           <div
             key={item.sec_id}
-            id={`L${Object.values(item)[0] ? Object.values(item)[0] : ""}-${courseId ? courseId.replace(/ +/g, "") : ""}`}
+            id={`T${Object.values(item)[0] ? Object.values(item)[0] : ""}-${courseId ? courseId.replace(/ +/g, "") : ""}`}
             className="lecture-card"
             onClick={onLectureClick}
           >
             <div className="lecture-room">
-              <h3 className="font-weight-600">T-{item.sec}</h3>
+              <h3 className="font-weight-600">T {item.sec}</h3>
               {/* <h3 className="font-weight-500">{item.room}</h3> */}
             </div>
             <h2>{item.instructors}</h2>

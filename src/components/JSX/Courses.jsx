@@ -34,7 +34,7 @@ const Courses = ({ inputValue }) => {
           localStorage.getItem("storedMoreCourses")
         );
         const matchingCourses = data1.courses.filter((storedCourse) =>
-          storedMoreCourses.some(
+          storedMoreCourses && storedMoreCourses.some(
             (course) => course.course_no === storedCourse.course_no
           )
         );
@@ -86,7 +86,10 @@ const Courses = ({ inputValue }) => {
       }
     };
   
-    fetchData();
+    const delay = 2000; // Delay in milliseconds (2 seconds)
+    const timer = setTimeout(() => {
+      fetchData();
+    }, delay);
   }, [key2]);
   
   // Rest of the component code...
