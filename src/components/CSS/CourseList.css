@@ -31,3 +31,14 @@
   background-color: #5C5F66;
   margin: 2vh auto ;
 }
+@media (max-width: 470px) {
+  .courses-heading{
+    font-size: 1.25rem;
+  }
+  .horizontal-line{
+    margin: 1vw auto;
+  }
+  #more-courses-heading{
+    margin-top: 2vh;
+  }
+}

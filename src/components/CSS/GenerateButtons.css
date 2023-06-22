@@ -23,3 +23,12 @@
 .course-buttons img{
   margin-left: 0.5rem;
 }
+@media (max-width: 470px) {
+  .course-buttons-container{
+    margin-bottom: 1vh;
+  }
+  .course-buttons{
+    width: 45vw;
+    font-size: .75rem;
+  }
+}
