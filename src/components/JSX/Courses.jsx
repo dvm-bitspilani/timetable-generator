@@ -85,11 +85,10 @@ const Courses = ({ inputValue }) => {
         console.error("Error executing request1:", error);
       }
     };
-  
-    const delay = 2000; 
+
     const timer = setTimeout(() => {
       fetchData();
-    }, delay);
+    }, 0);
   }, [key2]);
   
   const [courses, setCourses] = useState([]);
@@ -110,7 +109,7 @@ const Courses = ({ inputValue }) => {
     console.log(sectionArray);
     console.log(key2);
     return (
-      <CourseList fetchedArray={fetchedArray} sectionArray={sectionArray} courseUnits={courseUnits} updateKey={updateKey} key2={key2} />
+      <CourseList fetchedArray={fetchedArray} sectionArray={sectionArray}  updateKey={updateKey} key2={key2} />
     );
   }
 
