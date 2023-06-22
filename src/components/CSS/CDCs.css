@@ -121,9 +121,43 @@
     margin-right: 0 !important;
   }
   .courses-container{
-    width: 90vw;
+    width: 95vw;
   }
   .course-div{
     width: 41vw;
+  }
+}
+@media (max-width: 890px) {
+  .courses-container{
+    width: 95vw;
+    justify-content: center;
+  }
+  .course-div{
+    width: 28vw;
+    margin-right: 3vw;
+  }
+}
+@media (max-width: 470px) {
+  .courses-container{
+    justify-content: center;
+  }
+  .course-div{
+    margin-right: .75rem;
+    margin-bottom: .75rem;
+    min-height: 10vh;
+    width: 44.5vw;
+  }
+  .course-div .course-div-main-content h3{
+    font-size: .875rem;
+    padding: .5rem 0;
+  }
+  .course-div-detail{
+    padding: 0 0 .5rem 0;
+  }
+  .course-div-detail p{
+    font-size: .75rem;
+  }
+  .course-div-detail h6{
+    font-size: .75rem;
   }
 }

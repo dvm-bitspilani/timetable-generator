@@ -42,3 +42,17 @@
     height: 50px;
     color: #474747;
 }
+@media (max-width: 470px) {
+    .free-day-container{
+        margin-bottom: 12vh;
+    }
+    .free-day-heading{
+        margin-bottom: 0;
+        font-size: .875rem;
+    }
+    .free-day-box > div{
+        font-size: 1.25rem;
+        width: 35px;
+    }
+
+}

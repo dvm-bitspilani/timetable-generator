@@ -53,3 +53,12 @@
   font-weight: 600;
   font-size: 12px;
 }
+@media (max-width: 470px) {
+  .percentage-bar{
+    margin-bottom: 10vh;
+    width: 95vw;
+  }
+  .percentage-box{
+    display: none;
+  }
+}
