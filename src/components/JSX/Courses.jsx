@@ -92,8 +92,14 @@ const Courses = ({ inputValue }) => {
     }, delay);
   }, [key2]);
   
+  const [courses, setCourses] = useState([]);
 
-  
+  useEffect(() => {
+    const storedCourses =
+      JSON.parse(localStorage.getItem("storedMoreCourses")) || [];
+    setCourses(storedCourses);
+  }, []);
+    
 
   if (!fetchedArray) {
     return <Loader />;

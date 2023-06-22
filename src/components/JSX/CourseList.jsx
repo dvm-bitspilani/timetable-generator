@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import IconCDCs from "../../assets/IconCDCs.svg";
 import "../CSS/CourseList.css";
 import CDCs from "./CDCs";
@@ -8,9 +8,40 @@ import PercentageBar from "./PercentageBar";
 import GenerateButtons from "./GenerateButtons";
 import CourseDetail from "./CourseDetail";
 import AddMoreCourse from "./AddMoreCourse";
+import TimetableScreen from "./TimetableScreen";
 
-const CourseList = ({fetchedArray , sectionArray, updateKey , key2}) => {
+const CourseList = ({fetchedArray , sectionArray, updateKey , key2 }) => {
   const [freeDay, setFreeDay] = useState("");
+
+  const [timetableGenerated , setTimetableGenerated] = useState(false);
+
+  const generateTimetable =()=>{
+    setTimetableGenerated(true);
+  };
+
+  const storedMoreCourses = localStorage.getItem("storedMoreCourses");
+  const storedMoreCoursesArray = JSON.parse(
+    localStorage.getItem("storedMoreCourses")
+  ) || [];
+  const [ courseUnits, setCourseUnits ] = useState(0);
+  useEffect(() => {
+    const calculateCourseUnits = () => {
+      let totalUnits = 0;
+  
+      fetchedArray.cdcs.forEach((element) => {
+        totalUnits += element.credits;
+      });
+  
+      storedMoreCoursesArray.forEach((element) => {
+        const credits = parseInt(element.credits.slice(0,2).trim());
+        totalUnits += credits;
+      });
+      setCourseUnits(totalUnits);
+    };
+  
+    calculateCourseUnits();
+  }, [ storedMoreCourses]);
+  // console.log(courseUnits);
   // console.log(freeDay);
   // console.log(fetchedArray);
   // console.log(fetchedArray);
@@ -19,7 +50,6 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2}) => {
   const [courseSelected, setCourseSelected] = useState(false);
   const [addMoreCourse, setAddMoreCourse] = useState(false);
   const [selectedCourseId, setSelectedCourseId] = useState(null);
-  const storedMoreCourses = localStorage.getItem("storedMoreCourses");
   const initialMoreCoursesAdded =
     storedMoreCourses !== null && JSON.parse(storedMoreCourses).length !== 0;
 
@@ -93,7 +123,10 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2}) => {
   
 
   return (
+
     <>
+    {timetableGenerated && <TimetableScreen courseUnits={courseUnits} />}
+    {!timetableGenerated && (<>
       {courseSelected ? (
         <CourseDetail
           onCourseClick={onCourseClick}
@@ -141,9 +174,10 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2}) => {
           )}
           <FreeDay setFreeDay={setFreeDay} />
           <PercentageBar key={key2} prop={key2} />
-          <GenerateButtons onAddMoreCourse={onAddMoreCourse} />
+          <GenerateButtons onAddMoreCourse={onAddMoreCourse} generateTimetable={generateTimetable} />
         </div>
       )}
+      </>)}
     </>
   );
 };

@@ -4,10 +4,10 @@ import IconBolt from "../../assets/IconBolt.svg";
 import IconPlus from "../../assets/IconPlus.svg";
 
 
-const GenerateButtons = ({onAddMoreCourse}) => {
+const GenerateButtons = ({onAddMoreCourse,generateTimetable}) => {
   return (
     <div className="course-buttons-container">
-      <div className="course-buttons">
+      <div className="course-buttons" onClick={generateTimetable}>
         Generate Timetable <img src={IconBolt} alt="Lightning Bolt" />
       </div>
       <div className="course-buttons" onClick={onAddMoreCourse}>
