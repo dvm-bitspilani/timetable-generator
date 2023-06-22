@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../CSS/Lectures.css";
 
-const Lectures = ({ courseId, sectionArray }) => {
+const Practicals = ({ courseId , sectionArray }) => {
   console.log(courseId);
   console.log(sectionArray);
   const [filteredSections, setFilteredSections] = useState(null);
@@ -14,8 +14,12 @@ const Lectures = ({ courseId, sectionArray }) => {
   }, [courseId, sectionArray]);
   
   console.log(filteredSections);
-  console.log(filteredSections && filteredSections[0].lecture);
+  console.log(filteredSections && filteredSections[0].practical);
   
+
+
+
+
 
   const [want, setWant] = useState(true);
 
@@ -48,33 +52,11 @@ const Lectures = ({ courseId, sectionArray }) => {
       }, 0);
     }
   }, [want]);
-  
-  function getDayAndTime(slotNumber) {
-    const slotsPerDay = 10; 
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']; 
-  
-    const dayIndex = Math.floor((slotNumber - 1) / slotsPerDay); 
-    const slotIndex = (slotNumber - 1) % slotsPerDay; 
-  
-    const startTime = 8; 
-    const slotDuration = 1; 
-  
-    const startHour = startTime + slotIndex; 
-    const endHour = startHour + slotDuration; 
-  
-    const day = days[dayIndex];
-  
-    return {
-      day: day,
-      startHour: startHour,
-      endHour: endHour
-    };
-  }
 
   const onLectureClick = (e) => {
     const targetDiv = e.currentTarget;
     const targetCourse = targetDiv.id.slice(4);
-    const courseRegex = new RegExp(`^L.+-${targetCourse}$`);
+    const courseRegex = new RegExp(`^T.+-${targetCourse}$`);
     let wantedSections =
       JSON.parse(localStorage.getItem("wantedSections")) || [];
     let unwantedSections =
@@ -132,28 +114,50 @@ const Lectures = ({ courseId, sectionArray }) => {
     }
   };
 
+  function getDayAndTime(slotNumber) {
+    const slotsPerDay = 10; 
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']; 
+  
+    const dayIndex = Math.floor((slotNumber - 1) / slotsPerDay); 
+    const slotIndex = (slotNumber - 1) % slotsPerDay; 
+  
+    const startTime = 8; 
+    const slotDuration = 1; 
+  
+    const startHour = startTime + slotIndex; 
+    const endHour = startHour + slotDuration; 
+  
+    const day = days[dayIndex];
+  
+    return {
+      day: day,
+      startHour: startHour,
+      endHour: endHour
+    };
+  }
+
   return (
     <div className="lectures" id={courseId}>
       <div className="lectures-container">
-        {filteredSections && filteredSections[0].lecture.map((item) => {
+        {filteredSections && filteredSections[0].practical.map((item) => {
           const { day, startHour, endHour } = getDayAndTime(item.slots[0]);
           return (
-            <div
-              key={item.sec_id}
-              id={`L${Object.values(item)[0] ? Object.values(item)[0] : ""} -${courseId ? courseId.replace(/ +/g, "") : ""}`}
-              className="lecture-card"
-              onClick={onLectureClick}
-            >
-              <div className="lecture-room">
-                <h3 className="font-weight-600">L {item.sec}</h3>
+          <div
+            key={item.sec_id}
+            id={`P${Object.values(item)[0] ? Object.values(item)[0] : ""} -${courseId ? courseId.replace(/ +/g, "") : ""}`}
+            className="lecture-card"
+            onClick={onLectureClick}
+          >
+            <div className="lecture-room">
+                <h3 className="font-weight-600">P {item.sec}</h3>
                { item.room !== "NA" && <h3 className="font-weight-500">{item.room}</h3>}
               </div>
               <h2>{item.instructors}</h2>
               {item.slots[0] && <h2 className="margin-bottom-1rem">
                 {day} {startHour} - {endHour}
               </h2>}
-            </div>
-          );
+          </div>
+        );
         })}
       </div>
       <div className="want-or-not-container">
@@ -176,4 +180,4 @@ const Lectures = ({ courseId, sectionArray }) => {
   );
 };
 
-export default Lectures;
+export default Practicals;

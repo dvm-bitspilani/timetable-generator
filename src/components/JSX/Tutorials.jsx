@@ -28,24 +28,28 @@ const Tutorials = ({ courseId , sectionArray }) => {
     allSections.forEach((section) => {
       section.classList.remove("lecture-card-selected");
     });
-    if (want == true) {
+    if (want) {
       const wantedSections =
         JSON.parse(localStorage.getItem("wantedSections")) || [];
-      wantedSections.forEach((divId) => {
-        const targetDiv = document.getElementById(divId);
-        if (targetDiv) {
-          targetDiv.classList.add("lecture-card-selected");
-        }
-      });
+      setTimeout(() => {
+        wantedSections.forEach((divId) => {
+          const targetDiv = document.getElementById(divId);
+          if (targetDiv) {
+            targetDiv.classList.add("lecture-card-selected");
+          }
+        });
+      }, 0);
     } else {
       const unwantedSections =
         JSON.parse(localStorage.getItem("unwantedSections")) || [];
-      unwantedSections.forEach((divId) => {
-        const targetDiv = document.getElementById(divId);
-        if (targetDiv) {
-          targetDiv.classList.add("lecture-card-selected");
-        }
-      });
+      setTimeout(() => {
+        unwantedSections.forEach((divId) => {
+          const targetDiv = document.getElementById(divId);
+          if (targetDiv) {
+            targetDiv.classList.add("lecture-card-selected");
+          }
+        });
+      }, 0);
     }
   }, [want]);
 
@@ -110,10 +114,34 @@ const Tutorials = ({ courseId , sectionArray }) => {
     }
   };
 
+  function getDayAndTime(slotNumber) {
+    const slotsPerDay = 10; 
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']; 
+  
+    const dayIndex = Math.floor((slotNumber - 1) / slotsPerDay); 
+    const slotIndex = (slotNumber - 1) % slotsPerDay; 
+  
+    const startTime = 8; 
+    const slotDuration = 1; 
+  
+    const startHour = startTime + slotIndex; 
+    const endHour = startHour + slotDuration; 
+  
+    const day = days[dayIndex];
+  
+    return {
+      day: day,
+      startHour: startHour,
+      endHour: endHour
+    };
+  }
+
   return (
     <div className="lectures" id={courseId}>
       <div className="lectures-container">
-        {filteredSections && filteredSections[0].tutorial.map((item) => (
+        {filteredSections && filteredSections[0].tutorial.map((item) => {
+          const { day, startHour, endHour } = getDayAndTime(item.slots[0]);
+          return (
           <div
             key={item.sec_id}
             id={`T${Object.values(item)[0] ? Object.values(item)[0] : ""} -${courseId ? courseId.replace(/ +/g, "") : ""}`}
@@ -121,13 +149,16 @@ const Tutorials = ({ courseId , sectionArray }) => {
             onClick={onLectureClick}
           >
             <div className="lecture-room">
-              <h3 className="font-weight-600">T {item.sec}</h3>
-              {/* <h3 className="font-weight-500">{item.room}</h3> */}
-            </div>
-            <h2>{item.instructors}</h2>
-            {/* <h2 className="margin-bottom-1rem">{item.hours}</h2> */}
+                <h3 className="font-weight-600">T {item.sec}</h3>
+               { item.room !== "NA" && <h3 className="font-weight-500">{item.room}</h3>}
+              </div>
+              <h2>{item.instructors}</h2>
+              {item.slots[0] && <h2 className="margin-bottom-1rem">
+                {day} {startHour} - {endHour}
+              </h2>}
           </div>
-        ))}
+        );
+        })}
       </div>
       <div className="want-or-not-container">
         <input type="checkbox" id="switch" />

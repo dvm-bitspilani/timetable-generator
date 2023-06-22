@@ -5,6 +5,7 @@ import LeftArrow from "../../assets/IconLeftArrow.svg";
 import RightArrow from "../../assets/IconRightArrow.svg";
 import Lectures from "./Lectures";
 import Tutorials from "./Tutorials";
+import Practicals from "./Practicals";
 
 const CourseDetail = ({
   courseId,
@@ -15,20 +16,62 @@ const CourseDetail = ({
   sectionArray
 }) => {
   const [courseArray, setCourseArray] = useState([]);
-
+  // const [filteredSections, setFilteredSections] = useState(null);
+  console.log(sectionArray);
+  const filteredSections = sectionArray.filter(
+    (item) => item.course_title === courseId
+  );
+  // setFilteredSections(filteredData);
+  useEffect(() => {
+    console.log("courseId:", courseId);
+    console.log("sectionArray:", sectionArray);
+  }, [courseId, sectionArray]);
+  console.log(filteredSections);
+  console.log(filteredSections[0]);
+  console.log(filteredSections[0].lecture);
+  console.log(courseId);
   useEffect(() => {
     const storedMoreCourses =
       JSON.parse(localStorage.getItem("storedMoreCourses")) || [];
     const fetchedCourseArray = fetchedArray.cdcs;
     setCourseArray([...fetchedCourseArray, ...storedMoreCourses]);
   }, [fetchedArray]);
-  const [lectureSelected, setLectureSelected] = useState(true);
 
-  const changeLectToTut = () => {
+  const [lectureSelected, setLectureSelected] = useState(true);
+  const [tutorialSelected, setTutorialSelected] = useState(false);
+  const [practicalSelected, setPracticalSelected] = useState(false);
+  useEffect(() => {
+    if (filteredSections && filteredSections[0].lecture.length > 0) {
+      setLectureSelected(true);
+      setPracticalSelected(false);
+      setTutorialSelected(false);
+    } else if (filteredSections && filteredSections[0].tutorial.length > 0) {
+      setTutorialSelected(true);
+      setLectureSelected(false);
+      setPracticalSelected(false);
+    } else if (filteredSections && filteredSections[0].practical.length > 0) {
+      setTutorialSelected(false);
+      setLectureSelected(false);
+      setPracticalSelected(true);
+    }
+  }, [courseId]);
+  
+  
+
+  const changeToLec = () => {
     setLectureSelected(true);
+    setPracticalSelected(false);
+    setTutorialSelected(false);
   };
-  const changeTutToLect = () => {
+  const changeToTut = () => {
+    setTutorialSelected(true);
     setLectureSelected(false);
+    setPracticalSelected(false);
+  };
+  const changeToPrac = () => {
+    setTutorialSelected(false);
+    setLectureSelected(false);
+    setPracticalSelected(true);
   };
 
   const getNextCourseId = () => {
@@ -71,32 +114,38 @@ const CourseDetail = ({
           className="cross-icon"
           onClick={onCourseClickClose}
         />
-        {lectureSelected ? (
-          <Lectures courseId={courseId} key={courseId} fetchedArray={fetchedArray} sectionArray={sectionArray} />
-        ) : (
-          <Tutorials key={courseId} courseId={courseId} fetchedArray={fetchedArray} sectionArray={sectionArray} />
-        )}
+        { filteredSections && filteredSections[0].lecture.length >0 && lectureSelected && <Lectures courseId={courseId} key={courseId} fetchedArray={fetchedArray} sectionArray={sectionArray} />}
+        { filteredSections && tutorialSelected &&  <Tutorials key={courseId} courseId={courseId} fetchedArray={fetchedArray} sectionArray={sectionArray} />}
+        {filteredSections && practicalSelected && <Practicals key={courseId} courseId={courseId} fetchedArray={fetchedArray} sectionArray={sectionArray} />}
         <div className="course-btns-container">
           <div className="prev-next-course-btn" onClick={handlePreviousCourse}>
             <img src={LeftArrow} alt="Left Arrow" /> Previous Course
           </div>
           <div className="lecture-tut-btns">
-            <div
+            {filteredSections && filteredSections[0].lecture.length >0 && <div
               className={`lecture-btn ${
                 lectureSelected ? "lect-tut-selected" : ""
               }`}
-              onClick={changeLectToTut}
+              onClick={changeToLec}
             >
               Lectures
-            </div>
-            <div
+            </div>}
+            {filteredSections && filteredSections[0].tutorial.length>0 && <div
               className={`lecture-btn ${
-                !lectureSelected ? "lect-tut-selected" : ""
+                tutorialSelected ? "lect-tut-selected" : ""
               }`}
-              onClick={changeTutToLect}
+              onClick={changeToTut}
             >
               Tutorials
-            </div>
+            </div>}
+          {filteredSections && filteredSections[0].practical.length>0 && <div
+              className={`lecture-btn ${
+                practicalSelected ? "lect-tut-selected" : ""
+              }`}
+              onClick={changeToPrac}
+            >
+              Practicals
+            </div>}
           </div>
           <div className="prev-next-course-btn" onClick={handleNextCourse}>
             Next Course <img src={RightArrow} alt="" />

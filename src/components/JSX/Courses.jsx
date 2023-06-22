@@ -86,13 +86,13 @@ const Courses = ({ inputValue }) => {
       }
     };
   
-    const delay = 2000; // Delay in milliseconds (2 seconds)
+    const delay = 2000; 
     const timer = setTimeout(() => {
       fetchData();
     }, delay);
   }, [key2]);
   
-  // Rest of the component code...
+
   
 
   if (!fetchedArray) {

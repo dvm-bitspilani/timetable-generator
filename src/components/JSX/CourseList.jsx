@@ -68,6 +68,7 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2}) => {
     const formattedCourseTitle = courseTitle.replace(/\s/g, "");
     const lecturePattern = new RegExp(`^L.+-${formattedCourseTitle}$`);
     const tutorialPattern = new RegExp(`^T.+-${formattedCourseTitle}$`);
+    const practicalPattern = new RegExp(`^T.+-${formattedCourseTitle}$`);
   
     const hasLecturedCard =
       (wantedSections &&
@@ -80,8 +81,14 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2}) => {
         wantedSections.some((section) => tutorialPattern.test(section))) ||
       (unWantedSections &&
         unWantedSections.some((section) => tutorialPattern.test(section)));
+    
+    const hasPracticalCard =
+      (wantedSections &&
+        wantedSections.some((section) => practicalPattern.test(section))) ||
+      (unWantedSections &&
+        unWantedSections.some((section) => practicalPattern.test(section)));
   
-    return hasLecturedCard && hasTutorialCard;
+    return hasLecturedCard || hasTutorialCard || hasPracticalCard;
   };
   
 
