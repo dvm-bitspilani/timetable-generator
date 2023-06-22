@@ -3,7 +3,20 @@ import "../CSS/TimetableScreen.css";
 import Timetable from "./Timetable";
 import DowloadIcon from "../../assets/IconDownload.svg"
 
-const TimetableScreen = ({courseUnits}) =>{
+const TimetableScreen = ({courseUnits , freeDay}) =>{
+
+  const requestOption = {
+    "number": 50, 
+    "free_day": `${freeDay}`,
+    "courses": [],
+    "compre_check": true
+}
+
+
+
+
+
+  console.log(freeDay);
   return(
     <>
       <h1 className="units-heading">Units Taken: <span>{courseUnits}</span></h1>
