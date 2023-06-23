@@ -130,7 +130,6 @@
 @media (max-width: 890px) {
   .courses-container{
     width: 95vw;
-    justify-content: center;
   }
   .course-div{
     width: 28vw;
@@ -138,9 +137,6 @@
   }
 }
 @media (max-width: 470px) {
-  .courses-container{
-    justify-content: center;
-  }
   .course-div{
     margin-right: .75rem;
     margin-bottom: .75rem;
