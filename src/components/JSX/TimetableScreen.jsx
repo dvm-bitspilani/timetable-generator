@@ -92,7 +92,7 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
       const requestOptionsFinal = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: requestOption,
+        body: JSON.stringify(requestOption),
       };
       console.log(requestOptionsFinal);
     
