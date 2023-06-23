@@ -49,21 +49,41 @@ const Lectures = ({ courseId, sectionArray }) => {
     }
   }, [want]);
   
-  function getDayAndTime(slotNumber) {
-    const slotsPerDay = 10; 
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']; 
+  function getDayAndTime(slot) {
+    const dayStart = 8;
+    const slotDuration = 1;
   
-    const dayIndex = Math.floor((slotNumber - 1) / slotsPerDay); 
-    const slotIndex = (slotNumber - 1) % slotsPerDay; 
+    let day, startHour, endHour;
   
-    const startTime = 8; 
-    const slotDuration = 1; 
+    if (slot < 12) {
+      // Monday
+      day = 'Monday';
+      startHour = dayStart + slot;
+    } else if (slot < 32) {
+      // Tuesday
+      day = 'Tuesday';
+      startHour = dayStart + (slot - 20);
+    } else if (slot < 52) {
+      // Wednesday
+      day = 'Wednesday';
+      startHour = dayStart + (slot - 40);
+    } else if (slot < 72) {
+      // Thursday
+      day = 'Thursday';
+      startHour = dayStart + (slot - 60);
+    } else if (slot < 92) {
+      // Friday
+      day = 'Friday';
+      startHour = dayStart + (slot - 80);
+    } else if (slot < 112) {
+      // Saturday
+      day = 'Saturday';
+      startHour = dayStart + (slot - 100);
+    } else {
+      return 'Invalid slot number';
+    }
   
-    const startHour = startTime + slotIndex; 
-    const endHour = startHour + slotDuration; 
-  
-    const day = days[dayIndex];
-  
+    endHour = startHour + slotDuration; 
     return {
       day: day,
       startHour: startHour,
@@ -72,9 +92,21 @@ const Lectures = ({ courseId, sectionArray }) => {
   }
 
   const onLectureClick = (e) => {
+
+    function getTextBetweenHyphens(str) {
+      const regex = /-(.*?)-/;
+      const match = regex.exec(str);
+      if (match && match.length >= 2) {
+        return match[1].trim();
+      }
+      return '';
+    }
+    
+    
     const targetDiv = e.currentTarget;
-    const targetCourse = targetDiv.id.slice(4);
-    const courseRegex = new RegExp(`^L.+-${targetCourse}$`);
+    const targetCourse = getTextBetweenHyphens(targetDiv.id);
+    console.log(targetCourse);
+    const courseRegex = new RegExp(`^L.+-${targetCourse}(-\\d+)?$`);
     let wantedSections =
       JSON.parse(localStorage.getItem("wantedSections")) || [];
     let unwantedSections =
@@ -132,6 +164,11 @@ const Lectures = ({ courseId, sectionArray }) => {
     }
   };
 
+  filteredSections && console.log(filteredSections);
+  filteredSections && console.log(filteredSections[0]);
+  filteredSections && console.log(filteredSections[0].lecture);
+  filteredSections && console.log(Object.values(filteredSections[0]));
+  
   return (
     <div className="lectures" id={courseId}>
       <div className="lectures-container">
