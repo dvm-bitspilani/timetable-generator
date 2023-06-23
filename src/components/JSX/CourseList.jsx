@@ -125,7 +125,7 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2 }) => {
   return (
 
     <>
-    {timetableGenerated && <TimetableScreen courseUnits={courseUnits} freeDay={freeDay} />}
+    {timetableGenerated && <TimetableScreen sectionArray={sectionArray} courseUnits={courseUnits} freeDay={freeDay} />}
     {!timetableGenerated && (<>
       {courseSelected ? (
         <CourseDetail

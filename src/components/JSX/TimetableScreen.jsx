@@ -1,40 +1,112 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../CSS/TimetableScreen.css";
 import Timetable from "./Timetable";
 import DowloadIcon from "../../assets/IconDownload.svg"
 
-const TimetableScreen = ({courseUnits , freeDay}) =>{
+const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
 
-  const requestOption = {
-    "number": 50, 
-    "free_day": `${freeDay}`,
-    "courses": [
-          {
-          "course_id": 3,
-          "lecture": {
-              "desired": 1, // if the sections are wanted
-              "sec": [
-              39
-              ]
+
+  useEffect(()=>{
+    const fetchData =async ()=>{
+      const courses = sectionArray.map(item => {
+        const item_title = Object.values(item)[2].replace(/\s/g, "");
+        console.log(item_title);
+      
+        const wantedSections = JSON.parse(localStorage.getItem("wantedSections"));
+        const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections"));
+      
+        let lecDesired = 0;
+        const lecSec = [];
+        let tutDesired = 0;
+        const tutSec = [];
+        let pracDesired = 0;
+        const pracSec = [];
+      
+        if (wantedSections.some(section => section.startsWith('L') && section.split('-')[1] === item_title)) {
+          lecDesired = 1;
+          wantedSections.filter(section => section.startsWith('L') && section.split('-')[1] === item_title)
+            .forEach(section => {
+              lecSec.push(parseInt(section.split('-').pop()));
+            });
+        } else if (unWantedSections.some(section => section.startsWith('L') && section.split('-')[1] === item_title)) {
+          lecDesired = 0;
+          unWantedSections.filter(section => section.startsWith('L') && section.split('-')[1] === item_title)
+            .forEach(section => {
+              lecSec.push(parseInt(section.split('-').pop()));
+            });
+        }
+        if (wantedSections.some(section => section.startsWith('T') && section.split('-')[1] === item_title)) {
+          tutDesired = 1;
+          wantedSections.filter(section => section.startsWith('T') && section.split('-')[1] === item_title)
+            .forEach(section => {
+              tutSec.push(parseInt(section.split('-').pop()));
+            });
+        } else if (unWantedSections.some(section => section.startsWith('T') && section.split('-')[1] === item_title)) {
+          tutDesired = 0;
+          unWantedSections.filter(section => section.startsWith('T') && section.split('-')[1] === item_title)
+            .forEach(section => {
+              tutSec.push(parseInt(section.split('-').pop()));
+            });
+        }
+        if (wantedSections.some(section => section.startsWith('P') && section.split('-')[1] === item_title)) {
+          pracDesired = 1;
+          wantedSections.filter(section => section.startsWith('P') && section.split('-')[1] === item_title)
+            .forEach(section => {
+              pracSec.push(parseInt(section.split('-').pop()));
+            });
+        } else if (unWantedSections.some(section => section.startsWith('P') && section.split('-')[1] === item_title)) {
+          pracDesired = 0;
+          unWantedSections.filter(section => section.startsWith('P') && section.split('-')[1] === item_title)
+            .forEach(section => {
+              pracSec.push(parseInt(section.split('-').pop()));
+            });
+        }
+      
+        return {
+          course_id: Object.values(item)[0],
+          lecture: {
+            desired: lecDesired,
+            sec: lecSec
           },
-          "tutorial": {
-              "desired": 1,
-              "sec": []
+          tutorial: {
+            desired: tutDesired,
+            sec: tutSec
           },
-          "practical": {
-              "desired": 1,
-              "sec": []
+          practical: {
+            desired: pracDesired,
+            sec: pracSec
           },
-          "misc": {
-              "desired": 0,
-              "sec": []
+          misc: {
+            desired: 0,
+            sec: []
           }
-      },
-    ],
-    "compre_check": true
-}
+        };
+      });
+    
+      const requestOption = {
+        "number": 50, 
+        "free_day": `${freeDay}`,
+        "courses": courses,
+        "compre_check": true
+      }
+      const requestOptionsFinal = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: requestOption,
+      };
+      console.log(requestOptionsFinal);
+    
+      
+    
+        const response = await fetch( "https://timetable.bits-dvm.org/timetable/timetables/",requestOptionsFinal);
+        const data = await response.json();
+        console.log(data);
+    };
 
-
+      setTimeout(() => {
+        fetchData();
+      }, 0);
+  },[])
 
 
 
