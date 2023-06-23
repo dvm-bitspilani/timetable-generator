@@ -35,7 +35,7 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
     }
   
     const formattedTitle = title.replace(/\s/g, "");
-    const courseRegex = new RegExp(`^..+-${formattedTitle}$`);
+    const courseRegex = new RegExp(`^..+-${formattedTitle}`);
     let wantedArray = wantedSections.filter((section) =>
       courseRegex.test(section)
     );
@@ -50,7 +50,7 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
     }
   
     const formattedTitle = title.replace(/\s/g, "");
-    const courseRegex = new RegExp(`^..+-${formattedTitle}$`);
+    const courseRegex = new RegExp(`^..+-${formattedTitle}`);
     let unwantedArray = unWantedSections.filter((section) =>
       courseRegex.test(section)
     );

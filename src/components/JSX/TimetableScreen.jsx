@@ -8,7 +8,29 @@ const TimetableScreen = ({courseUnits , freeDay}) =>{
   const requestOption = {
     "number": 50, 
     "free_day": `${freeDay}`,
-    "courses": [],
+    "courses": [
+          {
+          "course_id": 3,
+          "lecture": {
+              "desired": 1, // if the sections are wanted
+              "sec": [
+              39
+              ]
+          },
+          "tutorial": {
+              "desired": 1,
+              "sec": []
+          },
+          "practical": {
+              "desired": 1,
+              "sec": []
+          },
+          "misc": {
+              "desired": 0,
+              "sec": []
+          }
+      },
+    ],
     "compre_check": true
 }
 

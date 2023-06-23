@@ -96,9 +96,9 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2 }) => {
     }
   
     const formattedCourseTitle = courseTitle.replace(/\s/g, "");
-    const lecturePattern = new RegExp(`^L.+-${formattedCourseTitle}$`);
-    const tutorialPattern = new RegExp(`^T.+-${formattedCourseTitle}$`);
-    const practicalPattern = new RegExp(`^P.+-${formattedCourseTitle}$`);
+    const lecturePattern = new RegExp(`^L\\d{1,2}\\s-${formattedCourseTitle}-\\d+$`);
+    const tutorialPattern = new RegExp(`^T\\d{1,2}\\s-${formattedCourseTitle}-\\d+$`);
+    const practicalPattern = new RegExp(`^P\\d{1,2}\\s-${formattedCourseTitle}-\\d+$`);
   
     const hasLecturedCard =
       (wantedSections &&

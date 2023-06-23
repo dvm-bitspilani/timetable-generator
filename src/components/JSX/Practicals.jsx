@@ -144,7 +144,7 @@ const Practicals = ({ courseId , sectionArray }) => {
           return (
           <div
             key={item.sec_id}
-            id={`P${Object.values(item)[0] ? Object.values(item)[0] : ""} -${courseId ? courseId.replace(/ +/g, "") : ""}`}
+            id={`P${Object.values(item)[0] ? Object.values(item)[0] : ""} -${courseId ? courseId.replace(/ +/g, "") : ""}-${Object.values(item)[1] ? Object.values(item)[1] : ""}`}
             className="lecture-card"
             onClick={onLectureClick}
           >

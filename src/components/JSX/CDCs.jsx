@@ -18,7 +18,7 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
 
   const getWantedSection = (title) => {
     const formattedTitle = title.replace(/\s/g, "");
-    const courseRegex = new RegExp(`^..+-${formattedTitle}$`);
+    const courseRegex = new RegExp(`^..+-${formattedTitle}`);
     let wantedArray = wantedSections.filter((section) =>
       courseRegex.test(section)
     );
@@ -30,7 +30,7 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
 
   const getUnWantedSection = (title) => {
     const formattedTitle = title.replace(/\s/g, "");
-    const courseRegex = new RegExp(`^..+-${formattedTitle}$`);
+    const courseRegex = new RegExp(`^..+-${formattedTitle}`);
     let wantedArray = unWantedSections.filter((section) =>
       courseRegex.test(section)
     );

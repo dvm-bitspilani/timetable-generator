@@ -140,7 +140,7 @@ const Lectures = ({ courseId, sectionArray }) => {
           return (
             <div
               key={item.sec_id}
-              id={`L${Object.values(item)[0] ? Object.values(item)[0] : ""} -${courseId ? courseId.replace(/ +/g, "") : ""}`}
+              id={`L${Object.values(item)[0] ? Object.values(item)[0] : ""} -${courseId ? courseId.replace(/ +/g, "") : ""}-${Object.values(item)[1] ? Object.values(item)[1] : ""}`}
               className="lecture-card"
               onClick={onLectureClick}
             >
