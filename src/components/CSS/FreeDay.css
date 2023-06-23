@@ -1,12 +1,9 @@
 .free-day-container{
-    position: fixed;
-    bottom: 0;
-    margin-bottom: 16vh;
-    /* width: 30%; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 2vh;
 }
 .free-day-container:hover{
     z-index: 2;
@@ -43,9 +40,7 @@
     color: #474747;
 }
 @media (max-width: 470px) {
-    .free-day-container{
-        margin-bottom: 12vh;
-    }
+    
     .free-day-heading{
         margin-bottom: 0;
         font-size: .875rem;

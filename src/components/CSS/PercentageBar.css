@@ -1,7 +1,7 @@
 .percentage-bar{
-  position: fixed;
+  position: relative;
   bottom: 0;
-  margin-bottom: 11vh;
+  margin-bottom: 4vh;
   width: 75vw;
   height: 0.5rem;
 }
@@ -55,7 +55,6 @@
 }
 @media (max-width: 470px) {
   .percentage-bar{
-    margin-bottom: 10vh;
     width: 95vw;
   }
   .percentage-box{

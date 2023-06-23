@@ -147,6 +147,7 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2 }) => {
         />
       ) : (
         <div className="course-list">
+          <div className="course-list-cards">
           <h2 className="courses-heading">
             <span>
               <img src={IconCDCs} alt="Icon" />
@@ -172,9 +173,12 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2 }) => {
           ) : (
             ""
           )}
+          </div>
+          <div className="course-list-footer">
           <FreeDay setFreeDay={setFreeDay} />
           <PercentageBar key={key2} prop={key2} />
           <GenerateButtons onAddMoreCourse={onAddMoreCourse} generateTimetable={generateTimetable} />
+        </div>
         </div>
       )}
       </>)}
