@@ -1,7 +1,16 @@
 .course-list{
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+}
+.course-list-cards{
+  margin-bottom: 2vh;
+}
+.course-list-footer{
+  display: flex;
   align-items: center;
+  flex-direction: column;
 }
 .courses-heading{
   font-size: 2rem;
