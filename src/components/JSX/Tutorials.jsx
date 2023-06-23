@@ -181,10 +181,10 @@ const Tutorials = ({ courseId , sectionArray }) => {
           >
             <div className="lecture-room">
               <h3 className="font-weight-600">T {item.sec}</h3>
-              {/* <h3 className="font-weight-500">{item.room}</h3> */}
+              { item.room !== "NA" && <h3 className="font-weight-500">{item.room}</h3>}
             </div>
             <h2>{item.instructors.join(", ")}</h2>
-            {/* <h2 className="margin-bottom-1rem">{item.hours}</h2> */}
+            {item.slots[0] !== undefined && (<h2 className="margin-bottom-1rem">{day} {startHour} - {endHour}</h2>)}
           </div>
         );
         })}

@@ -185,9 +185,7 @@ const Practicals = ({ courseId , sectionArray }) => {
                { item.room !== "NA" && <h3 className="font-weight-500">{item.room}</h3>}
               </div>
               <h2>{item.instructors}</h2>
-              {item.slots[0] && <h2 className="margin-bottom-1rem">
-                {day} {startHour} - {endHour}
-              </h2>}
+              {item.slots[0] !== undefined && (<h2 className="margin-bottom-1rem">{day} {startHour} - {endHour}</h2>)}
           </div>
         );
         })}
