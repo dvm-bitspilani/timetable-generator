@@ -1,0 +1,20 @@
+.cell-cover{
+    border-radius: 5px;
+    height: 95%;
+    width: 95%;
+    font-weight: 600;
+    padding-top: .5rem;
+    padding-left: .5rem;
+    padding-right: 2rem;
+}
+.cell-cover > div{
+    display: flex;
+    justify-content: space-between;
+}
+.cell-content{
+    margin-top: .25rem;
+    margin-bottom: .75rem;
+}
+.cell-content > div{
+    display: flex;
+}

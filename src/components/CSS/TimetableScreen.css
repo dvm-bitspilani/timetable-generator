@@ -25,3 +25,9 @@
 .margin-bottom-325{
   margin-bottom: 3.25rem;
 }
+.table-container{
+  height: 73vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
