@@ -1,6 +1,6 @@
 .cell-cover{
     border-radius: 5px;
-    height: 95%;
+    height: 97%;
     width: 95%;
     font-weight: 600;
     padding-top: .5rem;
@@ -17,4 +17,10 @@
 }
 .cell-content > div{
     display: flex;
+}
+.cell-content img{
+    margin-right: .25rem;
+}
+.cell-section{
+    margin-right: .75rem;
 }

@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../CSS/TimetableScreen.css";
 import Timetable from "./Timetable";
 import DownloadIcon from "../../assets/IconDownload.svg"
 
 const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
 
+  const [fetchedTable, setFetchedTable] = useState([]);
 
   useEffect(()=>{
     const fetchData =async ()=>{
       const courses = sectionArray.map(item => {
         const item_title = Object.values(item)[2].replace(/\s/g, "");
-        console.log(item_title);
       
         const wantedSections = JSON.parse(localStorage.getItem("wantedSections"));
         const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections"));
@@ -93,14 +93,12 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestOption),
-      };
-      console.log(requestOptionsFinal);
-    
+      };    
       
     
-        const response = await fetch( "https://timetable.bits-dvm.org/timetable/timetables/",requestOptionsFinal);
+        const response = await fetch( "https://mocki.io/v1/d4eea6e2-5092-4842-8b1d-5b7dd5ef89a8");
         const data = await response.json();
-        console.log(data);
+        console.log(data)
     };
 
       setTimeout(() => {
@@ -109,8 +107,6 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
   },[])
 
 
-
-  console.log(freeDay);
   return(
     <>
       <h1 className="units-heading">Units Taken: <span>{courseUnits}</span></h1>
