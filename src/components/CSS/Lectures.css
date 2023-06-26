@@ -66,6 +66,8 @@
   margin-top: 1rem;
   width: 25%;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .want-or-not-container p{
   margin-left: .5rem;
@@ -108,4 +110,24 @@ input:checked + label:after {
 
 label:active:after {
   width: 25px;
+}
+@media (max-width: 470px) {
+  .want-or-not-container{
+    width: 80%;
+    font-size: .875rem;
+  }
+  .lectures-container{
+    width: 100%;
+  }
+  .lecture-card{
+    width: 45%;
+    margin: .25rem;
+    height: 13vh;
+  }
+  .lecture-room h3{
+    font-size: .75rem;
+  }
+  .lecture-card h2{
+    font-size: .75rem;
+  }
 }

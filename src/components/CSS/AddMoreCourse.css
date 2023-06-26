@@ -109,6 +109,7 @@
   font-size: 16px;
   position: absolute;
   bottom: 5%;
+  cursor: pointer;
 }
 .amc-add-btn:hover{
   cursor: pointer;
@@ -135,4 +136,31 @@
   font-weight: 300;
   color: #F7E188;
   padding: 0 0.5rem;
+}
+
+@media (max-width: 470px) {
+  .add-more-courses{
+    width: 94vw;
+    height: 85vh;
+  }
+  .amc-courses-container{
+    margin: .5vh 0;
+    justify-content: center;
+    max-height: 70%;
+  }
+  .all-courses{
+    width: 48%;
+  }
+  .all-courses p{
+    font-size: .75rem;
+  }
+  .amc-searchbox{
+    margin: 3vh auto 2vh;
+  }
+  #coursesSearchInput::placeholder{
+    font-size: .875rem;
+  }
+  .amc-search-btn{
+    margin-right: 1rem;
+  }
 }

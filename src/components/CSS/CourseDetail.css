@@ -74,3 +74,28 @@
   font-size: 12px;
   cursor: pointer;
 }
+@media (max-width: 470px) {
+  .course-detail-container{
+    width: 95vw;
+    height: 60vh;
+  }
+  .course-detail-title{
+    font-size: 1.25rem;
+    margin-top: 1rem;
+  }
+  .cross-icon{
+    top: 1.25rem;
+    right: 1rem;
+    height: 15px;
+    width: 15px;
+  }
+  .course-btns-container{
+    padding: 0 .75rem;
+  }
+  .prev-next-course-btn p{
+    display: none;
+  }
+  .lecture-tut-btns > div{
+    padding: 8px 16px;
+  }
+}

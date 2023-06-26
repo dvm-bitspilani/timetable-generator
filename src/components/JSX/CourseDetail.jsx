@@ -119,7 +119,7 @@ const CourseDetail = ({
         {filteredSections && practicalSelected && <Practicals key={courseId} courseId={courseId} fetchedArray={fetchedArray} sectionArray={sectionArray} />}
         <div className="course-btns-container">
           <div className="prev-next-course-btn" onClick={handlePreviousCourse}>
-            <img src={LeftArrow} alt="Left Arrow" /> Previous Course
+            <img src={LeftArrow} alt="Left Arrow" /> <p>Previous Course</p> 
           </div>
           <div className="lecture-tut-btns">
             {filteredSections && filteredSections[0].lecture.length >0 && <div
@@ -148,7 +148,7 @@ const CourseDetail = ({
             </div>}
           </div>
           <div className="prev-next-course-btn" onClick={handleNextCourse}>
-            Next Course <img src={RightArrow} alt="" />
+           <p> Next Course</p> <img src={RightArrow} alt="" />
           </div>
         </div>
       </div>
