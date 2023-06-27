@@ -1,6 +1,6 @@
 import React from "react";
 import "../CSS/LoaderIcon.css";
-const LoaderIcon = () => {
+const LoaderIcon = ({title}) => {
   return (
     <div className="loader-wrapper">
       <div className="loader-icon">
@@ -13,7 +13,7 @@ const LoaderIcon = () => {
         <div></div>
         <div></div>
       </div>
-      <h3>Getting Courses</h3>
+      <h3>{title}</h3>
     </div>
   );
 };

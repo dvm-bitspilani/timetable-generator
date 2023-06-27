@@ -2,14 +2,14 @@
 
 
 .table{
-    height: 65vh;
+    height: 75vh;
     width: 65vw;
     border-radius: 7.626px;
     border: 1.144px solid #C9C9C9;
     background: #2B2C35;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 .table > div {
     display: flex;

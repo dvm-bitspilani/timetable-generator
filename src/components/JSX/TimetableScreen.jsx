@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "../CSS/TimetableScreen.css";
 import Timetable from "./Timetable";
+import LoaderIcon from "./LoaderIcon";
 import DownloadIcon from "../../assets/IconDownload.svg"
 
 const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
 
   const [fetchedTable, setFetchedTable] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(()=>{
     const fetchData =async ()=>{
@@ -98,7 +100,12 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
     
         const response = await fetch( "https://mocki.io/v1/d4eea6e2-5092-4842-8b1d-5b7dd5ef89a8");
         const data = await response.json();
+        setTimeout(() => {
+          setIsLoading(false);
+          
+        }, 2000);
         console.log(data)
+        setFetchedTable(data);
     };
 
       setTimeout(() => {
@@ -109,14 +116,18 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
 
   return(
     <>
+    {isLoading? <LoaderIcon title="Fetching Timetables" /> :
+    (<>
       <h1 className="units-heading">Units Taken: <span>{courseUnits}</span></h1>
       <p className="units-paragraph">If you don’t see a section here, it must be because the hours and days are empty in the original TT provided by AUGSD</p>
       
       <div className="table-container">
-        <Timetable />
+        <Timetable timetableData={fetchedTable} />
       </div>
       <p className="units-paragraph margin-bottom-05">Scroll for more variations</p>
       <p className="units-paragraph margin-bottom-325">50 is the max number of timetables shown here</p>
+    </>)
+    }
     </>
   );
 };

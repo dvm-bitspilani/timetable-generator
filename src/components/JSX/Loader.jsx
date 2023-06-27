@@ -4,7 +4,7 @@ import LoaderIcon from "./LoaderIcon";
 const Loader = () => {
   return (
     <>
-      <LoaderIcon />
+      <LoaderIcon title="Getting Courses" />
     </>
   );
 };

@@ -7,7 +7,7 @@ const TableCell = ({courseTitle, courseSection, courseRoom, cellColor}) => {
   return (
     <>
         <div className="cell-cover" style={{background: `${cellColor}`}}>
-            <div className="cell-heading">{courseTitle}</div>
+            <span className="cell-heading">{courseTitle}</span>
             <div className="cell-content">
             <div className="cell-section">
                 <img src={HashtagIcon} alt="Hashtag" />

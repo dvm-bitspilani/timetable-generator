@@ -27,7 +27,10 @@ const Courses = ({ inputValue }) => {
           requestOptions1
         );
         const data1 = await response1.json();
-        setFetchedArray(data1);
+        setTimeout(() => {
+          
+          setFetchedArray(data1);
+        }, 1800);
   
         const cdcsArray = data1.cdcs;
         const storedMoreCourses = JSON.parse(
@@ -79,8 +82,7 @@ const Courses = ({ inputValue }) => {
           Promise.all(request2Promises),
           Promise.all(request3Promises),
         ]);
-  
-        setSectionArray([...sectionArray2, ...sectionArray3]);
+          setSectionArray([...sectionArray2, ...sectionArray3]);
       } catch (error) {
         console.error("Error executing request1:", error);
       }
@@ -101,7 +103,7 @@ const Courses = ({ inputValue }) => {
     
 
   if (!fetchedArray) {
-    return <Loader />;
+    return <Loader title="Getting Courses" />;
   }
 
   if (sectionArray.length > 0) {
