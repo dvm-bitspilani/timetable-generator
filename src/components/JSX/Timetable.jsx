@@ -146,15 +146,24 @@ const Timetable = ({timetableData}) => {
 
           return(
             <>
-            {lectureGridPosition && <div className="table-data" style={{ gridColumn: lectureGridPosition.gridColumn, gridRow: lectureGridPosition.gridRow }}>
-              <TableCell courseTitle={Object.values(object)[0]} courseSection={"L1"} courseRoom={"7101"} cellColor={"#7BAF6C"} />
-            </div>}
-            {tutorialGridPosition && <div className="table-data" style={{ gridColumn: tutorialGridPosition.gridColumn, gridRow: tutorialGridPosition.gridRow }}>
-              <TableCell courseTitle={Object.values(object)[0]} courseSection={"T1"} courseRoom={"7101"} cellColor={"#307999"} />
-            </div>}
-            {practicalGridPosition &&<div className="table-data" style={{ gridColumn: practicalGridPosition.gridColumn, gridRow: practicalGridPosition.gridRow }}>
-              <TableCell courseTitle={Object.values(object)[0]} courseSection={"P1"} courseRoom={"7101"} cellColor={"#B84846"} />
-            </div>}
+            {lectureSlots.map((slot) => (
+              <div className="table-data" style={{ gridColumn: getGridPosition(slot).gridColumn, gridRow: getGridPosition(slot).gridRow }}>
+                <TableCell courseTitle={Object.values(object)[0]} courseSection={"L1"} courseRoom={"7101"} cellColor={"#7BAF6C"} />
+              </div>
+            ))}
+
+            {tutorialSlots.map((slot) => (
+              <div className="table-data" style={{ gridColumn: getGridPosition(slot).gridColumn, gridRow: getGridPosition(slot).gridRow }}>
+                <TableCell courseTitle={Object.values(object)[0]} courseSection={"T1"} courseRoom={"7101"} cellColor={"#307999"} />
+              </div>
+            ))}
+
+            {practicalSlots.map((slot) => (
+              <div className="table-data" style={{ gridColumn: getGridPosition(slot).gridColumn, gridRow: getGridPosition(slot).gridRow }}>
+                <TableCell courseTitle={Object.values(object)[0]} courseSection={"P1"} courseRoom={"7101"} cellColor={"#B84846"} />
+              </div>
+            ))}
+
             </>
           );
 
