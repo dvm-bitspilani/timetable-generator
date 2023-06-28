@@ -53,8 +53,8 @@ const Timetable = ({timetableData}) => {
   var indents = [];
   // const {tableRow, tableColumn} = getRowAndColumn(slot)
   for (var i = 2; i < 8; i++) {
-    for (let j = 2; j < 12; j++) {
-      indents.push(<div className="table-data" key={`${i-j}`} style={{ gridColumn: `${i}`, gridRow: `${j}`}}>
+    for (let j = 2; j < 13; j++) {
+      indents.push(<div className="table-data" key={`${i}-${j}`} style={{ gridColumn: `${i}`, gridRow: `${j}`}}>
       </div>);
     }
   }
