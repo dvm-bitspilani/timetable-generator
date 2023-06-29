@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import styles from "../CSS/PercentageBar.module.css";
+import styles2 from "../CSS/CDCs.module.css";
+
 
 const PercentageBar = ({ prop }) => {
   const [progressWidth, setProgressWidth] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const totalCourses = document.querySelectorAll("._course-div_umkpq_39 ");
-      const greenCourses = document.querySelectorAll("._courseIsSelectedGreen_umkpq_29");
+      const totalCourses = document.querySelectorAll(`.${styles2["course-div"]}`);
+      const greenCourses = document.querySelectorAll(`.${styles2["courseIsSelectedGreen"]}`);
+      // console.log(totalCourses);
       const totalCoursesLength = totalCourses.length;
       const greenCoursesLength = greenCourses.length;
       const newWidth = (greenCoursesLength / totalCoursesLength) * 100;
