@@ -15,9 +15,7 @@ const Lectures = ({ courseId, sectionArray }) => {
   const [want, setWant] = useState(true);
 
   useEffect(() => {
-    const allSections = document.querySelectorAll(
-      `.${styles["lecture-card"]}`
-    );
+    const allSections = document.querySelectorAll(`.${styles["lecture-card"]}`);
     allSections.forEach((section) => {
       section.classList.remove(styles["lecture-card-selected"]);
     });
@@ -58,20 +56,18 @@ const Lectures = ({ courseId, sectionArray }) => {
 
     const targetDiv = e.currentTarget;
     const targetCourse = getTextBetweenHyphens(targetDiv.id);
+    console.log(targetCourse);
     const courseRegex = new RegExp(`^L.+-${targetCourse}(-\\d+)?$`);
     let wantedSections =
       JSON.parse(localStorage.getItem("wantedSections")) || [];
     let unwantedSections =
       JSON.parse(localStorage.getItem("unwantedSections")) || [];
-    if (targetDiv.classList.contains(styles["lecture-card"])) {
+    if (targetDiv.className === styles["lecture-card"]) {
       targetDiv.classList.add(styles["lecture-card-selected"]);
 
-      if (want === true) {
+      if (want == true) {
         wantedSections.push(targetDiv.id);
-        localStorage.setItem(
-          "wantedSections",
-          JSON.stringify(wantedSections)
-        );
+        localStorage.setItem("wantedSections", JSON.stringify(wantedSections));
         let updateUnwanted = unwantedSections.filter((element) => {
           if (!courseRegex.test(element)) {
             return element;
@@ -92,17 +88,15 @@ const Lectures = ({ courseId, sectionArray }) => {
             return element;
           }
         });
-        localStorage.setItem(
-          "wantedSections",
-          JSON.stringify(updateWanted)
-        );
+        localStorage.setItem("wantedSections", JSON.stringify(updateWanted));
       }
     } else if (
-      targetDiv.classList.contains(styles["lecture-card-selected"])
+      targetDiv.className ===
+      `${styles["lecture-card"]} ${styles["lecture-card-selected"]}`
     ) {
       targetDiv.classList.remove(styles["lecture-card-selected"]);
 
-      if (want === true) {
+      if (want == true) {
         const index = wantedSections.indexOf(targetDiv.id);
         if (index > -1) {
           wantedSections.splice(index, 1);
