@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
-import "../CSS/PercentageBar.css";
+import styles from "../CSS/PercentageBar.module.css";
 
 const PercentageBar = ({ prop }) => {
   const [progressWidth, setProgressWidth] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const totalCourses = document.querySelectorAll(".course-div");
-      const greenCourses = document.querySelectorAll(".courseIsSelectedGreen");
+      const totalCourses = document.querySelectorAll("._course-div_umkpq_39 ");
+      const greenCourses = document.querySelectorAll("._courseIsSelectedGreen_umkpq_29");
       const totalCoursesLength = totalCourses.length;
       const greenCoursesLength = greenCourses.length;
       const newWidth = (greenCoursesLength / totalCoursesLength) * 100;
@@ -21,12 +21,12 @@ const PercentageBar = ({ prop }) => {
   
 
   return (
-    <div className="percentage-bar">
-      <div className="percentage-bar-box"></div>
-      <div className="percentage-bar-content" style={{ width: `${progressWidth}%` }}>
-        <div className="percentage-box">
-          <div className="percentage-box1"></div>
-          <div className="percentage-box2">{progressWidth.toFixed(2)}%</div>
+    <div className={styles["percentage-bar"]}>
+      <div className={styles["percentage-bar-box"]}></div>
+      <div className={styles["percentage-bar-content"]} style={{ width: `${progressWidth}%` }}>
+        <div className={styles["percentage-box"]}>
+          <div className={styles["percentage-box1"]}></div>
+          <div className={styles["percentage-box2"]}>{progressWidth.toFixed(2)}%</div>
         </div>
       </div>
     </div>

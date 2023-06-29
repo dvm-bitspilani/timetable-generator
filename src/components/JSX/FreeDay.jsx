@@ -1,24 +1,25 @@
 import React, { useState } from "react";
-import "../CSS/FreeDay.css";
+import styles from "../CSS/FreeDay.module.css";
 
 const FreeDay = ({ setFreeDay }) => {
-  var days = document.querySelectorAll(".free-day-box > div");
   const handleClick = (e) => {
+    const days = document.querySelectorAll(`.${styles["free-day-box"]} > div`);
     if (!e.target.className) {
       days.forEach((element) => {
-        element.classList.remove("selected-day");
+        element.classList.remove(styles["selected-day"]);
       });
-      e.target.classList.add("selected-day");
+      e.target.classList.add(styles["selected-day"]);
       setFreeDay(e.target.id);
     } else {
-      e.target.classList.remove("selected-day");
+      e.target.classList.remove(styles["selected-day"]);
       setFreeDay("");
     }
   };
+
   return (
-    <div className="free-day-container">
-      <h1 className="free-day-heading">Free Day?</h1>
-      <div className="free-day-box" onClick={handleClick}>
+    <div className={styles["free-day-container"]}>
+      <h1 className={styles["free-day-heading"]}>Free Day?</h1>
+      <div className={styles["free-day-box"]} onClick={handleClick}>
         <div id="monday">M</div>
         <div id="tuesday">T</div>
         <div id="wednesday">W</div>

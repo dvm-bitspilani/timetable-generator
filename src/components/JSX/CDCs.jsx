@@ -1,6 +1,6 @@
 import React from "react";
 import IconBookWhite from "../../assets/IconBookWhite.svg";
-import "../CSS/CDCs.css";
+import styles from "../CSS/CDCs.module.css";
 
 const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
   const courseClickUnique = (id) => {
@@ -41,28 +41,28 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
   };
 
   return (
-    <div className="courses-container">
+    <div className={styles["courses-container"]}>
       {fetchedArray?.cdcs?.map((item) => (
         <div
           key={item.course_id}
-          className={`course-div ${
+          className={`${styles['course-div']} ${
             courseIsSelectedGreen(item.course_title)
-              ? "courseIsSelectedGreen"
-              : ""
+              ? styles["courseIsSelectedGreen"]
+              : ''
           }`}
           onClick={() => courseClickUnique(item.course_title)}
         >
-          <div className="course-div-overlay">
-            <div className="course-overlay-content">
+          <div className={styles["course-div-overlay"]}>
+            <div className={styles["course-overlay-content"]}>
               {getWantedSection(item.course_title) != "" ? (
-                <div className="want-content">
+                <div className={styles["want-content"]}>
                   Want: {getWantedSection(item.course_title)}
                 </div>
               ) : (
                 ""
               )}
               {getUnWantedSection(item.course_title) != "" ? (
-                <div className="want-content">
+                <div className={styles["want-content"]}>
                   Don't Want: {getUnWantedSection(item.course_title)}
                 </div>
               ) : (
@@ -70,11 +70,11 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
               )}
             </div>
           </div>
-          <div className="course-div-main-content">
+          <div className={styles["course-div-main-content"]}>
             <img src={IconBookWhite} alt="book" />
             <h3>{titleCase(item.course_title)}</h3>
           </div>
-          <div className="course-div-detail">
+          <div className={styles["course-div-detail"]}>
             <h6>{item.course_no}</h6>
             <p>{item.credits} Credits</p>
           </div>

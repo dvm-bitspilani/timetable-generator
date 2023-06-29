@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "../CSS/Lectures.css";
+import styles from "../CSS/Lectures.module.css";
+import "../CSS/CourseIsSelected.css";
 
 const Lectures = ({ courseId, sectionArray }) => {
   console.log(courseId);
@@ -20,7 +21,7 @@ const Lectures = ({ courseId, sectionArray }) => {
   const [want, setWant] = useState(true);
 
   useEffect(() => {
-    const allSections = document.querySelectorAll(".lecture-card");
+    const allSections = document.querySelectorAll("._lecture-card_apw7j_49");
     allSections.forEach((section) => {
       section.classList.remove("lecture-card-selected");
     });
@@ -111,8 +112,8 @@ const Lectures = ({ courseId, sectionArray }) => {
       JSON.parse(localStorage.getItem("wantedSections")) || [];
     let unwantedSections =
       JSON.parse(localStorage.getItem("unwantedSections")) || [];
-    if (targetDiv.className === "lecture-card") {
-      targetDiv.className = "lecture-card lecture-card-selected";
+    if (targetDiv.className === "_lecture-card_apw7j_49") {
+      targetDiv.className = "_lecture-card_apw7j_49 lecture-card-selected";
 
       if (want == true) {
         wantedSections.push(targetDiv.id);
@@ -139,8 +140,8 @@ const Lectures = ({ courseId, sectionArray }) => {
         });
         localStorage.setItem("wantedSections", JSON.stringify(updateWanted));
       }
-    } else if (targetDiv.className === "lecture-card lecture-card-selected") {
-      targetDiv.className = "lecture-card";
+    } else if (targetDiv.className === "_lecture-card_apw7j_49 lecture-card-selected") {
+      targetDiv.className = "_lecture-card_apw7j_49";
 
       if (want == true) {
         const index = wantedSections.indexOf(targetDiv.id);
@@ -170,28 +171,28 @@ const Lectures = ({ courseId, sectionArray }) => {
   filteredSections && console.log(Object.values(filteredSections[0]));
   
   return (
-    <div className="lectures" id={courseId}>
-      <div className="lectures-container">
+    <div className={styles["lectures"]} id={courseId}>
+      <div className={styles["lectures-container"]}>
         {filteredSections && filteredSections[0].lecture.map((item) => {
           const { day, startHour, endHour } = getDayAndTime(item.slots[0]);
           return (
             <div
               key={item.sec_id}
               id={`L${Object.values(item)[0] ? Object.values(item)[0] : ""} -${courseId ? courseId.replace(/ +/g, "") : ""}-${Object.values(item)[1] ? Object.values(item)[1] : ""}`}
-              className="lecture-card"
+              className={styles["lecture-card"]}
               onClick={onLectureClick}
             >
-              <div className="lecture-room">
-                <h3 className="font-weight-600">L {item.sec}</h3>
-               { item.room !== "NA" && <h3 className="font-weight-500">{item.room}</h3>}
+              <div className={styles["lecture-room"]}>
+                <h3 className={styles["font-weight-600"]}>L {item.sec}</h3>
+               { item.room !== "NA" && <h3 className={styles["font-weight-500"]}>{item.room}</h3>}
               </div>
               <h2>{item.instructors.join(", ")}</h2>
-              {item.slots[0] !== undefined && (<h2 className="margin-bottom-1rem">{day} {startHour} - {endHour}</h2>)}
+              {item.slots[0] !== undefined && (<h2 className={styles["margin-bottom-1rem"]}>{day} {startHour} - {endHour}</h2>)}
             </div>
           );
         })}
       </div>
-      <div className="want-or-not-container">
+      <div className={styles["want-or-not-container"]}>
         <input type="checkbox" id="switch" />
         <label
           htmlFor="switch"

@@ -1,9 +1,9 @@
 import React from "react";
-import "../CSS/LoaderIcon.css";
+import styles from "../CSS/LoaderIcon.module.css";
 const LoaderIcon = ({title}) => {
   return (
-    <div className="loader-wrapper">
-      <div className="loader-icon">
+    <div className={styles["loader-wrapper"]}>
+      <div className={styles["loader-icon"]}>
         <div></div>
         <div></div>
         <div></div>

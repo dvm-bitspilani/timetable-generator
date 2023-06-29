@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../CSS/CourseDetail.css";
+import styles from "../CSS/CourseDetail.module.css";
 import IconCross from "../../assets/IconCross.svg";
 import LeftArrow from "../../assets/IconLeftArrow.svg";
 import RightArrow from "../../assets/IconRightArrow.svg";
@@ -103,51 +103,51 @@ const CourseDetail = ({
 
   return (
     <div
-      className="course-detail-invisible-container"
+      className={styles["course-detail-invisible-container"]}
       onClick={onCourseClickClose2}
     >
-      <div className="course-detail-container">
-        <h3 className="course-detail-title">{courseId}</h3>
+      <div className={styles["course-detail-container"]}>
+        <h3 className={styles["course-detail-title"]}>{courseId}</h3>
         <img
           src={IconCross}
           alt="Close"
-          className="cross-icon"
+          className={styles["cross-icon"]}
           onClick={onCourseClickClose}
         />
         { filteredSections && filteredSections[0].lecture.length >0 && lectureSelected && <Lectures courseId={courseId} key={courseId} fetchedArray={fetchedArray} sectionArray={sectionArray} />}
         { filteredSections && tutorialSelected &&  <Tutorials key={courseId} courseId={courseId} fetchedArray={fetchedArray} sectionArray={sectionArray} />}
         {filteredSections && practicalSelected && <Practicals key={courseId} courseId={courseId} fetchedArray={fetchedArray} sectionArray={sectionArray} />}
-        <div className="course-btns-container">
-          <div className="prev-next-course-btn" onClick={handlePreviousCourse}>
+        <div className={styles["course-btns-container"]}>
+          <div className={styles["prev-next-course-btn"]} onClick={handlePreviousCourse}>
             <img src={LeftArrow} alt="Left Arrow" /> <p>Previous Course</p> 
           </div>
-          <div className="lecture-tut-btns">
+          <div className={styles["lecture-tut-btns"]}>
             {filteredSections && filteredSections[0].lecture.length >0 && <div
-              className={`lecture-btn ${
-                lectureSelected ? "lect-tut-selected" : ""
+              className={`${styles['lecture-btn']} ${
+                lectureSelected ? styles["lect-tut-selected"] : ""
               }`}
               onClick={changeToLec}
             >
               Lectures
             </div>}
             {filteredSections && filteredSections[0].tutorial.length>0 && <div
-              className={`lecture-btn ${
-                tutorialSelected ? "lect-tut-selected" : ""
+              className={`${styles['lecture-btn']} ${
+                tutorialSelected ? styles["lect-tut-selected"] : ""
               }`}
               onClick={changeToTut}
             >
               Tutorials
             </div>}
           {filteredSections && filteredSections[0].practical.length>0 && <div
-              className={`lecture-btn ${
-                practicalSelected ? "lect-tut-selected" : ""
+              className={`${styles['lecture-btn']} ${
+                practicalSelected ? styles["lect-tut-selected"] : ""
               }`}
               onClick={changeToPrac}
             >
               Practicals
             </div>}
           </div>
-          <div className="prev-next-course-btn" onClick={handleNextCourse}>
+          <div className={styles["prev-next-course-btn"]} onClick={handleNextCourse}>
            <p> Next Course</p> <img src={RightArrow} alt="" />
           </div>
         </div>

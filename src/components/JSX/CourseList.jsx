@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import IconCDCs from "../../assets/IconCDCs.svg";
-import "../CSS/CourseList.css";
+import styles from "../CSS/CourseList.module.css";
 import CDCs from "./CDCs";
 import MoreCourses from "./MoreCourses";
 import FreeDay from "./FreeDay";
@@ -42,7 +42,7 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2 }) => {
     calculateCourseUnits();
   }, [ storedMoreCourses]);
   // console.log(courseUnits);
-  // console.log(freeDay);
+  console.log(freeDay);
   // console.log(fetchedArray);
   // console.log(fetchedArray);
   // console.log(sectionArray);
@@ -146,9 +146,9 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2 }) => {
           fetchedArray={fetchedArray}
         />
       ) : (
-        <div className="course-list">
-          <div className="course-list-cards">
-          <h2 className="courses-heading">
+        <div className={styles["course-list"]}>
+          <div className={styles["course-list-cards"]}>
+          <h2 className={styles["courses-heading"]}>
             <span>
               <img src={IconCDCs} alt="Icon" />
             </span>
@@ -161,8 +161,8 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2 }) => {
           />
           {moreCoursesAdded ? (
             <>
-              <div className="horizontal-line"></div>
-              <h2 className="courses-heading" id="more-courses-heading">
+              <div className={styles["horizontal-line"]}></div>
+              <h2 className={styles["courses-heading"]} id="more-courses-heading">
                 <span>
                   <img src={IconCDCs} alt="Icon" />
                 </span>
@@ -174,7 +174,7 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2 }) => {
             ""
           )}
           </div>
-          <div className="course-list-footer">
+          <div className={styles["course-list-footer"]}>
           <FreeDay setFreeDay={setFreeDay} />
           <PercentageBar key={key2} prop={key2} />
           <GenerateButtons onAddMoreCourse={onAddMoreCourse} generateTimetable={generateTimetable} />

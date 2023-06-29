@@ -33,7 +33,7 @@
   background: #4B4D5C;
   border-radius: 10px;
 }
-#coursesSearchInput{
+.coursesSearchInput{
   outline: none;
   border: none;
   background-color: #4B4D5C;
@@ -44,7 +44,7 @@
   font-size: 1.25rem;
   font-weight: 500;
 }
-#coursesSearchInput::placeholder {
+.coursesSearchInput::placeholder {
   color: #FFFFFF;
   font-size: 1.25rem;
   font-weight: 500;
@@ -157,7 +157,7 @@
   .amc-searchbox{
     margin: 3vh auto 2vh;
   }
-  #coursesSearchInput::placeholder{
+  .coursesSearchInput::placeholder{
     font-size: .875rem;
   }
   .amc-search-btn{

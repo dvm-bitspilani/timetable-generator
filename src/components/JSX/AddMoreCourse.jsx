@@ -1,5 +1,5 @@
 import React , {useState, useEffect} from "react";
-import "../CSS/AddMoreCourse.css";
+import styles from "../CSS/AddMoreCourse.module.css";
 import IconSearch from "../../assets/IconSearch.svg";
 import Oops from "../../assets/Groupoops.svg";
 
@@ -105,40 +105,41 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
 
 
   return (
-    <div className="add-more-courses-container" onClick={onCourseClickClose3}>
-      <div className="add-more-courses">
-        <div className="amc-searchbox">
+    <div className={styles["add-more-courses-container"]} onClick={onCourseClickClose3}>
+      <div className={styles["add-more-courses"]}>
+        <div className={styles["amc-searchbox"]}>
           <form action="">
-            <button type="submit" className="amc-search-btn">
+            <button type="submit" className={styles["amc-search-btn"]}>
               <img src={IconSearch} alt="Search" />
             </button>
             <input
               type="text"
               id="coursesSearchInput"
+              className={styles["coursesSearchInput"]}
               placeholder="Search"
               value={searchQuery}
               onChange={handleSearch}
             />
           </form>
         </div>
-        <div className="amc-courses-container">
+        <div className={styles["amc-courses-container"]}>
           {areCoursesAvailable ? (
             filteredCourses.map((item) => (
               <div
                 key={item.course_id}
-                className="all-courses"
+                className={styles["all-courses"]}
                 id={`more-courses-${item.course_title.replace(/ +/g, "")}`}
                 onClick={onCoursesClick}
               >
                 <h3 onClick={onCourseChildClick}>{item.course_no}</h3>
-                <p className="amc-course-title" onClick={onCourseChildClick}>{item.course_title}</p>
-                <p className="amc-credits">{item.credits} Credits</p>
+                <p className={styles["amc-course-title"]} onClick={onCourseChildClick}>{item.course_title}</p>
+                <p className={styles["amc-credits"]}>{item.credits} Credits</p>
               </div>
             ))
           ) : (
-            <div className="no-course-found">
-              <img src={Oops} alt="No Courses" className="no-courses-image" />
-              <div className="no-course-text">
+            <div className={styles["no-course-found"]}>
+              <img src={Oops} alt="No Courses" className={styles["no-courses-image"]} />
+              <div className={styles["no-course-text"]}>
                 <h2>OOPS!</h2>
                 <p>No Course found</p>
               </div>
@@ -146,7 +147,7 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
           )}
         </div>
 
-        <div className="amc-add-btn" onClick={handleBackButtonClick}>
+        <div className={styles["amc-add-btn"]} onClick={handleBackButtonClick}>
           {numberOfCourses}
         </div>
       </div>

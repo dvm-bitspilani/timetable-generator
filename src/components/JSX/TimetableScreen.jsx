@@ -116,7 +116,7 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
 
   return(
     <>
-    {isLoading? <LoaderIcon title="Fetching Timetables" /> :
+    {isLoading? <LoaderIcon title="Generating Timetables" /> :
     (<>
       <h1 className="units-heading">Units Taken: <span>{courseUnits}</span></h1>
       <p className="units-paragraph">If you don’t see a section here, it must be because the hours and days are empty in the original TT provided by AUGSD</p>

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import "..//CSS/Input.css";
+import styles from "..//CSS/Input.module.css";
 import dvmlogo from "../../../src/assets/dvm-logo.svg";
 import submitbtn from "../../../src/assets/button-icon.svg";
 
@@ -32,9 +32,9 @@ function Input({ setShowInputBox, setInputValue, inputValue }) {
   };
 
   return (
-    <div className="input-area">
-      <div className={`input-id ${showError != "" ? "error-animation" : ""}`}>
-        <div className="logo">
+    <div className={styles["input-area"]}>
+      <div className={`${styles["input-id"]} ${showError != "" ? styles["error-animation"] : ""}`}>
+        <div className={styles["logo"]}>
           <img src={dvmlogo} alt="" />
         </div>
         <form onSubmit={validateForm}>
@@ -45,12 +45,12 @@ function Input({ setShowInputBox, setInputValue, inputValue }) {
             value={inputValue}
             onChange={handleInputChange}
           />
-          <button type="submit" className="btn-icon">
+          <button type="submit" className={styles["btn-icon"]}>
             <img src={submitbtn} alt="" />
           </button>
         </form>
       </div>
-      <span className="error-msg">{showError}</span>
+      <span className={styles["error-msg"]}>{showError}</span>
     </div>
   );
 }

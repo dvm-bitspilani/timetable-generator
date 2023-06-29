@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import IconBook from "../../assets/IconBook.svg";
 import IconBookWhite from "../../assets/IconBookWhite.svg";
-import "../CSS/CDCs.css";
+import styles from  "../CSS/CDCs.module.css";
 
 const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
   const [courses, setCourses] = useState([]);
@@ -61,26 +61,28 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
   };
 
   return (
-    <div className="courses-container">
+    <div className={styles["courses-container"]}>
       {courses.map((item) => (
         <div
           key={item.id}
-          className={`course-div ${
-            courseIsSelectedGreen(item.course_title) ? "courseIsSelectedGreen" : ""
+          className={`${styles['course-div']} ${
+            courseIsSelectedGreen(item.course_title)
+              ? styles["courseIsSelectedGreen"]
+              : ''
           }`}
           onClick={() => courseClickUnique(item.course_title)}
         >
-          <div className="course-div-overlay">
-            <div className="course-overlay-content">
+          <div className={styles["course-div-overlay"]}>
+            <div className={styles["course-overlay-content"]}>
               {getWantedSection(item.course_title) != "" ? (
-                <div className="want-content">
+                <div className={styles["want-content"]}>
                   Want: {getWantedSection(item.course_title)}
                 </div>
               ) : (
                 ""
               )}
               {getUnWantedSection(item.course_title) != "" ? (
-                <div className="want-content">
+                <div className={styles["want-content"]}>
                   Don't Want: {getUnWantedSection(item.course_title)}
                 </div>
               ) : (
@@ -88,11 +90,11 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
               )}
             </div>
           </div>
-          <div className="course-div-main-content">
+          <div className={styles["course-div-main-content"]}>
             <img src={IconBookWhite} alt="book" />
             <h3>{titleCase(item.course_title)}</h3>
           </div>
-          <div className="course-div-detail">
+          <div className={styles["course-div-detail"]}>
             <h6>{item.course_no}</h6>
             <p>{item.credits}</p>
           </div>
