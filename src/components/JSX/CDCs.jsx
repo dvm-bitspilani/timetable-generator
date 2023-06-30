@@ -9,10 +9,14 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
 
   function titleCase(str) {
     return str.toLowerCase().split(' ').map(function(word) {
+      if (word.toLowerCase() === 'ii' || word.toLowerCase() === 'iii') {
+        return word.toUpperCase(); 
+      }
       return word.replace(word[0], word[0].toUpperCase());
     }).join(' ');
   }
-
+  
+  
   const wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
   const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections")) || [];
 
