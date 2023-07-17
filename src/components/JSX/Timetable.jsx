@@ -1,12 +1,14 @@
-import React from "react";
+import React , {useState} from "react";
 import "../CSS/Timetable.css";
 import TableCell from "./TableCell";
 
 const Timetable = ({timetableData}) => {
 
+  const [currentTimetableIndex, setCurrentTimetableIndex] = useState(0);
+
   timetableData && console.log(timetableData);
   if(timetableData){
-    var firstTimetable = Object.values(timetableData)[3][0];
+    var firstTimetable = Object.values(timetableData)[3][currentTimetableIndex];
     console.log(firstTimetable);
   }
   // Object.values(timetableData)[3] && console.log(Object.values(timetableData)[3]);
@@ -23,6 +25,15 @@ const Timetable = ({timetableData}) => {
     }
   }
 
+  function shiftToNextTimetable() {
+    setCurrentTimetableIndex((prevIndex) => prevIndex + 1);
+  }
+  function shiftToPrevTimetable() {
+    setCurrentTimetableIndex((prevIndex) => prevIndex - 1);
+  }
+
+  console.log(firstTimetable);
+  console.log(currentTimetableIndex);
   
 
   return (
