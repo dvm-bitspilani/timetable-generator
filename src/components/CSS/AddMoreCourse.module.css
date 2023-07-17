@@ -85,7 +85,8 @@
   padding: 0.75rem 0 0.75rem 0.75rem;
   user-select: none;
 }
-.all-courses p{
+.all-courses p,
+.amc-course-title{
   font-weight: 500;
   font-size: 14px;
   padding: 0 0.75rem 1rem 0.75rem;
@@ -94,6 +95,7 @@
 .amc-credits{
   display: none;
 }
+
 .all-courses:hover{
   border: 2px solid #F7E188;
 }

@@ -28,7 +28,7 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
     storedMoreCourses.forEach(course => {
       const targetDiv = document.getElementById(`more-courses-${course.id}`);
       if (targetDiv) {
-        targetDiv.classList.add('course-added');
+        targetDiv.classList.add(styles['course-added']);
       }
     });
   }, []);
@@ -37,13 +37,13 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
 
   const handleBackButtonClick = () => {
     if (numberOfCourses === "Back") {
-      const courseElements = document.getElementsByClassName("all-courses course-added");
+      const courseElements = document.getElementsByClassName(styles['all-courses'] + ' ' + styles['course-added']);
       const selectedCourses = Array.from(courseElements).map((element) => {
         return {
           id: element.id.split('-')[2],
           course_no: element.querySelector('h3').innerText,
-          course_title: element.querySelector('.amc-course-title').innerText,
-          credits: element.querySelector(".amc-credits").innerText
+          course_title: element.querySelector(`.${styles['amc-course-title']}`).innerText,
+          credits: element.querySelector(`.${styles['amc-credits']}`).innerText
         };
       });
       localStorage.setItem("storedMoreCourses", JSON.stringify(selectedCourses));
@@ -54,13 +54,13 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
     } else if(numberOfCourses === "Max Courses"){
       onAddMoreCourseBack();
     }else{
-      const courseElements = document.getElementsByClassName("all-courses course-added");
+      const courseElements = document.getElementsByClassName(styles['all-courses'] + ' ' + styles['course-added']);
       const selectedCourses = Array.from(courseElements).map((element) => {
         return {
           id: element.id.split('-')[2],
           course_no: element.querySelector('h3').innerText,
-          course_title: element.querySelector('.amc-course-title').innerText,
-          credits: element.querySelector(".amc-credits").innerText
+          course_title: element.querySelector(`.${styles['amc-course-title']}`).innerText,
+          credits: element.querySelector(`.${styles['amc-credits']}`).innerText
         };
       });
       localStorage.setItem("storedMoreCourses", JSON.stringify(selectedCourses));
@@ -70,32 +70,33 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
     updateKey();
   };
   const onCoursesClick = (e) =>{
-    const courseElements = document.getElementsByClassName("all-courses course-added");
+    const courseElements = document.getElementsByClassName(styles['all-courses'] + ' ' + styles['course-added']);
+    const addBtn = document.getElementsByClassName(styles['amc-add-btn'])[0];
     if (courseElements.length === 0) {
       setNumberOfCourses("Back");
-      document.getElementsByClassName("amc-add-btn")[0].className = "amc-add-btn"
-    } else if(courseElements.length === 1){
+      addBtn.className = styles['amc-add-btn'];
+    } else if (courseElements.length === 1) {
       setNumberOfCourses(`Add ${courseElements.length} Course`);
-      document.getElementsByClassName("amc-add-btn")[0].className = "amc-add-btn course-added"
-    } else if(courseElements.length < 6) {
+      addBtn.className = styles['amc-add-btn'] + ' ' + styles['course-added'];
+    } else if (courseElements.length < 6) {
       setNumberOfCourses(`Add ${courseElements.length} Courses`);
-      document.getElementsByClassName("amc-add-btn")[0].className = "amc-add-btn course-added"
-    }else{
-      setNumberOfCourses(`Max Courses`);  
+      addBtn.className = styles['amc-add-btn'] + ' ' + styles['course-added'];
+    } else {
+      setNumberOfCourses(`Max Courses`);
     }
-    if(e.target.className === "all-courses"){
-      e.target.className = "all-courses course-added"
+    if (e.target.classList.contains(styles['all-courses'])) {
+      e.target.classList.add(styles['course-added']);
     }
-    if(e.target.className === "all-courses course-added"){
-      e.target.className = "all-courses"
+    if (e.target.classList.contains(styles['course-added'])) {
+      e.target.classList.remove(styles['course-added']);
     }
   };
   const onCourseChildClick = (e) => {
     const targetDiv = e.currentTarget.parentElement;
-    if (targetDiv.className === "all-courses") {
-      targetDiv.className = "all-courses course-added";
-    } else if (targetDiv.className === "all-courses course-added") {
-      targetDiv.className = "all-courses";
+    if (targetDiv.className === styles["all-courses"]) {
+      targetDiv.className = styles["all-courses"] + ' ' + styles["course-added"];
+    } else if (targetDiv.className === styles["all-courses"] + ' ' + styles["course-added"]) {
+      targetDiv.className = styles["all-courses"];
     }
   };
 

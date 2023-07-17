@@ -42,7 +42,7 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2 }) => {
     calculateCourseUnits();
   }, [ storedMoreCourses]);
   // console.log(courseUnits);
-  console.log(freeDay);
+  // console.log(freeDay);
   // console.log(fetchedArray);
   // console.log(fetchedArray);
   // console.log(sectionArray);

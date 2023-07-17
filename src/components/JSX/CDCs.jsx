@@ -9,12 +9,13 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
 
   function titleCase(str) {
     return str.toLowerCase().split(' ').map(function(word) {
-      if (word.toLowerCase() === 'ii' || word.toLowerCase() === 'iii') {
+      if (word.toLowerCase() === 'ii' || word.toLowerCase() === 'iii' || word.toLowerCase() === 'iv' || word.toLowerCase() === 'v') {
         return word.toUpperCase(); 
       }
       return word.replace(word[0], word[0].toUpperCase());
     }).join(' ');
   }
+  
   
   
   const wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
