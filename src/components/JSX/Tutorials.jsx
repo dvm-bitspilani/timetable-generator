@@ -198,13 +198,17 @@ const Tutorials = ({ courseId, sectionArray }) => {
           })}
       </div>
       <div className={styles["want-or-not-container"]}>
-        <input
-          type="checkbox"
-          id="switch"
-          checked={want}
-          onChange={() => setWant(!want)}
-        />
-        <label htmlFor="switch"></label>
+        <input type="checkbox" id="switch" />
+        <label
+          htmlFor="switch"
+          onClick={() => {
+            if (want == true) {
+              setWant(false);
+            } else {
+              setWant(true);
+            }
+          }}
+        ></label>
         <p>
           {want ? "I want one out of these only" : "I do not want any of these"}
         </p>
