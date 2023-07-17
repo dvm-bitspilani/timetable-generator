@@ -12,42 +12,6 @@ const Timetable = ({timetableData}) => {
   // Object.values(timetableData)[3] && console.log(Object.values(timetableData)[3]);
   // Object.values(timetableData)[3] && console.log(Object.values(timetableData)[3][0]);
 
-  function getRowAndColumn(slot) {  
-    if (slot < 12) {
-      
-      tableColumn = 2;
-      tableRow = slot + 2;
-    } else if (slot < 32) {
-      
-      tableColumn = 3;
-      tableRow = (slot + 2) - 20;
-    } else if (slot < 52) {
-      
-      tableColumn = 4;
-      tableRow = (slot + 2) - 40;
-    } else if (slot < 72) {
-      
-      tableColumn = 5;
-      tableRow = (slot + 2) - 60;
-    } else if (slot < 92) {
-      
-      tableColumn = 6;
-      tableRow = (slot + 2) - 80;
-    } else if (slot < 112) {
-      
-      tableColumn = 7;
-      tableRow = (slot + 2) - 100;
-    } else {
-      return 'Invalid slot number';
-    }
-   
-    return{
-      tableRow: tableRow,
-      tableColumn: tableColumn
-    };
-  }
-
-  // var slot = 28;
   
 
   var indents = [];
@@ -64,13 +28,13 @@ const Timetable = ({timetableData}) => {
   return (
     <>
       <div className="table">
-        <div className="table-days-cells"></div>
+        <div className="table-days-cells" style={{ borderTopLeftRadius: '7.626px' }}></div>
         <div className="table-days-cells">Monday</div>
         <div className="table-days-cells">Tuesday</div>
         <div className="table-days-cells">Wednesday</div>
         <div className="table-days-cells">Thursday</div>
         <div className="table-days-cells">Friday</div>
-        <div className="table-days-cells">Saturday</div>
+        <div className="table-days-cells" style={{ borderTopRightRadius: '7.626px' }}>Saturday</div>
 
         <div className="table-hours-cells">8:00 - 9:00</div>
         <div className="table-hours-cells">9:00 - 10:00</div>
@@ -82,9 +46,10 @@ const Timetable = ({timetableData}) => {
         <div className="table-hours-cells">15:00 - 16:00</div>
         <div className="table-hours-cells">16:00 - 17:00</div>
         <div className="table-hours-cells">17:00 - 18:00</div>
-        <div className="table-hours-cells">18:00 - 19:00</div>
+        <div className="table-hours-cells" style={{ borderBottomLeftRadius: '7.626px' }}>18:00 - 19:00</div>
 
-        {/* {indents} */}
+        {/* {indents} */} 
+        {/* discuss with me what to do with the indents - GeekWolf */}
 
         {firstTimetable.map(object=>{
           console.log(Object.values(object));
@@ -97,7 +62,9 @@ const Timetable = ({timetableData}) => {
           let lectureSlots = Object.values(lectures)[3] || [];
           let tutorialSlots = Object.values(tutorial)[3] || [];
           let practicalSlots = Object.values(practical)[3] || [];
-          console.log(lectureSlots);
+          console.log("lectureslots", lectureSlots);
+          console.log("tutorialslots", tutorialSlots);
+          console.log("practicalslots", practicalSlots);
 
 
           function getGridPosition(slotNumber) {

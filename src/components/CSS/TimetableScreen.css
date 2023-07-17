@@ -4,8 +4,8 @@
   line-height: 34px;
   color: #ffffff;
   text-align: center;
-  margin-top: 2.5rem;
-  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.0rem;
 }
 .units-heading span{
   color: #F7E188;
@@ -26,7 +26,7 @@
   margin-bottom: 3.25rem;
 }
 .table-container{
-  height: 73vh;
+  min-height: 80vh;
   width: 100%;
   display: flex;
   justify-content: center;
