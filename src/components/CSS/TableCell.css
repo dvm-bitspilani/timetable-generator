@@ -1,11 +1,11 @@
 .cell-cover{
     border-radius: 5px;
     height: 95%;
-    width: 95%;
+    width: 97%;
     font-weight: 600;
-    padding-top: .5rem;
-    padding-left: .5rem;
-    padding-right: 2rem;
+    padding-top: .25rem;
+    padding-left: .25rem;
+    padding-right: 1rem;
 }
 .cell-cover > div{
     display: flex;
@@ -13,7 +13,7 @@
 }
 .cell-content{
     margin-top: .25rem;
-    margin-bottom: .75rem;
+    margin-bottom: .5rem;
 }
 .cell-content > div{
     display: flex;

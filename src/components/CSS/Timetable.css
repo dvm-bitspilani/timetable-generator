@@ -2,8 +2,8 @@
 
 
 .table{
-    height: 81vh;
-    width: 65vw;
+    height: 100%;
+    width: 60%;
     border-radius: 7.626px;
     border: 1.144px solid #C9C9C9;
     background: #2B2C35;
@@ -11,6 +11,7 @@
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
     border-collapse: collapse;
+    font-size: .75rem;
 }
 .table > div {
     display: flex;
