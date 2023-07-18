@@ -182,9 +182,11 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
       <>
         {fetchedTable["error_code"] === 32 && (
           <Error1Component closeTimetable={closeTimetable} />
+          // free day error
         )}
-        {fetchedTable["error_code"] === 2 && (
+        {fetchedTable["error_code"] === 128 && (
           <Error2Component />
+          // progress bar not sufficiently completed error
         )}
         {fetchedTable["error_code"] === 3 && (
           <Error3Component />
