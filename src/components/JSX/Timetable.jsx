@@ -59,7 +59,7 @@ const Timetable = ({timetableData , tableDataSent , onTableDataSent , currentTim
         <div className="table-hours-cells">17:00 - 18:00</div>
         <div className="table-hours-cells" style={{ borderBottomLeftRadius: '7.626px' }}>18:00 - 19:00</div>
 
-        {/* {indents} */} 
+        {indents} 
         {/* discuss with me what to do with the indents - GeekWolf */}
 
         {firstTimetable.map(object=>{

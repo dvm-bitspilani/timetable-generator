@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import html2canvas from "html2canvas";
 import "../CSS/TimetableScreen.css";
 import Timetable from "./Timetable";
 import LoaderIcon from "./LoaderIcon";
@@ -135,6 +136,20 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
   },[])
 
 
+  const handleDownloadScreenshot = () => {
+    const timetableContainer = document.querySelector(".table-container");
+
+    html2canvas(timetableContainer).then((canvas) => {
+      const dataURL = canvas.toDataURL();
+      const downloadLink = document.createElement("a");
+      downloadLink.href = dataURL;
+      downloadLink.download = "timetable_screenshot.png";
+  
+      downloadLink.click();
+    });
+  };
+  
+
   return(
     <>
     {isLoading? <LoaderIcon title="Generating Timetables" /> :
@@ -154,11 +169,11 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
       </div>
       <div className="timetableButtons">
         <div className="timetableNumber">
-          <span className="nextprevarrow" onClick={shiftToPrevTimetable}>{'<'}</span>
+          <span className="nextprevarrow" style={{ marginLeft: '0.75rem' }} onClick={shiftToPrevTimetable}>{'<'}</span>
           <span className="timetableNumberData">{`${currentTimetableIndex + 1}/${tableDataSent}`}</span>
-          <span className="nextprevarrow" onClick={shiftToNextTimetable}>{'>'}</span>
+          <span className="nextprevarrow" style={{ marginRight: '0.75rem' }} onClick={shiftToNextTimetable}>{'>'}</span>
         </div>
-        <div className="downloadButton"><img src={DownloadIcon} alt="" /></div>
+        <div className="downloadButton" onClick={handleDownloadScreenshot}><img src={DownloadIcon} alt="" /></div>
       </div>
       <p className="units-paragraph margin-bottom-05">Scroll for more variations</p>
       <p className="units-paragraph margin-bottom-325">50 is the max number of timetables shown here</p>
