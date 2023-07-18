@@ -8,6 +8,27 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
 
   const [fetchedTable, setFetchedTable] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [tableDataSent, setTableDataSent] = useState(null);
+  const [currentTimetableIndex, setCurrentTimetableIndex] = useState(0);
+
+  function shiftToNextTimetable() {
+    if (currentTimetableIndex === 49) {
+      setCurrentTimetableIndex(0);
+    } else {
+      setCurrentTimetableIndex((prevIndex) => prevIndex + 1);
+    }
+  }
+  function shiftToPrevTimetable() {
+    if (currentTimetableIndex === 0) {
+      setCurrentTimetableIndex(tableDataSent - 1);
+    } else {
+      setCurrentTimetableIndex((prevIndex) => prevIndex - 1);
+    }
+  }
+  
+  const handleTableDataSent = (dataSent) => {
+    setTableDataSent(dataSent);
+  };
 
   useEffect(()=>{
     const fetchData =async ()=>{
@@ -122,7 +143,22 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
       <p className="units-paragraph">If you don’t see a section here, it must be because the hours and days are empty in the original TT provided by AUGSD</p>
       
       <div className="table-container">
-        <Timetable timetableData={fetchedTable} />
+        <Timetable 
+          timetableData={fetchedTable}
+          tableDataSent={tableDataSent}
+          onTableDataSent={handleTableDataSent}
+          currentTimetableIndex={currentTimetableIndex}
+          nextTimeTableIndex = {shiftToNextTimetable}
+          prevTimetableIndex = {shiftToPrevTimetable}
+        />
+      </div>
+      <div className="timetableButtons">
+        <div className="timetableNumber">
+          <span className="nextprevarrow" onClick={shiftToPrevTimetable}>{'<'}</span>
+          <span className="timetableNumberData">{`${currentTimetableIndex + 1}/${tableDataSent}`}</span>
+          <span className="nextprevarrow" onClick={shiftToNextTimetable}>{'>'}</span>
+        </div>
+        <div className="downloadButton"><img src={DownloadIcon} alt="" /></div>
       </div>
       <p className="units-paragraph margin-bottom-05">Scroll for more variations</p>
       <p className="units-paragraph margin-bottom-325">50 is the max number of timetables shown here</p>

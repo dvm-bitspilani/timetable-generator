@@ -31,3 +31,30 @@
   display: flex;
   justify-content: center;
 }
+.timetableButtons{
+  display: flex;
+  justify-content: center;
+  margin: 0.75rem 0;
+}
+.timetableNumber{
+  border-radius: 32px;
+  background: #40414E;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.75rem;
+}
+.timetableNumberData{
+  margin: 0 1rem;
+  font-weight: 600;
+  font-size: 15pxs;
+}
+.downloadButton{
+  border-radius: 32.95px;
+  background: #F7E188;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+}
+.nextprevarrow{
+  scale: 1.5;
+  cursor: pointer;
+}
