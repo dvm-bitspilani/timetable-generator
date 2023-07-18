@@ -12,13 +12,13 @@ const Timetable = ({timetableData , tableDataSent , onTableDataSent , currentTim
 
 
   timetableData && console.log(timetableData);
+  console.log(Object.values(timetableData));
+  timetableData["time_table"] && console.log(timetableData["time_table"]);
   console.log(timetableData["sent"]);
   if(timetableData){
-    var firstTimetable = Object.values(timetableData)[3][currentTimetableIndex];
-    console.log(firstTimetable);
+    var shownTimetable = timetableData["time_table"][currentTimetableIndex];
+    console.log(shownTimetable);
   }
-  // Object.values(timetableData)[3] && console.log(Object.values(timetableData)[3]);
-  // Object.values(timetableData)[3] && console.log(Object.values(timetableData)[3][0]);
 
   
 
@@ -32,7 +32,7 @@ const Timetable = ({timetableData , tableDataSent , onTableDataSent , currentTim
   }
 
 
-  console.log(firstTimetable);
+  console.log(shownTimetable);
   console.log(currentTimetableIndex);
   
 
@@ -62,17 +62,20 @@ const Timetable = ({timetableData , tableDataSent , onTableDataSent , currentTim
         {indents} 
         {/* discuss with me what to do with the indents - GeekWolf */}
 
-        {firstTimetable.map(object=>{
-          console.log(Object.values(object));
-          let lectures = Object.values(object)[2];
-          let tutorial = Object.values(object)[4];
-          let practical = Object.values(object)[3];
-          console.log(" lectures " ,Object.values(lectures));
-          console.log(" tutorial " ,Object.values(tutorial));
-          console.log(" practical " ,Object.values(practical));
-          let lectureSlots = Object.values(lectures)[3] || [];
-          let tutorialSlots = Object.values(tutorial)[3] || [];
-          let practicalSlots = Object.values(practical)[3] || [];
+        {shownTimetable.map(object=>{
+          console.log(object);
+          let lectures = object["lecture"];
+          let tutorial = object["tutorial"];
+          let practical= object["practical"];
+          console.log(" lectures " ,lectures["slots"]);
+          console.log(" tutorial " ,tutorial["slots"]);
+          console.log(" practical " ,practical["slots"]);
+          let lectureSlots = lectures["slots"] || [];
+          let tutorialSlots = tutorial["slots"] || [];
+          let practicalSlots = practical["slots"] || [];
+          console.log(lectures);
+          // console.log(Object.values(lectures)[3]);
+          console.log(lectures);
           console.log("lectureslots", lectureSlots);
           console.log("tutorialslots", tutorialSlots);
           console.log("practicalslots", practicalSlots);
@@ -120,28 +123,31 @@ const Timetable = ({timetableData , tableDataSent , onTableDataSent , currentTim
           console.log("practicalposition",practicalGridPosition);
 
 
-
+          console.log((object));
+          console.log(object["lecture"]);
+          console.log(Object.values(object));
+          console.log(object["lecture"]);
+          console.log(Object.values(object)[1]);
 
           return(
             <>
             {lectureSlots.map((slot) => (
               <div className="table-data" style={{ gridColumn: getGridPosition(slot).gridColumn, gridRow: getGridPosition(slot).gridRow }}>
-                <TableCell courseTitle={Object.values(object)[0]} courseSection={"L1"} courseRoom={"7101"} cellColor={"#7BAF6C"} />
+                <TableCell courseTitle={object["course_no"]} courseSection={`L${object["lecture"]["sec"]}`} courseRoom={object["lecture"]["room"]} cellColor={"#7BAF6C"} />
               </div>
             ))}
 
             {tutorialSlots.map((slot) => (
               <div className="table-data" style={{ gridColumn: getGridPosition(slot).gridColumn, gridRow: getGridPosition(slot).gridRow }}>
-                <TableCell courseTitle={Object.values(object)[0]} courseSection={"T1"} courseRoom={"7101"} cellColor={"#307999"} />
+                <TableCell courseTitle={object["course_no"]} courseSection={`T${object["tutorial"]["sec"]}`} courseRoom={object["tutorial"]["room"]} cellColor={"#307999"} />
               </div>
             ))}
 
             {practicalSlots.map((slot) => (
               <div className="table-data" style={{ gridColumn: getGridPosition(slot).gridColumn, gridRow: getGridPosition(slot).gridRow }}>
-                <TableCell courseTitle={Object.values(object)[0]} courseSection={"P1"} courseRoom={"7101"} cellColor={"#B84846"} />
+                <TableCell courseTitle={object["course_no"]} courseSection={`P${object["practical"]["sec"]}`} courseRoom={object["practical"]["room"]} cellColor={"#B84846"} />
               </div>
             ))}
-
             </>
           );
 

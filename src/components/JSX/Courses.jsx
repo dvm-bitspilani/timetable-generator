@@ -109,7 +109,7 @@ const Courses = ({ inputValue }) => {
   if (sectionArray.length > 0) {
     console.log(fetchedArray);
     console.log(sectionArray);
-    console.log(key2);
+    // console.log(key2);
     return (
       <CourseList fetchedArray={fetchedArray} sectionArray={sectionArray}  updateKey={updateKey} key2={key2} />
     );

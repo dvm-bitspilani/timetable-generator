@@ -34,7 +34,7 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
   useEffect(()=>{
     const fetchData =async ()=>{
       const courses = sectionArray.map(item => {
-        const item_title = Object.values(item)[2].replace(/\s/g, "");
+        const item_title = item["course_title"].replace(/\s/g, "");
       
         const wantedSections = JSON.parse(localStorage.getItem("wantedSections"));
         const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections"));
@@ -87,7 +87,7 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
         }
       
         return {
-          course_id: Object.values(item)[0],
+          course_id: item["course_id"],
           lecture: {
             desired: lecDesired,
             sec: lecSec
@@ -120,7 +120,7 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
       };    
       
     
-        const response = await fetch( "https://mocki.io/v1/d4eea6e2-5092-4842-8b1d-5b7dd5ef89a8");
+        const response = await fetch("https://timetable.bits-dvm.org/timetable/timetables/",requestOptionsFinal);
         const data = await response.json();
         setTimeout(() => {
           setIsLoading(false);
@@ -163,8 +163,6 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
           tableDataSent={tableDataSent}
           onTableDataSent={handleTableDataSent}
           currentTimetableIndex={currentTimetableIndex}
-          nextTimeTableIndex = {shiftToNextTimetable}
-          prevTimetableIndex = {shiftToPrevTimetable}
         />
       </div>
       <div className="timetableButtons">
