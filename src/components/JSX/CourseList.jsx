@@ -18,6 +18,9 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2 }) => {
   const generateTimetable =()=>{
     setTimetableGenerated(true);
   };
+  const closeTimetable =()=>{
+    setTimetableGenerated(false);
+  };
 
   const storedMoreCourses = localStorage.getItem("storedMoreCourses");
   const storedMoreCoursesArray = JSON.parse(
@@ -125,7 +128,7 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2 }) => {
   return (
 
     <>
-    {timetableGenerated && <TimetableScreen sectionArray={sectionArray} courseUnits={courseUnits} freeDay={freeDay} />}
+    {timetableGenerated && <TimetableScreen closeTimetable={closeTimetable} sectionArray={sectionArray} courseUnits={courseUnits} freeDay={freeDay} />}
     {!timetableGenerated && (<>
       {courseSelected ? (
         <CourseDetail

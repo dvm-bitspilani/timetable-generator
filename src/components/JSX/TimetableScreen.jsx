@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import html2canvas from "html2canvas";
 import "../CSS/TimetableScreen.css";
 import Timetable from "./Timetable";
+import Error1Component from "../ErrorComponents/JSX/Error1Component";
 import LoaderIcon from "./LoaderIcon";
 import DownloadIcon from "../../assets/IconDownload.svg"
 
-const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
+const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}) =>{
 
   const [fetchedTable, setFetchedTable] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -153,7 +154,7 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
   return(
     <>
     {isLoading? <LoaderIcon title="Generating Timetables" /> :
-    (<>
+    (!fetchedTable["error"] && <>
       <h1 className="units-heading">Units Taken: <span>{courseUnits}</span></h1>
       <p className="units-paragraph">If you don’t see a section here, it must be because the hours and days are empty in the original TT provided by AUGSD</p>
       
@@ -177,6 +178,21 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay}) =>{
       <p className="units-paragraph">50 is the max number of timetables shown here</p>
     </>)
     }
+    {!isLoading && fetchedTable["error"] && (
+      <>
+        {fetchedTable["error_code"] === 32 && (
+          <Error1Component closeTimetable={closeTimetable} />
+          // free day error
+        )}
+        {fetchedTable["error_code"] === 128 && (
+          <Error2Component />
+          // progress bar not sufficiently completed error
+        )}
+        {fetchedTable["error_code"] === 3 && (
+          <Error3Component />
+        )}
+      </>
+    )}
     </>
   );
 };

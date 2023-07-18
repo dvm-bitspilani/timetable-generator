@@ -1,0 +1,32 @@
+.error1componentcontainer{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.error1component{
+  width: 78vw;
+  height: 78vh;
+  background: #40414E;
+  border: 3px solid #737780;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+}
+.crossicon{
+  position: absolute;
+  right:3vw;;
+  top: 3vw;
+  cursor: pointer;
+  scale: 1.5;
+}
+.error1componentpara{
+  color: #F7E188;
+  font-family: Montserrat;
+  font-size: 32px;
+  font-weight: 400;
+}
