@@ -2,7 +2,7 @@ import React , {useEffect} from "react";
 import "../CSS/Timetable.css";
 import TableCell from "./TableCell";
 
-const Timetable = ({timetableData , tableDataSent , onTableDataSent , currentTimetableIndex , nextTimeTableIndex , prevTimetableIndex}) => {
+const Timetable = ({timetableData , tableDataSent , onTableDataSent , currentTimetableIndex }) => {
   useEffect(() => {
     if (timetableData && timetableData["sent"]) {
       onTableDataSent(timetableData["sent"]);
@@ -15,7 +15,7 @@ const Timetable = ({timetableData , tableDataSent , onTableDataSent , currentTim
   console.log(Object.values(timetableData));
   timetableData["time_table"] && console.log(timetableData["time_table"]);
   console.log(timetableData["sent"]);
-  if(timetableData){
+  if(timetableData &&  timetableData["time_table"]){
     var shownTimetable = timetableData["time_table"][currentTimetableIndex];
     console.log(shownTimetable);
   }
