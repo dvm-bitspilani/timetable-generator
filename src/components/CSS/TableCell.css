@@ -88,9 +88,7 @@
         margin-left: 0;
     }
     .cell-overlay-instructors{
-        margin-top: .15rem;
-        font-weight: 300;
-        font-size: .5rem;
+        display: none;
     }
     .cell-cover:hover{
         transform: scaleY(1.8) scaleX(2.6);
