@@ -18,13 +18,16 @@
     justify-content: center;
     align-items: center;
     border: .55px solid #C9C9C9;
-    font-weight: 700;
+    font-weight: 600;
 }
 .table-days-cells{
     grid-row: 1/2;
 }
 .table-hours-cells{
     grid-column: 1/2;
+}
+.mobile-view{
+    display: none;
 }
 @media (max-width: 1290px) {
     .table{
@@ -38,6 +41,15 @@
 }
 @media (max-width: 470px) {
     .table{
-        font-size: .5rem;
+        font-size: .65rem;
+    }
+    .table-hours-cells{
+        font-size: .45rem;
+    }
+    .mobile-view{
+        display: block;
+    }
+    .laptop-view{
+        display: none;
     }
 }

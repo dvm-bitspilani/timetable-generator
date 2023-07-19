@@ -71,3 +71,11 @@
 .cell-cover:hover .cell-overlay-instructors{
     font-size: .45rem;
 }
+@media (max-width: 470px) {
+    .cell-cover{
+        padding-right: .25rem;
+    }
+    .cell-content > div{
+        display: none;
+    }
+}
