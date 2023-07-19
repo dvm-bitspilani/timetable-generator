@@ -54,6 +54,9 @@
   gap: 6px;
   cursor: pointer;
 }
+.mobile-view-btns{
+  display: none;
+}
 .lecture-tut-btns{
   background: #474747;
   border-radius: 10px;
@@ -74,6 +77,7 @@
   font-size: 12px;
   cursor: pointer;
 }
+
 @media (max-width: 470px) {
   .course-detail-container{
     width: 95vw;
@@ -97,5 +101,11 @@
   }
   .lecture-tut-btns > div{
     padding: 8px 16px;
+  }
+  .laptop-view-btns{
+    display: none;
+  }
+  .mobile-view-btns{
+    display: block;
   }
 }

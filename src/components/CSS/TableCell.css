@@ -79,6 +79,9 @@
 @media (max-width: 470px) {
     .cell-cover{
         padding-right: .25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .cell-content > div{
         display: none;

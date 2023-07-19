@@ -120,7 +120,7 @@ const CourseDetail = ({
               }`}
               onClick={changeToLec}
             >
-              Lectures
+              <div className={styles["laptop-view-btns"]}>Lectures</div><div className={styles["mobile-view-btns"]}>L</div>
             </div>}
             {filteredSections && filteredSections[0].tutorial.length>0 && <div
               className={`${styles['lecture-btn']} ${
@@ -128,7 +128,7 @@ const CourseDetail = ({
               }`}
               onClick={changeToTut}
             >
-              Tutorials
+              <div className={styles["laptop-view-btns"]}>Tutorials</div><div className={styles["mobile-view-btns"]}>T</div>
             </div>}
           {filteredSections && filteredSections[0].practical.length>0 && <div
               className={`${styles['lecture-btn']} ${
@@ -136,7 +136,7 @@ const CourseDetail = ({
               }`}
               onClick={changeToPrac}
             >
-              Practicals
+              <div className={styles["laptop-view-btns"]}>Practicals</div><div className={styles["mobile-view-btns"]}>P</div>
             </div>}
           </div>
           <div className={styles["prev-next-course-btn"]} onClick={handleNextCourse}>
