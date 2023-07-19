@@ -55,16 +55,16 @@ const Timetable = ({timetableData , tableDataSent , onTableDataSent , currentTim
         <div className="table-days-cells"><span className="laptop-view">Friday</span><span className="mobile-view">F</span></div>
         <div className="table-days-cells" style={{ borderTopRightRadius: '7.626px' }}><span className="laptop-view">Saturday</span><span className="mobile-view">S</span></div>
 
-        <div className="table-hours-cells">8:00 - 9:00</div>
-        <div className="table-hours-cells">9:00 - 10:00</div>
-        <div className="table-hours-cells">10:00 - 11:00</div>
-        <div className="table-hours-cells">11:00 - 12:00</div>
-        <div className="table-hours-cells">12:00 - 13:00</div>
-        <div className="table-hours-cells">13:00 - 14:00</div>
-        <div className="table-hours-cells">14:00 - 15:00</div>
-        <div className="table-hours-cells">15:00 - 16:00</div>
-        <div className="table-hours-cells">16:00 - 17:00</div>
-        <div className="table-hours-cells">17:00 - 18:00</div>
+        <div className="table-hours-cells">8:00-9:00</div>
+        <div className="table-hours-cells">9:00-10:00</div>
+        <div className="table-hours-cells">10:00-11:00</div>
+        <div className="table-hours-cells">11:00-12:00</div>
+        <div className="table-hours-cells">12:00-13:00</div>
+        <div className="table-hours-cells">13:00-14:00</div>
+        <div className="table-hours-cells">14:00-15:00</div>
+        <div className="table-hours-cells">15:00-16:00</div>
+        <div className="table-hours-cells">16:00-17:00</div>
+        <div className="table-hours-cells">17:00-18:00</div>
         <div className="table-hours-cells" style={{ borderBottomLeftRadius: '7.626px' }}>18:00 - 19:00</div>
 
         {indents} 
