@@ -13,19 +13,15 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
   const [tableDataSent, setTableDataSent] = useState(null);
   const [currentTimetableIndex, setCurrentTimetableIndex] = useState(0);
 
+  console.log(tableDataSent)
   function shiftToNextTimetable() {
-    if (currentTimetableIndex === 49) {
-      setCurrentTimetableIndex(0);
-    } else {
-      setCurrentTimetableIndex((prevIndex) => prevIndex + 1);
-    }
+    const maxIndex = tableDataSent - 1;
+    setCurrentTimetableIndex((prevIndex) => (prevIndex === maxIndex ? 0 : prevIndex + 1));
   }
+  
   function shiftToPrevTimetable() {
-    if (currentTimetableIndex === 0) {
-      setCurrentTimetableIndex(tableDataSent - 1);
-    } else {
-      setCurrentTimetableIndex((prevIndex) => prevIndex - 1);
-    }
+    const maxIndex = tableDataSent - 1;
+    setCurrentTimetableIndex((prevIndex) => (prevIndex === 0 ? maxIndex : prevIndex - 1));
   }
   
   const handleTableDataSent = (dataSent) => {

@@ -5,7 +5,7 @@ import TableCell from "./TableCell";
 const Timetable = ({timetableData , tableDataSent , onTableDataSent , currentTimetableIndex }) => {
   useEffect(() => {
     if (timetableData && timetableData["sent"]) {
-      onTableDataSent(timetableData["sent"]);
+      onTableDataSent(timetableData["time_table"].length);
     }
   }, [timetableData, onTableDataSent]);
 
