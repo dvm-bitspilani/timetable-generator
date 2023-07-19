@@ -8,9 +8,10 @@
     padding-left: .25rem;
     padding-right: 1rem;
     cursor: pointer;
+    backface-visibility: hidden;
     transition: transform .2s ease-out;
 }
-.cell-cover > div{
+.cell-content{
     display: flex;
     justify-content: space-between;
 }
@@ -41,6 +42,7 @@
     left: 0;
     top: 0;
     font-size: .75rem;
+    backface-visibility: hidden;
     transition: opacity .2s;
     transition: transform .2s ease-out;
 }
@@ -52,6 +54,9 @@
     margin-top: .15rem;
     font-weight: 300;
     font-size: .5rem;
+}
+.cell-overlay-mobile{
+    display: none;
 }
 .cell-cover:hover{
     transform: scale(2.2);
@@ -77,5 +82,38 @@
     }
     .cell-content > div{
         display: none;
+    }
+    .cell-overlay-content{
+        margin-top: .25rem;
+        margin-left: 0;
+    }
+    .cell-overlay-instructors{
+        margin-top: .15rem;
+        font-weight: 300;
+        font-size: .5rem;
+    }
+    .cell-cover:hover{
+        transform: scaleY(1.8) scaleX(2.6);
+        padding: 0;
+        margin: 0;
+    }
+    .cell-cover:hover .cell-overlay-content{
+        transform: scaleY(0.8) scaleX(0.6);
+    }
+    .cell-overlay-mobile{
+        display: flex;
+    }
+    .cell-section{
+        display: flex;
+        transform: scale(.8);
+        margin-left: -.25rem;
+    }
+    .cell-room{
+        display: flex;
+        transform: scale(.8);
+    }
+    .cell-overlay-content{
+        margin-top: -.05rem;
+        margin-left: -.5rem;
     }
 }
