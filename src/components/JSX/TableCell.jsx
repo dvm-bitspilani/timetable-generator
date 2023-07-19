@@ -3,7 +3,11 @@ import "../CSS/TableCell.css"
 import LocationIcon from "../../assets/IconLocation.svg"
 import HashtagIcon from "../../assets/IconHashtag.svg"
 
-const TableCell = ({courseTitle, courseSection, courseRoom, cellColor}) => {
+const TableCell = ({courseTitle, courseSection, courseRoom, cellColor , courseFullName , instructors}) => {
+
+  console.log(courseFullName);
+  console.log(instructors);
+
   return (
     <>
         <div className="cell-cover" style={{background: `${cellColor}`}}>
