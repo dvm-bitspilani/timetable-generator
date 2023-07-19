@@ -15,18 +15,34 @@ const Timetable = ({timetableData , tableDataSent , onTableDataSent , currentTim
     var shownTimetable = timetableData["time_table"][currentTimetableIndex];
   }
 
-  
+  // const tableDataList = document.querySelectorAll(".table-data");
+  // let prevGridArea = null;
+
+  // tableDataList.forEach(tableData => {
+  //     const gridArea = tableData.style.gridArea;
+  //     if (prevGridArea) {
+  //         // Parse the row and column values from the grid area
+  //         const [prevRow, prevCol] = prevGridArea.split('/');
+  //         const [currentRow, currentCol] = gridArea.split('/');
+
+  //         // Check if the rows are consecutive and columns are the same
+  //         if (
+  //             parseInt(prevRow) + 1 === parseInt(currentRow) &&
+  //             parseInt(prevCol) === parseInt(currentCol)
+  //         ) {
+  //             tableData.style.opacity = "0"; // Hide the current element
+  //         }
+  //     }
+  //     prevGridArea = gridArea;
+  // });
 
   var indents = [];
-  // const {tableRow, tableColumn} = getRowAndColumn(slot)
   for (var i = 2; i < 8; i++) {
     for (let j = 2; j < 13; j++) {
-      indents.push(<div className="table-data" key={`${i}-${j}`} style={{ gridColumn: `${i}`, gridRow: `${j}`}}>
+      indents.push(<div className="table-data-indents" key={`${i}-${j}`} style={{ gridColumn: `${i}`, gridRow: `${j}`}}>
       </div>);
     }
   }
-
-  
 
   return (
     <>

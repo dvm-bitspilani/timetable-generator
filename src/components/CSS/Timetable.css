@@ -20,6 +20,13 @@
     border: .55px solid #C9C9C9;
     font-weight: 600;
 }
+.table-data indents {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: .55px solid #C9C9C9;
+    font-weight: 600;
+}
 .table-days-cells{
     grid-row: 1/2;
 }
