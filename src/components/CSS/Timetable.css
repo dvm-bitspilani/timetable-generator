@@ -26,3 +26,18 @@
 .table-hours-cells{
     grid-column: 1/2;
 }
+@media (max-width: 1290px) {
+    .table{
+        width: 70%;
+    }
+}
+@media (max-width: 870px) {
+    .table{
+        width: 90%;
+    }
+}
+@media (max-width: 470px) {
+    .table{
+        font-size: .5rem;
+    }
+}

@@ -133,19 +133,19 @@ const Timetable = ({timetableData , tableDataSent , onTableDataSent , currentTim
             <>
             {lectureSlots.map((slot) => (
               <div className="table-data" style={{ gridColumn: getGridPosition(slot).gridColumn, gridRow: getGridPosition(slot).gridRow }}>
-                <TableCell courseTitle={object["course_no"]} courseFullName={object["course_title"]} courseSection={`L${object["lecture"]["sec"]}`} instructors={`L${object["lecture"]["instructors"]}`} courseRoom={object["lecture"]["room"]} cellColor={"#7BAF6C"} />
+                <TableCell courseTitle={object["course_no"]} courseFullName={object["course_title"]} courseSection={`L${object["lecture"]["sec"]}`} instructors={`${object["lecture"]["instructors"].join(', ')}`} courseRoom={object["lecture"]["room"]} cellColor={"#7BAF6C"} />
               </div>
             ))}
 
             {tutorialSlots.map((slot) => (
               <div className="table-data" style={{ gridColumn: getGridPosition(slot).gridColumn, gridRow: getGridPosition(slot).gridRow }}>
-                <TableCell courseTitle={object["course_no"]} courseFullName={object["course_title"]} courseSection={`T${object["tutorial"]["sec"]}`} instructors={`L${object["tutorial"]["instructors"]}`} courseRoom={object["tutorial"]["room"]} cellColor={"#307999"} />
+                <TableCell courseTitle={object["course_no"]} courseFullName={object["course_title"]} courseSection={`T${object["tutorial"]["sec"]}`} instructors={`${object["tutorial"]["instructors"].join(', ')}`} courseRoom={object["tutorial"]["room"]} cellColor={"#307999"} />
               </div>
             ))}
 
             {practicalSlots.map((slot) => (
               <div className="table-data" style={{ gridColumn: getGridPosition(slot).gridColumn, gridRow: getGridPosition(slot).gridRow }}>
-                <TableCell courseTitle={object["course_no"]} courseFullName={object["course_title"]} courseSection={`P${object["practical"]["sec"]}`} instructors={`L${object["practical"]["instructors"]}`} courseRoom={object["practical"]["room"]} cellColor={"#B84846"} />
+                <TableCell courseTitle={object["course_no"]} courseFullName={object["course_title"]} courseSection={`P${object["practical"]["sec"]}`} instructors={`${object["practical"]["instructors"].join(', ')}`} courseRoom={object["practical"]["room"]} cellColor={"#B84846"} />
               </div>
             ))}
             </>

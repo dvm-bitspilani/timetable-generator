@@ -1,4 +1,5 @@
 .cell-cover{
+    position: relative;
     border-radius: 5px;
     height: 95%;
     width: 97%;
@@ -6,14 +7,22 @@
     padding-top: .25rem;
     padding-left: .25rem;
     padding-right: 1rem;
+    cursor: pointer;
+    transition: transform .2s ease-out;
 }
 .cell-cover > div{
     display: flex;
     justify-content: space-between;
 }
+.cell-heading{
+    transition: opacity .2s;
+    transition: transform .2s ease-out;
+}
 .cell-content{
     margin-top: .25rem;
     margin-bottom: .5rem;
+    transition: opacity .2s;
+    transition: transform .2s ease-out;
 }
 .cell-content > div{
     display: flex;
@@ -23,4 +32,42 @@
 }
 .cell-section{
     margin-right: .75rem;
+}
+.cell-overlay{
+    opacity: 0;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    font-size: .75rem;
+    transition: opacity .2s;
+    transition: transform .2s ease-out;
+}
+.cell-overlay-content{
+    margin-top: .25rem;
+    margin-left: .25rem;
+}
+.cell-overlay-instructors{
+    margin-top: .15rem;
+    font-weight: 300;
+    font-size: .5rem;
+}
+.cell-cover:hover{
+    transform: scale(2.2);
+    z-index: 10;
+    box-shadow: 0px 0px 9px 6px rgba(0, 0, 0, 0.25); 
+}
+.cell-cover:hover .cell-content{
+    opacity: 0;
+}
+.cell-cover:hover .cell-heading{
+    opacity: 0;
+}
+.cell-cover:hover .cell-overlay{
+    opacity: 1;
+    font-size: .5rem;
+}
+.cell-cover:hover .cell-overlay-instructors{
+    font-size: .45rem;
 }
