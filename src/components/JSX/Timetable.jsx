@@ -11,13 +11,8 @@ const Timetable = ({timetableData , tableDataSent , onTableDataSent , currentTim
 
 
 
-  timetableData && console.log(timetableData);
-  console.log(Object.values(timetableData));
-  timetableData["time_table"] && console.log(timetableData["time_table"]);
-  console.log(timetableData["sent"]);
   if(timetableData &&  timetableData["time_table"]){
     var shownTimetable = timetableData["time_table"][currentTimetableIndex];
-    console.log(shownTimetable);
   }
 
   
@@ -31,9 +26,6 @@ const Timetable = ({timetableData , tableDataSent , onTableDataSent , currentTim
     }
   }
 
-
-  console.log(shownTimetable);
-  console.log(currentTimetableIndex);
   
 
   return (
@@ -63,23 +55,13 @@ const Timetable = ({timetableData , tableDataSent , onTableDataSent , currentTim
         {/* discuss with me what to do with the indents - GeekWolf */}
 
         {shownTimetable.map(object=>{
-          console.log(object);
+
           let lectures = object["lecture"];
           let tutorial = object["tutorial"];
           let practical= object["practical"];
-          console.log(" lectures " ,lectures["slots"]);
-          console.log(" tutorial " ,tutorial["slots"]);
-          console.log(" practical " ,practical["slots"]);
           let lectureSlots = lectures["slots"] || [];
           let tutorialSlots = tutorial["slots"] || [];
           let practicalSlots = practical["slots"] || [];
-          console.log(lectures);
-          // console.log(Object.values(lectures)[3]);
-          console.log(lectures);
-          console.log("lectureslots", lectureSlots);
-          console.log("tutorialslots", tutorialSlots);
-          console.log("practicalslots", practicalSlots);
-
 
           function getGridPosition(slotNumber) {
             if (slotNumber < 0 || slotNumber > 111) {
@@ -109,25 +91,6 @@ const Timetable = ({timetableData , tableDataSent , onTableDataSent , currentTim
           
             return { gridRow, gridColumn };
           }
-          
-          
-          
-
-          let lectureGridPosition = lectureSlots.length > 0 ? getGridPosition(lectureSlots[0]) : null;
-          console.log("lecturepostion" , lectureGridPosition);
-
-          let tutorialGridPosition = tutorialSlots.length > 0 ? getGridPosition(tutorialSlots[0]) : null;
-          console.log("tutorialposition",tutorialGridPosition);
-
-          let practicalGridPosition = practicalSlots.length > 0 ? getGridPosition(practicalSlots[0]) : null;
-          console.log("practicalposition",practicalGridPosition);
-
-
-          console.log((object));
-          console.log(object["lecture"]);
-          console.log(Object.values(object));
-          console.log(object["lecture"]);
-          console.log(Object.values(object)[1]);
 
           return(
             <>

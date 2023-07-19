@@ -6,7 +6,6 @@ const Courses = ({ inputValue }) => {
   const [fetchedArray, setFetchedArray] = useState(null);
   const [sectionArray, setSectionArray] = useState([]);
   const [key2 , setKey] = useState(0);
-  // console.log(key);
 
   const updateKey = () => {
     setKey(prev=>prev+1);
@@ -107,9 +106,6 @@ const Courses = ({ inputValue }) => {
   }
 
   if (sectionArray.length > 0) {
-    console.log(fetchedArray);
-    console.log(sectionArray);
-    // console.log(key2);
     return (
       <CourseList fetchedArray={fetchedArray} sectionArray={sectionArray}  updateKey={updateKey} key2={key2} />
     );

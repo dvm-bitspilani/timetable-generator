@@ -13,7 +13,6 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
   const [tableDataSent, setTableDataSent] = useState(null);
   const [currentTimetableIndex, setCurrentTimetableIndex] = useState(0);
 
-  console.log(tableDataSent)
   function shiftToNextTimetable() {
     const maxIndex = tableDataSent - 1;
     setCurrentTimetableIndex((prevIndex) => (prevIndex === maxIndex ? 0 : prevIndex + 1));
@@ -123,7 +122,6 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
           setIsLoading(false);
           
         }, 2000);
-        console.log(data)
         setFetchedTable(data);
     };
 

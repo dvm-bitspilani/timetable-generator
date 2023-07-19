@@ -3,8 +3,7 @@ import styles from "../CSS/Lectures.module.css";
 import "../CSS/CourseIsSelected.css";
 
 const Practicals = ({ courseId, sectionArray }) => {
-  console.log(courseId);
-  console.log(sectionArray);
+
   const [filteredSections, setFilteredSections] = useState(null);
 
   useEffect(() => {
@@ -13,9 +12,6 @@ const Practicals = ({ courseId, sectionArray }) => {
     );
     setFilteredSections(filteredData);
   }, [courseId, sectionArray]);
-
-  console.log(filteredSections);
-  console.log(filteredSections && filteredSections[0].practical);
 
   const [want, setWant] = useState(true);
 
@@ -61,7 +57,7 @@ const Practicals = ({ courseId, sectionArray }) => {
 
     const targetDiv = e.currentTarget;
     const targetCourse = getTextBetweenHyphens(targetDiv.id);
-    console.log(targetCourse);
+
     const courseRegex = new RegExp(`^P.+-${targetCourse}(-\\d+)?$`);
     let wantedSections =
       JSON.parse(localStorage.getItem("wantedSections")) || [];

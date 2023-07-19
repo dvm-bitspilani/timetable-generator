@@ -56,7 +56,7 @@ const Tutorials = ({ courseId, sectionArray }) => {
 
     const targetDiv = e.currentTarget;
     const targetCourse = getTextBetweenHyphens(targetDiv.id);
-    console.log(targetCourse);
+
     const courseRegex = new RegExp(`^T.+-${targetCourse}(-\\d+)?$`);
     let wantedSections =
       JSON.parse(localStorage.getItem("wantedSections")) || [];

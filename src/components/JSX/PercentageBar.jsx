@@ -10,7 +10,7 @@ const PercentageBar = ({ prop }) => {
     const interval = setInterval(() => {
       const totalCourses = document.querySelectorAll(`.${styles2["course-div"]}`);
       const greenCourses = document.querySelectorAll(`.${styles2["courseIsSelectedGreen"]}`);
-      // console.log(totalCourses);
+
       const totalCoursesLength = totalCourses.length;
       const greenCoursesLength = greenCourses.length;
       const newWidth = (greenCoursesLength / totalCoursesLength) * 100;

@@ -17,19 +17,11 @@ const CourseDetail = ({
 }) => {
   const [courseArray, setCourseArray] = useState([]);
   // const [filteredSections, setFilteredSections] = useState(null);
-  console.log(sectionArray);
+
   const filteredSections = sectionArray.filter(
     (item) => item.course_title === courseId
   );
-  // setFilteredSections(filteredData);
-  useEffect(() => {
-    console.log("courseId:", courseId);
-    console.log("sectionArray:", sectionArray);
-  }, [courseId, sectionArray]);
-  console.log(filteredSections);
-  console.log(filteredSections[0]);
-  console.log(filteredSections[0].lecture);
-  console.log(courseId);
+
   useEffect(() => {
     const storedMoreCourses =
       JSON.parse(localStorage.getItem("storedMoreCourses")) || [];

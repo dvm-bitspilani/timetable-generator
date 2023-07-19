@@ -44,11 +44,6 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2 }) => {
   
     calculateCourseUnits();
   }, [ storedMoreCourses]);
-  // console.log(courseUnits);
-  // console.log(freeDay);
-  // console.log(fetchedArray);
-  // console.log(fetchedArray);
-  // console.log(sectionArray);
 
   const [courseSelected, setCourseSelected] = useState(false);
   const [addMoreCourse, setAddMoreCourse] = useState(false);
