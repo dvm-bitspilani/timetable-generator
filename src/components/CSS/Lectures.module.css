@@ -126,8 +126,10 @@ label:active:after {
   }
   .lecture-room h3{
     font-size: .75rem;
+    padding: 0.25rem .5rem;
   }
   .lecture-card h2{
-    font-size: .75rem;
+    font-size: .65rem;
+    padding: 0 .5rem .25rem .5rem;
   }
 }
