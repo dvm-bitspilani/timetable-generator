@@ -15,9 +15,10 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
   const [isLoading, setIsLoading] = useState(true);
   const [tableDataSent, setTableDataSent] = useState(null);
   const [currentTimetableIndex, setCurrentTimetableIndex] = useState(0);
+  console.log(tableDataSent);
 
   function shiftToNextTimetable() {
-    if (currentTimetableIndex === 49) {
+    if (currentTimetableIndex === (tableDataSent-1)) {
       setCurrentTimetableIndex(0);
     } else {
       setCurrentTimetableIndex((prevIndex) => prevIndex + 1);
