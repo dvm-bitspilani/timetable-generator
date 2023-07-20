@@ -55,17 +55,17 @@ const Timetable = ({timetableData , tableDataSent , onTableDataSent , currentTim
         <div className="table-days-cells"><span className="laptop-view">Friday</span><span className="mobile-view">F</span></div>
         <div className="table-days-cells" style={{ borderTopRightRadius: '7.626px' }}><span className="laptop-view">Saturday</span><span className="mobile-view">S</span></div>
 
-        <div className="table-hours-cells">8:00-9:00</div>
-        <div className="table-hours-cells">9:00-10:00</div>
-        <div className="table-hours-cells">10:00-11:00</div>
-        <div className="table-hours-cells">11:00-12:00</div>
-        <div className="table-hours-cells">12:00-13:00</div>
-        <div className="table-hours-cells">13:00-14:00</div>
-        <div className="table-hours-cells">14:00-15:00</div>
-        <div className="table-hours-cells">15:00-16:00</div>
-        <div className="table-hours-cells">16:00-17:00</div>
-        <div className="table-hours-cells">17:00-18:00</div>
-        <div className="table-hours-cells" style={{ borderBottomLeftRadius: '7.626px' }}>18:00-19:00</div>
+        <div className="table-hours-cells"><div className="laptop-view">8:00 - 9:00</div><div className="mobile-view">8 - 9</div></div>
+        <div className="table-hours-cells"><div className="laptop-view">9:00 - 10:00</div><div className="mobile-view">9 - 10</div></div>
+        <div className="table-hours-cells"><div className="laptop-view">10:00 - 11:00</div><div className="mobile-view">10 - 11</div></div>
+        <div className="table-hours-cells"><div className="laptop-view">11:00 - 12:00</div><div className="mobile-view">11 - 12</div></div>
+        <div className="table-hours-cells"><div className="laptop-view">12:00 - 13:00</div><div className="mobile-view">12 - 13</div></div>
+        <div className="table-hours-cells"><div className="laptop-view">13:00 - 14:00</div><div className="mobile-view">13 - 14</div></div>
+        <div className="table-hours-cells"><div className="laptop-view">14:00 - 15:00</div><div className="mobile-view">14 - 15</div></div>
+        <div className="table-hours-cells"><div className="laptop-view">15:00 - 16:00</div><div className="mobile-view">15 - 16</div></div>
+        <div className="table-hours-cells"><div className="laptop-view">16:00 - 17:00</div><div className="mobile-view">16 - 17</div></div>
+        <div className="table-hours-cells"><div className="laptop-view">17:00 - 18:00</div><div className="mobile-view">17 - 18</div></div>
+        <div className="table-hours-cells" style={{ borderBottomLeftRadius: '7.626px' }}><div className="laptop-view">18:00 - 19:00</div><div className="mobile-view">18 - 19</div></div>
 
         {indents} 
         {/* discuss with me what to do with the indents - GeekWolf */}

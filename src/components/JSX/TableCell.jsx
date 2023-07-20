@@ -58,7 +58,7 @@ const TableCell = ({
               </div>
             </div>
             <div className="cell-overlay-instructors">
-              {titleCase(instructors)}
+              {instructors}
             </div>
           </div>
         </div>

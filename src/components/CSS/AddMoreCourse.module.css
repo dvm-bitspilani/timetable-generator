@@ -75,7 +75,7 @@
   display: none;
 }
 .all-courses{
-  height: 30%;
+  min-height: 30%;
   width: 22.5%;
   background: #4B4C5C;
   border-radius: 10px;
@@ -92,7 +92,7 @@
 .all-courses p,
 .amc-course-title{
   font-weight: 500;
-  font-size: .75rem;
+  font-size: .85rem;
   padding: 0 0.75rem 1rem 0.75rem;
   user-select: none;
 }
@@ -149,7 +149,7 @@
   }
   .all-courses{
     width: 30%;
-    height: 22.5%;
+    min-height: 22.5%;
   }
 }
 @media (max-width: 470px) {
@@ -163,7 +163,7 @@
     max-height: 70%;
   }
   .all-courses{
-    height: 23.5%;
+    min-height: 23.5%;
     width: 48%;
     margin-bottom: .5rem;
   }

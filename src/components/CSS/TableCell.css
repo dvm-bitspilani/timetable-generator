@@ -9,6 +9,7 @@
     padding-right: 1rem;
     cursor: pointer;
     backface-visibility: hidden;
+    transform-style: preserve-3d;
     transition: transform .2s ease-out;
 }
 .cell-content{
@@ -45,6 +46,7 @@
     backface-visibility: hidden;
     overflow: hidden;
     text-overflow: ellipsis;
+    transform-style: preserve-3d;
     transition: opacity .2s;
     transition: transform .2s ease-out;
 }
