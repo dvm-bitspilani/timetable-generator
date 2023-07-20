@@ -157,9 +157,11 @@
   }
   .course-div-detail p{
     font-size: .75rem;
+    margin-left: 0rem;
   }
   .course-div-detail h6{
     font-size: .75rem;
+    margin-left: .5rem;
   }
   .courseIsSelectedGreen:hover{
     transform: scaleY(1) scaleX(1);

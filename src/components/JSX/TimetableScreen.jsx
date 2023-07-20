@@ -17,13 +17,18 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
   const [currentTimetableIndex, setCurrentTimetableIndex] = useState(0);
 
   function shiftToNextTimetable() {
-    const maxIndex = tableDataSent - 1;
-    setCurrentTimetableIndex((prevIndex) => (prevIndex === maxIndex ? 0 : prevIndex + 1));
+    if (currentTimetableIndex === 49) {
+      setCurrentTimetableIndex(0);
+    } else {
+      setCurrentTimetableIndex((prevIndex) => prevIndex + 1);
+    }
   }
-  
   function shiftToPrevTimetable() {
-    const maxIndex = tableDataSent - 1;
-    setCurrentTimetableIndex((prevIndex) => (prevIndex === 0 ? maxIndex : prevIndex - 1));
+    if (currentTimetableIndex === 0) {
+      setCurrentTimetableIndex(tableDataSent - 1);
+    } else {
+      setCurrentTimetableIndex((prevIndex) => prevIndex - 1);
+    }
   }
   
   const handleTableDataSent = (dataSent) => {
@@ -125,6 +130,7 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
           setIsLoading(false);
           
         }, 2000);
+        console.log(data)
         setFetchedTable(data);
     };
 

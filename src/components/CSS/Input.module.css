@@ -22,6 +22,9 @@
   padding: 0.5rem;
   border-radius: 2.5rem;
 }
+.input-id input:focus{
+  outline: none;
+}
 .error-animation {
   animation: wiggle 0.5s ease 1;
 }

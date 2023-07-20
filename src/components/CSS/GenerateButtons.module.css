@@ -21,6 +21,11 @@
 .course-buttons img{
   margin-left: 0.5rem;
 }
+@media (max-width: 890px) {
+  .course-buttons{
+    width: 30vw;
+  }
+}
 @media (max-width: 470px) {
   
   .course-buttons{

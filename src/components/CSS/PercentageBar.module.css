@@ -56,6 +56,7 @@
 @media (max-width: 470px) {
   .percentage-bar{
     width: 95vw;
+    margin-bottom: 2vh;
   }
   .percentage-box{
     display: none;
