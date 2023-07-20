@@ -24,7 +24,7 @@
 }
 .lecture-card{
   width: 22.5%;
-  height: 15vh;
+  min-height: 15vh;
   background: #4B4C5C;
   border-radius: 10px;
   border: 2px solid transparent;

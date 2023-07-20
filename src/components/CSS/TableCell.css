@@ -43,6 +43,8 @@
     top: 0;
     font-size: .75rem;
     backface-visibility: hidden;
+    overflow: hidden;
+    text-overflow: ellipsis;
     transition: opacity .2s;
     transition: transform .2s ease-out;
 }
