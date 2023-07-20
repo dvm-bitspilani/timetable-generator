@@ -15,7 +15,7 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
   const [isLoading, setIsLoading] = useState(true);
   const [tableDataSent, setTableDataSent] = useState(null);
   const [currentTimetableIndex, setCurrentTimetableIndex] = useState(0);
-  console.log(tableDataSent);
+
 
   function shiftToNextTimetable() {
     if (currentTimetableIndex === (tableDataSent-1)) {
@@ -51,39 +51,39 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
         let pracDesired = 0;
         const pracSec = [];
       
-        if (wantedSections.some(section => section.startsWith('L') && section.split('-')[1] === item_title)) {
+        if (wantedSections && wantedSections.some(section => section.startsWith('L') && section.split('-')[1] === item_title)) {
           lecDesired = 1;
           wantedSections.filter(section => section.startsWith('L') && section.split('-')[1] === item_title)
             .forEach(section => {
               lecSec.push(parseInt(section.split('-').pop()));
             });
-        } else if (unWantedSections.some(section => section.startsWith('L') && section.split('-')[1] === item_title)) {
+        } else if (unWantedSections && unWantedSections.some(section => section.startsWith('L') && section.split('-')[1] === item_title)) {
           lecDesired = 0;
           unWantedSections.filter(section => section.startsWith('L') && section.split('-')[1] === item_title)
             .forEach(section => {
               lecSec.push(parseInt(section.split('-').pop()));
             });
         }
-        if (wantedSections.some(section => section.startsWith('T') && section.split('-')[1] === item_title)) {
+        if (wantedSections && wantedSections.some(section => section.startsWith('T') && section.split('-')[1] === item_title)) {
           tutDesired = 1;
           wantedSections.filter(section => section.startsWith('T') && section.split('-')[1] === item_title)
             .forEach(section => {
               tutSec.push(parseInt(section.split('-').pop()));
             });
-        } else if (unWantedSections.some(section => section.startsWith('T') && section.split('-')[1] === item_title)) {
+        } else if (unWantedSections && unWantedSections.some(section => section.startsWith('T') && section.split('-')[1] === item_title)) {
           tutDesired = 0;
           unWantedSections.filter(section => section.startsWith('T') && section.split('-')[1] === item_title)
             .forEach(section => {
               tutSec.push(parseInt(section.split('-').pop()));
             });
         }
-        if (wantedSections.some(section => section.startsWith('P') && section.split('-')[1] === item_title)) {
+        if (wantedSections && wantedSections.some(section => section.startsWith('P') && section.split('-')[1] === item_title)) {
           pracDesired = 1;
           wantedSections.filter(section => section.startsWith('P') && section.split('-')[1] === item_title)
             .forEach(section => {
               pracSec.push(parseInt(section.split('-').pop()));
             });
-        } else if (unWantedSections.some(section => section.startsWith('P') && section.split('-')[1] === item_title)) {
+        } else if (unWantedSections && unWantedSections.some(section => section.startsWith('P') && section.split('-')[1] === item_title)) {
           pracDesired = 0;
           unWantedSections.filter(section => section.startsWith('P') && section.split('-')[1] === item_title)
             .forEach(section => {
