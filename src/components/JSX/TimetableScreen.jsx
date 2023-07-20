@@ -5,6 +5,9 @@ import Timetable from "./Timetable";
 import Error1Component from "../ErrorComponents/JSX/Error1Component";
 import LoaderIcon from "./LoaderIcon";
 import DownloadIcon from "../../assets/IconDownload.svg"
+import freeDayErrorImg from "../../assets/freeDayError.png";
+import compreError from "../../assets/compreError.png";
+import noTTError from "../../assets/noTTError.png";
 
 const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}) =>{
 
@@ -175,15 +178,17 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
     {!isLoading && fetchedTable["error"] && (
       <>
         {fetchedTable["error_code"] === 32 && (
-          <Error1Component closeTimetable={closeTimetable} />
+          <Error1Component closeTimetable={closeTimetable} img={freeDayErrorImg} title="Free day not possible" />
           // free day error
         )}
         {fetchedTable["error_code"] === 128 && (
-          <Error2Component />
+          <Error1Component closeTimetable={closeTimetable} img={noTTError} title="No timetable possible because of lecture
+          and tutorial section selected" />
           // progress bar not sufficiently completed error
         )}
-        {fetchedTable["error_code"] === 3 && (
-          <Error3Component />
+        {fetchedTable["error_code"] === 8 && (
+          <Error1Component closeTimetable={closeTimetable} img={compreError} title="Comprehensive exams are clashing" />
+          //compre clash
         )}
       </>
     )}
