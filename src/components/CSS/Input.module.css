@@ -22,7 +22,7 @@
   padding: 0.5rem;
   border-radius: 2.5rem;
 }
-.input-id input:focus{
+.input-id form input:focus{
   outline: none;
 }
 .error-animation {
