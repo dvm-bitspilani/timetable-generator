@@ -8,9 +8,9 @@ import Courses from './components/JSX/Courses';
 function App() {
 
   useEffect(() => {
-    ReactGa.initialize('G-NDY7YYW6WZ')
-    ReactGa.pageview('/Timetable Generator')
-  })
+    ReactGa.initialize('G-NDY7YYW6WZ');
+    ReactGa.pageview('/Timetable Generator');
+  }, []);
   const [showInputBox, setShowInputBox] = useState(true);
   const [inputValue, setInputValue] = useState('');
 

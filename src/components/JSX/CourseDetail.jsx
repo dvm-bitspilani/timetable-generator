@@ -93,6 +93,8 @@ const CourseDetail = ({
     onCourseClick(previousCourseId);
   };
 
+  const [want, setWant] = useState(true);
+
   return (
     <div
       className={styles["course-detail-invisible-container"]}
@@ -100,15 +102,18 @@ const CourseDetail = ({
     >
       <div className={styles["course-detail-container"]}>
         <h3 className={styles["course-detail-title"]}>{courseId}</h3>
+        <p className={styles["instructions"]}>
+          {want ? "Select the sections you want!" : "Select the sections you want to avoid!"}
+        </p>
         <img
           src={IconCross}
           alt="Close"
           className={styles["cross-icon"]}
           onClick={onCourseClickClose}
         />
-        { filteredSections && filteredSections[0].lecture.length >0 && lectureSelected && <Lectures courseId={courseId} key={courseId} fetchedArray={fetchedArray} sectionArray={sectionArray} />}
-        { filteredSections && tutorialSelected &&  <Tutorials key={courseId} courseId={courseId} fetchedArray={fetchedArray} sectionArray={sectionArray} />}
-        {filteredSections && practicalSelected && <Practicals key={courseId} courseId={courseId} fetchedArray={fetchedArray} sectionArray={sectionArray} />}
+        { filteredSections && filteredSections[0].lecture.length >0 && lectureSelected && <Lectures courseId={courseId} key={courseId} fetchedArray={fetchedArray} sectionArray={sectionArray} want={want} setWant={setWant} />}
+        { filteredSections && tutorialSelected &&  <Tutorials key={courseId} courseId={courseId} fetchedArray={fetchedArray} sectionArray={sectionArray} want={want} setWant={setWant} />}
+        {filteredSections && practicalSelected && <Practicals key={courseId} courseId={courseId} fetchedArray={fetchedArray} sectionArray={sectionArray} want={want} setWant={setWant} />}
         <div className={styles["course-btns-container"]}>
           <div className={styles["prev-next-course-btn"]} onClick={handlePreviousCourse}>
             <img src={LeftArrow} alt="Left Arrow" /> <p>Previous Course</p> 

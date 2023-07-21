@@ -77,7 +77,13 @@
   font-size: 12px;
   cursor: pointer;
 }
-
+.instructions{
+  margin-top: 0.2rem;
+  color: #ECECF1;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-align: center;
+}
 @media (max-width: 470px) {
   .course-detail-container{
     width: 95vw;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styles from "../CSS/Lectures.module.css";
 import "../CSS/CourseIsSelected.css";
 
-const Practicals = ({ courseId, sectionArray }) => {
+const Practicals = ({ courseId, sectionArray, want , setWant }) => {
 
   const [filteredSections, setFilteredSections] = useState(null);
 
@@ -13,7 +13,8 @@ const Practicals = ({ courseId, sectionArray }) => {
     setFilteredSections(filteredData);
   }, [courseId, sectionArray]);
 
-  const [want, setWant] = useState(true);
+
+  const [allUnwanted , setAllUnwanted] = useState(false);
 
   useEffect(() => {
     const allSections = document.querySelectorAll(`.${styles["lecture-card"]}`);
@@ -54,9 +55,18 @@ const Practicals = ({ courseId, sectionArray }) => {
       }
       return "";
     }
-
     const targetDiv = e.currentTarget;
     const targetCourse = getTextBetweenHyphens(targetDiv.id);
+    const allSections = document.querySelectorAll(`.${styles["lecture-card"]}`);
+    const allUnwantedSections = document.querySelectorAll(`.${styles["lecture-card-selected"]}`);
+
+    if (want === false && allUnwantedSections.length === (allSections.length - 1) && !targetDiv.classList.contains(styles["lecture-card-selected"])) {
+      console.log("Error: You cannot mark all lectures as 'do not want'.");
+      setAllUnwanted(true);
+      return;
+    } else {
+      setAllUnwanted(false);
+    }
 
     const courseRegex = new RegExp(`^P.+-${targetCourse}(-\\d+)?$`);
     let wantedSections =
@@ -210,6 +220,7 @@ const Practicals = ({ courseId, sectionArray }) => {
           {want ? "I want one out of these only" : "I do not want any of these"}
         </p>
       </div>
+      {allUnwanted && <p className={styles["errormessage"]}>You need to keep atleast one option available for each course!</p>}
     </div>
   );
 };
