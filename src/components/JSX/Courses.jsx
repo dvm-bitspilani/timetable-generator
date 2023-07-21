@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Loader from "./Loader";
 import CourseList from "./CourseList";
 
-const Courses = ({ inputValue }) => {
+const Courses = ({ inputValue,goToInput }) => {
   const [fetchedArray, setFetchedArray] = useState(null);
   const [sectionArray, setSectionArray] = useState([]);
   const [key2 , setKey] = useState(0);
@@ -107,7 +107,7 @@ const Courses = ({ inputValue }) => {
 
   if (sectionArray.length > 0) {
     return (
-      <CourseList fetchedArray={fetchedArray} sectionArray={sectionArray}  updateKey={updateKey} key2={key2} />
+      <CourseList goToInput={goToInput} fetchedArray={fetchedArray} sectionArray={sectionArray}  updateKey={updateKey} key2={key2} />
     );
   }
 

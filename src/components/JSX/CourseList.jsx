@@ -9,8 +9,9 @@ import GenerateButtons from "./GenerateButtons";
 import CourseDetail from "./CourseDetail";
 import AddMoreCourse from "./AddMoreCourse";
 import TimetableScreen from "./TimetableScreen";
+import backButton from "../../assets/IconBack.png";
 
-const CourseList = ({fetchedArray , sectionArray, updateKey , key2 }) => {
+const CourseList = ({fetchedArray , sectionArray, updateKey , key2,goToInput }) => {
   const [freeDay, setFreeDay] = useState("");
 
   const [timetableGenerated , setTimetableGenerated] = useState(false);
@@ -145,6 +146,7 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2 }) => {
         />
       ) : (
         <div className={styles["course-list"]}>
+          <img src={backButton} className="backButton" onClick={goToInput} alt="" />
           <div className={styles["course-list-cards"]}>
           <h2 className={styles["courses-heading"]}>
             <span>

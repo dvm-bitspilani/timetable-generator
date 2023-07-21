@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styles from "../CSS/Lectures.module.css";
+import styles from "../CSS/Tutorial.module.css";
 import "../CSS/CourseIsSelected.css";
 
 const Tutorials = ({ courseId, sectionArray, want , setWant }) => {

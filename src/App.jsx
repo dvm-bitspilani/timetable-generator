@@ -14,12 +14,16 @@ function App() {
   const [showInputBox, setShowInputBox] = useState(true);
   const [inputValue, setInputValue] = useState('');
 
+  const goToInput=()=>{
+    setShowInputBox(true);
+  }
+
   return (
     <>
       {showInputBox ? (
         <InputParent setShowInputBox={setShowInputBox} setInputValue={setInputValue} inputValue={inputValue}/>
       ) : (
-        <Courses inputValue={inputValue} />
+        <Courses inputValue={inputValue} goToInput={goToInput} />
       )}
     </>
   )

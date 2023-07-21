@@ -8,6 +8,7 @@ import DownloadIcon from "../../assets/IconDownload.svg"
 import freeDayErrorImg from "../../assets/freeDayError.png";
 import compreError from "../../assets/compreError.png";
 import noTTError from "../../assets/noTTError.png";
+import backButton from "../../assets/IconBack.png";
 
 const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}) =>{
 
@@ -156,9 +157,10 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
   
 
   return(
-    <>
+    <React.Fragment>
     {isLoading? <LoaderIcon title="Generating Timetables" /> :
-    (!fetchedTable["error"] && <>
+    (!fetchedTable["error"] && <React.Fragment>
+      <img src={backButton} className="backButton" onClick={closeTimetable} alt="" />
       <h1 className="units-heading">Units Taken: <span>{courseUnits}</span></h1>
       <p className="units-paragraph">If you don’t see a section here, it must be because the hours and days are empty in the original TT provided by AUGSD</p>
       
@@ -180,10 +182,10 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
       </div>
       <p className="units-paragraph margin-bottom-05">Scroll for more variations</p>
       <p className="units-paragraph">50 is the max number of timetables shown here</p>
-    </>)
+    </React.Fragment>)
     }
     {!isLoading && fetchedTable["error"] && (
-      <>
+      <React.Fragment>
         {fetchedTable["error_code"] === 32 && (
           <Error1Component closeTimetable={closeTimetable} img={freeDayErrorImg} title="Free day not possible" />
           // free day error
@@ -197,9 +199,9 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
           <Error1Component closeTimetable={closeTimetable} img={compreError} title="Comprehensive exams are clashing" />
           //compre clash
         )}
-      </>
+      </React.Fragment>
     )}
-    </>
+    </React.Fragment>
   );
 };
 
