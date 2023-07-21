@@ -32,3 +32,22 @@
   padding: 0 20%;
   text-align: center;
 }
+.mobile-error{
+  display: none;
+}
+@media (max-width: 470px) {
+  .crossicon{
+    top: 5vw;
+    row-gap: 5vw;
+  }
+  .laptop-error{
+    display: none;
+  }
+  .mobile-error{
+    display: block;
+  }
+  .error1componentpara{
+    font-size: 16px;
+    padding: 0 5%;
+  }
+}

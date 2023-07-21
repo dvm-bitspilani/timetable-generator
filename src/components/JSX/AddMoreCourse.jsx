@@ -1,7 +1,7 @@
 import React , {useState, useEffect} from "react";
 import styles from "../CSS/AddMoreCourse.module.css";
 import IconSearch from "../../assets/IconSearch.svg";
-import Oops from "../../assets/Groupoops.svg";
+import Oops from "../../assets/NoCourseError.svg";
 
 const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded , onCourseClickClose3,updateKey , fetchedArray}) =>{
 

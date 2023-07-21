@@ -51,3 +51,11 @@
     }
 
 }
+@media (max-width: 470px) {
+    .free-day-box{
+        height: 40px;
+    }
+    .free-day-box > div{
+        height: 40px;
+    }
+}

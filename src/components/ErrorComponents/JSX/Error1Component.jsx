@@ -2,7 +2,7 @@ import React from "react";
 import "../CSS/Error1Component.css"
 import cross from "../../../assets/IconCross.svg";
 
-const Error1Component = ({closeTimetable , img , title}) => {
+const Error1Component = ({closeTimetable , img , mobileImg , title}) => {
 
   const close = (e) => {
     if (e.target === e.currentTarget) {
@@ -16,7 +16,8 @@ const Error1Component = ({closeTimetable , img , title}) => {
       <div className="error1componentcontainer" onClick={close}>
         <div className="error1component">
           <img src={cross} alt="CLOSE" onClick={closeTimetable} className="crossicon" />
-          <img src={img} alt="Free Day Error Image" />
+          <div className="laptop-error"><img src={img} alt="Error Image" /></div>
+          <div className="mobile-error"><img src={mobileImg} alt="Error Image" /></div>
           <p className="error1componentpara">{title}</p>
         </div>
       </div>

@@ -146,11 +146,18 @@
 }
 .no-course-found{
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 4rem;
   align-items: center;
   width: 100%;
   height: 100%;
+}
+.no-course-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .no-course-text h2{
   font-size: 4.5rem;
@@ -201,6 +208,19 @@
   }
   .amc-search-btn{
     margin-right: 1rem;
+  }
+  .no-course-found{
+    gap: 0;
+  }
+  .no-course-found img{
+    height: 80%;
+    width: 80%;
+  }
+  .no-course-text h2{
+    font-size: 2rem;
+  }
+  .no-course-text p{
+    font-size: .75rem;
   }
 }
 @media (max-width: 400px) {

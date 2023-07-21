@@ -26,11 +26,14 @@
   margin-bottom: 3.25rem;
 }
 .table-container{
-  height: 72vh;
+  height: 720vh;
   width: 100%;
+  position: fixed;
+  overflow-x: hidden;
+}
+.table-area{
   display: flex;
   justify-content: center;
-  overflow-x: hidden;
 }
 .timetableButtons{
   display: flex;

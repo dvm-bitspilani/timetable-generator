@@ -6,8 +6,11 @@ import Error1Component from "../ErrorComponents/JSX/Error1Component";
 import LoaderIcon from "./LoaderIcon";
 import DownloadIcon from "../../assets/IconDownload.svg"
 import freeDayErrorImg from "../../assets/freeDayError.png";
+import FreeDayErrorMobile from "../../assets/FreeDayErrorMobile.png";
 import compreError from "../../assets/compreError.png";
+import CompreErrorMobile from "../../assets/CompreErrorMobile.png";
 import noTTError from "../../assets/noTTError.png";
+import NoTTErrorMobile from "../../assets/NoTTErrorMobile.png";
 import backButton from "../../assets/IconBack.png";
 
 const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}) =>{
@@ -154,6 +157,22 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
       downloadLink.click();
     });
   };
+
+  const [scrollTop, setScrollTop] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = (event) => {
+      setScrollTop(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  console.log(scrollTop)
   
 
   return(
@@ -165,14 +184,16 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
       <p className="units-paragraph">If you don’t see a section here, it must be because the hours and days are empty in the original TT provided by AUGSD</p>
       
       <div className="table-container">
+        <div className="table-area">
+          
         <Timetable 
           timetableData={fetchedTable}
           tableDataSent={tableDataSent}
           onTableDataSent={handleTableDataSent}
           currentTimetableIndex={currentTimetableIndex}
         />
-      </div>
-      <div className="timetableButtons">
+        </div>
+        <div className="timetableButtons">
         <div className="timetableNumber">
           <span className="nextprevarrow" style={{ marginLeft: '0.75rem' }} onClick={shiftToPrevTimetable}>{'<'}</span>
           <span className="timetableNumberData">{`${currentTimetableIndex + 1}/${tableDataSent}`}</span>
@@ -182,21 +203,22 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
       </div>
       <p className="units-paragraph margin-bottom-05">Scroll for more variations</p>
       <p className="units-paragraph">50 is the max number of timetables shown here</p>
+      </div>      
     </React.Fragment>)
     }
     {!isLoading && fetchedTable["error"] && (
       <React.Fragment>
         {fetchedTable["error_code"] === 32 && (
-          <Error1Component closeTimetable={closeTimetable} img={freeDayErrorImg} title="Free day not possible" />
+          <Error1Component closeTimetable={closeTimetable} img={freeDayErrorImg} mobileImg={FreeDayErrorMobile} title="Free day not possible" />
           // free day error
         )}
         {fetchedTable["error_code"] === 128 && (
-          <Error1Component closeTimetable={closeTimetable} img={noTTError} title="No timetable possible because of lecture
+          <Error1Component closeTimetable={closeTimetable} img={noTTError} mobileImg={NoTTErrorMobile} title="No timetable possible because of lecture
           and tutorial section selected" />
           // progress bar not sufficiently completed error
         )}
         {fetchedTable["error_code"] === 8 && (
-          <Error1Component closeTimetable={closeTimetable} img={compreError} title="Comprehensive exams are clashing" />
+          <Error1Component closeTimetable={closeTimetable} img={compreError} mobileImg={CompreErrorMobile} title="Comprehensive exams are clashing" />
           //compre clash
         )}
       </React.Fragment>
