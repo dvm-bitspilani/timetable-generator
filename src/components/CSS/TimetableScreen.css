@@ -26,9 +26,7 @@
   margin-bottom: 3.25rem;
 }
 .table-container {
-  height: 100vh;
   width: 100%;
-  position: fixed;
   overflow-x: hidden;
 }
 .table-area {
