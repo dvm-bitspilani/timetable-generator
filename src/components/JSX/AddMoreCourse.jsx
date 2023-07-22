@@ -4,15 +4,23 @@ import IconSearch from "../../assets/IconSearch.svg";
 import Oops from "../../assets/NoCourseError.svg";
 
 const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded , onCourseClickClose3,updateKey , fetchedArray}) =>{
-
-  const [selectedCourses, setSelectedCourses] = useState([]);
   
-  const moreCoursesArray = fetchedArray.courses;
-
   const [numberOfCourses , setNumberOfCourses] = useState("Back");
   const [searchQuery, setSearchQuery] = useState("");
   const [areCoursesAvailable, setAreCoursesAvailable] = useState(true);
 
+  const allCoursesArray = fetchedArray.courses;
+  const cdcsArray = fetchedArray.cdcs;
+  const localStorageArray = JSON.parse(localStorage.getItem('storedMoreCourses'))
+  const moreCoursesArray = allCoursesArray.filter(
+    (course) =>
+      !cdcsArray.some((cdc) => cdc.course_no === course.course_no) &&
+      !localStorageArray.some((localStorageItem) => localStorageItem.course_no === course.course_no)
+  );
+  console.log(localStorageArray)
+  console.log(cdcsArray)
+
+  console.log(fetchedArray)
   const filteredCourses = moreCoursesArray.filter(
     (item) =>
       item.course_no.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -40,25 +48,7 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
 
 const handleBackButtonClick = () => {
   if (numberOfCourses === "Back") {
-    const courseElements = document.getElementsByClassName(styles['all-courses'] + ' ' + styles['course-added']);
-    const selectedCourses = Array.from(courseElements).map((element) => {
-      return {
-        id: element.id.split('-')[2],
-        course_no: element.querySelector('h3').innerText,
-        course_title: element.querySelector(`.${styles['amc-course-title']}`).innerText,
-        credits: element.querySelector(`.${styles['amc-credits']}`).innerText
-      };
-    });
-
-    const existingCourses = JSON.parse(localStorage.getItem("storedMoreCourses") || "[]");
-    const updatedCourses = mergeWithoutDuplicates(existingCourses, selectedCourses);
-    localStorage.setItem("storedMoreCourses", JSON.stringify(updatedCourses));
-
     onAddMoreCourseBack();
-
-    if (courseElements.length === 0) {
-      moreCourseNotAdded();
-    }
   } else if (numberOfCourses === "Max Courses") {
     onAddMoreCourseBack();
   } else {
