@@ -5,6 +5,8 @@ import "../CSS/CourseIsSelected.css";
 const Practicals = ({ courseId, sectionArray, want , setWant }) => {
 
   const [filteredSections, setFilteredSections] = useState(null);
+  const [allUnwanted , setAllUnwanted] = useState(false);
+  const [oneSection , setOneSection] = useState(false);
 
   useEffect(() => {
     const filteredData = sectionArray.filter(
@@ -13,8 +15,13 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
     setFilteredSections(filteredData);
   }, [courseId, sectionArray]);
 
-
-  const [allUnwanted , setAllUnwanted] = useState(false);
+  useEffect(() => {
+    if (filteredSections && filteredSections[0]["lecture"].length === 1) {
+      setOneSection(true);
+    } else {
+      setOneSection(false);
+    }
+  }, [filteredSections , courseId]);
 
   useEffect(() => {
     const allSections = document.querySelectorAll(`.${styles["lecture-card"]}`);
@@ -44,7 +51,7 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
         });
       }, 0);
     }
-  }, [want]);
+  }, [want.courseId]);
 
   const onLectureClick = (e) => {
     function getTextBetweenHyphens(str) {
@@ -60,7 +67,7 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
     const allSections = document.querySelectorAll(`.${styles["lecture-card"]}`);
     const allUnwantedSections = document.querySelectorAll(`.${styles["lecture-card-selected"]}`);
 
-    if (want === false && allUnwantedSections.length === (allSections.length - 1) && !targetDiv.classList.contains(styles["lecture-card-selected"])) {
+    if (want === false &&!oneSection&&  allUnwantedSections.length === (allSections.length - 1) && !targetDiv.classList.contains(styles["lecture-card-selected"])) {
       console.log("Error: You cannot mark all lectures as 'do not want'.");
       setAllUnwanted(true);
       return;
@@ -204,7 +211,7 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
             );
           })}
       </div>
-      <div className={styles["want-or-not-container"]}>
+      {!oneSection && <div className={styles["want-or-not-container"]}>
         <input type="checkbox" id="switch" />
         <label
           htmlFor="switch"
@@ -219,7 +226,7 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
         <p>
           {want ? "I want one out of these only" : "I do not want any of these"}
         </p>
-      </div>
+      </div>}
       {allUnwanted && <p className={styles["errormessage"]}>You need to keep atleast one option available for each course!</p>}
     </div>
   );

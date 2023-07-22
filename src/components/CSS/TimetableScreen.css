@@ -68,6 +68,13 @@
   top: 5%;left: 3%;
   cursor: pointer;
 }
+@media (max-width: 900px) {
+  .backButton{
+    position: fixed;
+    top: 2%;left: 3%;
+    cursor: pointer;
+  }
+}
 @media (max-width: 470px) {
   .units-heading{
     font-size: 18px;

@@ -1,8 +1,17 @@
-import React from "react";
+import React,{useEffect} from "react";
 import Input from "./Input";
 import styles from "../CSS/Input.module.css";
 
 const InputParent = ({ setShowInputBox , setInputValue, inputValue }) => {
+
+  useEffect(() => {
+    const storedID = localStorage.getItem("userID");
+    if (storedID) {
+      setShowInputBox(false);
+      setInputValue(storedID);
+    }
+  }, []);
+
   return (
     <>
       <div className="App">
