@@ -51,6 +51,7 @@ function Input({ setShowInputBox, setInputValue, inputValue, showDevs }) {
           <input
             id="bitsIdInput"
             type="text"
+            maxLength="13"
             placeholder="Enter your ID Number"
             value={inputValue}
             onChange={handleInputChange}
