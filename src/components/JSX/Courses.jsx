@@ -29,7 +29,7 @@ const Courses = ({ inputValue,goToInput }) => {
         setTimeout(() => {
           
           setFetchedArray(data1);
-        }, 1800);
+        }, 1000);
   
         const cdcsArray = data1.cdcs;
         const storedMoreCourses = JSON.parse(
