@@ -63,7 +63,7 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2,goToInput }) 
   const [moreCoursesAdded, setMoreCoursesAdded] = useState(initialMoreCoursesAdded);
   const onCourseClick = (id) => {
     setCourseSelected(true);
-    setSelectedCourseId(id);
+    setSelectedCourseId(id.replace(/\s+/g, ' ').trim());
   };
   const onCourseClickClose = () => {
     setCourseSelected(false);

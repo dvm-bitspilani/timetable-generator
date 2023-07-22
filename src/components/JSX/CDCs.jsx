@@ -15,8 +15,6 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
       }
       return word.replace(word[0], word[0].toUpperCase());
     }).join(' ');
-    // console.log(str.toLowerCase())
-    // return str;
   }
   
   

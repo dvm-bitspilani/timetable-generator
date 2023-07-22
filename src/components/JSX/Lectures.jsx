@@ -9,7 +9,7 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
 
   useEffect(() => {
     const filteredData = sectionArray.filter(
-      (item) => item.course_title.replace(/\s+/g, ' ').trim() === courseId
+      (item) => item.course_title.replace(/\s+/g, ' ').trim() === courseId.replace(/\s+/g, ' ').trim()
     );
     setFilteredSections(filteredData);
   }, [courseId, sectionArray]);
@@ -205,7 +205,7 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
   console.log(filteredSections)
 
   return (
-    <div className={styles["lectures"]} id={courseId}>
+    <div className={styles["lectures"]} id={courseId.replace(/\s+/g, ' ').trim()}>
       <div className={styles["lectures-container"]}>
         {filteredSections &&
           filteredSections[0].lecture.map((item) => {

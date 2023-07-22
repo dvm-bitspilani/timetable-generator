@@ -11,7 +11,7 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
 
   const allCoursesArray = fetchedArray.courses;
   const cdcsArray = fetchedArray.cdcs;
-  const localStorageArray = JSON.parse(localStorage.getItem('storedMoreCourses'))
+  const localStorageArray = JSON.parse(localStorage.getItem('storedMoreCourses')) || [];
   const moreCoursesArray = allCoursesArray.filter(
     (course) =>
       !cdcsArray.some((cdc) => cdc.course_no === course.course_no) &&
