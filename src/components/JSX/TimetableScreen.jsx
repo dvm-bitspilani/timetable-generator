@@ -226,6 +226,11 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
           <Error1Component closeTimetable={closeTimetable} img={compreError} mobileImg={CompreErrorMobile} title="Comprehensive exams are clashing" />
           //compre clash
         )}
+         {fetchedTable["error_code"] && (
+          <Error1Component closeTimetable={closeTimetable} img={noTTError} mobileImg={NoTTErrorMobile} title="No timetable possible because of lecture
+          and tutorial section selected" />
+          // progress bar not sufficiently completed error
+        )}
       </React.Fragment>
     )}
     </React.Fragment>
