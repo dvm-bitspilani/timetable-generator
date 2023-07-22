@@ -49,9 +49,6 @@
   border: 2px solid transparent;
   cursor: pointer;
   margin: .5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 .lecture-room{
   display: flex;
@@ -60,9 +57,6 @@
 .lecture-room h3{
   padding: 1rem 1.25rem 0.5rem 1.25rem;
   font-size: 16px;
-}
-.text-center{
-  text-align: center;
 }
 .font-weight-600{
   font-weight: 600;
