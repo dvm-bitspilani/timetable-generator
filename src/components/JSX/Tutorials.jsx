@@ -55,12 +55,12 @@ const Tutorials = ({ courseId, sectionArray, want , setWant }) => {
   useEffect(() => {
     if (filteredSections && filteredSections[0]["tutorial"].length === 1) {
       setWant(true);
-      const defaultSelectedLectureId = `L${filteredSections[0]["tutorial"][0].sec} -${filteredSections[0]["course_title"].replace(/ +/g, "")}-${filteredSections[0]["tutorial"][0].sec_id}`;
+      const defaultSelectedLectureId = `T${filteredSections[0]["tutorial"][0].sec} -${filteredSections[0]["course_title"].replace(/ +/g, "")}-${filteredSections[0]["tutorial"][0].sec_id}`;
 
       let wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
 
       const isAlreadySelected = wantedSections.some((sectionId) => sectionId === defaultSelectedLectureId);
-
+      console.log(defaultSelectedLectureId)
       if (!isAlreadySelected) {
         wantedSections.push(defaultSelectedLectureId);
         localStorage.setItem("wantedSections", JSON.stringify(wantedSections));

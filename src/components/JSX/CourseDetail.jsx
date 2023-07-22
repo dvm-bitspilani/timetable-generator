@@ -18,7 +18,8 @@ const CourseDetail = ({
   const [courseArray, setCourseArray] = useState([]);
   const [want, setWant] = useState(true);
 
-
+  console.log(sectionArray)
+  console.log(courseId)
   const filteredSections = sectionArray.filter(
     (item) => item.course_title === courseId
   );
@@ -99,7 +100,7 @@ const CourseDetail = ({
     setWant(true);
   };
 
-
+  console.log(filteredSections)
 
   return (
     <div

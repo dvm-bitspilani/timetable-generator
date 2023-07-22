@@ -187,6 +187,8 @@ const Timetable = ({
             return { gridRow, gridColumn };
           }
 
+          console.log(object);
+
           return (
             <React.Fragment key={index}>
               {lectureSlots.map((slot) => (
