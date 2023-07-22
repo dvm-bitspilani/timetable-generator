@@ -36,6 +36,7 @@
 .dev-teams {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-evenly;
 }
@@ -53,4 +54,25 @@
   margin-top: 1rem;
   font-weight: 600;
   font-size: 1.5rem;
+}
+@media (max-width: 470px) {
+    .dev-cross-btn{
+        top: 6%;
+        right: 4%;
+        transform: scale(1.2);
+    }
+    .dev-teams{
+        height: 110%;
+        flex-direction: column;
+        margin-top: 3rem;
+    }
+    .team-logo{
+        background-color: transparent;
+        height: 15vh;
+        width: 15vh;
+    }
+    .dev-teams p{
+        display: none;
+    }
+    
 }

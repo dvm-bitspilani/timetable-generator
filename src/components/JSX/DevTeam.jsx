@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CrossIcon from "../../assets/IconCross.svg";
-const DevTeam = ({ showTeam, currentTeam, teamArray ,showDev  }) => {
+const DevTeam = ({ showTeam, currentTeam, teamArray, showDev }) => {
   return (
     <>
       <div className="dev-wrapper" onClick={showDev}>
@@ -18,7 +18,7 @@ const DevTeam = ({ showTeam, currentTeam, teamArray ,showDev  }) => {
               {teamArray.map((item) => (
                 <div key={item.id} className="team">
                   <div className="team-logo">
-                    <img src={item.logo} alt="Team" />
+                      <img src={item.logo} alt="Team" />
                   </div>
                   <p>{item.name}</p>
                 </div>
