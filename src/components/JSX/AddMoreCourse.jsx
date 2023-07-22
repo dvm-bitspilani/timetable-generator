@@ -41,7 +41,6 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
 const handleBackButtonClick = () => {
   if (numberOfCourses === "Back") {
     const courseElements = document.getElementsByClassName(styles['all-courses'] + ' ' + styles['course-added']);
-    console.log(courseElements)
     const selectedCourses = Array.from(courseElements).map((element) => {
       return {
         id: element.id.split('-')[2],
@@ -118,13 +117,10 @@ function mergeWithoutDuplicates(arr1, arr2) {
 
   const onCourseChildClick = (e) => {
     const targetDiv = e.currentTarget.parentElement;
-    console.log(targetDiv)
-    console.log(getTextAfterKeyword(targetDiv.id));
+
     if (targetDiv.className === styles["all-courses"]) {
       targetDiv.className = styles["all-courses"] + ' ' + styles["course-added"];
     } else if (targetDiv.className === styles["all-courses"] + ' ' + styles["course-added"]) {
-      const existingCourses = JSON.parse(localStorage.getItem("storedMoreCourses") || "[]");
-      console.log(existingCourses)
       const storedMoreCourses = JSON.parse(localStorage.getItem("storedMoreCourses") || "[]");
       const updatedMoreCourses = storedMoreCourses.filter((course) => course.id !== getTextAfterKeyword(targetDiv.id));
       localStorage.setItem("storedMoreCourses", JSON.stringify(updatedMoreCourses));

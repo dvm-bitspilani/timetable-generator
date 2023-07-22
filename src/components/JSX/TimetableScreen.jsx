@@ -135,7 +135,7 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
           setIsLoading(false);
           
         }, 2000);
-        console.log(data)
+        // console.log(data)
         setFetchedTable(data);
     };
 
@@ -158,21 +158,8 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
     });
   };
 
-  const [scrollTop, setScrollTop] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = (event) => {
-      setScrollTop(window.scrollY);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
-  console.log(scrollTop)
+ 
+  // console.log(scrollTop)
   
 
   return(
@@ -217,19 +204,19 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
           and tutorial section selected" />
           // progress bar not sufficiently completed error
         )}
-        {/* {fetchedTable["error_code"] === 64 && (
+        {fetchedTable["error_code"] === 64 && (
           <Error1Component closeTimetable={closeTimetable} img={noTTError} mobileImg={NoTTErrorMobile} title="Clash Free Time Table is not possible with these cases" />
           // progress bar not sufficiently completed error
-        )} */}
+        )}
         {fetchedTable["error_code"] === 8 && (
           <Error1Component closeTimetable={closeTimetable} img={compreError} mobileImg={CompreErrorMobile} title="Comprehensive exams are clashing" />
           //compre clash
         )}
-         {fetchedTable["error_code"] && (
+         {/* {fetchedTable["error_code"] && (
           <Error1Component closeTimetable={closeTimetable} img={noTTError} mobileImg={NoTTErrorMobile} title="No timetable possible because of lecture
           and tutorial section selected" />
           // progress bar not sufficiently completed error
-        )}
+        )} */}
       </React.Fragment>
     )}
     </React.Fragment>

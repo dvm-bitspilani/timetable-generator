@@ -85,9 +85,7 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
     const allSections = document.querySelectorAll(`.${styles["lecture-card"]}`);
     const allUnwantedSections = document.querySelectorAll(`.${styles["lecture-card-selected"]}`);
 
-    console.log(targetDiv)
-    console.log(targetDiv.className);
-    console.log(styles["lecture-card"])
+
 
     if (want === false && !oneSection && allUnwantedSections.length === (allSections.length - 1) && !targetDiv.classList.contains(styles["lecture-card-selected"])) {
       console.log("Error: You cannot mark all lectures as 'do not want'.");
@@ -105,7 +103,6 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
       JSON.parse(localStorage.getItem("unwantedSections")) || [];
       if (targetDiv.className === styles["lecture-card"]) {
         targetDiv.classList.add(styles["lecture-card-selected"]);
-        console.log("added")
       if (want == true) {
         wantedSections.push(targetDiv.id);
         localStorage.setItem("wantedSections", JSON.stringify(wantedSections));
