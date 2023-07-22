@@ -1,10 +1,12 @@
 import React , {useState, useEffect} from "react";
 import styles from "../CSS/AddMoreCourse.module.css";
 import IconSearch from "../../assets/IconSearch.svg";
-import Oops from "../../assets/NoCourseError.svg";
+import Oops from "../../assets/noCourseError.svg";
 
 const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded , onCourseClickClose3,updateKey , fetchedArray}) =>{
 
+  const [selectedCourses, setSelectedCourses] = useState([]);
+  
   const moreCoursesArray = fetchedArray.courses;
 
   const [numberOfCourses , setNumberOfCourses] = useState("Back");
@@ -29,14 +31,38 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
       const targetDiv = document.getElementById(`more-courses-${course.id}`);
       if (targetDiv) {
         targetDiv.classList.add(styles['course-added']);
-        targetDiv.style.display="none";
       }
     });
   }, []);
 
+// console.log(filteredCourses)
 
 
-  const handleBackButtonClick = () => {
+const handleBackButtonClick = () => {
+  if (numberOfCourses === "Back") {
+    const courseElements = document.getElementsByClassName(styles['all-courses'] + ' ' + styles['course-added']);
+    console.log(courseElements)
+    const selectedCourses = Array.from(courseElements).map((element) => {
+      return {
+        id: element.id.split('-')[2],
+        course_no: element.querySelector('h3').innerText,
+        course_title: element.querySelector(`.${styles['amc-course-title']}`).innerText,
+        credits: element.querySelector(`.${styles['amc-credits']}`).innerText
+      };
+    });
+
+    const existingCourses = JSON.parse(localStorage.getItem("storedMoreCourses") || "[]");
+    const updatedCourses = mergeWithoutDuplicates(existingCourses, selectedCourses);
+    localStorage.setItem("storedMoreCourses", JSON.stringify(updatedCourses));
+
+    onAddMoreCourseBack();
+
+    if (courseElements.length === 0) {
+      moreCourseNotAdded();
+    }
+  } else if (numberOfCourses === "Max Courses") {
+    onAddMoreCourseBack();
+  } else {
     const courseElements = document.getElementsByClassName(styles['all-courses'] + ' ' + styles['course-added']);
     const selectedCourses = Array.from(courseElements).map((element) => {
       return {
@@ -46,11 +72,26 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
         credits: element.querySelector(`.${styles['amc-credits']}`).innerText
       };
     });
-    localStorage.setItem("storedMoreCourses", JSON.stringify(selectedCourses));
+
+    const existingCourses = JSON.parse(localStorage.getItem("storedMoreCourses") || "[]");
+    const updatedCourses = mergeWithoutDuplicates(existingCourses, selectedCourses);
+    localStorage.setItem("storedMoreCourses", JSON.stringify(updatedCourses));
+
     onAddMoreCourseBack();
-    moreCourseAdded(); // Assuming this function shows some kind of success message to the user after adding the courses.
-    updateKey();
-  };
+    moreCourseAdded();
+  }
+  updateKey();
+};
+function mergeWithoutDuplicates(arr1, arr2) {
+  const merged = [...arr1];
+  for (const item of arr2) {
+    if (!merged.some((existingItem) => existingItem.id === item.id)) {
+      merged.push(item);
+    }
+  }
+  return merged;
+}
+
   const onCoursesClick = (e) =>{
     const courseElements = document.getElementsByClassName(styles['all-courses'] + ' ' + styles['course-added']);
     const addBtn = document.getElementsByClassName(styles['amc-add-btn'])[0];
@@ -66,21 +107,19 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
     } else {
       setNumberOfCourses(`Max Courses`);
     }
-    if (e.target.classList.contains(styles['all-courses'])) {
-      e.target.classList.add(styles['course-added']);
-    }
-    if (e.target.classList.contains(styles['course-added'])) {
-      e.target.classList.remove(styles['course-added']);
-    }
   };
+
+
   const onCourseChildClick = (e) => {
     const targetDiv = e.currentTarget.parentElement;
+    console.log(targetDiv.id);
     if (targetDiv.className === styles["all-courses"]) {
       targetDiv.className = styles["all-courses"] + ' ' + styles["course-added"];
     } else if (targetDiv.className === styles["all-courses"] + ' ' + styles["course-added"]) {
       targetDiv.className = styles["all-courses"];
     }
   };
+  
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
@@ -114,9 +153,9 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
                 id={`more-courses-${item.course_title.replace(/ +/g, "")}`}
                 onClick={onCoursesClick}
               >
-                <h3 onClick={onCourseChildClick}>{item.course_no}</h3>
-                <p className={styles["amc-course-title"]} onClick={onCourseChildClick}>{item.course_title}</p>
-                <p className={styles["amc-credits"]}>{item.credits} Credits</p>
+                <h3 onClick={onCourseChildClick} >{item.course_no}</h3>
+                <p onClick={onCourseChildClick} className={styles["amc-course-title"]} >{item.course_title}</p>
+                <p onClick={onCourseChildClick} className={styles["amc-credits"]}>{item.credits} Credits</p>
               </div>
             ))
           ) : (

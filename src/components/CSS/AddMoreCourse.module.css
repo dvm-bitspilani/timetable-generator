@@ -116,9 +116,7 @@
   padding: 0 0.75rem 1rem 0.75rem;
   user-select: none;
 }
-.amc-credits{
-  display: none;
-}
+
 
 .all-courses:hover{
   border: 2px solid #F7E188;
@@ -177,6 +175,9 @@
   .all-courses{
     width: 30%;
     min-height: 22.5%;
+  }
+  .amc-credits{
+    display: none;
   }
 }
 @media (max-width: 470px) {

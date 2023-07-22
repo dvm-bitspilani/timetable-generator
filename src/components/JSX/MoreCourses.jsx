@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import IconBook from "../../assets/IconBook.svg";
 import IconBookWhite from "../../assets/IconBookWhite.svg";
-import styles from  "../CSS/CDCs.module.css";
+import cross from "../../assets/IconCross.svg"
+import styles from  "../CSS/MOreCourses.module.css";
 
 const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
   const [courses, setCourses] = useState([]);
@@ -59,6 +60,13 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
       .join(", ");
     return formattedArray;
   };
+  const deleteCourse = (courseId) => {
+    const updatedCourses = courses.filter((course) => course.id !== courseId);
+
+    setCourses(updatedCourses);
+
+    localStorage.setItem("storedMoreCourses", JSON.stringify(updatedCourses));
+  };
 
   return (
     <div className={styles["courses-container"]}>
@@ -91,6 +99,11 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
             </div>
           </div>
           <div className={styles["course-div-main-content"]}>
+            <img src={cross}   onMouseDown={(e) => {
+              e.preventDefault(); 
+              e.stopPropagation(); 
+              deleteCourse(item.id); 
+             }}  alt="" className={styles["crossicon"]} />
             <img src={IconBookWhite} alt="book" />
             <h3>{titleCase(item.course_title)}</h3>
           </div>

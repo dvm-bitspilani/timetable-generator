@@ -94,6 +94,7 @@
 .course-div-main-content{
   display: flex;
   width: 100%;
+  position: relative;
 }
 .course-div-detail{
   width: 100%;
@@ -111,7 +112,21 @@
 .course-div-detail p{
   margin-right: 1rem;
 }
-
+.crossicon{
+  position: absolute;
+  right: 5%;
+  top: 20%;
+  display: none;
+  z-index: 99;
+}
+.course-div:hover{
+  background-color: rgba(255, 255, 255, 0.7);
+}
+.course-div:hover .crossicon{
+  display: block;
+  opacity: 1;
+  filter: brightness(0);
+}
 
 @media (min-width:700px){
   .course-div:nth-child(3n){
