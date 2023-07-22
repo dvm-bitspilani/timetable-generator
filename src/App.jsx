@@ -6,10 +6,9 @@ import Courses from './components/JSX/Courses';
 
 
 function App() {
-
-  useEffect(() => {
-    ReactGa.initialize('G-4DQ2S6ML3X');
-  }, []);
+  
+  ReactGa.initialize('G-NDY7YYW6WZ');
+  
   const [showInputBox, setShowInputBox] = useState(true);
   const [inputValue, setInputValue] = useState('');
 
