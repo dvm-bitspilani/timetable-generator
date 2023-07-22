@@ -27,6 +27,7 @@ function Input({ setShowInputBox, setInputValue, inputValue, showDevs }) {
       if(prevUserID !== inputValue){
         localStorage.clear()
       }
+      localStorage.setItem("userID", inputValue);
       setShowError("");
       setShowInputBox(false);
       setInputValue(inputValue);
