@@ -109,13 +109,25 @@ function mergeWithoutDuplicates(arr1, arr2) {
     }
   };
 
+  function getTextAfterKeyword(text) {
+    const keyword = "more-courses-";
+    const regex = new RegExp(`(?<=${keyword}).*`);
+    const result = text.match(regex);
+    return result ? result[0] : null;
+  }
 
   const onCourseChildClick = (e) => {
     const targetDiv = e.currentTarget.parentElement;
-    console.log(targetDiv.id);
+    console.log(targetDiv)
+    console.log(getTextAfterKeyword(targetDiv.id));
     if (targetDiv.className === styles["all-courses"]) {
       targetDiv.className = styles["all-courses"] + ' ' + styles["course-added"];
     } else if (targetDiv.className === styles["all-courses"] + ' ' + styles["course-added"]) {
+      const existingCourses = JSON.parse(localStorage.getItem("storedMoreCourses") || "[]");
+      console.log(existingCourses)
+      const storedMoreCourses = JSON.parse(localStorage.getItem("storedMoreCourses") || "[]");
+      const updatedMoreCourses = storedMoreCourses.filter((course) => course.id !== getTextAfterKeyword(targetDiv.id));
+      localStorage.setItem("storedMoreCourses", JSON.stringify(updatedMoreCourses));
       targetDiv.className = styles["all-courses"];
     }
   };
