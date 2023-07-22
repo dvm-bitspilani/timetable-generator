@@ -159,54 +159,59 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
     }
   };
 
-  function getDayAndTime(slot) {
+  function getMultipleDaysAndTimes(slots) {
     const dayStart = 8;
     const slotDuration = 1;
-
-    let day, startHour, endHour;
-
-    if (slot < 12) {
-      // Monday
-      day = "Monday";
-      startHour = dayStart + slot;
-    } else if (slot < 32) {
-      // Tuesday
-      day = "Tuesday";
-      startHour = dayStart + (slot - 20);
-    } else if (slot < 52) {
-      // Wednesday
-      day = "Wednesday";
-      startHour = dayStart + (slot - 40);
-    } else if (slot < 72) {
-      // Thursday
-      day = "Thursday";
-      startHour = dayStart + (slot - 60);
-    } else if (slot < 92) {
-      // Friday
-      day = "Friday";
-      startHour = dayStart + (slot - 80);
-    } else if (slot < 112) {
-      // Saturday
-      day = "Saturday";
-      startHour = dayStart + (slot - 100);
-    } else {
-      return "Invalid slot number";
+  
+    if (!Array.isArray(slots) || slots.length === 0) {
+      return "Invalid slots";
     }
-
-    endHour = startHour + slotDuration;
-    return {
-      day: day,
-      startHour: startHour,
-      endHour: endHour,
-    };
+  
+    const result = [];
+  
+    for (let i = 0; i < slots.length; i++) {
+      const slot = slots[i];
+  
+      if (slot < 0 || slot >= 112) {
+        result.push("Invalid slot number");
+      } else {
+        let day, startHour, endHour;
+  
+        if (slot < 12) {
+          day = "Monday";
+          startHour = dayStart + slot;
+        } else if (slot < 32) {
+          day = "Tuesday";
+          startHour = dayStart + (slot - 20);
+        } else if (slot < 52) {
+          day = "Wednesday";
+          startHour = dayStart + (slot - 40);
+        } else if (slot < 72) {
+          day = "Thursday";
+          startHour = dayStart + (slot - 60);
+        } else if (slot < 92) {
+          day = "Friday";
+          startHour = dayStart + (slot - 80);
+        } else {
+          day = "Saturday";
+          startHour = dayStart + (slot - 100);
+        }
+  
+        endHour = startHour + slotDuration;
+        result.push({ day: day, startHour: startHour, endHour: endHour });
+      }
+    }
+  
+    return result;
   }
+  
 
   return (
     <div className={styles["lectures"]} id={courseId}>
       <div className={styles["lectures-container"]}>
         {filteredSections &&
           filteredSections[0].lecture.map((item) => {
-            const { day, startHour, endHour } = getDayAndTime(item.slots[0]);
+            const slotsData = getMultipleDaysAndTimes(item.slots);
             return (
               <div
                 key={item.sec_id}
@@ -229,11 +234,14 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
                   )}
                 </div>
                 <h2>{item.instructors.join(", ")}</h2>
-                {item.slots[0] !== undefined && (
-                  <h2 className={styles["margin-bottom-1rem"]}>
-                    {day} {startHour} - {endHour}
-                  </h2>
-                )}
+                <div>
+                {slotsData.map((slotData, index) => (
+                <h2 key={index} className={styles["text-centerg"]}>
+                  {slotData.day} {slotData.startHour} - {slotData.endHour}
+                </h2>
+              ))}
+              </div>
+
               </div>
             );
           })}
