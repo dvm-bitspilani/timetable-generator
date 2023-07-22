@@ -1,13 +1,9 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
-=======
-import React,{useEffect} from "react";
->>>>>>> b0c1df6b98d215128ce64a42a90ae5b6e38f48ba
 import Input from "./Input";
+import { useEffect } from "react";
 import DevPage from "./DevPage";
 import styles from "../CSS/Input.module.css";
 
-<<<<<<< HEAD
 const InputParent = ({ setShowInputBox, setInputValue, inputValue }) => {
   const [showDevPage, setShowDevPage] = useState(false);
   const showDevs = () => {
@@ -17,8 +13,6 @@ const InputParent = ({ setShowInputBox, setInputValue, inputValue }) => {
       setShowDevPage(false);
     }
   };
-=======
-const InputParent = ({ setShowInputBox , setInputValue, inputValue }) => {
 
   useEffect(() => {
     const storedID = localStorage.getItem("userID");
@@ -28,7 +22,6 @@ const InputParent = ({ setShowInputBox , setInputValue, inputValue }) => {
     }
   }, []);
 
->>>>>>> b0c1df6b98d215128ce64a42a90ae5b6e38f48ba
   return (
     <>
       {showDevPage ? (
@@ -46,6 +39,6 @@ const InputParent = ({ setShowInputBox , setInputValue, inputValue }) => {
       )}
     </>
   );
-};
+}
 
 export default InputParent;
