@@ -52,6 +52,19 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
     }
   }, [want , courseId]);
 
+  useEffect(() => {
+    let wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
+    const uniqueWantedSections = [...new Set(wantedSections)];
+    if (wantedSections.length !== uniqueWantedSections.length) {
+      localStorage.setItem("wantedSections", JSON.stringify(uniqueWantedSections));
+    }
+
+    let unwantedSections = JSON.parse(localStorage.getItem("unwantedSections")) || [];
+    const uniqueUnwantedSections = [...new Set(unwantedSections)];
+    if (unwantedSections.length !== uniqueUnwantedSections.length) {
+      localStorage.setItem("unwantedSections", JSON.stringify(uniqueUnwantedSections));
+    }
+  }, []);
 
   useEffect(() => {
     if (filteredSections && filteredSections[0]["lecture"].length === 1) {
