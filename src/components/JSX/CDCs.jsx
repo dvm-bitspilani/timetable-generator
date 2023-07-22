@@ -8,12 +8,15 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
   };
 
   function titleCase(str) {
-    return str.toLowerCase().split(' ').map(function(word) {
+     let fstr = str.replace(/\s+/g, ' ').trim()
+    return fstr.toLowerCase().split(' ').map(function(word) {
       if (word.toLowerCase() === 'ii' || word.toLowerCase() === 'iii' || word.toLowerCase() === 'iv' || word.toLowerCase() === 'v') {
         return word.toUpperCase(); 
       }
       return word.replace(word[0], word[0].toUpperCase());
     }).join(' ');
+    // console.log(str.toLowerCase())
+    // return str;
   }
   
   

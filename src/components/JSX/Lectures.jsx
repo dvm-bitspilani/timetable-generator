@@ -9,7 +9,7 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
 
   useEffect(() => {
     const filteredData = sectionArray.filter(
-      (item) => item.course_title === courseId
+      (item) => item.course_title.replace(/\s+/g, ' ').trim() === courseId
     );
     setFilteredSections(filteredData);
   }, [courseId, sectionArray]);
@@ -202,6 +202,7 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
     return result;
   }
   
+  console.log(filteredSections)
 
   return (
     <div className={styles["lectures"]} id={courseId}>

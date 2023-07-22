@@ -21,7 +21,7 @@ const CourseDetail = ({
   console.log(sectionArray)
   console.log(courseId)
   const filteredSections = sectionArray.filter(
-    (item) => item.course_title === courseId
+    (item) => item.course_title.replace(/\s+/g, ' ').trim() === courseId
   );
 
   useEffect(() => {
@@ -73,10 +73,10 @@ const CourseDetail = ({
 
   const getNextCourseId = () => {
     const currentIndex = courseArray.findIndex(
-      (item) => item.course_title === courseId
+      (item) => item.course_title.replace(/\s+/g, ' ').trim() === courseId
     );
     const nextIndex = (currentIndex + 1) % courseArray.length;
-    return courseArray[nextIndex].course_title;
+    return courseArray[nextIndex].course_title.replace(/\s+/g, ' ').trim();
   };
   const handleNextCourse = () => {
     const nextCourseId = getNextCourseId();
@@ -86,11 +86,11 @@ const CourseDetail = ({
   };
   const getPreviousCourseId = () => {
     const currentIndex = courseArray.findIndex(
-      (item) => item.course_title === courseId
+      (item) => item.course_title.replace(/\s+/g, ' ').trim() === courseId
     );
     const previousIndex =
       (currentIndex - 1 + courseArray.length) % courseArray.length;
-    return courseArray[previousIndex].course_title;
+    return courseArray[previousIndex].course_title.replace(/\s+/g, ' ').trim();
   };
 
   const handlePreviousCourse = () => {
@@ -100,7 +100,8 @@ const CourseDetail = ({
     setWant(true);
   };
 
-  console.log(filteredSections)
+  console.log(filteredSections);
+  console.log(filteredSections[0]);
 
   return (
     <div

@@ -45,13 +45,21 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2,goToInput }) 
   
     calculateCourseUnits();
   }, [ storedMoreCourses]);
-
+  
   const [courseSelected, setCourseSelected] = useState(false);
   const [addMoreCourse, setAddMoreCourse] = useState(false);
   const [selectedCourseId, setSelectedCourseId] = useState(null);
   const initialMoreCoursesAdded =
-    storedMoreCourses !== null && JSON.parse(storedMoreCourses).length !== 0;
+  storedMoreCourses !== null && JSON.parse(storedMoreCourses).length !== 0;
+  // useEffect(() => {
+  //   setSelectedCourseId((prev) =>{
+  //     if(prev){
+  //     return prev.replace(/\s+/g, ' ').trim()}
+  //     return;
+  //   })
+  // }, [ selectedCourseId]);
 
+  
   const [moreCoursesAdded, setMoreCoursesAdded] = useState(initialMoreCoursesAdded);
   const onCourseClick = (id) => {
     setCourseSelected(true);
