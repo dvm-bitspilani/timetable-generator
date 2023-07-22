@@ -9,7 +9,6 @@ function App() {
 
   useEffect(() => {
     ReactGa.initialize('G-4DQ2S6ML3X');
-    ReactGa.pageview('/Timetable Generator');
   }, []);
   const [showInputBox, setShowInputBox] = useState(true);
   const [inputValue, setInputValue] = useState('');
