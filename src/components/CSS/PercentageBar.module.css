@@ -52,6 +52,7 @@
   color: #344054;
   font-weight: 600;
   font-size: 12px;
+  padding: 0 2.0rem;
 }
 @media (max-width: 470px) {
   .percentage-bar{
