@@ -1,16 +1,14 @@
 import { useEffect, useState } from 'react';
-import ReactGa from 'react-ga';
+import ReactGa from 'react-ga4';
 import InputParent from './components/JSX/InputParent';
 import './App.css'
 import Courses from './components/JSX/Courses';
 
 
 function App() {
-
-  useEffect(() => {
-    ReactGa.initialize('G-NDY7YYW6WZ');
-    ReactGa.pageview('/Timetable Generator');
-  }, []);
+  
+  ReactGa.initialize('G-NDY7YYW6WZ');
+  
   const [showInputBox, setShowInputBox] = useState(true);
   const [inputValue, setInputValue] = useState('');
 

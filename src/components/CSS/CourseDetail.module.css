@@ -90,8 +90,11 @@
     height: 60vh;
   }
   .course-detail-title{
-    font-size: 1.25rem;
+    font-size: 1rem;
     margin-top: 1rem;
+  }
+  .instructions{
+    font-size: .6rem;
   }
   .cross-icon{
     top: 1.25rem;

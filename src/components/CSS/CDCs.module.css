@@ -180,3 +180,8 @@
     opacity: 1;
   }
 }
+@media (max-width: 400px) {
+  .course-div .course-div-main-content h3{
+    font-size: .75rem;
+  }
+}

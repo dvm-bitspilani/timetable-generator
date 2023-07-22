@@ -103,7 +103,7 @@
         margin: 0;
     }
     .cell-cover:hover .cell-overlay-content{
-        transform: scaleY(0.8) scaleX(0.6);
+        transform: scaleY(0.70) scaleX(0.5);
     }
     .cell-overlay-mobile{
         margin-top: .15rem;
