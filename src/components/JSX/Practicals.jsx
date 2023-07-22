@@ -153,41 +153,69 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
     }
   };
 
-  function getDayAndTime(slot) {
+  function getDayAndTime(slots) {
     const dayStart = 8;
     const slotDuration = 1;
-
+  
+    if (!Array.isArray(slots) || slots.length === 0) {
+      return "Invalid slots";
+    }
+  
     let day, startHour, endHour;
-
-    if (slot < 12) {
+  
+    const firstSlot = slots[0];
+    const lastSlot = slots[slots.length - 1];
+  
+    if (firstSlot < 12) {
       // Monday
       day = "Monday";
-      startHour = dayStart + slot;
-    } else if (slot < 32) {
+      startHour = dayStart + firstSlot;
+    } else if (firstSlot < 32) {
       // Tuesday
       day = "Tuesday";
-      startHour = dayStart + (slot - 20);
-    } else if (slot < 52) {
+      startHour = dayStart + (firstSlot - 20);
+    } else if (firstSlot < 52) {
       // Wednesday
       day = "Wednesday";
-      startHour = dayStart + (slot - 40);
-    } else if (slot < 72) {
+      startHour = dayStart + (firstSlot - 40);
+    } else if (firstSlot < 72) {
       // Thursday
       day = "Thursday";
-      startHour = dayStart + (slot - 60);
-    } else if (slot < 92) {
+      startHour = dayStart + (firstSlot - 60);
+    } else if (firstSlot < 92) {
       // Friday
       day = "Friday";
-      startHour = dayStart + (slot - 80);
-    } else if (slot < 112) {
+      startHour = dayStart + (firstSlot - 80);
+    } else if (firstSlot < 112) {
       // Saturday
       day = "Saturday";
-      startHour = dayStart + (slot - 100);
+      startHour = dayStart + (firstSlot - 100);
     } else {
       return "Invalid slot number";
     }
-
-    endHour = startHour + slotDuration;
+  
+    if (lastSlot < 12) {
+      // Monday
+      endHour = dayStart + lastSlot + slotDuration;
+    } else if (lastSlot < 32) {
+      // Tuesday
+      endHour = dayStart + (lastSlot - 20) + slotDuration;
+    } else if (lastSlot < 52) {
+      // Wednesday
+      endHour = dayStart + (lastSlot - 40) + slotDuration;
+    } else if (lastSlot < 72) {
+      // Thursday
+      endHour = dayStart + (lastSlot - 60) + slotDuration;
+    } else if (lastSlot < 92) {
+      // Friday
+      endHour = dayStart + (lastSlot - 80) + slotDuration;
+    } else if (lastSlot < 112) {
+      // Saturday
+      endHour = dayStart + (lastSlot - 100) + slotDuration;
+    } else {
+      return "Invalid slot number";
+    }
+  
     return {
       day: day,
       startHour: startHour,
@@ -200,7 +228,7 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
       <div className={styles["lectures-container"]}>
         {filteredSections &&
           filteredSections[0].practical.map((item) => {
-            const { day, startHour, endHour } = getDayAndTime(item.slots[0]);
+            const { day, startHour, endHour } = getDayAndTime(item.slots);
             return (
               <div
                 key={item.sec_id}
