@@ -6,7 +6,7 @@
   justify-content: center;
 }
 .dev-container {
-  height: 70%;
+  height: 80%;
   width: 80%;
   text-align: center;
   position: relative;
@@ -60,10 +60,11 @@
   font-size: 1.5rem;
 }
 .team-back{
-    height: 7%;
+    height: 8%;
     width: 100%;
 }
 .team-back-btn{
+    margin-bottom: 1rem;
     margin-left: 2rem;
     width: 10%;
     height: 100%;
