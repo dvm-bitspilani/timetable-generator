@@ -56,15 +56,12 @@
     position: relative;
 }
 .cell-overlay-instructors{
-    margin-top: .15rem;
+    margin-top: .25rem;
     font-weight: 300;
     font-size: .5rem;
 }
 .cell-overlay-mobile{
     display: none;
-    margin-top: .5rem;
-    position: absolute;
-    top: 1.25rem;
 }
 .cell-cover:hover{
     transform: scale(2.2);
@@ -109,6 +106,7 @@
         transform: scaleY(0.8) scaleX(0.6);
     }
     .cell-overlay-mobile{
+        margin-top: .15rem;
         display: flex;
     }
     .cell-section{

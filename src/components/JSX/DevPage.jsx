@@ -4,23 +4,26 @@ import "../CSS/DevPage.css";
 import FrontLogo from "../../assets/HTML5Logo.svg";
 import DesignLogo from "../../assets/FigmaLogo.svg";
 import BackLogo from "../../assets/PythonLogo.svg";
+import FrontBG from "../../assets/FrontBG.svg";
+import BackBG from "../../assets/BackBG.svg";
+import DesignBG from "../../assets/DesignBG.svg";
 import DevTeam from "./DevTeam";
 
 const DevPage = ({ showDevs,showDev }) => {
   const designTeam = [
-    { id: 1, name: "Design", logo: `${CrossIcon}` },
-    { id: 2, name: "Design", logo: `${CrossIcon}` },
-    { id: 3, name: "Design", logo: `${CrossIcon}` },
+    { id: 1, name: "Design", logo: `${CrossIcon}`, bg: `${DesignBG}` },
+    { id: 2, name: "Design", logo: `${CrossIcon}`, bg: `${DesignBG}` },
+    { id: 3, name: "Design", logo: `${CrossIcon}`, bg: `${DesignBG}` },
   ];
   const frontTeam = [
-    { id: 1, name: "Front", logo: `${CrossIcon}` },
-    { id: 2, name: "Front", logo: `${CrossIcon}` },
-    { id: 3, name: "Front", logo: `${CrossIcon}` },
+    { id: 1, name: "Front", logo: `${CrossIcon}`, bg: `${FrontBG}` },
+    { id: 2, name: "Front", logo: `${CrossIcon}`, bg: `${FrontBG}` },
+    { id: 3, name: "Front", logo: `${CrossIcon}`, bg: `${FrontBG}` },
   ];
   const backTeam = [
-    { id: 1, name: "Back", logo: `${CrossIcon}` },
-    { id: 2, name: "Back", logo: `${CrossIcon}` },
-    { id: 3, name: "Back", logo: `${CrossIcon}` },
+    { id: 1, name: "Back", logo: `${CrossIcon}`, bg: `${BackBG}` },
+    { id: 2, name: "Back", logo: `${CrossIcon}`, bg: `${BackBG}` },
+    { id: 3, name: "Back", logo: `${CrossIcon}`, bg: `${BackBG}` },
   ];
   const [showDevTeam, setShowDevTeam] = useState(false);
   const [currentTeam, setCurrentTeam] = useState("");

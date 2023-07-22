@@ -201,7 +201,7 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
         </div>
         <div className="downloadButton" onClick={handleDownloadScreenshot}><img src={DownloadIcon} alt="" /></div>
       </div>
-      <p className="units-paragraph margin-bottom-05">Scroll for more variations</p>
+      {/* <p className="units-paragraph margin-bottom-05">Scroll for more variations</p> */}
       <p className="units-paragraph">50 is the max number of timetables shown here</p>
       </div>      
     </React.Fragment>)
