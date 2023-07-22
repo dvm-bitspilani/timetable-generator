@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import IconBook from "../../assets/IconBook.svg";
 import IconBookWhite from "../../assets/IconBookWhite.svg";
 import cross from "../../assets/IconCross.svg"
-import styles from  "../CSS/MOreCourses.module.css";
+import styles from  "../CSS/MoreCourses.module.css";
 
 const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
   const [courses, setCourses] = useState([]);

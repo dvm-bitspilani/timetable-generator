@@ -12,10 +12,15 @@ function App() {
   const [showInputBox, setShowInputBox] = useState(true);
   const [inputValue, setInputValue] = useState('');
 
-  const goToInput=()=>{
+  const goToInput = () => {
+    const prevUserID = localStorage.getItem("userID");
     setShowInputBox(true);
+    if (prevUserID) {
+      localStorage.setItem("prevUserID", prevUserID);
+    }
     localStorage.removeItem("userID");
-  }
+  };
+  
 
   return (
     <>
