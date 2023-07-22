@@ -217,6 +217,11 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
           and tutorial section selected" />
           // progress bar not sufficiently completed error
         )}
+        {/* {fetchedTable["error_code"] === 64 && (
+          <Error1Component closeTimetable={closeTimetable} img={noTTError} mobileImg={NoTTErrorMobile} title="No timetable possible because of lecture
+          and tutorial section selected" />
+          // progress bar not sufficiently completed error
+        )} */}
         {fetchedTable["error_code"] === 8 && (
           <Error1Component closeTimetable={closeTimetable} img={compreError} mobileImg={CompreErrorMobile} title="Comprehensive exams are clashing" />
           //compre clash

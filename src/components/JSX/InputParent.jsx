@@ -14,6 +14,12 @@ const InputParent = ({ setShowInputBox, setInputValue, inputValue }) => {
     }
   };
 
+  const showDev = (e) => {
+    if (e.target === e.currentTarget) {
+      setShowDevPage(false)
+    }
+  };
+
   useEffect(() => {
     const storedID = localStorage.getItem("userID");
     if (storedID) {
@@ -25,7 +31,7 @@ const InputParent = ({ setShowInputBox, setInputValue, inputValue }) => {
   return (
     <>
       {showDevPage ? (
-        <DevPage showDevs={showDevs}/>
+        <DevPage showDevs={showDevs} showDev={showDev} />
       ) : (
         <div className="App">
           <h1 className={styles["heading"]}>Timetable Generator</h1>

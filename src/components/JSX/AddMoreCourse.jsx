@@ -29,6 +29,7 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
       const targetDiv = document.getElementById(`more-courses-${course.id}`);
       if (targetDiv) {
         targetDiv.classList.add(styles['course-added']);
+        targetDiv.style.display="none";
       }
     });
   }, []);
@@ -36,37 +37,18 @@ const AddMoreCourse = ({onAddMoreCourseBack,moreCourseNotAdded, moreCourseAdded 
 
 
   const handleBackButtonClick = () => {
-    if (numberOfCourses === "Back") {
-      const courseElements = document.getElementsByClassName(styles['all-courses'] + ' ' + styles['course-added']);
-      const selectedCourses = Array.from(courseElements).map((element) => {
-        return {
-          id: element.id.split('-')[2],
-          course_no: element.querySelector('h3').innerText,
-          course_title: element.querySelector(`.${styles['amc-course-title']}`).innerText,
-          credits: element.querySelector(`.${styles['amc-credits']}`).innerText
-        };
-      });
-      localStorage.setItem("storedMoreCourses", JSON.stringify(selectedCourses));
-      onAddMoreCourseBack();
-      if(courseElements.length === 0 ){
-        moreCourseNotAdded();
-      }
-    } else if(numberOfCourses === "Max Courses"){
-      onAddMoreCourseBack();
-    }else{
-      const courseElements = document.getElementsByClassName(styles['all-courses'] + ' ' + styles['course-added']);
-      const selectedCourses = Array.from(courseElements).map((element) => {
-        return {
-          id: element.id.split('-')[2],
-          course_no: element.querySelector('h3').innerText,
-          course_title: element.querySelector(`.${styles['amc-course-title']}`).innerText,
-          credits: element.querySelector(`.${styles['amc-credits']}`).innerText
-        };
-      });
-      localStorage.setItem("storedMoreCourses", JSON.stringify(selectedCourses));
-      onAddMoreCourseBack();
-      moreCourseAdded();
-    }
+    const courseElements = document.getElementsByClassName(styles['all-courses'] + ' ' + styles['course-added']);
+    const selectedCourses = Array.from(courseElements).map((element) => {
+      return {
+        id: element.id.split('-')[2],
+        course_no: element.querySelector('h3').innerText,
+        course_title: element.querySelector(`.${styles['amc-course-title']}`).innerText,
+        credits: element.querySelector(`.${styles['amc-credits']}`).innerText
+      };
+    });
+    localStorage.setItem("storedMoreCourses", JSON.stringify(selectedCourses));
+    onAddMoreCourseBack();
+    moreCourseAdded(); // Assuming this function shows some kind of success message to the user after adding the courses.
     updateKey();
   };
   const onCoursesClick = (e) =>{

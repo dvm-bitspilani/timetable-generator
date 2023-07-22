@@ -6,7 +6,7 @@ import DesignLogo from "../../assets/FigmaLogo.svg";
 import BackLogo from "../../assets/PythonLogo.svg";
 import DevTeam from "./DevTeam";
 
-const DevPage = ({ showDevs }) => {
+const DevPage = ({ showDevs,showDev }) => {
   const designTeam = [
     { id: 1, name: "Design", logo: `${CrossIcon}` },
     { id: 2, name: "Design", logo: `${CrossIcon}` },
@@ -50,9 +50,10 @@ const DevPage = ({ showDevs }) => {
           showTeam={showTeam}
           currentTeam={currentTeam}
           teamArray={teamData}
+          showDev={showDev}
         />
       ) : (
-        <div className="dev-wrapper">
+        <div className="dev-wrapper" onClick={showDev}>
           <div className="dev-container">
             <h1 className="dev-title">Developers</h1>
             <img

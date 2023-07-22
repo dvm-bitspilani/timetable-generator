@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import CrossIcon from "../../assets/IconCross.svg";
-const DevTeam = ({ showTeam, currentTeam, teamArray }) => {
+const DevTeam = ({ showTeam, currentTeam, teamArray ,showDev  }) => {
   return (
     <>
-      <div className="dev-wrapper">
+      <div className="dev-wrapper" onClick={showDev}>
         <div className="dev-container">
           <h1 className="dev-title">{currentTeam}</h1>
           <img
