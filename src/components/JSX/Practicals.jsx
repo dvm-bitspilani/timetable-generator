@@ -56,7 +56,7 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
   useEffect(() => {
     if (filteredSections && filteredSections[0]["practical"].length === 1) {
       setWant(true);
-      const defaultSelectedLectureId = `L${filteredSections[0]["practical"][0].sec} -${filteredSections[0]["course_title"].replace(/ +/g, "")}-${filteredSections[0]["practical"][0].sec_id}`;
+      const defaultSelectedLectureId = `P${filteredSections[0]["practical"][0].sec} -${filteredSections[0]["course_title"].replace(/ +/g, "")}-${filteredSections[0]["practical"][0].sec_id}`;
 
       let wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
 
