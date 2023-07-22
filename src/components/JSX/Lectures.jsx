@@ -52,6 +52,25 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
     }
   }, [want , courseId]);
 
+
+  useEffect(() => {
+    if (filteredSections && filteredSections[0]["lecture"].length === 1) {
+      setWant(true);
+      const defaultSelectedLectureId = `L${filteredSections[0]["lecture"][0].sec} -${filteredSections[0]["course_title"].replace(/ +/g, "")}-${filteredSections[0]["lecture"][0].sec_id}`;
+
+      let wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
+
+      const isAlreadySelected = wantedSections.some((sectionId) => sectionId === defaultSelectedLectureId);
+
+      if (!isAlreadySelected) {
+        wantedSections.push(defaultSelectedLectureId);
+        localStorage.setItem("wantedSections", JSON.stringify(wantedSections));
+        document.getElementById(defaultSelectedLectureId).classList.add(styles["lecture-card-selected"]);
+      }
+    }
+  }, [want, courseId, filteredSections]);
+
+
   const onLectureClick = (e) => {
     function getTextBetweenHyphens(str) {
       const regex = /-(.*?)-/;
@@ -61,12 +80,14 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
       }
       return "";
     }
-
-
     const targetDiv = e.currentTarget;
     const targetCourse = getTextBetweenHyphens(targetDiv.id);
     const allSections = document.querySelectorAll(`.${styles["lecture-card"]}`);
     const allUnwantedSections = document.querySelectorAll(`.${styles["lecture-card-selected"]}`);
+
+    console.log(targetDiv)
+    console.log(targetDiv.className);
+    console.log(styles["lecture-card"])
 
     if (want === false && !oneSection && allUnwantedSections.length === (allSections.length - 1) && !targetDiv.classList.contains(styles["lecture-card-selected"])) {
       console.log("Error: You cannot mark all lectures as 'do not want'.");
@@ -77,16 +98,14 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
     }
 
 
-
-
     const courseRegex = new RegExp(`^L.+-${targetCourse}(-\\d+)?$`);
     let wantedSections =
       JSON.parse(localStorage.getItem("wantedSections")) || [];
     let unwantedSections =
       JSON.parse(localStorage.getItem("unwantedSections")) || [];
-    if (targetDiv.className === styles["lecture-card"]) {
-      targetDiv.classList.add(styles["lecture-card-selected"]);
-
+      if (targetDiv.className === styles["lecture-card"]) {
+        targetDiv.classList.add(styles["lecture-card-selected"]);
+        console.log("added")
       if (want == true) {
         wantedSections.push(targetDiv.id);
         localStorage.setItem("wantedSections", JSON.stringify(wantedSections));
@@ -196,7 +215,7 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
                 } -${courseId ? courseId.replace(/ +/g, "") : ""}-${
                   Object.values(item)[1] ? Object.values(item)[1] : ""
                 }`}
-                className={styles["lecture-card"]}
+                className={`${styles["lecture-card"]}`}
                 onClick={onLectureClick}
               >
                 <div className={styles["lecture-room"]}>

@@ -15,7 +15,7 @@ const Tutorials = ({ courseId, sectionArray, want , setWant }) => {
   }, [courseId, sectionArray]);
 
   useEffect(() => {
-    if (filteredSections && filteredSections[0]["lecture"].length === 1) {
+    if (filteredSections && filteredSections[0]["tutorial"].length === 1) {
       setOneSection(true);
     } else {
       setOneSection(false);
@@ -51,6 +51,23 @@ const Tutorials = ({ courseId, sectionArray, want , setWant }) => {
       }, 0);
     }
   }, [want,courseId]);
+
+  useEffect(() => {
+    if (filteredSections && filteredSections[0]["tutorial"].length === 1) {
+      setWant(true);
+      const defaultSelectedLectureId = `L${filteredSections[0]["tutorial"][0].sec} -${filteredSections[0]["course_title"].replace(/ +/g, "")}-${filteredSections[0]["tutorial"][0].sec_id}`;
+
+      let wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
+
+      const isAlreadySelected = wantedSections.some((sectionId) => sectionId === defaultSelectedLectureId);
+
+      if (!isAlreadySelected) {
+        wantedSections.push(defaultSelectedLectureId);
+        localStorage.setItem("wantedSections", JSON.stringify(wantedSections));
+        document.getElementById(defaultSelectedLectureId).classList.add(styles["lecture-card-selected"]);
+      }
+    }
+  }, [want, courseId, filteredSections]);
 
   const onLectureClick = (e) => {
     function getTextBetweenHyphens(str) {
