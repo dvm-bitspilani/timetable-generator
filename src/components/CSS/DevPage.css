@@ -1,0 +1,56 @@
+.dev-wrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dev-container {
+  height: 70%;
+  width: 80%;
+  text-align: center;
+  position: relative;
+  border-radius: 10px;
+  border: 3px solid #737780;
+  background: #40414e;
+}
+.dev-cross-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 5%;
+  right: 3%;
+  transform: scale(1.5);
+}
+.dev-title {
+  margin-top: 1.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+}
+.dev-teams-wrapper {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dev-teams {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.team-logo {
+  background-color: #303140;
+  height: 20vh;
+  width: 20vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.dev-teams p {
+  margin-top: 1rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+}

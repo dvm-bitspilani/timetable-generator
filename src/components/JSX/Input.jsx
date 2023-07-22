@@ -4,7 +4,7 @@ import styles from "..//CSS/Input.module.css";
 import dvmlogo from "../../../src/assets/dvm-logo.svg";
 import submitbtn from "../../../src/assets/button-icon.svg";
 
-function Input({ setShowInputBox, setInputValue, inputValue }) {
+function Input({ setShowInputBox, setInputValue, inputValue, showDevs }) {
   const [showError, setShowError] = useState("");
 
   const handleInputChange = (event) => {
@@ -33,8 +33,12 @@ function Input({ setShowInputBox, setInputValue, inputValue }) {
 
   return (
     <div className={styles["input-area"]}>
-      <div className={`${styles["input-id"]} ${showError != "" ? styles["error-animation"] : ""}`}>
-        <div className={styles["logo"]}>
+      <div
+        className={`${styles["input-id"]} ${
+          showError != "" ? styles["error-animation"] : ""
+        }`}
+      >
+        <div className={styles["logo"]} onClick={showDevs}>
           <img src={dvmlogo} alt="" />
         </div>
         <form onSubmit={validateForm}>
