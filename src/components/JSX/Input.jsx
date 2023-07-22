@@ -22,6 +22,7 @@ function Input({ setShowInputBox, setInputValue, inputValue, showDevs }) {
       /^20[12][1237890]([BD][1-5])?[ABD][1-8AB]([PT]S)?[0-9]{4}[PGH]$/;
 
     if (idRegex.test(inputValue) && inputValue.length == 13) {
+      localStorage.setItem("userID", inputValue);
       setShowError("");
       setShowInputBox(false);
       setInputValue(inputValue);

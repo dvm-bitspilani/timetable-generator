@@ -16,7 +16,8 @@ const CourseDetail = ({
   sectionArray
 }) => {
   const [courseArray, setCourseArray] = useState([]);
-  // const [filteredSections, setFilteredSections] = useState(null);
+  const [want, setWant] = useState(true);
+
 
   const filteredSections = sectionArray.filter(
     (item) => item.course_title === courseId
@@ -54,16 +55,19 @@ const CourseDetail = ({
     setLectureSelected(true);
     setPracticalSelected(false);
     setTutorialSelected(false);
+    setWant(true);
   };
   const changeToTut = () => {
     setTutorialSelected(true);
     setLectureSelected(false);
     setPracticalSelected(false);
+    setWant(true);
   };
   const changeToPrac = () => {
     setTutorialSelected(false);
     setLectureSelected(false);
     setPracticalSelected(true);
+    setWant(true);
   };
 
   const getNextCourseId = () => {
@@ -77,6 +81,7 @@ const CourseDetail = ({
     const nextCourseId = getNextCourseId();
     onCourseClickClose();
     onCourseClick(nextCourseId);
+    setWant(true);
   };
   const getPreviousCourseId = () => {
     const currentIndex = courseArray.findIndex(
@@ -91,9 +96,10 @@ const CourseDetail = ({
     const previousCourseId = getPreviousCourseId();
     onCourseClickClose();
     onCourseClick(previousCourseId);
+    setWant(true);
   };
 
-  const [want, setWant] = useState(true);
+
 
   return (
     <div

@@ -4,6 +4,8 @@ import "../CSS/CourseIsSelected.css";
 
 const Tutorials = ({ courseId, sectionArray, want , setWant }) => {
   const [filteredSections, setFilteredSections] = useState(null);
+  const [allUnwanted , setAllUnwanted] = useState(false);
+  const [oneSection , setOneSection] = useState(false);
 
   useEffect(() => {
     const filteredData = sectionArray.filter(
@@ -12,8 +14,13 @@ const Tutorials = ({ courseId, sectionArray, want , setWant }) => {
     setFilteredSections(filteredData);
   }, [courseId, sectionArray]);
 
-
-  const [allUnwanted , setAllUnwanted] = useState(false);
+  useEffect(() => {
+    if (filteredSections && filteredSections[0]["tutorial"].length === 1) {
+      setOneSection(true);
+    } else {
+      setOneSection(false);
+    }
+  }, [filteredSections , courseId]);
 
   useEffect(() => {
     const allSections = document.querySelectorAll(`.${styles["lecture-card"]}`);
@@ -43,7 +50,24 @@ const Tutorials = ({ courseId, sectionArray, want , setWant }) => {
         });
       }, 0);
     }
-  }, [want]);
+  }, [want,courseId]);
+
+  useEffect(() => {
+    if (filteredSections && filteredSections[0]["tutorial"].length === 1) {
+      setWant(true);
+      const defaultSelectedLectureId = `L${filteredSections[0]["tutorial"][0].sec} -${filteredSections[0]["course_title"].replace(/ +/g, "")}-${filteredSections[0]["tutorial"][0].sec_id}`;
+
+      let wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
+
+      const isAlreadySelected = wantedSections.some((sectionId) => sectionId === defaultSelectedLectureId);
+
+      if (!isAlreadySelected) {
+        wantedSections.push(defaultSelectedLectureId);
+        localStorage.setItem("wantedSections", JSON.stringify(wantedSections));
+        document.getElementById(defaultSelectedLectureId).classList.add(styles["lecture-card-selected"]);
+      }
+    }
+  }, [want, courseId, filteredSections]);
 
   const onLectureClick = (e) => {
     function getTextBetweenHyphens(str) {
@@ -60,7 +84,7 @@ const Tutorials = ({ courseId, sectionArray, want , setWant }) => {
     const allSections = document.querySelectorAll(`.${styles["lecture-card"]}`);
     const allUnwantedSections = document.querySelectorAll(`.${styles["lecture-card-selected"]}`);
 
-    if (want === false && allUnwantedSections.length === (allSections.length - 1) && !targetDiv.classList.contains(styles["lecture-card-selected"])) {
+    if (want === false &&!oneSection&& allUnwantedSections.length === (allSections.length - 1) && !targetDiv.classList.contains(styles["lecture-card-selected"])) {
       console.log("Error: You cannot mark all lectures as 'do not want'.");
       setAllUnwanted(true);
       return;
@@ -207,7 +231,7 @@ const Tutorials = ({ courseId, sectionArray, want , setWant }) => {
             );
           })}
       </div>
-      <div className={styles["want-or-not-container"]}>
+      {!oneSection && <div className={styles["want-or-not-container"]}>
         <input type="checkbox" id="switch" />
         <label
           htmlFor="switch"
@@ -222,7 +246,7 @@ const Tutorials = ({ courseId, sectionArray, want , setWant }) => {
         <p>
           {want ? "I want one out of these only" : "I do not want any of these"}
         </p>
-      </div>
+      </div>}
       {allUnwanted && <p className={styles["errormessage"]}>You need to keep atleast one option available for each course!</p>}
     </div>
   );

@@ -16,6 +16,7 @@ function App() {
 
   const goToInput=()=>{
     setShowInputBox(true);
+    localStorage.removeItem("userID");
   }
 
   return (
