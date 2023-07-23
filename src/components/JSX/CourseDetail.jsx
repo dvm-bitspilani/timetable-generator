@@ -98,6 +98,73 @@ const CourseDetail = ({
     onCourseClick(previousCourseId);
     setWant(true);
   };
+  
+
+  useEffect(() => {
+
+    const handleNextCourseArrow = () => {
+      const matchedSection = sectionArray.find(
+        (item) => item.course_title.replace(/\s+/g, " ").trim() === courseId
+      );
+      if(lectureSelected){
+        if(matchedSection["tutorial"].length>=1){
+          changeToTut();
+        }else if(matchedSection["practical"].length>=1){
+          changeToPrac();
+        }else{
+          handleNextCourse()
+        }
+      }
+      if(tutorialSelected){
+        console.log(tutorialSelected)
+        if(matchedSection["practical"].length>=1){
+          changeToPrac();
+        }else{
+          handleNextCourse()
+        }
+      }
+      if(practicalSelected){
+        handleNextCourse()
+      }
+    };
+    const handlePrevCourseArrow = () => {
+      const matchedSection = sectionArray.find(
+        (item) => item.course_title.replace(/\s+/g, " ").trim() === courseId
+      );
+      if(practicalSelected){
+        if(matchedSection["tutorial"].length>=1){
+          changeToTut();
+        }else if(matchedSection["lecture"].length>=1){
+          changeToLec();
+        }else{
+          handlePreviousCourse();
+        }
+      }
+      if(tutorialSelected){
+        console.log(tutorialSelected)
+        if(matchedSection["lecture"].length>=1){
+          changeToLec();
+        }else{
+          handlePreviousCourse();
+        }
+      }
+      if(lectureSelected){
+        handlePreviousCourse();
+      }
+    };
+
+    const handleKeyDown = (event) => {
+      if (event.keyCode === 39) {
+        handleNextCourseArrow();
+      } else if (event.keyCode === 37) {
+        handlePrevCourseArrow();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [courseId , courseArray , lectureSelected , tutorialSelected , practicalSelected]);
 
   // console.log(filteredSections);
   // console.log(filteredSections[0]);

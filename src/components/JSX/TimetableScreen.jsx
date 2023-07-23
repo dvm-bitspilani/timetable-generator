@@ -405,9 +405,32 @@ const TimetableScreen = ({
     });
   };
 
-  // console.log(scrollTop)
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.keyCode === 37) {
+        shiftToPrevTimetable();
+      } else if (event.keyCode === 39) {
+        shiftToNextTimetable();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [currentTimetableIndex]);
 
-  // console.log(compreClash)
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.keyCode === 27) {
+        closeTimetable();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
     <React.Fragment>
       {isLoading ? (

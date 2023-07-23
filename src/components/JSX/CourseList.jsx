@@ -159,7 +159,17 @@ const CourseList = ({
     return hasLecturedCard || hasTutorialCard || hasPracticalCard;
   };
 
-  // console.log(requiredSections)
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.keyCode === 13) {
+        generateTimetable();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
 
   return (
     <>
