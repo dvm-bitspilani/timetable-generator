@@ -35,6 +35,38 @@
 .mobile-error{
   display: none;
 }
+.compre-clash-btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: .75rem;
+}
+.clash-yes-no{
+  width: 60%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.clash-yes, .clash-no{
+  height: 5vh;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 30%;
+  border: 2px solid #F7E188;
+  border-radius: 2px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+.clash-yes:hover{
+  background-color: #F7E188;
+  color: #40414E;
+}
+.clash-no:hover{
+  background-color: #F7E188;
+  color: #40414E;
+}
 @media (max-width: 470px) {
   .crossicon{
     top: 5vw;

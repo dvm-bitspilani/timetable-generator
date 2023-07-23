@@ -117,7 +117,7 @@ const Courses = ({ inputValue,goToInput }) => {
   }
   if (sectionArray.length < 1) {
     return (
-      <Error1Component closeTimetable={goToInput} img={compreError} mobileImg={CompreErrorMobile} title="No courses found for the given ID" />
+      <Error1Component closeTimetable={goToInput} img={compreError} mobileImg={CompreErrorMobile} title="No courses found for the given ID" compreCheck={false} />
     );
   }
   

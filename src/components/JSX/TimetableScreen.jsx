@@ -19,7 +19,7 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
   const [isLoading, setIsLoading] = useState(true);
   const [tableDataSent, setTableDataSent] = useState(null);
   const [currentTimetableIndex, setCurrentTimetableIndex] = useState(0);
-
+  const [compreClash, setCompreClash] = useState(false);
 
   function shiftToNextTimetable() {
     if (currentTimetableIndex === (tableDataSent-1)) {
@@ -115,13 +115,31 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
           }
         };
       });
-    
-      const requestOption = {
-        "number": 50, 
-        "free_day": `${freeDay}`,
-        "courses": courses,
-        "compre_check": true
-      }
+    // if (!compreClash) {
+    //   var requestOption = {
+    //     "number": 50, 
+    //     "free_day": `${freeDay}`,
+    //     "courses": courses,
+    //     "compre_check": true
+    //   } 
+    //   return requestOption;
+    // }
+    // if (compreClash) {
+    //   var requestOption = {
+    //     "number": 50, 
+    //     "free_day": `${freeDay}`,
+    //     "courses": courses,
+    //     "compre_check": 0
+    //   }
+    //   return requestOption;
+    // }
+    const requestOption = {
+          "number": 50, 
+          "free_day": `${freeDay}`,
+          "courses": courses,
+          "compre_check": true
+    }
+      
       const requestOptionsFinal = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -135,7 +153,7 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
           setIsLoading(false);
           
         }, 2000);
-        // console.log(data)
+        console.log(data)
         setFetchedTable(data);
     };
 
@@ -158,10 +176,10 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
     });
   };
 
- 
   // console.log(scrollTop)
   
 
+  // console.log(compreClash)
   return(
     <React.Fragment>
     {isLoading? <LoaderIcon title="Generating Timetables" /> :
@@ -196,24 +214,24 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
     {!isLoading && fetchedTable["error"] && (
       <React.Fragment>
         {fetchedTable["error_code"] === 32 && (
-          <Error1Component closeTimetable={closeTimetable} img={freeDayErrorImg} mobileImg={FreeDayErrorMobile} title="Free day not possible" />
+          <Error1Component closeTimetable={closeTimetable} img={freeDayErrorImg} mobileImg={FreeDayErrorMobile} title="Free day not possible" compreCheck={false} />
           // free day error
         )}
         {fetchedTable["error_code"] === 128 && (
           <Error1Component closeTimetable={closeTimetable} img={noTTError} mobileImg={NoTTErrorMobile} title="No timetable possible because of lecture
-          and tutorial section selected" />
+          and tutorial section selected" compreCheck={false} />
           // progress bar not sufficiently completed error
         )}
         {fetchedTable["error_code"] === 64 && (
-          <Error1Component closeTimetable={closeTimetable} img={noTTError} mobileImg={NoTTErrorMobile} title="Clash Free Time Table is not possible with these cases" />
+          <Error1Component closeTimetable={closeTimetable} img={noTTError} mobileImg={NoTTErrorMobile} title="Clash Free Time Table is not possible with these cases" compreCheck={false} />
           // progress bar not sufficiently completed error
         )}
         {fetchedTable["error_code"] === 8 && (
-          <Error1Component closeTimetable={closeTimetable} img={compreError} mobileImg={CompreErrorMobile} title="Comprehensive exams are clashing" />
+          <Error1Component closeTimetable={closeTimetable} img={compreError} mobileImg={CompreErrorMobile} title="Comprehensive exams are clashing" compreCheck={true} setCompreClash={setCompreClash} compreClash={compreClash}/>
           //compre clash
         )}
         {fetchedTable["error_code"] === 2 && (
-          <Error1Component closeTimetable={closeTimetable} img={compreError} mobileImg={CompreErrorMobile} title="Duplicate Courses Given" />
+          <Error1Component closeTimetable={closeTimetable} img={compreError} mobileImg={CompreErrorMobile} title="Duplicate Courses Given" compreCheck={false} />
           //compre clash
         )}
          {/* {fetchedTable["error_code"] && (
