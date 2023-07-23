@@ -37,7 +37,7 @@ const Error1Component = ({
     // return str;
   }
 
-  console.log(clashingCourses);
+
   return (
     <React.Fragment>
       <div className="error1componentcontainer" onClick={close}>
