@@ -113,7 +113,7 @@
 }
 .crossicon{
   position: absolute;
-  right: 3%;
+  right: 0%;
   top: 20%;
   display: none;
   z-index: 99;
@@ -163,6 +163,8 @@
     display: block;
     opacity: 1;
     filter: brightness(100);
+    right: -2%;
+  top: 0%;
   }
   .course-div{
     margin-right: .75rem;
