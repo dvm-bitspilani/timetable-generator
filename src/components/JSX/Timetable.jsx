@@ -152,7 +152,6 @@ const Timetable = ({
         </div>
 
         {indents}
-        {/* discuss with me what to do with the indents - GeekWolf */}
 
         {shownTimetable.map((object, index) => {
           let lectures = object["lecture"];
@@ -197,7 +196,7 @@ const Timetable = ({
 
           return (
             <React.Fragment key={index}>
-              {lectureSlots.map((slot) => (
+              {lectureSlots.sort().map((slot) => (
                 <div
                   className="table-data"
                   style={{
@@ -221,7 +220,7 @@ const Timetable = ({
                 </div>
               ))}
 
-              {tutorialSlots.map((slot) => (
+              {tutorialSlots.sort().map((slot) => (
                 <div
                   className="table-data"
                   style={{
@@ -245,7 +244,7 @@ const Timetable = ({
                 </div>
               ))}
 
-              {practicalSlots.map((slot) => (
+              {practicalSlots.sort().map((slot) => (
                 <div
                   className="table-data-practical"
                   style={{
