@@ -256,6 +256,7 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
             );
           })}
       </div>
+      {oneSection && <p className={styles["instructionmsg"]}>You can not deselect the only option available!</p>}
       {!oneSection && <div className={styles["want-or-not-container"]}>
         <input type="checkbox" id="switch" />
         <label

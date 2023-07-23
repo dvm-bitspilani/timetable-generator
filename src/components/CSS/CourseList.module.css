@@ -40,6 +40,10 @@
   background-color: #5C5F66;
   margin: 2vh auto ;
 }
+.errorpara{
+  color: #F7E188;
+  margin-bottom: 1.5rem;
+}
 @media (max-width: 470px) {
   .courses-heading{
     font-size: 1.25rem;

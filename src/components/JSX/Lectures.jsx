@@ -215,7 +215,6 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
     return result;
   }
   
-  console.log(filteredSections)
 
   return (
     <div className={styles["lectures"]} id={courseId.replace(/\s+/g, ' ').trim()}>
@@ -257,6 +256,7 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
             );
           })}
       </div>
+      {oneSection && <p className={styles["instructionmsg"]}>You can not deselect the only option available!</p>}
       {!oneSection && <div className={styles["want-or-not-container"]}>
         <input type="checkbox" id="switch" />
         <label

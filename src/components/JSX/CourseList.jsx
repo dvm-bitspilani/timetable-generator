@@ -15,10 +15,6 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2,goToInput ,se
   const [freeDay, setFreeDay] = useState("");
 
   const [timetableGenerated , setTimetableGenerated] = useState(false);
-
-  const generateTimetable =()=>{
-    setTimetableGenerated(true);
-  };
   const closeTimetable =()=>{
     setTimetableGenerated(false);
   };
@@ -47,6 +43,24 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2,goToInput ,se
   
     calculateCourseUnits();
   }, [ storedMoreCourses]);
+
+  const [creditsExceeded , setCreditsExceeded] = useState(false);
+
+  useEffect(()=>{
+    if(courseUnits>25){
+      setCreditsExceeded(true);
+    }else{
+      setCreditsExceeded(false);
+    }
+  },[courseUnits])
+  const generateTimetable =()=>{
+    if(courseUnits<=25){
+    setTimetableGenerated(true);}
+    else{
+      document.getElementsByClassName(styles["errorpara"])[0].innerHTML = "Please remove some courses to generate timetable!"
+    }
+  };
+
   
   const [courseSelected, setCourseSelected] = useState(false);
   const [addMoreCourse, setAddMoreCourse] = useState(false);
@@ -190,6 +204,7 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2,goToInput ,se
           <div className={styles["course-list-footer"]}>
           <FreeDay setFreeDay={setFreeDay} />
           <PercentageBar key={key2} prop={key2} />
+          {creditsExceeded && <p className={styles["errorpara"]}>You can not take more than 25 units worth of courses in a single semester!</p>}
           <GenerateButtons onAddMoreCourse={onAddMoreCourse} generateTimetable={generateTimetable} />
         </div>
         </div>
