@@ -151,6 +151,18 @@ const AddMoreCourse = ({
     setSearchQuery(e.target.value);
   };
 
+  useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (event.keyCode === 27) {
+        onAddMoreCourseBack();
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
   return (
     <div
       className={styles["add-more-courses-container"]}

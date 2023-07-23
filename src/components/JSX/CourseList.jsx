@@ -164,6 +164,9 @@ const CourseList = ({
       if (event.keyCode === 13) {
         generateTimetable();
       }
+      if (event.keyCode === 27) {
+        goToInput();
+      }
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => {
