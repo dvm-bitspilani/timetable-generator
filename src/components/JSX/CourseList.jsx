@@ -161,18 +161,21 @@ const CourseList = ({
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.keyCode === 13) {
+      if ((event.keyCode === 13) && !addMoreCourse) {
         generateTimetable();
       }
-      if (event.keyCode === 27) {
+      if ((event.keyCode === 27) && !timetableGenerated && !addMoreCourse) {
         goToInput();
+      }
+      if ((event.keyCode === 27) && addMoreCourse) {
+        onAddMoreCourseBack();
       }
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [timetableGenerated,addMoreCourse]);
 
   return (
     <>

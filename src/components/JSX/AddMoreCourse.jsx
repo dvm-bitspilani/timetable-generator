@@ -119,7 +119,10 @@ const AddMoreCourse = ({
     return result ? result[0] : null;
   }
 
+  const [key , setKey] = useState(0);
+
   const onCourseChildClick = (e) => {
+    setKey((prev)=>prev+1)
     const targetDiv = e.currentTarget.parentElement;
 
     if (targetDiv.className === styles["all-courses"]) {
@@ -149,15 +152,18 @@ const AddMoreCourse = ({
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.keyCode === 27) {
+      if (event.keyCode === 27 ) {
         onAddMoreCourseBack();
+      }
+      if (event.keyCode === 13) {
+        handleBackButtonClick();
       }
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [numberOfCourses , key]);
 
   return (
     <div

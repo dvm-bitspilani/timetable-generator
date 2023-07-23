@@ -64,7 +64,7 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
   };
 
   const [checkSections, setCheckSections] = useState(false);
-
+// console.log(fetchedArray.cdcs)
   return (
     <div className={styles["courses-container"]}>
       {fetchedArray?.cdcs?.map((item) => (
