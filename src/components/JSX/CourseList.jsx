@@ -20,6 +20,13 @@ const CourseList = ({
   setSectionArray,
 }) => {
   const [freeDay, setFreeDay] = useState("");
+  const [cdcs , setcdcs] = useState(false);
+
+  useEffect(()=>{
+    if(fetchedArray.cdcs.length >=1){
+      setcdcs(true)
+    }
+  },[fetchedArray])
 
   const [timetableGenerated, setTimetableGenerated] = useState(false);
   const closeTimetable = () => {
@@ -177,6 +184,7 @@ const CourseList = ({
     };
   }, [timetableGenerated,addMoreCourse]);
 
+  // console.log(sectionArray)
   return (
     <>
       {timetableGenerated && (
@@ -223,11 +231,12 @@ const CourseList = ({
                   </span>
                   Your CDCs
                 </h2>
-                <CDCs
+               { cdcs && <CDCs
                   onCourseClick={onCourseClick}
                   fetchedArray={fetchedArray}
                   courseIsSelectedGreen={courseIsSelectedGreen}
-                />
+                />}
+                {!cdcs && <p className={styles["errorpara"]}>You have no CDCs. Please add more courses!</p>}
                 {moreCoursesAdded ? (
                   <>
                     <div className={styles["horizontal-line"]}></div>
