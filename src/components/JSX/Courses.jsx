@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Loader from "./Loader";
+import Error1Component from "../ErrorComponents/JSX/Error1Component";
 import CourseList from "./CourseList";
+import compreError from "../../assets/compreError.png";
+import CompreErrorMobile from "../../assets/CompreErrorMobile.png";
+
 
 const Courses = ({ inputValue,goToInput }) => {
   const [fetchedArray, setFetchedArray] = useState(null);
@@ -32,6 +36,7 @@ const Courses = ({ inputValue,goToInput }) => {
         }, 1000);
   
         const cdcsArray = data1.cdcs;
+        // console.log(cdcsArray);
         const storedMoreCourses = JSON.parse(
           localStorage.getItem("storedMoreCourses")
         );
@@ -110,6 +115,13 @@ const Courses = ({ inputValue,goToInput }) => {
       <CourseList goToInput={goToInput} fetchedArray={fetchedArray} sectionArray={sectionArray}  updateKey={updateKey} key2={key2} />
     );
   }
+  if (sectionArray.length < 1) {
+    return (
+      <Error1Component closeTimetable={goToInput} img={compreError} mobileImg={CompreErrorMobile} title="No courses found for the given ID" />
+    );
+  }
+  
+  
 
   return null;
 };

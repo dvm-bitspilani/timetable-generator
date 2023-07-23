@@ -127,7 +127,7 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestOption),
       };    
-      
+      // console.log(requestOptionsFinal);
     
         const response = await fetch("https://timetable.bits-dvm.org/timetable/timetables/",requestOptionsFinal);
         const data = await response.json();
