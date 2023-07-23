@@ -19,8 +19,7 @@ const CourseDetail = ({
   const [courseArray, setCourseArray] = useState([]);
   const [want, setWant] = useState(true);
 
-  console.log(sectionArray);
-  console.log(courseId);
+
   const filteredSections = sectionArray.filter(
     (item) => item.course_title.replace(/\s+/g, " ").trim() === courseId
   );
@@ -127,7 +126,7 @@ const CourseDetail = ({
         }
       }
       if(tutorialSelected){
-        console.log(tutorialSelected)
+
         if(matchedSection["practical"].length>=1){
           changeToPrac();
         }else{
@@ -152,7 +151,7 @@ const CourseDetail = ({
         }
       }
       if(tutorialSelected){
-        console.log(tutorialSelected)
+
         if(matchedSection["lecture"].length>=1){
           changeToLec();
         }else{
@@ -177,8 +176,7 @@ const CourseDetail = ({
     };
   }, [courseId , courseArray , lectureSelected , tutorialSelected , practicalSelected]);
 
-  // console.log(filteredSections);
-  // console.log(filteredSections[0]);
+
 
   return (
     <div

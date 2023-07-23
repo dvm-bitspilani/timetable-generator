@@ -16,7 +16,7 @@ function Input({ setShowInputBox, setInputValue, inputValue, showDevs }) {
   };
 
   const validateForm = (e) => {
-    if(e)e.preventDefault();
+    e.preventDefault();
 
     const idRegex =
       /^20[12][1237890]([ABD][1-8AB])?[ABD][1-8AB]([PT]S)?[0-9]{4}[PGH]$/;
@@ -37,20 +37,20 @@ function Input({ setShowInputBox, setInputValue, inputValue, showDevs }) {
     }
   };
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.keyCode === 13) {
-        validateForm();
-      }
-      if (event.keyCode === 27) {
-        setInputValue("");
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handleKeyDown = (event) => {
+  //     if (event.keyCode === 13) {
+  //       validateForm();
+  //     }
+  //     if (event.keyCode === 27) {
+  //       setInputValue("");
+  //     }
+  //   };
+  //   document.addEventListener("keydown", handleKeyDown);
+  //   return () => {
+  //     document.removeEventListener("keydown", handleKeyDown);
+  //   };
+  // }, []);
 
   return (
     <div className={styles["input-area"]}>

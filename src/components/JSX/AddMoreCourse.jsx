@@ -26,10 +26,7 @@ const AddMoreCourse = ({
         (localStorageItem) => localStorageItem.course_no === course.course_no
       )
   );
-  console.log(localStorageArray);
-  console.log(cdcsArray);
 
-  console.log(fetchedArray);
   const filteredCourses = moreCoursesArray.filter(
     (item) =>
       item.course_no.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -52,7 +49,6 @@ const AddMoreCourse = ({
     });
   }, []);
 
-  // console.log(filteredCourses)
 
   const handleBackButtonClick = () => {
     if (numberOfCourses === "Back") {

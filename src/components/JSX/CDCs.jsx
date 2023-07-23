@@ -24,7 +24,7 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
         return word.replace(word[0], word[0].toUpperCase());
       })
       .join(" ");
-    // console.log(str.toLowerCase())
+
     // return str;
   }
 
@@ -43,7 +43,7 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
       .map((section) => section.slice(0, 3))
       .join(", ");
     let sectionCheckArray = wantedArray.map((item) => item.slice(0, 1));
-    // console.log(sectionCheckArray.join(""))
+
     return formattedArray;
   };
 
@@ -59,7 +59,7 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
     let sectionCheckArray = wantedArray.filter(
       (item, index) => wantedArray.indexOf(item.slice(0, 2)) === index
     );
-    // console.log(sectionCheckArray.join(""))
+
     return formattedArray;
   };
 

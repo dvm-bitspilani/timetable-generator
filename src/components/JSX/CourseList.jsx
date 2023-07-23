@@ -81,7 +81,7 @@ const CourseList = ({
   //   })
   // }, [ selectedCourseId]);
 
-  console.log(sectionArray);
+
 
   const [moreCoursesAdded, setMoreCoursesAdded] = useState(
     initialMoreCoursesAdded

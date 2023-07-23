@@ -222,7 +222,7 @@ const TimetableScreen = ({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestOption),
       };
-      console.log(requestOption);
+
 
       const response = await fetch(
         "https://timetable.bits-dvm.org/timetable/timetables/",
@@ -232,7 +232,7 @@ const TimetableScreen = ({
       setTimeout(() => {
         setIsLoading(false);
       }, 2000);
-      console.log(data);
+
       setFetchedTable(data);
     };
     setTimeout(() => {
