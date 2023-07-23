@@ -24,16 +24,25 @@ const TimetableScreen = ({
   const [tableDataSent, setTableDataSent] = useState(null);
   const [currentTimetableIndex, setCurrentTimetableIndex] = useState(0);
   const [compreClash, setCompreClash] = useState(false);
+  const [key , setKey] = useState(0);
 
   function shiftToNextTimetable() {
-    if (currentTimetableIndex === tableDataSent - 1) {
+    if (tableDataSent === 1) {
+      setKey((prev)=>prev+1)
+      return;
+    }
+    else if (currentTimetableIndex === tableDataSent - 1) {
       setCurrentTimetableIndex(0);
     } else {
       setCurrentTimetableIndex((prevIndex) => prevIndex + 1);
     }
   }
   function shiftToPrevTimetable() {
-    if (currentTimetableIndex === 0) {
+    if (tableDataSent === 1) {
+      setKey((prev)=>prev+1)
+      return;
+    }
+    else if (currentTimetableIndex === 0) {
       setCurrentTimetableIndex(tableDataSent - 1);
     } else {
       setCurrentTimetableIndex((prevIndex) => prevIndex - 1);
@@ -417,7 +426,7 @@ const TimetableScreen = ({
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [currentTimetableIndex]);
+  }, [currentTimetableIndex , key]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
