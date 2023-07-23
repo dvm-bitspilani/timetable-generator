@@ -33,8 +33,8 @@ const Timetable = ({
             prevCell.style.gridRow = `${prevRow}/${parseInt(currentRow) + 1}`;
           }
           if (prevprevCell) {
-            prevprevCell.style.gridRow = `${prevRow}/${
-              parseInt(currentRow) + 2
+            prevprevCell.style.gridRow = `${prevRow - 1}/${
+              parseInt(prevRow) + 2
             }`;
           }
         }
@@ -146,7 +146,6 @@ const Timetable = ({
         </div>
 
         {indents}
-        {/* discuss with me what to do with the indents - GeekWolf */}
 
         {shownTimetable.map((object, index) => {
           let lectures = object["lecture"];
