@@ -108,11 +108,11 @@
     align-items: center;
 }
 .socials{
-    width: 100%;
+    width: 25vh;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 5vh;
+    height: 4vh;
     margin-top: .5rem;
     padding: 0 2rem;
 }
@@ -142,7 +142,7 @@
         width: 100%;
     }
     .team-back-btn{
-        margin-top: 1.5rem;
+        margin-top: 3rem;
         margin-left: 1rem;
         height: 5vh;
         width: 17%;
@@ -159,6 +159,7 @@
         display: none;
     }
     .socials{
+        width: 15vh;
         height: 3vh;
         padding: 0 1.5rem;
     }
