@@ -26,7 +26,12 @@ const DevTeam = ({ showTeam, currentTeam, teamArray, showDev }) => {
                   <div className="team-logo team-member">
                     <img src={item.logo} alt="Team" />
                   </div>
-                  <p id="member-name">{item.name}</p>
+                  <p id="member-name">{item.name}
+                  {!item.desc ? "" : (
+                    <div className="member-desc">{item.desc}</div>
+                  )}
+                  </p>
+                  
                   <div className="socials">
                     {!item.github ? "" : (
                       <a href={item.github} target="/blank">

@@ -6,11 +6,11 @@ import DesignLogo from "../../assets/FigmaLogo.svg";
 import BackLogo from "../../assets/PythonLogo.svg";
 import DevTeam from "./DevTeam";
 import Luv from "../../assets/luv.jpg"
-import Jay from "../../assets/jay.jpg"
-import Bharat from "../../assets/bharat.jpg"
-import Himanshu from "../../assets/hima.jpg"
+import Jay from "../../assets/jay-min.jpg"
+import Bharat from "../../assets/bharat-min.jpg"
+import Himanshu from "../../assets/hima-min.jpg"
 import Sunpreet from "../../assets/sunpreet.jpg"
-import Praneel from "../../assets/praneel.jpg"
+import Praneel from "../../assets/praneel-min.jpg"
 
 const DevPage = ({ showDevs, showDev }) => {
   const designTeam = [
@@ -18,8 +18,8 @@ const DevPage = ({ showDevs, showDev }) => {
     { id: 2, name: "Praneel Maddula", logo: `${Praneel}`, github: "https://github.com/PraWater", linkedin: "https://www.linkedin.com/in/praneel-maddula-409421261/", behance: "https://www.behance.net/praneelmaddula", instagram: "https://instagram.com/praneel710?igshid=YmMyMTA2M2Y=" },
   ];
   const frontTeam = [
-    { id: 1, name: "Bharat Raj Singal", logo: `${Bharat}`, github: "https://github.com/GeekWolf007", linkedin: "https://www.linkedin.com/in/jay-goyal-41395b224/", instagram: "https://www.instagram.com/bharatrajsingal/" },
-    { id: 2, name: "Jay Goyal", logo: `${Jay}`, github: "https://github.com/jay-goyal", linkedin: "https://www.linkedin.com/in/jay-goyal-41395b224/", instagram: "https://www.instagram.com/jay.goyal.03/" },
+    { id: 1, name: "Bharat Raj Singal", logo: `${Bharat}`, github: "https://github.com/GeekWolf007", linkedin: "https://www.linkedin.com/in/bharatrajsingal000", instagram: "https://www.instagram.com/bharatrajsingal/" },
+    { id: 2, name: "Jay Goyal", logo: `${Jay}`, github: "https://github.com/jay-goyal", linkedin: "https://www.linkedin.com/in/jay-goyal-41395b224/", instagram: "https://www.instagram.com/jay.goyal.03/", desc: "(Team Lead)" },
     { id: 3, name: "Luv Gupta", logo: `${Luv}`, github: "https://github.com/LuvGuptaa", linkedin: "https://www.linkedin.com/in/luv-guptaa/", instagram: "https://www.instagram.com/luv_guptaa_/" },
   ];
   const backTeam = [

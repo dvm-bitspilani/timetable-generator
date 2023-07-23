@@ -39,7 +39,6 @@
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   justify-content: space-evenly;
 }
 .team-logo {
@@ -119,6 +118,9 @@
 .socials img{
     height: 3vh;
 }
+.member-desc{
+    font-size: .85rem;
+}
 @media (max-width: 870px) {
     #member-name{
         display: block;
@@ -154,6 +156,8 @@
     }
     #dev-members{
         flex-direction: row;
+        align-items: center;
+
     }
     .dev-teams p{
         display: none;
@@ -166,10 +170,14 @@
     .socials img{
         height: 2vh;
     }
+    .member-desc{
+        font-size: .75rem;
+    }
 }
 @media (max-width: 470px) {
     #dev-members{
         height: 85%;
+        /* align-items: baseline; */
     }
     .dev-container{
         height: 80%;
@@ -199,6 +207,12 @@
     }
     #member-name{
         font-size: .75rem;
+    }
+    .member-desc{
+        font-size: .5rem;
+    }
+    .socials{
+        margin-top: .25rem;
     }
 }
 @media (max-width: 400px) {
