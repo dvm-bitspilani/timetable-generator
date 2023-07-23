@@ -67,6 +67,13 @@
   background-color: #F7E188;
   color: #40414E;
 }
+.clashing-courses{
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.compre-clash p{
+  text-align: center;
+}
 @media (max-width: 470px) {
   .crossicon{
     top: 5vw;
@@ -81,5 +88,11 @@
   .error1componentpara{
     font-size: 16px;
     padding: 0 5%;
+  }
+  .compre-clash{
+    font-size: .85rem;
+  }
+  .clash-yes-no{
+    width: 75%;
   }
 }

@@ -167,8 +167,8 @@
     display: block;
     opacity: 1;
     filter: brightness(100);
-    right: -2%;
-  top: 0%;
+    right: -4%;
+    top: 10%;
   }
   .course-div{
     margin-right: .75rem;

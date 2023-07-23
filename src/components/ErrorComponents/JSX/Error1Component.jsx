@@ -8,7 +8,7 @@ const Error1Component = ({
   mobileImg,
   title,
   compreCheck,
-  setCompreClash,
+  clashingCourses,
   handleRetryWithNoCompreClash
 }) => {
   const close = (e) => {
@@ -16,7 +16,19 @@ const Error1Component = ({
       closeTimetable();
     }
   };
-
+  function titleCase(str) {
+    let fstr = str.replace(/\s+/g, ' ').trim()
+   return fstr.toLowerCase().split(' ').map(function(word) {
+     if (word.toLowerCase() === 'ii' || word.toLowerCase() === 'iii' || word.toLowerCase() === 'iv' || word.toLowerCase() === 'v') {
+       return word.toUpperCase(); 
+     }
+     return word.replace(word[0], word[0].toUpperCase());
+   }).join(' ');
+   // console.log(str.toLowerCase())
+   // return str;
+ }
+  
+console.log(clashingCourses);
   return (
     <React.Fragment>
       <div className="error1componentcontainer" onClick={close}>
@@ -36,6 +48,10 @@ const Error1Component = ({
           <p className="error1componentpara">{title}</p>
           {compreCheck ? (
             <div className="compre-clash">
+              <div className="clashing-courses">
+             <div> There is a Comprehensive Exam Clash in: </div> 
+                {titleCase(clashingCourses[0].join(", "))}
+              </div>
               <p>Would you like to generate timetables regardless?</p>
               <div className="compre-clash-btn">
                 <div className="clash-yes-no">

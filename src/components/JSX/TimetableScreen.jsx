@@ -322,7 +322,7 @@ const TimetableScreen = ({sectionArray , courseUnits , freeDay , closeTimetable}
           // progress bar not sufficiently completed error
         )}
         {fetchedTable["error_code"] === 8 && (
-          <Error1Component closeTimetable={closeTimetable} img={compreError} mobileImg={CompreErrorMobile} title="Comprehensive exams are clashing" compreCheck={true} setCompreClash={setCompreClash} compreClash={compreClash}  handleRetryWithNoCompreClash={handleRetryWithNoCompreClash} />
+          <Error1Component closeTimetable={closeTimetable} img={compreError} mobileImg={CompreErrorMobile} title="Comprehensive exams are clashing" compreCheck={true} clashingCourses={fetchedTable["clashes"]}  handleRetryWithNoCompreClash={handleRetryWithNoCompreClash} />
           //compre clash
         )}
         {fetchedTable["error_code"] === 2 && (
