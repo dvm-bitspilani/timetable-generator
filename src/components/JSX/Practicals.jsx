@@ -127,7 +127,8 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
       }
     } else if (
       targetDiv.className ===
-      `${styles["lecture-card"]} ${styles["lecture-card-selected"]}`
+        `${styles["lecture-card"]} ${styles["lecture-card-selected"]}` &&
+      !oneSection
     ) {
       targetDiv.classList.remove(styles["lecture-card-selected"]);
 
