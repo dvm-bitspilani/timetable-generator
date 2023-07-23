@@ -46,6 +46,7 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  padding-bottom: 1rem;
 }
 .clash-yes, .clash-no{
   height: 5vh;
