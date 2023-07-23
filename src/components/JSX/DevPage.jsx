@@ -8,9 +8,9 @@ import DevTeam from "./DevTeam";
 import Luv from "../../assets/luv.jpg"
 import Jay from "../../assets/jay.jpg"
 import Bharat from "../../assets/bharat.jpg"
+import Himanshu from "../../assets/himanshu.jpg"
 import Sunpreet from "../../assets/sunpreet.jpg"
 import Praneel from "../../assets/praneel.jpg"
-import Himanshu from "../../assets/himanshu.jpg"
 
 const DevPage = ({ showDevs, showDev }) => {
   const designTeam = [
