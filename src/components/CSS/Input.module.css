@@ -39,6 +39,10 @@
   flex-shrink: 0;
   cursor: pointer;
 }
+.logo img{
+  width: 45px;
+  height: 45px;
+}
 .input-area form {
   width: 95%;
   height: 100%;
