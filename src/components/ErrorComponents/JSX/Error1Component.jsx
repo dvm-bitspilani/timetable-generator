@@ -8,7 +8,8 @@ const Error1Component = ({
   mobileImg,
   title,
   compreCheck,
-  setCompreClash
+  setCompreClash,
+  handleRetryWithNoCompreClash
 }) => {
   const close = (e) => {
     if (e.target === e.currentTarget) {
@@ -38,7 +39,7 @@ const Error1Component = ({
               <p>Would you like to generate timetables regardless?</p>
               <div className="compre-clash-btn">
                 <div className="clash-yes-no">
-                  <div className="clash-yes" onClick={setCompreClash(true)}>Yes</div>
+                  <div className="clash-yes" onClick={handleRetryWithNoCompreClash}>Yes</div>
                   <div className="clash-no" onClick={closeTimetable}>No</div>
                 </div>
               </div>
