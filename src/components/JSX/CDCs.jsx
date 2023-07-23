@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import IconBookWhite from "../../assets/IconBookWhite.svg";
 import styles from "../CSS/CDCs.module.css";
 
@@ -15,9 +15,9 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
       }
       return word.replace(word[0], word[0].toUpperCase());
     }).join(' ');
+    // console.log(str.toLowerCase())
+    // return str;
   }
-  
-  
   
   const wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
   const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections")) || [];
@@ -31,6 +31,10 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
     let formattedArray = wantedArray
       .map((section) => section.slice(0, 3))
       .join(", ");
+      let sectionCheckArray = wantedArray.map((item) => (
+        item.slice(0, 1)
+      ))
+      console.log(sectionCheckArray.join(""))
     return formattedArray;
   };
 
@@ -43,8 +47,14 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
     let formattedArray = wantedArray
       .map((section) => section.slice(0, 3))
       .join(", ");
+      let sectionCheckArray = wantedArray.filter((item, index) => (
+        wantedArray.indexOf(item.slice(0,2)) === index
+      ))
+      // console.log(sectionCheckArray.join(""))
     return formattedArray;
   };
+
+  const [checkSections, setCheckSections] = useState(false);
 
   return (
     <div className={styles["courses-container"]}>
@@ -53,7 +63,7 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
           key={item.course_id}
           className={`${styles['course-div']} ${
             courseIsSelectedGreen(item.course_title)
-              ? styles["courseIsSelectedGreen"]
+              ? checkSections ? '': styles["courseIsSelectedGreen"]
               : ''
           }`}
           onClick={() => courseClickUnique(item.course_title)}

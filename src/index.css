@@ -6,9 +6,11 @@
   font-family: "Montserrat Italic";
   src: url(fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf);
 }
-
-:root {
-  --bg--color: #343540
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 *{
   padding: 0;
@@ -17,7 +19,7 @@
   user-select: none;
 }
 body{
-  background-color: var(--bg--color);
+  background-color: #343540;
   background-image: url(assets/background.png);
   font-family: "Montserrat";
   color: white;

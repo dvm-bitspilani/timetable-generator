@@ -10,10 +10,11 @@
 /* .courses-container::-webkit-scrollbar{
   display: none;
 } */
+/* #59B386 */
 
 /* Show scrollbar or not */
 .courseIsSelectedGreen{
-  background-color: #59B386 !important;
+  background-color: #F7E188 !important;
   color: #0C0C0D !important;
   backface-visibility: hidden;
 }
@@ -73,7 +74,7 @@
   justify-content: space-evenly;
 }
 .courseIsSelectedGreen:hover{
-  transform: scaleY(1.5) scaleX(1.2);
+  transform: scaleY(1.3) scaleX(1.15);
   z-index: 10;
 }
 .courseIsSelectedGreen:hover .course-overlay-content{

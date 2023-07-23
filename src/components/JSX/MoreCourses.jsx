@@ -104,7 +104,7 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
               e.stopPropagation(); 
               deleteCourse(item.id); 
              }}  alt="" className={styles["crossicon"]} />
-            <img src={IconBookWhite} alt="book" />
+            <img className="course-book" src={IconBookWhite} alt="book" />
             <h3>{titleCase(item.course_title)}</h3>
           </div>
           <div className={styles["course-div-detail"]}>
