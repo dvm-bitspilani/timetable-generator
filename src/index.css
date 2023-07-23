@@ -30,7 +30,13 @@ select:-webkit-autofill:focus {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  -webkit-font-smoothing: subpixel-antialiased;
+  /* backface-visibility: hidden; */
   user-select: none;
+  /* filter: none; 
+-webkit-filter: blur(0px); 
+-moz-filter: blur(0px); 
+-ms-filter: blur(0px); */
 }
 body{
   background-color: #343540;

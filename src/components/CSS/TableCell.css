@@ -11,6 +11,8 @@
     backface-visibility: hidden;
     transform-style: preserve-3d;
     transition: transform .2s ease-out;
+    backface-visibility: hidden;
+
 }
 .cell-content{
     display: flex;
