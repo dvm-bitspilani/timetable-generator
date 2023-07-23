@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import styles from "../CSS/Lectures.module.css";
 import "../CSS/CourseIsSelected.css";
 
-const Lectures = ({ courseId, sectionArray , want , setWant }) => {
+const Lectures = ({ courseId, sectionArray, want, setWant }) => {
   const [filteredSections, setFilteredSections] = useState(null);
-  const [allUnwanted , setAllUnwanted] = useState(false);
-  const [oneSection , setOneSection] = useState(false);
+  const [allUnwanted, setAllUnwanted] = useState(false);
+  const [oneSection, setOneSection] = useState(false);
 
   useEffect(() => {
     const filteredData = sectionArray.filter(
-      (item) => item.course_title.replace(/\s+/g, ' ').trim() === courseId.replace(/\s+/g, ' ').trim()
+      (item) =>
+        item.course_title.replace(/\s+/g, " ").trim() ===
+        courseId.replace(/\s+/g, " ").trim()
     );
     setFilteredSections(filteredData);
   }, [courseId, sectionArray]);
@@ -20,7 +22,7 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
     } else {
       setOneSection(false);
     }
-  }, [filteredSections , courseId]);
+  }, [filteredSections, courseId]);
 
   useEffect(() => {
     const allSections = document.querySelectorAll(`.${styles["lecture-card"]}`);
@@ -50,39 +52,55 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
         });
       }, 0);
     }
-  }, [want , courseId]);
+  }, [want, courseId]);
 
   useEffect(() => {
-    let wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
+    let wantedSections =
+      JSON.parse(localStorage.getItem("wantedSections")) || [];
     const uniqueWantedSections = [...new Set(wantedSections)];
     if (wantedSections.length !== uniqueWantedSections.length) {
-      localStorage.setItem("wantedSections", JSON.stringify(uniqueWantedSections));
+      localStorage.setItem(
+        "wantedSections",
+        JSON.stringify(uniqueWantedSections)
+      );
     }
 
-    let unwantedSections = JSON.parse(localStorage.getItem("unwantedSections")) || [];
+    let unwantedSections =
+      JSON.parse(localStorage.getItem("unwantedSections")) || [];
     const uniqueUnwantedSections = [...new Set(unwantedSections)];
     if (unwantedSections.length !== uniqueUnwantedSections.length) {
-      localStorage.setItem("unwantedSections", JSON.stringify(uniqueUnwantedSections));
+      localStorage.setItem(
+        "unwantedSections",
+        JSON.stringify(uniqueUnwantedSections)
+      );
     }
   }, []);
 
   useEffect(() => {
     if (filteredSections && filteredSections[0]["lecture"].length === 1) {
       setWant(true);
-      const defaultSelectedLectureId = `L${filteredSections[0]["lecture"][0].sec} -${filteredSections[0]["course_title"].replace(/ +/g, "")}-${filteredSections[0]["lecture"][0].sec_id}`;
+      const defaultSelectedLectureId = `L${
+        filteredSections[0]["lecture"][0].sec
+      } -${filteredSections[0]["course_title"].replace(/ +/g, "")}-${
+        filteredSections[0]["lecture"][0].sec_id
+      }`;
 
-      let wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
+      let wantedSections =
+        JSON.parse(localStorage.getItem("wantedSections")) || [];
 
-      const isAlreadySelected = wantedSections.some((sectionId) => sectionId === defaultSelectedLectureId);
+      const isAlreadySelected = wantedSections.some(
+        (sectionId) => sectionId === defaultSelectedLectureId
+      );
 
       if (!isAlreadySelected) {
         wantedSections.push(defaultSelectedLectureId);
         localStorage.setItem("wantedSections", JSON.stringify(wantedSections));
-        document.getElementById(defaultSelectedLectureId).classList.add(styles["lecture-card-selected"]);
+        document
+          .getElementById(defaultSelectedLectureId)
+          .classList.add(styles["lecture-card-selected"]);
       }
     }
   }, [want, courseId, filteredSections]);
-
 
   const onLectureClick = (e) => {
     function getTextBetweenHyphens(str) {
@@ -96,11 +114,16 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
     const targetDiv = e.currentTarget;
     const targetCourse = getTextBetweenHyphens(targetDiv.id);
     const allSections = document.querySelectorAll(`.${styles["lecture-card"]}`);
-    const allUnwantedSections = document.querySelectorAll(`.${styles["lecture-card-selected"]}`);
+    const allUnwantedSections = document.querySelectorAll(
+      `.${styles["lecture-card-selected"]}`
+    );
 
-
-
-    if (want === false && !oneSection && allUnwantedSections.length === (allSections.length - 1) && !targetDiv.classList.contains(styles["lecture-card-selected"])) {
+    if (
+      want === false &&
+      !oneSection &&
+      allUnwantedSections.length === allSections.length - 1 &&
+      !targetDiv.classList.contains(styles["lecture-card-selected"])
+    ) {
       console.log("Error: You cannot mark all lectures as 'do not want'.");
       setAllUnwanted(true);
       return;
@@ -108,14 +131,13 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
       setAllUnwanted(false);
     }
 
-
     const courseRegex = new RegExp(`^L.+-${targetCourse}(-\\d+)?$`);
     let wantedSections =
       JSON.parse(localStorage.getItem("wantedSections")) || [];
     let unwantedSections =
       JSON.parse(localStorage.getItem("unwantedSections")) || [];
-      if (targetDiv.className === styles["lecture-card"]) {
-        targetDiv.classList.add(styles["lecture-card-selected"]);
+    if (targetDiv.className === styles["lecture-card"]) {
+      targetDiv.classList.add(styles["lecture-card-selected"]);
       if (want == true) {
         wantedSections.push(targetDiv.id);
         localStorage.setItem("wantedSections", JSON.stringify(wantedSections));
@@ -143,7 +165,8 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
       }
     } else if (
       targetDiv.className ===
-      `${styles["lecture-card"]} ${styles["lecture-card-selected"]}` && !oneSection
+        `${styles["lecture-card"]} ${styles["lecture-card-selected"]}` &&
+      !oneSection
     ) {
       targetDiv.classList.remove(styles["lecture-card-selected"]);
 
@@ -172,21 +195,21 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
   function getMultipleDaysAndTimes(slots) {
     const dayStart = 8;
     const slotDuration = 1;
-  
+
     if (!Array.isArray(slots) || slots.length === 0) {
       return "Invalid slots";
     }
-  
+
     const result = [];
-  
+
     for (let i = 0; i < slots.length; i++) {
       const slot = slots[i];
-  
+
       if (slot < 0 || slot >= 112) {
         result.push("Invalid slot number");
       } else {
         let day, startHour, endHour;
-  
+
         if (slot < 12) {
           day = "Monday";
           startHour = dayStart + slot;
@@ -206,18 +229,20 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
           day = "Saturday";
           startHour = dayStart + (slot - 100);
         }
-  
+
         endHour = startHour + slotDuration;
         result.push({ day: day, startHour: startHour, endHour: endHour });
       }
     }
-  
+
     return result;
   }
-  
 
   return (
-    <div className={styles["lectures"]} id={courseId.replace(/\s+/g, ' ').trim()}>
+    <div
+      className={styles["lectures"]}
+      id={courseId.replace(/\s+/g, " ").trim()}
+    >
       <div className={styles["lectures-container"]}>
         {filteredSections &&
           filteredSections[0].lecture.map((item) => {
@@ -234,46 +259,53 @@ const Lectures = ({ courseId, sectionArray , want , setWant }) => {
                 onClick={onLectureClick}
               >
                 <div className={styles["lecture-room"]}>
-                  <h3 className={styles["font-weight-600"]}>
-                    L {item.sec}
-                  </h3>
+                  <h3 className={styles["font-weight-600"]}>L {item.sec}</h3>
                   {item.room !== "NA" && (
-                    <h3 className={styles["font-weight-500"]}>
-                      {item.room}
-                    </h3>
+                    <h3 className={styles["font-weight-500"]}>{item.room}</h3>
                   )}
                 </div>
                 <h2>{item.instructors.join(", ")}</h2>
                 <div>
-                {slotsData.map((slotData, index) => (
-                <h2 key={index} className={styles["text-centerg"]}>
-                  {slotData.day} {slotData.startHour} - {slotData.endHour}
-                </h2>
-              ))}
-              </div>
-
+                  {slotsData.map((slotData, index) => (
+                    <h2 key={index} className={styles["text-centerg"]}>
+                      {slotData.day} {slotData.startHour} - {slotData.endHour}
+                    </h2>
+                  ))}
+                </div>
               </div>
             );
           })}
       </div>
-      {oneSection && <p className={styles["instructionmsg"]}>You can not deselect the only option available!</p>}
-      {!oneSection && <div className={styles["want-or-not-container"]}>
-        <input type="checkbox" id="switch" />
-        <label
-          htmlFor="switch"
-          onClick={() => {
-            if (want == true) {
-              setWant(false);
-            } else {
-              setWant(true);
-            }
-          }}
-        ></label>
-        <p>
-          {want ? "I want one out of these only" : "I do not want any of these"}
+      {oneSection && (
+        <p className={styles["instructionmsg"]}>
+          You can not deselect the only option available!
         </p>
-      </div>}
-      {allUnwanted && <p className={styles["errormessage"]}>You need to keep atleast one option available for each course!</p>}
+      )}
+      {!oneSection && (
+        <div className={styles["want-or-not-container"]}>
+          <input type="checkbox" id="switch" />
+          <label
+            htmlFor="switch"
+            onClick={() => {
+              if (want == true) {
+                setWant(false);
+              } else {
+                setWant(true);
+              }
+            }}
+          ></label>
+          <p>
+            {want
+              ? "I want one out of these only"
+              : "I do not want any of these"}
+          </p>
+        </div>
+      )}
+      {allUnwanted && (
+        <p className={styles["errormessage"]}>
+          You need to keep atleast one option available for each course!
+        </p>
+      )}
     </div>
   );
 };

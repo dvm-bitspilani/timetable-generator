@@ -8,19 +8,30 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
   };
 
   function titleCase(str) {
-     let fstr = str.replace(/\s+/g, ' ').trim()
-    return fstr.toLowerCase().split(' ').map(function(word) {
-      if (word.toLowerCase() === 'ii' || word.toLowerCase() === 'iii' || word.toLowerCase() === 'iv' || word.toLowerCase() === 'v') {
-        return word.toUpperCase(); 
-      }
-      return word.replace(word[0], word[0].toUpperCase());
-    }).join(' ');
+    let fstr = str.replace(/\s+/g, " ").trim();
+    return fstr
+      .toLowerCase()
+      .split(" ")
+      .map(function (word) {
+        if (
+          word.toLowerCase() === "ii" ||
+          word.toLowerCase() === "iii" ||
+          word.toLowerCase() === "iv" ||
+          word.toLowerCase() === "v"
+        ) {
+          return word.toUpperCase();
+        }
+        return word.replace(word[0], word[0].toUpperCase());
+      })
+      .join(" ");
     // console.log(str.toLowerCase())
     // return str;
   }
-  
-  const wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
-  const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections")) || [];
+
+  const wantedSections =
+    JSON.parse(localStorage.getItem("wantedSections")) || [];
+  const unWantedSections =
+    JSON.parse(localStorage.getItem("unwantedSections")) || [];
 
   const getWantedSection = (title) => {
     const formattedTitle = title.replace(/\s/g, "");
@@ -31,10 +42,8 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
     let formattedArray = wantedArray
       .map((section) => section.slice(0, 3))
       .join(", ");
-      let sectionCheckArray = wantedArray.map((item) => (
-        item.slice(0, 1)
-      ))
-      // console.log(sectionCheckArray.join(""))
+    let sectionCheckArray = wantedArray.map((item) => item.slice(0, 1));
+    // console.log(sectionCheckArray.join(""))
     return formattedArray;
   };
 
@@ -47,10 +56,10 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
     let formattedArray = wantedArray
       .map((section) => section.slice(0, 3))
       .join(", ");
-      let sectionCheckArray = wantedArray.filter((item, index) => (
-        wantedArray.indexOf(item.slice(0,2)) === index
-      ))
-      // console.log(sectionCheckArray.join(""))
+    let sectionCheckArray = wantedArray.filter(
+      (item, index) => wantedArray.indexOf(item.slice(0, 2)) === index
+    );
+    // console.log(sectionCheckArray.join(""))
     return formattedArray;
   };
 
@@ -61,10 +70,12 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
       {fetchedArray?.cdcs?.map((item) => (
         <div
           key={item.course_id}
-          className={`${styles['course-div']} ${
+          className={`${styles["course-div"]} ${
             courseIsSelectedGreen(item.course_title)
-              ? checkSections ? '': styles["courseIsSelectedGreen"]
-              : ''
+              ? checkSections
+                ? ""
+                : styles["courseIsSelectedGreen"]
+              : ""
           }`}
           onClick={() => courseClickUnique(item.course_title)}
         >

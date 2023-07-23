@@ -24,8 +24,8 @@ function Input({ setShowInputBox, setInputValue, inputValue, showDevs }) {
     if (idRegex.test(inputValue) && inputValue.length == 13) {
       localStorage.setItem("userID", inputValue);
       const prevUserID = localStorage.getItem("prevUserID");
-      if(prevUserID !== inputValue){
-        localStorage.clear()
+      if (prevUserID !== inputValue) {
+        localStorage.clear();
       }
       localStorage.setItem("userID", inputValue);
       setShowError("");

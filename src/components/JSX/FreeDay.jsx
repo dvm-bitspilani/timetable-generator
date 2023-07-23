@@ -1,8 +1,7 @@
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../CSS/FreeDay.module.css";
 
 const FreeDay = ({ setFreeDay }) => {
-
   const [selectedDay, setSelectedDay] = useState("");
 
   const handleClick = (e) => {
@@ -20,7 +19,7 @@ const FreeDay = ({ setFreeDay }) => {
       setFreeDay("");
     }
   };
-  
+
   useEffect(() => {
     const savedDay = localStorage.getItem("selectedDay");
     if (savedDay) {
@@ -28,7 +27,9 @@ const FreeDay = ({ setFreeDay }) => {
       setFreeDay(savedDay);
       const dayElement = document.getElementById(savedDay);
       if (dayElement) {
-        const days = document.querySelectorAll(`.${styles["free-day-box"]} > div`);
+        const days = document.querySelectorAll(
+          `.${styles["free-day-box"]} > div`
+        );
         days.forEach((element) => {
           element.classList.remove(styles["selected-day"]);
         });
@@ -36,7 +37,6 @@ const FreeDay = ({ setFreeDay }) => {
       }
     }
   }, [setFreeDay]);
-  
 
   useEffect(() => {
     localStorage.setItem("selectedDay", selectedDay);

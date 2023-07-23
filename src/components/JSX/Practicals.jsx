@@ -51,7 +51,7 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
         });
       }, 0);
     }
-  }, [want.courseId]);
+  }, [want, courseId]);
 
   useEffect(() => {
     if (filteredSections && filteredSections[0]["practical"].length === 1) {

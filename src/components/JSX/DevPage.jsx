@@ -6,7 +6,7 @@ import DesignLogo from "../../assets/FigmaLogo.svg";
 import BackLogo from "../../assets/PythonLogo.svg";
 import DevTeam from "./DevTeam";
 
-const DevPage = ({ showDevs,showDev }) => {
+const DevPage = ({ showDevs, showDev }) => {
   const designTeam = [
     { id: 1, name: "Design", logo: `${CrossIcon}` },
     { id: 2, name: "Design", logo: `${CrossIcon}` },

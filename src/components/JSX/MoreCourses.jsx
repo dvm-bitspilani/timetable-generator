@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import IconBook from "../../assets/IconBook.svg";
 import IconBookWhite from "../../assets/IconBookWhite.svg";
-import cross from "../../assets/IconCross.svg"
-import styles from  "../CSS/MoreCourses.module.css";
+import cross from "../../assets/IconCross.svg";
+import styles from "../CSS/MoreCourses.module.css";
 
-const MoreCourses = ({ onCourseClick, courseIsSelectedGreen ,sectionArray , setSectionArray , updateKey}) => {
+const MoreCourses = ({
+  onCourseClick,
+  courseIsSelectedGreen,
+  sectionArray,
+  setSectionArray,
+  updateKey,
+}) => {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
@@ -18,23 +24,33 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen ,sectionArray , setS
   };
 
   function titleCase(str) {
-    return str.toLowerCase().split(' ').map(function(word) {
-      if (word.toLowerCase() === 'ii' || word.toLowerCase() === 'iii' || word.toLowerCase() === 'iv' || word.toLowerCase() === 'v') {
-        return word.toUpperCase(); 
-      }
-      return word.replace(word[0], word[0].toUpperCase());
-    }).join(' ');
+    return str
+      .toLowerCase()
+      .split(" ")
+      .map(function (word) {
+        if (
+          word.toLowerCase() === "ii" ||
+          word.toLowerCase() === "iii" ||
+          word.toLowerCase() === "iv" ||
+          word.toLowerCase() === "v"
+        ) {
+          return word.toUpperCase();
+        }
+        return word.replace(word[0], word[0].toUpperCase());
+      })
+      .join(" ");
   }
-  
 
-  const wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
-  const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections")) || [];
+  const wantedSections =
+    JSON.parse(localStorage.getItem("wantedSections")) || [];
+  const unWantedSections =
+    JSON.parse(localStorage.getItem("unwantedSections")) || [];
 
   const getWantedSection = (title) => {
     if (!title) {
-      return '';
+      return "";
     }
-  
+
     const formattedTitle = title.replace(/\s/g, "");
     const courseRegex = new RegExp(`^..+-${formattedTitle}`);
     let wantedArray = wantedSections.filter((section) =>
@@ -47,9 +63,9 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen ,sectionArray , setS
   };
   const getUnWantedSection = (title) => {
     if (!title) {
-      return '';
+      return "";
     }
-  
+
     const formattedTitle = title.replace(/\s/g, "");
     const courseRegex = new RegExp(`^..+-${formattedTitle}`);
     let unwantedArray = unWantedSections.filter((section) =>
@@ -69,7 +85,7 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen ,sectionArray , setS
     //   (section) => section.course_title.replace(/\s+/g, ' ').trim() !== courseId.replace(/\s+/g, ' ').trim()
     // );
     // setSectionArray(updatedSectionArray);
-    updateKey()
+    updateKey();
   };
 
   return (
@@ -77,10 +93,10 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen ,sectionArray , setS
       {courses.map((item) => (
         <div
           key={item.id}
-          className={`${styles['course-div']} ${
+          className={`${styles["course-div"]} ${
             courseIsSelectedGreen(item.course_title)
               ? styles["courseIsSelectedGreen"]
-              : ''
+              : ""
           }`}
           onClick={() => courseClickUnique(item.course_title)}
         >
@@ -103,11 +119,16 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen ,sectionArray , setS
             </div>
           </div>
           <div className={styles["course-div-main-content"]}>
-            <img src={cross}   onMouseDown={(e) => {
-              e.preventDefault(); 
-              e.stopPropagation(); 
-              deleteCourse(item.id); 
-             }}  alt="" className={styles["crossicon"]} />
+            <img
+              src={cross}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                deleteCourse(item.id);
+              }}
+              alt=""
+              className={styles["crossicon"]}
+            />
             <img className="course-book" src={IconBookWhite} alt="book" />
             <h3>{titleCase(item.course_title)}</h3>
           </div>

@@ -16,7 +16,7 @@ const InputParent = ({ setShowInputBox, setInputValue, inputValue }) => {
 
   const showDev = (e) => {
     if (e.target === e.currentTarget) {
-      setShowDevPage(false)
+      setShowDevPage(false);
     }
   };
 
@@ -45,6 +45,6 @@ const InputParent = ({ setShowInputBox, setInputValue, inputValue }) => {
       )}
     </>
   );
-}
+};
 
 export default InputParent;

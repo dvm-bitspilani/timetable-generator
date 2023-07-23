@@ -12,14 +12,23 @@ const TableCell = ({
   instructors,
 }) => {
   function titleCase(str) {
-    let fstr = str.replace(/\s+/g, ' ').trim()
-   return fstr.toLowerCase().split(' ').map(function(word) {
-     if (word.toLowerCase() === 'ii' || word.toLowerCase() === 'iii' || word.toLowerCase() === 'iv' || word.toLowerCase() === 'v') {
-       return word.toUpperCase(); 
-     }
-     return word.replace(word[0], word[0].toUpperCase());
-   }).join(' ');
- }
+    let fstr = str.replace(/\s+/g, " ").trim();
+    return fstr
+      .toLowerCase()
+      .split(" ")
+      .map(function (word) {
+        if (
+          word.toLowerCase() === "ii" ||
+          word.toLowerCase() === "iii" ||
+          word.toLowerCase() === "iv" ||
+          word.toLowerCase() === "v"
+        ) {
+          return word.toUpperCase();
+        }
+        return word.replace(word[0], word[0].toUpperCase());
+      })
+      .join(" ");
+  }
   return (
     <>
       <div className="cell-cover" style={{ background: `${cellColor}` }}>
@@ -49,9 +58,7 @@ const TableCell = ({
                 <p>{courseRoom}</p>
               </div>
             </div>
-            <div className="cell-overlay-instructors">
-              {instructors}
-            </div>
+            <div className="cell-overlay-instructors">{instructors}</div>
           </div>
         </div>
       </div>
