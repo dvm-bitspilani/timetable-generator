@@ -6,16 +6,26 @@
   font-family: "Montserrat Italic";
   src: url(fonts/Montserrat/Montserrat-Italic-VariableFont_wght.ttf);
 }
-/* input:-webkit-autofill,
+input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-  -webkit-box-shadow: 300px #40414e !important;
-  z-index: 100 !important;
+input:-webkit-autofill:active,
+input:-webkit-autofill::first-line,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none;
+  border-radius: 0;
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #40414e inset !important;
+  transition: background-color 5000s ease-in-out 0s;
+  font-size: 2rem;
+  font-family: "Montserrat" !important;
+  font-weight: 500;
 }
-input:-internal-autofill-selected { 
-  background-color: #40414e !important; 
-  } */
 *{
   padding: 0;
   margin: 0;
