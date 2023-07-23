@@ -11,7 +11,7 @@ import AddMoreCourse from "./AddMoreCourse";
 import TimetableScreen from "./TimetableScreen";
 import backButton from "../../assets/IconBack.png";
 
-const CourseList = ({fetchedArray , sectionArray, updateKey , key2,goToInput }) => {
+const CourseList = ({fetchedArray , sectionArray, updateKey , key2,goToInput ,setSectionArray}) => {
   const [freeDay, setFreeDay] = useState("");
 
   const [timetableGenerated , setTimetableGenerated] = useState(false);
@@ -61,6 +61,7 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2,goToInput }) 
   //   })
   // }, [ selectedCourseId]);
 
+  console.log(sectionArray)
   
   const [moreCoursesAdded, setMoreCoursesAdded] = useState(initialMoreCoursesAdded);
   const onCourseClick = (id) => {
@@ -180,7 +181,7 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2,goToInput }) 
                 </span>
                 More Courses
               </h2>
-              <MoreCourses onCourseClick={onCourseClick} courseIsSelectedGreen={courseIsSelectedGreen} />
+              <MoreCourses onCourseClick={onCourseClick} courseIsSelectedGreen={courseIsSelectedGreen} sectionArray={sectionArray} setSectionArray={setSectionArray} updateKey={updateKey} />
             </>
           ) : (
             ""

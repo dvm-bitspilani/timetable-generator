@@ -18,6 +18,9 @@
   color: #0C0C0D !important;
   backface-visibility: hidden;
 }
+.courseIsSelectedLecTut{
+  
+}
 .courseIsSelectedGreen .course-div-main-content img{
   filter: brightness(0%);
 }

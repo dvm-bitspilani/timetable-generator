@@ -187,7 +187,7 @@ const Timetable = ({
             return { gridRow, gridColumn };
           }
 
-          console.log(object);
+          // console.log(object);
 
           return (
             <React.Fragment key={index}>

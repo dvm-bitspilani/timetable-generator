@@ -112,7 +112,7 @@ const Courses = ({ inputValue,goToInput }) => {
 
   if (sectionArray.length > 0) {
     return (
-      <CourseList goToInput={goToInput} fetchedArray={fetchedArray} sectionArray={sectionArray}  updateKey={updateKey} key2={key2} />
+      <CourseList goToInput={goToInput} fetchedArray={fetchedArray} sectionArray={sectionArray}  updateKey={updateKey} key2={key2} setSectionArray={setSectionArray} />
     );
   }
   if (sectionArray.length < 1) {

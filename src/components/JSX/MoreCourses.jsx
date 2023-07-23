@@ -4,7 +4,7 @@ import IconBookWhite from "../../assets/IconBookWhite.svg";
 import cross from "../../assets/IconCross.svg"
 import styles from  "../CSS/MoreCourses.module.css";
 
-const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
+const MoreCourses = ({ onCourseClick, courseIsSelectedGreen ,sectionArray , setSectionArray , updateKey}) => {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
@@ -62,10 +62,14 @@ const MoreCourses = ({ onCourseClick, courseIsSelectedGreen }) => {
   };
   const deleteCourse = (courseId) => {
     const updatedCourses = courses.filter((course) => course.id !== courseId);
-
     setCourses(updatedCourses);
-
     localStorage.setItem("storedMoreCourses", JSON.stringify(updatedCourses));
+
+    // const updatedSectionArray = sectionArray.filter(
+    //   (section) => section.course_title.replace(/\s+/g, ' ').trim() !== courseId.replace(/\s+/g, ' ').trim()
+    // );
+    // setSectionArray(updatedSectionArray);
+    updateKey()
   };
 
   return (
