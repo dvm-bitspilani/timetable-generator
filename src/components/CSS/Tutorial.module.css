@@ -136,6 +136,12 @@ label:active:after {
   color: #f7e188;
   font-size: 1rem;
 }
+.instructionmsg{
+  text-align: center;
+  margin-top: 1rem;
+  color: #f7e188;
+  font-size: 1rem;
+}
 @media (max-width: 470px) {
   .want-or-not-container{
     width: 80%;
