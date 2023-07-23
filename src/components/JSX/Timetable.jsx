@@ -12,38 +12,44 @@ const Timetable = ({
     if (timetableData && timetableData["sent"]) {
       onTableDataSent(timetableData["time_table"].length);
     }
-
+  
     const tableDataList = document.querySelectorAll(".table-data-practical");
     let prevGridArea = null;
     let prevCell = null;
     let prevprevCell = null;
-
+    let prevCellValue = null; 
+  
     tableDataList.forEach((tableData, index) => {
       const gridArea = tableData.style.gridArea;
+      const cellValueElement = tableData.querySelector("div > div > span");
+      const cellValue = cellValueElement ? cellValueElement.innerText.trim() : ""; 
+  
       if (prevGridArea) {
-        const [prevRow, prevCol, prevRowSpan, prevColSpan] =
-          prevGridArea.split("/");
+        const [prevRow, prevCol, prevRowSpan, prevColSpan] = prevGridArea.split("/");
         const [currentRow, currentCol] = gridArea.split("/");
+
         if (
           parseInt(prevRow) + 1 === parseInt(currentRow) &&
-          parseInt(prevCol) === parseInt(currentCol)
+          parseInt(prevCol) === parseInt(currentCol) &&
+          cellValue === prevCellValue
         ) {
           tableData.style.display = "none";
           if (prevCell) {
             prevCell.style.gridRow = `${prevRow}/${parseInt(currentRow) + 1}`;
           }
           if (prevprevCell) {
-            prevprevCell.style.gridRow = `${prevRow}/${
-              parseInt(currentRow) + 2
-            }`;
+            prevprevCell.style.gridRow = `${prevRow - 1}/${parseInt(currentRow) + 1}`;
           }
         }
       }
+  
+      prevCellValue = cellValue;
       prevprevCell = prevCell;
       prevCell = tableData;
       prevGridArea = gridArea;
     });
   }, [timetableData, onTableDataSent]);
+  
 
   if (timetableData && timetableData["time_table"]) {
     var shownTimetable = timetableData["time_table"][currentTimetableIndex];
