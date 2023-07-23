@@ -35,6 +35,10 @@
   align-items: center;
   flex-direction: column;
   cursor: pointer;
+  border: 2px solid transparent ;
+}
+.course-div:hover{
+  border: 2px solid #F7E188 !important;
 }
 .course-div .course-div-main-content h3{
   font-size: 20px;
