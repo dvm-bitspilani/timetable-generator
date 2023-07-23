@@ -1,9 +1,11 @@
+
 .dev-wrapper {
   height: 100vh;
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow-x: hidden;
 }
 .dev-container {
   height: 80%;
@@ -59,6 +61,9 @@
   font-weight: 600;
   font-size: 1.5rem;
 }
+#member-name{
+    font-size: 1.5rem;
+}
 .team-back{
     height: 8%;
     width: 100%;
@@ -81,7 +86,44 @@
     margin-top: .15rem;
     height: 50%;
 }
+.team-member{
+    background-color: transparent;
+    height: 32vh;
+    width: 25vh;
+    background-position: center;
+}
+.team-member img{
+    border: 2px solid #A0A0A0;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.team{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.socials{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 5vh;
+    margin-top: .5rem;
+    padding: 0 2rem;
+}
+.socials img{
+    height: 3vh;
+}
 @media (max-width: 870px) {
+    #member-name{
+        display: block;
+        font-size: 1rem;
+    }
     .team-logo{
         background-color: transparent;
         height: 15vh;
@@ -91,19 +133,43 @@
         height: 12vh;
         width: 12vh;
     }
+    .team-member{
+        height: 18vh;
+        width: 15vh;
+    }
+    .team-member img{
+        height: 100%;
+        width: 100%;
+    }
     .team-back-btn{
+        margin-top: 1.5rem;
+        margin-left: 1rem;
+        height: 5vh;
         width: 17%;
     }
     .dev-teams{
         height: 110%;
-        margin-top: 2rem;
+        margin-top: 4rem;
         flex-direction: column;
+    }
+    #dev-members{
+        flex-direction: row;
     }
     .dev-teams p{
         display: none;
     }
+    .socials{
+        height: 3vh;
+        padding: 0 1.5rem;
+    }
+    .socials img{
+        height: 2vh;
+    }
 }
 @media (max-width: 470px) {
+    #dev-members{
+        height: 85%;
+    }
     .dev-container{
         height: 80%;
     }
@@ -130,6 +196,9 @@
     .team-back-btn img{
         display: none;
     }
+    #member-name{
+        font-size: .75rem;
+    }
 }
 @media (max-width: 400px) {
     .dev-container{
@@ -137,5 +206,8 @@
     }
     .dev-cross-btn{
         top: 4.5%;
+    }
+    #dev-members{
+        height: 80%;
     }
 }

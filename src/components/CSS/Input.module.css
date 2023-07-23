@@ -37,8 +37,27 @@
   background: #303140;
   border-radius: 50%;
   flex-shrink: 0;
+  transform: rotate(0deg);
   cursor: pointer;
+  transition: 1.2s;
+  -webkit-transition: 1.2s;
+  -moz-transition: 1.2s;
+  -ms-transition: 1.2s;
+  -o-transition: 1.2s;
 }
+.logo:hover{
+  transition: 1.2s;
+  -webkit-transition: 1.2s;
+  -moz-transition: 1.2s;
+  -ms-transition: 1.2s;
+  -o-transition: 1.2s;
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg) scale(1.25);
+}
+
 .logo img{
   width: 45px;
   height: 45px;

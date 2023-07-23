@@ -8,7 +8,7 @@ const InputParent = ({ setShowInputBox, setInputValue, inputValue }) => {
   const [showDevPage, setShowDevPage] = useState(false);
   const showDevs = () => {
     if (showDevPage === false) {
-      setShowDevPage(false);
+      setShowDevPage(true);
     } else {
       setShowDevPage(false);
     }

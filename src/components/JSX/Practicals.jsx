@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import styles from "../CSS/Lectures.module.css";
 import "../CSS/CourseIsSelected.css";
 
-const Practicals = ({ courseId, sectionArray, want , setWant }) => {
-
+const Practicals = ({ courseId, sectionArray, want, setWant }) => {
   const [filteredSections, setFilteredSections] = useState(null);
-  const [allUnwanted , setAllUnwanted] = useState(false);
-  const [oneSection , setOneSection] = useState(false);
+  const [allUnwanted, setAllUnwanted] = useState(false);
+  const [oneSection, setOneSection] = useState(false);
 
   useEffect(() => {
     const filteredData = sectionArray.filter(
-      (item) => item.course_title.replace(/\s+/g, ' ').trim() === courseId
+      (item) => item.course_title.replace(/\s+/g, " ").trim() === courseId
     );
     setFilteredSections(filteredData);
   }, [courseId, sectionArray]);
@@ -21,7 +20,7 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
     } else {
       setOneSection(false);
     }
-  }, [filteredSections , courseId]);
+  }, [filteredSections, courseId]);
 
   useEffect(() => {
     const allSections = document.querySelectorAll(`.${styles["lecture-card"]}`);
@@ -56,16 +55,25 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
   useEffect(() => {
     if (filteredSections && filteredSections[0]["practical"].length === 1) {
       setWant(true);
-      const defaultSelectedLectureId = `P${filteredSections[0]["practical"][0].sec} -${filteredSections[0]["course_title"].replace(/ +/g, "")}-${filteredSections[0]["practical"][0].sec_id}`;
+      const defaultSelectedLectureId = `P${
+        filteredSections[0]["practical"][0].sec
+      } -${filteredSections[0]["course_title"].replace(/ +/g, "")}-${
+        filteredSections[0]["practical"][0].sec_id
+      }`;
 
-      let wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
+      let wantedSections =
+        JSON.parse(localStorage.getItem("wantedSections")) || [];
 
-      const isAlreadySelected = wantedSections.some((sectionId) => sectionId === defaultSelectedLectureId);
+      const isAlreadySelected = wantedSections.some(
+        (sectionId) => sectionId === defaultSelectedLectureId
+      );
 
       if (!isAlreadySelected) {
         wantedSections.push(defaultSelectedLectureId);
         localStorage.setItem("wantedSections", JSON.stringify(wantedSections));
-        document.getElementById(defaultSelectedLectureId).classList.add(styles["lecture-card-selected"]);
+        document
+          .getElementById(defaultSelectedLectureId)
+          .classList.add(styles["lecture-card-selected"]);
       }
     }
   }, [want, courseId, filteredSections]);
@@ -82,9 +90,16 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
     const targetDiv = e.currentTarget;
     const targetCourse = getTextBetweenHyphens(targetDiv.id);
     const allSections = document.querySelectorAll(`.${styles["lecture-card"]}`);
-    const allUnwantedSections = document.querySelectorAll(`.${styles["lecture-card-selected"]}`);
+    const allUnwantedSections = document.querySelectorAll(
+      `.${styles["lecture-card-selected"]}`
+    );
 
-    if (want === false &&!oneSection&&  allUnwantedSections.length === (allSections.length - 1) && !targetDiv.classList.contains(styles["lecture-card-selected"])) {
+    if (
+      want === false &&
+      !oneSection &&
+      allUnwantedSections.length === allSections.length - 1 &&
+      !targetDiv.classList.contains(styles["lecture-card-selected"])
+    ) {
       console.log("Error: You cannot mark all lectures as 'do not want'.");
       setAllUnwanted(true);
       return;
@@ -157,16 +172,16 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
   function getDayAndTime(slots) {
     const dayStart = 8;
     const slotDuration = 1;
-  
+
     if (!Array.isArray(slots) || slots.length === 0) {
       return "Invalid slots";
     }
-  
+
     let day, startHour, endHour;
-  
+
     const firstSlot = slots[0];
     const lastSlot = slots[slots.length - 1];
-  
+
     if (firstSlot < 12) {
       // Monday
       day = "Monday";
@@ -194,7 +209,7 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
     } else {
       return "Invalid slot number";
     }
-  
+
     if (lastSlot < 12) {
       // Monday
       endHour = dayStart + lastSlot + slotDuration;
@@ -216,7 +231,7 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
     } else {
       return "Invalid slot number";
     }
-  
+
     return {
       day: day,
       startHour: startHour,
@@ -257,24 +272,36 @@ const Practicals = ({ courseId, sectionArray, want , setWant }) => {
             );
           })}
       </div>
-      {oneSection && <p className={styles["instructionmsg"]}>You can not deselect the only option available!</p>}
-      {!oneSection && <div className={styles["want-or-not-container"]}>
-        <input type="checkbox" id="switch" />
-        <label
-          htmlFor="switch"
-          onClick={() => {
-            if (want == true) {
-              setWant(false);
-            } else {
-              setWant(true);
-            }
-          }}
-        ></label>
-        <p>
-          {want ? "I want one out of these only" : "I do not want any of these"}
+      {oneSection && (
+        <p className={styles["instructionmsg"]}>
+          You can not deselect the only option available!
         </p>
-      </div>}
-      {allUnwanted && <p className={styles["errormessage"]}>You need to keep atleast one option available for each course!</p>}
+      )}
+      {!oneSection && (
+        <div className={styles["want-or-not-container"]}>
+          <input type="checkbox" id="switch" />
+          <label
+            htmlFor="switch"
+            onClick={() => {
+              if (want == true) {
+                setWant(false);
+              } else {
+                setWant(true);
+              }
+            }}
+          ></label>
+          <p>
+            {want
+              ? "I want one out of these only"
+              : "I do not want any of these"}
+          </p>
+        </div>
+      )}
+      {allUnwanted && (
+        <p className={styles["errormessage"]}>
+          You need to keep atleast one option available for each course!
+        </p>
+      )}
     </div>
   );
 };

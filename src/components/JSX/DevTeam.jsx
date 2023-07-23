@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import CrossIcon from "../../assets/IconCross.svg";
 import BackIcon from "../../assets/IconLeftArrow.svg";
+import Github from "../../assets/GithubLogo.svg"
+import Behance from "../../assets/BehanceLogo.svg"
+import Instagram from "../../assets/instagram.png"
+import Linkedin from "../../assets/LinkedinLogo.svg"
+
 const DevTeam = ({ showTeam, currentTeam, teamArray, showDev }) => {
   return (
     <>
@@ -15,13 +20,35 @@ const DevTeam = ({ showTeam, currentTeam, teamArray, showDev }) => {
             onClick={showDev}
           />
           <div className="dev-teams-wrapper">
-            <div className="dev-teams">
+            <div id="dev-members" className="dev-teams">
               {teamArray.map((item) => (
                 <div key={item.id} className="team">
-                  <div className="team-logo">
+                  <div className="team-logo team-member">
                     <img src={item.logo} alt="Team" />
                   </div>
-                  <p>{item.name}</p>
+                  <p id="member-name">{item.name}</p>
+                  <div className="socials">
+                    {!item.github ? "" : (
+                      <a href={item.github} target="/blank">
+                        <img src={Github} alt="Github" />
+                      </a>
+                    )}
+                    {!item.linkedin ? "" : (
+                      <a href={item.linkedin} target="/blank">
+                        <img src={Linkedin} alt="Linkedin" />
+                      </a>
+                    )}
+                    {/* {!item.behance ? "" : (
+                      <a href={item.behance} target="/blank">
+                        <img src={Behance} alt="Behance" />
+                      </a>
+                    )} */}
+                    {!item.instagram ? "" : (
+                      <a href={item.instagram} target="/blank">
+                        <img src={Instagram} alt="Instagram" />
+                      </a>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
