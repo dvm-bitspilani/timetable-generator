@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url(fonts/Montserrat/Montserrat-VariableFont_wght.ttf);
+}
 .add-more-courses-container{
   width: 100vw;
   height: 100vh;
@@ -44,6 +48,9 @@
   color: #FFFFFF;
   font-size: 1.25rem;
   font-weight: 500;
+}
+.amc-searchbox form input{
+  font-family: "Montserrat";
 }
 .coursesSearchInput::placeholder {
   color: #FFFFFF;

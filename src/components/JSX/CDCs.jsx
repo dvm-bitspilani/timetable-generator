@@ -34,7 +34,7 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
       let sectionCheckArray = wantedArray.map((item) => (
         item.slice(0, 1)
       ))
-      console.log(sectionCheckArray.join(""))
+      // console.log(sectionCheckArray.join(""))
     return formattedArray;
   };
 

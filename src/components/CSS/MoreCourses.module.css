@@ -81,6 +81,9 @@
 .courseIsSelectedGreen:hover .course-div-overlay{
   opacity: 1;
 }
+.courseIsSelectedGreen:hover .crossicon{
+  transform: scaleY(1) scaleX(1);
+}
 .courseIsSelectedGreen:hover h3{
   opacity: 0;
 }

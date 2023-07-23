@@ -13,7 +13,8 @@ const CourseDetail = ({
   onCourseClickClose2,
   fetchedArray,
   onCourseClick,
-  sectionArray
+  sectionArray,
+  setRequiredSections
 }) => {
   const [courseArray, setCourseArray] = useState([]);
   const [want, setWant] = useState(true);
@@ -100,8 +101,9 @@ const CourseDetail = ({
     setWant(true);
   };
 
-  console.log(filteredSections);
-  console.log(filteredSections[0]);
+  // console.log(filteredSections);
+  // console.log(filteredSections[0]);
+  
 
   return (
     <div

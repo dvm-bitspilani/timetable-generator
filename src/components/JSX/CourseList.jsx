@@ -23,6 +23,8 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2,goToInput }) 
     setTimetableGenerated(false);
   };
 
+  // const [requiredSections, setRequiredSections] = useState("");
+
   const storedMoreCourses = localStorage.getItem("storedMoreCourses");
   const storedMoreCoursesArray = JSON.parse(
     localStorage.getItem("storedMoreCourses")
@@ -128,6 +130,7 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2,goToInput }) 
     return hasLecturedCard || hasTutorialCard || hasPracticalCard;
   };
   
+  // console.log(requiredSections)
 
   return (
 
@@ -142,6 +145,7 @@ const CourseList = ({fetchedArray , sectionArray, updateKey , key2,goToInput }) 
           courseId={selectedCourseId}
           fetchedArray={fetchedArray}
           sectionArray={sectionArray}
+          // setRequiredSections={setRequiredSections}
         />
       ) : addMoreCourse ? (
         <AddMoreCourse
