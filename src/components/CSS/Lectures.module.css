@@ -168,5 +168,17 @@ label:active:after {
     font-size: .75rem;
   }
 }
-
+@media (max-width: 400px) {
+  .lecture-room h3{
+    font-size: .65rem;
+    padding: 0.5rem .5rem;
+  }
+  .lecture-card h2{
+    font-size: .5rem;
+    padding: 0 .5rem .25rem .25rem;
+  }
+  .errormessage{
+    font-size: .65rem;
+  }
+}
 

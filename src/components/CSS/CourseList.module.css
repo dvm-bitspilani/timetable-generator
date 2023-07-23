@@ -43,6 +43,7 @@
 .errorpara{
   color: #F7E188;
   margin-bottom: 1.5rem;
+  text-align: center;
 }
 @media (max-width: 470px) {
   .courses-heading{
@@ -53,5 +54,8 @@
   }
   #more-courses-heading{
     margin-top: 2vh;
+  }
+  .errorpara{
+    font-size: .75rem;
   }
 }
