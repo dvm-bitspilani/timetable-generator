@@ -31,7 +31,6 @@ select:-webkit-autofill:focus {
   margin: 0;
   box-sizing: border-box;
   -webkit-font-smoothing: subpixel-antialiased;
-  /* backface-visibility: hidden; */
   user-select: none;
   /* filter: none; 
 -webkit-filter: blur(0px); 
