@@ -16,8 +16,9 @@
 .hidden-table{
     /* height: 100vh; */
     position: absolute;
-    left: -100000px;
-    display: none;
+    left: 0vw;
+    top: -10000vh;
+    /* display: none; */
     width: 100%;
     border-radius: 7.626px;
     border: 1.144px solid #C9C9C9;
