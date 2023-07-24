@@ -224,8 +224,6 @@ const TimetableScreen = ({
         return acc;
       }, []);
       
-      console.log(coursesWithDuplicates);
-      console.log(courses)      
 
       // if (!compreClash) {
       //   var requestOption = {
@@ -258,7 +256,6 @@ const TimetableScreen = ({
         body: JSON.stringify(requestOption),
       };
 
-      console.log(requestOption)
       const response = await fetch(
         "https://timetable.bits-dvm.org/timetable/timetables/",
         requestOptionsFinal

@@ -20,9 +20,6 @@ const AddMoreCourse = ({
   const localStorageArray =
     JSON.parse(localStorage.getItem("storedMoreCourses")) || [];
   const deletedCDCs = JSON.parse(localStorage.getItem("deletedCDCs")) || [];
-  console.log(deletedCDCs[0])
-  console.log(allCoursesArray)
-  console.log(allCoursesArray[0].course_title)
   const moreCoursesArray = allCoursesArray.filter((course) => {
     const isCDCPresent = cdcsArray.some((cdc) => cdc.course_no === course.course_no);
     const isLocalStorageItemPresent = localStorageArray.some(
@@ -34,7 +31,7 @@ const AddMoreCourse = ({
     if (isCDCPresent && !isLocalStorageItemPresent) {
       if (isCDCDeleted) {
         matchedCDC = cdcsArray.find((cdc) => cdc.course_title === course.course_title);
-        console.log(matchedCDC);
+
       }
       return true; 
     }

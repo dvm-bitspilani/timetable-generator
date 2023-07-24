@@ -65,7 +65,6 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
   };
 
   const [checkSections, setCheckSections] = useState(false);
-  // console.log(fetchedArray.cdcs)
   const deleteCourse = (e) => {
     const targetDiv = e.currentTarget.parentElement.parentElement;
     targetDiv.style.display = "none";
@@ -73,7 +72,6 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
     const headingElement = targetDiv.querySelector('h3');
     if (headingElement) {
       const heading = headingElement.innerHTML.toUpperCase();
-      console.log(heading);
       const deletedCDCs = JSON.parse(localStorage.getItem('deletedCDCs')) || [];
       if (!deletedCDCs.includes(heading)) {
         deletedCDCs.push(heading);
