@@ -77,30 +77,37 @@ const Lectures = ({ courseId, sectionArray, want, setWant }) => {
   }, []);
 
   useEffect(() => {
-    if (filteredSections && filteredSections[0]["lecture"].length === 1) {
-      setWant(true);
-      const defaultSelectedLectureId = `L${
-        filteredSections[0]["lecture"][0].sec
-      } -${filteredSections[0]["course_title"].replace(/ +/g, "")}-${
-        filteredSections[0]["lecture"][0].sec_id
-      }`;
-
-      let wantedSections =
-        JSON.parse(localStorage.getItem("wantedSections")) || [];
-
-      const isAlreadySelected = wantedSections.some(
-        (sectionId) => sectionId === defaultSelectedLectureId
-      );
-
-      if (!isAlreadySelected) {
-        wantedSections.push(defaultSelectedLectureId);
-        localStorage.setItem("wantedSections", JSON.stringify(wantedSections));
-        document
-          .getElementById(defaultSelectedLectureId)
-          .classList.add(styles["lecture-card-selected"]);
+    const performActions = () => {
+      if (filteredSections && filteredSections[0]["lecture"].length === 1) {
+        setWant(true);
+        const defaultSelectedLectureId = `L${
+          filteredSections[0]["lecture"][0].sec
+        }-${filteredSections[0]["course_title"].replace(/ +/g, "")}-${
+          filteredSections[0]["lecture"][0].sec_id
+        }`;
+  
+        let wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
+  
+        const isAlreadySelected = wantedSections.some(
+          (sectionId) => sectionId === defaultSelectedLectureId
+        );
+  
+        if (!isAlreadySelected) {
+          wantedSections.push(defaultSelectedLectureId);
+          localStorage.setItem("wantedSections", JSON.stringify(wantedSections));
+          document
+            .getElementById(defaultSelectedLectureId)
+            .classList.add(styles["lecture-card-selected"]);
+        }
       }
-    }
+    };
+  
+    performActions();
+  
+    const intervalId = setInterval(performActions, 100);
+    return () => clearInterval(intervalId);
   }, [want, courseId, filteredSections]);
+  
 
   const onLectureClick = (e) => {
     function getTextBetweenHyphens(str) {
