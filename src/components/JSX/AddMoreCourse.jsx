@@ -205,12 +205,16 @@ const AddMoreCourse = ({
         </div>
         <div className={styles["amc-courses-container"]}>
           {areCoursesAvailable ? (
-            filteredCourses.map((item) => (
+            moreCoursesArray.map((item) => (
               <div
                 key={item.course_id}
                 className={styles["all-courses"]}
                 id={`more-courses-${item.course_title.replace(/ +/g, "")}`}
                 onClick={onCoursesClick}
+                style={{
+                  display: item.course_no.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                    item.course_title.toLowerCase().includes(searchQuery.toLowerCase()) ? "" : "none"
+                }}
               >
                 <h3 onClick={onCourseChildClick}>{item.course_no}</h3>
                 <p
