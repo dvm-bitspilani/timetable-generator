@@ -33,12 +33,12 @@
     height: 50px;
     cursor: pointer;
 }
-.free-day-box > div:hover{
+/* .free-day-box > div:hover{
     background: #F7E188;
     border-radius: 5px;
     height: 50px;
     color: #474747;
-}
+} */
 .selected-day{
     background: #F7E188;
     border-radius: 5px;
@@ -55,6 +55,11 @@
         font-size: 1.25rem;
         width: 35px;
     }
+    /* .free-day-box > div:hover{
+        background: #40414E;
+        color: white;
+        height: 40px;
+    } */
 
 }
 @media (max-width: 470px) {
