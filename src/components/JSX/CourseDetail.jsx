@@ -78,9 +78,11 @@ const CourseDetail = ({
   };
   const handleNextCourse = () => {
     const nextCourseId = getNextCourseId();
-    onCourseClickClose();
-    onCourseClick(nextCourseId);
-    setWant(true);
+    if(nextCourseId){
+      onCourseClickClose();
+      onCourseClick(nextCourseId);
+      setWant(true);
+    }
   };
   const getPreviousCourseId = () => {
     const currentIndex = courseArray.findIndex(
@@ -93,9 +95,11 @@ const CourseDetail = ({
 
   const handlePreviousCourse = () => {
     const previousCourseId = getPreviousCourseId();
-    onCourseClickClose();
-    onCourseClick(previousCourseId);
-    setWant(true);
+    if(previousCourseId){
+      onCourseClickClose();
+      onCourseClick(previousCourseId);
+      setWant(true);
+    }
   };
   
   useEffect(() => {
