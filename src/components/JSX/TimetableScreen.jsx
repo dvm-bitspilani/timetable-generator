@@ -12,6 +12,7 @@ import CompreErrorMobile from "../../assets/CompreErrorMobile.png";
 import noTTError from "../../assets/noTTError.png";
 import NoTTErrorMobile from "../../assets/NoTTErrorMobile.png";
 import backButton from "../../assets/IconBack.png";
+import GoogleLoginLogo from "../../assets/GoogleCalendarLogo.png"
 import {
   useGoogleLogin,
   GoogleOAuthProvider,
@@ -570,8 +571,8 @@ const TimetableScreen = ({
                   }}
                 /> */}
 
-                {/* <div className="downloadButton" onClick={login()}>
-                  <img src={DownloadIcon} alt="" />
+                {/* <div className="g-login-btn" onClick={login()}>
+                  <img src={GoogleLoginLogo} alt="" />
                 </div> */}
               </div>
               <p className="units-paragraph">
