@@ -486,7 +486,9 @@ const Timetable = ({
                       courseTitle={object["course_no"]}
                       courseFullName={object["course_title"]}
                       courseSection={`P${object["practical"]["sec"]}`}
-                      instructors={`${object["practical"]["instructors"][0]}`}
+                      instructors={`${object["practical"]["instructors"].join(
+                        ", "
+                      )}`}
                       courseRoom={object["practical"]["room"]}
                       cellColor={"#B84846"}
                     />
