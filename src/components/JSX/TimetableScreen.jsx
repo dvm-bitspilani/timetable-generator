@@ -201,7 +201,6 @@ const TimetableScreen = ({
         if (!existingCourse) {
           acc.push(course);
         } else {
-          // Merge lecture, tutorial, and practical sections if not already present
           if (course.lecture.desired && !existingCourse.lecture.desired) {
             existingCourse.lecture.desired = course.lecture.desired;
             existingCourse.lecture.sec = course.lecture.sec;
@@ -214,7 +213,6 @@ const TimetableScreen = ({
             existingCourse.practical.desired = course.practical.desired;
             existingCourse.practical.sec = course.practical.sec;
           }
-          // Merge misc sections if not already present
           if (course.misc.desired && !existingCourse.misc.desired) {
             existingCourse.misc.desired = course.misc.desired;
             existingCourse.misc.sec = course.misc.sec;
@@ -432,8 +430,21 @@ console.log(requestOption)
     setFetchedTable(data);
     setCompreClash(false);
   };
-
+  const [downloadableTimetableData, setDownloadableTimetableData] = useState(false);
   const handleDownloadScreenshot = () => {
+    const timetableContainer = document.querySelector(".hidden-table");
+
+    html2canvas(timetableContainer).then((canvas) => {
+      const dataURL = canvas.toDataURL();
+      const downloadLink = document.createElement("a");
+      downloadLink.href = dataURL;
+      downloadLink.download = "timetable_screenshot.png";
+
+      downloadLink.click();
+      setDownloadableTimetableData(false)
+    });
+  };
+  const handleDownloadScreenshot2 = () => {
     const timetableContainer = document.querySelector(".table");
 
     html2canvas(timetableContainer).then((canvas) => {
@@ -443,6 +454,7 @@ console.log(requestOption)
       downloadLink.download = "timetable_screenshot.png";
 
       downloadLink.click();
+      setDownloadableTimetableData(false)
     });
   };
 
@@ -471,7 +483,7 @@ console.log(requestOption)
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, []);
-
+  const deviceWidth = window.innerWidth;
   return (
     <React.Fragment>
       {isLoading ? (
@@ -498,6 +510,8 @@ console.log(requestOption)
                 <Timetable
                   timetableData={fetchedTable}
                   tableDataSent={tableDataSent}
+                  downloadableTimetableData={downloadableTimetableData}
+                  setDownloadableTimetableData={setDownloadableTimetableData}
                   onTableDataSent={handleTableDataSent}
                   currentTimetableIndex={currentTimetableIndex}
                 />
@@ -522,12 +536,20 @@ console.log(requestOption)
                     {">"}
                   </span>
                 </div>
+                {deviceWidth >= 1000 &&
                 <div
                   className="downloadButton"
                   onClick={handleDownloadScreenshot}
                 >
                   <img src={DownloadIcon} alt="" />
-                </div>
+                </div>}
+                {deviceWidth < 1000 &&
+                <div
+                  className="downloadButton"
+                  onClick={handleDownloadScreenshot2}
+                >
+                  <img src={DownloadIcon} alt="" />
+                </div>}
               </div>
               <p className="units-paragraph">
                 50 is the max number of timetables shown here

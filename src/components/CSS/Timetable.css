@@ -13,7 +13,34 @@
     border-collapse: collapse;
     font-size: .75rem;
 }
+.hidden-table{
+    /* height: 100vh; */
+    position: absolute;
+    left: -100000px;
+    display: none;
+    width: 100%;
+    border-radius: 7.626px;
+    border: 1.144px solid #C9C9C9;
+    background: #2B2C35;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-collapse: collapse;
+    font-size: .75rem;
+}
+.display-none{
+position: absolute;
+visibility: hidden;
+/* pointer-events: none; */
+}
 .table > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: .55px solid #C9C9C9;
+    font-weight: 600;
+}
+.hidden-table > div {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,4 +90,8 @@
     .laptop-view{
         display: none;
     }
+}
+
+.cell-heading2{
+    padding-bottom: 0.5rem;
 }
