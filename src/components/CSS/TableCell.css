@@ -117,6 +117,12 @@
         transform: scale(.8);
         margin-left: -.25rem;
     }
+    .cell-section img{
+        margin-right: .25rem;
+    }
+    .cell-room img{
+        margin-right: .25rem;
+    }
     .cell-room{
         display: flex;
         transform: scale(.8);

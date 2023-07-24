@@ -489,10 +489,10 @@ const TimetableScreen = ({
   }, []);
   const deviceWidth = window.innerWidth;
 
-  const login = useGoogleLogin({
-    onSuccess: (codeResponse) => console.log(codeResponse),
-    flow: "auth-code",
-  });
+  // const login = useGoogleLogin({
+  //   onSuccess: (codeResponse) => console.log(codeResponse),
+  //   flow: "auth-code",
+  // });
 
   return (
     <React.Fragment>
@@ -501,6 +501,7 @@ const TimetableScreen = ({
       ) : (
         !fetchedTable["error"] && (
           <React.Fragment>
+            <div className="main-timetable-screen">
             <img
               src={backButton}
               className="backButton"
@@ -587,6 +588,7 @@ const TimetableScreen = ({
                   Please share your feedback with us
                 </a>
               </p>
+            </div>
             </div>
           </React.Fragment>
         )
