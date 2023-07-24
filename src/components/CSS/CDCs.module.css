@@ -162,6 +162,14 @@
   }
 }
 @media (max-width: 470px) {
+  .crossicon{
+    transform: scale(.75);
+    display: block;
+    opacity: 1;
+    filter: brightness(100);
+    right: -4%;
+    top: 10%;
+  }
   .course-div{
     margin-right: .75rem;
     margin-bottom: .75rem;
