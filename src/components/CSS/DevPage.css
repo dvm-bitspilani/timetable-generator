@@ -51,6 +51,9 @@
   border-radius: 50%;
   cursor: pointer;
 }
+.team-logo:hover{
+    filter: drop-shadow(0px 0px 4px yellow);
+}
 .team-logo img{
     height: 15vh;
     width: 15vh;
