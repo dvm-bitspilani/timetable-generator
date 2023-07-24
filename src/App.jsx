@@ -20,7 +20,16 @@ function App() {
     }
     localStorage.removeItem("userID");
   };
-  
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      localStorage.removeItem("deletedCDCs");
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
 
   return (
     <>
