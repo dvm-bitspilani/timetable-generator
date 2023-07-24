@@ -71,9 +71,7 @@ const Practicals = ({ courseId, sectionArray, want, setWant }) => {
       if (!isAlreadySelected) {
         wantedSections.push(defaultSelectedLectureId);
         localStorage.setItem("wantedSections", JSON.stringify(wantedSections));
-        document
-          .getElementById(defaultSelectedLectureId)
-          .classList.add(styles["lecture-card-selected"]);
+        if(document.getElementById(defaultSelectedLectureId))document.getElementById(defaultSelectedLectureId).classList.add(styles["lecture-card-selected"]);
       }
     }
   }, [want, courseId, filteredSections]);
