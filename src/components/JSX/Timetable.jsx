@@ -12,47 +12,49 @@ const Timetable = ({
   setDownloadableTimetableData
 }) => {
   const [hoveredCourseTitle, setHoveredCourseTitle] = useState(null);
-  // useEffect(() => {
-  //   if (timetableData && timetableData["sent"]) {
-  //     onTableDataSent(timetableData["time_table"].length);
-  //   }
+  useEffect(() => {
+    if (timetableData && timetableData["sent"]) {
+      onTableDataSent(timetableData["time_table"].length);
+    }
   
-  //   const tableDataList = document.querySelectorAll(".table-data-practical");
-  //   let prevGridArea = null;
-  //   let prevCell = null;
-  //   let prevprevCell = null;
-  //   let prevCellValue = null; 
+    const tableDataList = document.querySelectorAll(".table-data-practical");
+    let prevGridArea = null;
+    let prevCell = null;
+    let prevprevCell = null;
+    let prevCellValue = "";
   
-  //   tableDataList.forEach((tableData, index) => {
-  //     const gridArea = tableData.style.gridArea;
-  //     const cellValueElement = tableData.querySelector("div > div > span");
-  //     const cellValue = cellValueElement ? cellValueElement.innerText.trim() : ""; 
+    tableDataList.forEach((tableData, index) => {
+      const gridArea = tableData.style.gridArea;
+      const cellValueElement = tableData.querySelector("div > div > span");
+      const cellValue = cellValueElement ? cellValueElement.innerText.trim() : "";
   
-  //     if (prevGridArea) {
-  //       const [prevRow, prevCol, prevRowSpan, prevColSpan] = prevGridArea.split("/");
-  //       const [currentRow, currentCol] = gridArea.split("/");
-
-  //       if (
-  //         parseInt(prevRow) + 1 === parseInt(currentRow) &&
-  //         parseInt(prevCol) === parseInt(currentCol) &&
-  //         cellValue === prevCellValue
-  //       ) {
-  //         tableData.style.display = "none";
-  //         if (prevprevCell) {
-  //           prevprevCell.style.gridRow = `${prevRow - 1}/${parseInt(currentRow) + 1}`;
-  //         }else
-  //         if (prevCell) {
-  //           prevCell.style.gridRow = `${prevRow}/${parseInt(currentRow) + 1}`;
-  //         }
-  //       }
-  //     }
+      if (prevGridArea) {
+        const [prevRow, prevCol, prevRowSpan, prevColSpan] = prevGridArea.split("/");
+        const [currentRow, currentCol] = gridArea.split("/");
   
-  //     prevCellValue = cellValue;
-  //     prevprevCell = prevCell;
-  //     prevCell = tableData;
-  //     prevGridArea = gridArea;
-  //   });
-  // }, [timetableData, onTableDataSent]);
+        if (
+          parseInt(prevRow) + 1 === parseInt(currentRow) &&
+          parseInt(prevCol) === parseInt(currentCol) &&
+          cellValue === prevCellValue
+        ) {
+          tableData.style.gridArea = "";
+  
+          tableData.style.display = "none";
+          if (prevprevCell) {
+            prevprevCell.style.gridRow = `${prevRow - 1}/${parseInt(currentRow) + 1}`;
+          } else if (prevCell) {
+            prevCell.style.gridRow = `${prevRow}/${parseInt(currentRow) + 1}`;
+          }
+        }
+      }
+  
+      prevCellValue = cellValue;
+      prevprevCell = prevCell;
+      prevCell = tableData;
+      prevGridArea = gridArea;
+    });
+  }, [timetableData, onTableDataSent]);
+  
   
 
   if (timetableData && timetableData["time_table"]) {
