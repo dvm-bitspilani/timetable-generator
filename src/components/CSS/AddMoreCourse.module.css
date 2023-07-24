@@ -175,6 +175,9 @@
   color: #F7E188;
   padding: 0 0.5rem;
 }
+.course-hidden{
+  display: none;
+}
 @media (max-width: 870px) {
   .amc-courses-container{
     max-height: 65%;

@@ -99,7 +99,7 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
   };
   
 
-  console.log(sectionArray)
+  // console.log(sectionArray)
   
   
   useEffect(() => {

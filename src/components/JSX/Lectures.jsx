@@ -78,20 +78,21 @@ const Lectures = ({ courseId, sectionArray, want, setWant }) => {
 
   useEffect(() => {
     const performActions = () => {
-      if (filteredSections && filteredSections[0]["lecture"].length === 1) {
+      if (filteredSections &&filteredSections[0] && filteredSections[0]["lecture"].length === 1) {
         setWant(true);
         const defaultSelectedLectureId = `L${
           filteredSections[0]["lecture"][0].sec
-        }-${filteredSections[0]["course_title"].replace(/ +/g, "")}-${
+        } -${filteredSections[0]["course_title"].replace(/ +/g, "")}-${
           filteredSections[0]["lecture"][0].sec_id
         }`;
-  
+        
+        // console.log(defaultSelectedLectureId)
         let wantedSections = JSON.parse(localStorage.getItem("wantedSections")) || [];
   
         const isAlreadySelected = wantedSections.some(
           (sectionId) => sectionId === defaultSelectedLectureId
         );
-  
+        if(document.getElementById(defaultSelectedLectureId))document.getElementById(defaultSelectedLectureId).classList.add(styles["lecture-card-selected"]);
         if (!isAlreadySelected) {
           wantedSections.push(defaultSelectedLectureId);
           localStorage.setItem("wantedSections", JSON.stringify(wantedSections));

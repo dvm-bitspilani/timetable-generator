@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState } from "react";
 import "../CSS/Timetable.css";
 import TableCell from "./TableCell";
 
@@ -8,6 +8,7 @@ const Timetable = ({
   onTableDataSent,
   currentTimetableIndex,
 }) => {
+  const [hoveredCourseTitle, setHoveredCourseTitle] = useState(null);
   useEffect(() => {
     if (timetableData && timetableData["sent"]) {
       onTableDataSent(timetableData["time_table"].length);
@@ -67,7 +68,18 @@ const Timetable = ({
       );
     }
   }
+  useEffect(() => {
+    const array = document.getElementsByClassName(hoveredCourseTitle?.replace(" ", ""));
+    Array.from(array).forEach((element) => {
+      element.classList.add("highlited");
+    });
 
+    return () => {
+      Array.from(array).forEach((element) => {
+        element.classList.remove("highlited");
+      });
+    };
+  }, [hoveredCourseTitle]);
   return (
     <>
       <div className="table">
@@ -198,7 +210,7 @@ const Timetable = ({
             <React.Fragment key={index}>
               {lectureSlots.sort().map((slot) => (
                 <div
-                  className="table-data"
+                  className={`table-data ${object.course_title.replace(" ", "")}`}
                   style={{
                     gridColumn: getGridPosition(slot).gridColumn,
                     gridRow: getGridPosition(slot).gridRow,
@@ -206,6 +218,8 @@ const Timetable = ({
                   key={`${getGridPosition(slot).gridColumn}-${
                     getGridPosition(slot).gridRow
                   }`}
+                  onMouseOver={() => setHoveredCourseTitle(object.course_title)}
+                  onMouseOut={() => setHoveredCourseTitle(null)}
                 >
                   <TableCell
                     courseTitle={object["course_no"]}
@@ -222,7 +236,7 @@ const Timetable = ({
 
               {tutorialSlots.sort().map((slot) => (
                 <div
-                  className="table-data"
+                className={`table-data ${object.course_title.replace(" ", "")}`}
                   style={{
                     gridColumn: getGridPosition(slot).gridColumn,
                     gridRow: getGridPosition(slot).gridRow,
@@ -230,6 +244,8 @@ const Timetable = ({
                   key={`${getGridPosition(slot).gridColumn}-${
                     getGridPosition(slot).gridRow
                   }`}
+                  onMouseOver={() => setHoveredCourseTitle(object.course_title)}
+                  onMouseOut={() => setHoveredCourseTitle(null)}
                 >
                   <TableCell
                     courseTitle={object["course_no"]}
@@ -246,7 +262,7 @@ const Timetable = ({
 
               {practicalSlots.sort().map((slot) => (
                 <div
-                  className="table-data-practical"
+                className={`table-data-practical ${object.course_title.replace(" ", "")}`}
                   style={{
                     gridColumn: getGridPosition(slot).gridColumn,
                     gridRow: getGridPosition(slot).gridRow,
@@ -254,6 +270,8 @@ const Timetable = ({
                   key={`${getGridPosition(slot).gridColumn}-${
                     getGridPosition(slot).gridRow
                   }`}
+                  onMouseOver={() => setHoveredCourseTitle(object.course_title)}
+                  onMouseOut={() => setHoveredCourseTitle(null)}
                 >
                   <TableCell
                     courseTitle={object["course_no"]}

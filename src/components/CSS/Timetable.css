@@ -36,6 +36,13 @@
 .mobile-view{
     display: none;
 }
+.highlited .cell-cover{
+    background-color: #f7e188 !important;
+    color: black;
+}
+.highlited img{
+    filter: brightness(0);
+}
 @media (max-width: 1290px) {
     .table{
         width: 70%;
