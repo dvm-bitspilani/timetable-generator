@@ -20,8 +20,12 @@ function Input({ setShowInputBox, setInputValue, inputValue, showDevs }) {
 
     const idRegex =
       /^20[12][1237890]([ABD][1-8AB])?[ABD][1-8AB]([PT]S)?[0-9]{4}[PGH]$/;
+      
+      const idRegex2 =
+      /^20\d{2}H\d{7}[PGH]$/;
 
-    if (idRegex.test(inputValue) && inputValue.length == 13) {
+
+    if ((idRegex.test(inputValue) || idRegex2.test(inputValue) ) && inputValue.length == 13) {
       localStorage.setItem("userID", inputValue);
       const prevUserID = localStorage.getItem("prevUserID");
       if (prevUserID !== inputValue) {

@@ -55,7 +55,7 @@ const TimetableScreen = ({
 
   useEffect(() => {
     const fetchData = async () => {
-      const courses = sectionArray.map((item) => {
+      const coursesWithDuplicates = sectionArray.map((item) => {
         const item_title = item["course_title"].replace(/\s/g, "");
 
         const wantedSections = JSON.parse(
@@ -192,6 +192,41 @@ const TimetableScreen = ({
           },
         };
       });
+
+      const courses = coursesWithDuplicates.reduce((acc, course) => {
+        const existingCourse = acc.find(
+          (c) => c.course_id === course.course_id
+        );
+      
+        if (!existingCourse) {
+          acc.push(course);
+        } else {
+          // Merge lecture, tutorial, and practical sections if not already present
+          if (course.lecture.desired && !existingCourse.lecture.desired) {
+            existingCourse.lecture.desired = course.lecture.desired;
+            existingCourse.lecture.sec = course.lecture.sec;
+          }
+          if (course.tutorial.desired && !existingCourse.tutorial.desired) {
+            existingCourse.tutorial.desired = course.tutorial.desired;
+            existingCourse.tutorial.sec = course.tutorial.sec;
+          }
+          if (course.practical.desired && !existingCourse.practical.desired) {
+            existingCourse.practical.desired = course.practical.desired;
+            existingCourse.practical.sec = course.practical.sec;
+          }
+          // Merge misc sections if not already present
+          if (course.misc.desired && !existingCourse.misc.desired) {
+            existingCourse.misc.desired = course.misc.desired;
+            existingCourse.misc.sec = course.misc.sec;
+          }
+        }
+      
+        return acc;
+      }, []);
+      
+      console.log(coursesWithDuplicates);
+      console.log(courses)      
+
       // if (!compreClash) {
       //   var requestOption = {
       //     "number": 50,
@@ -223,7 +258,7 @@ const TimetableScreen = ({
         body: JSON.stringify(requestOption),
       };
 
-
+      console.log(requestOption)
       const response = await fetch(
         "https://timetable.bits-dvm.org/timetable/timetables/",
         requestOptionsFinal

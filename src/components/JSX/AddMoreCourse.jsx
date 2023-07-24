@@ -19,13 +19,33 @@ const AddMoreCourse = ({
   const cdcsArray = fetchedArray.cdcs;
   const localStorageArray =
     JSON.parse(localStorage.getItem("storedMoreCourses")) || [];
-  const moreCoursesArray = allCoursesArray.filter(
-    (course) =>
-      !cdcsArray.some((cdc) => cdc.course_no === course.course_no) &&
-      !localStorageArray.some(
-        (localStorageItem) => localStorageItem.course_no === course.course_no
-      )
-  );
+  const deletedCDCs = JSON.parse(localStorage.getItem("deletedCDCs")) || [];
+  console.log(deletedCDCs[0])
+  console.log(allCoursesArray)
+  console.log(allCoursesArray[0].course_title)
+  const moreCoursesArray = allCoursesArray.filter((course) => {
+    const isCDCPresent = cdcsArray.some((cdc) => cdc.course_no === course.course_no);
+    const isLocalStorageItemPresent = localStorageArray.some(
+      (localStorageItem) => localStorageItem.course_no === course.course_no
+    );
+    const isCDCDeleted = deletedCDCs.includes(course.course_title);
+    
+    let matchedCDC = null;
+    if (isCDCPresent && !isLocalStorageItemPresent) {
+      if (isCDCDeleted) {
+        matchedCDC = cdcsArray.find((cdc) => cdc.course_title === course.course_title);
+        console.log(matchedCDC);
+      }
+      return true; 
+    }
+  
+    return !isCDCPresent && !isLocalStorageItemPresent && (!matchedCDC || course.course_no !== matchedCDC.course_no);
+  });
+  
+
+  const combinedArray = [...moreCoursesArray, ...cdcsArray.filter(cdc => deletedCDCs.includes(cdc.course_title))];
+
+  
 
   const filteredCourses = moreCoursesArray.filter(
     (item) =>

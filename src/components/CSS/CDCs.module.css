@@ -18,8 +18,13 @@
   color: #0C0C0D !important;
   backface-visibility: hidden;
 }
-.courseIsSelectedLecTut{
-  
+.crossicon{
+  position: absolute;
+  right: 0%;
+  top: 20%;
+  display: none;
+  z-index: 99;
+  fill: white;
 }
 .courseIsSelectedGreen .course-div-main-content img{
   filter: brightness(0%);
@@ -119,7 +124,17 @@
 .course-div-detail p{
   margin-right: 1rem;
 }
-
+@media (min-width: 1000px){
+  
+  .course-div:hover{
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+  .course-div:hover .crossicon{
+    display: block;
+    opacity: 1;
+    filter: brightness(0);
+  }
+}
 
 @media (min-width:700px){
   .course-div:nth-child(3n){

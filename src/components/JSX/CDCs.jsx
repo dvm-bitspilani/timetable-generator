@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import IconBookWhite from "../../assets/IconBookWhite.svg";
 import styles from "../CSS/CDCs.module.css";
+import cross from "../../assets/IconCross.svg";
 
 const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
   const courseClickUnique = (id) => {
@@ -64,7 +65,38 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
   };
 
   const [checkSections, setCheckSections] = useState(false);
-// console.log(fetchedArray.cdcs)
+  // console.log(fetchedArray.cdcs)
+  const deleteCourse = (e) => {
+    const targetDiv = e.currentTarget.parentElement.parentElement;
+    targetDiv.style.display = "none";
+    
+    const headingElement = targetDiv.querySelector('h3');
+    if (headingElement) {
+      const heading = headingElement.innerHTML.toUpperCase();
+      console.log(heading);
+      const deletedCDCs = JSON.parse(localStorage.getItem('deletedCDCs')) || [];
+      if (!deletedCDCs.includes(heading)) {
+        deletedCDCs.push(heading);
+        localStorage.setItem('deletedCDCs', JSON.stringify(deletedCDCs));
+      }
+    }
+  };
+  
+  useEffect(() => {
+    const deletedCDCs = JSON.parse(localStorage.getItem('deletedCDCs')) || [];
+    // Select all the elements with h3 tag
+    const headingElements = document.querySelectorAll('h3');
+
+    // Loop through the headingElements and check if their text matches any deletedCDCs
+    headingElements.forEach((element) => {
+      const heading = element.innerHTML.toUpperCase();
+      if (deletedCDCs.includes(heading)) {
+        const targetDiv = element.parentElement.parentElement;
+        targetDiv.style.display = "none";
+      }
+    });
+  }, []);
+  
   return (
     <div className={styles["courses-container"]}>
       {fetchedArray?.cdcs?.map((item) => (
@@ -98,6 +130,16 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
             </div>
           </div>
           <div className={styles["course-div-main-content"]}>
+            <img
+              src={cross}
+              onMouseDown={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                deleteCourse(e);
+              }}
+              alt=""
+              className={styles["crossicon"]}
+            />
             <img src={IconBookWhite} alt="book" />
             <h3>{titleCase(item.course_title)}</h3>
           </div>
