@@ -12,6 +12,11 @@ import CompreErrorMobile from "../../assets/CompreErrorMobile.png";
 import noTTError from "../../assets/noTTError.png";
 import NoTTErrorMobile from "../../assets/NoTTErrorMobile.png";
 import backButton from "../../assets/IconBack.png";
+import {
+  useGoogleLogin,
+  GoogleOAuthProvider,
+  GoogleLogin,
+} from "@react-oauth/google";
 
 const TimetableScreen = ({
   sectionArray,
@@ -24,14 +29,13 @@ const TimetableScreen = ({
   const [tableDataSent, setTableDataSent] = useState(null);
   const [currentTimetableIndex, setCurrentTimetableIndex] = useState(0);
   const [compreClash, setCompreClash] = useState(false);
-  const [key , setKey] = useState(0);
+  const [key, setKey] = useState(0);
 
   function shiftToNextTimetable() {
     if (tableDataSent === 1) {
-      setKey((prev)=>prev+1)
+      setKey((prev) => prev + 1);
       return;
-    }
-    else if (currentTimetableIndex === tableDataSent - 1) {
+    } else if (currentTimetableIndex === tableDataSent - 1) {
       setCurrentTimetableIndex(0);
     } else {
       setCurrentTimetableIndex((prevIndex) => prevIndex + 1);
@@ -39,10 +43,9 @@ const TimetableScreen = ({
   }
   function shiftToPrevTimetable() {
     if (tableDataSent === 1) {
-      setKey((prev)=>prev+1)
+      setKey((prev) => prev + 1);
       return;
-    }
-    else if (currentTimetableIndex === 0) {
+    } else if (currentTimetableIndex === 0) {
       setCurrentTimetableIndex(tableDataSent - 1);
     } else {
       setCurrentTimetableIndex((prevIndex) => prevIndex - 1);
@@ -197,7 +200,7 @@ const TimetableScreen = ({
         const existingCourse = acc.find(
           (c) => c.course_id === course.course_id
         );
-      
+
         if (!existingCourse) {
           acc.push(course);
         } else {
@@ -218,10 +221,9 @@ const TimetableScreen = ({
             existingCourse.misc.sec = course.misc.sec;
           }
         }
-      
+
         return acc;
       }, []);
-      
 
       // if (!compreClash) {
       //   var requestOption = {
@@ -429,7 +431,8 @@ const TimetableScreen = ({
     setFetchedTable(data);
     setCompreClash(false);
   };
-  const [downloadableTimetableData, setDownloadableTimetableData] = useState(false);
+  const [downloadableTimetableData, setDownloadableTimetableData] =
+    useState(false);
   const handleDownloadScreenshot = () => {
     const timetableContainer = document.querySelector(".hidden-table");
 
@@ -440,7 +443,7 @@ const TimetableScreen = ({
       downloadLink.download = "timetable_screenshot.png";
 
       downloadLink.click();
-      setDownloadableTimetableData(false)
+      setDownloadableTimetableData(false);
     });
   };
   const handleDownloadScreenshot2 = () => {
@@ -453,7 +456,7 @@ const TimetableScreen = ({
       downloadLink.download = "timetable_screenshot.png";
 
       downloadLink.click();
-      setDownloadableTimetableData(false)
+      setDownloadableTimetableData(false);
     });
   };
 
@@ -469,7 +472,7 @@ const TimetableScreen = ({
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [currentTimetableIndex , key]);
+  }, [currentTimetableIndex, key]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -483,6 +486,12 @@ const TimetableScreen = ({
     };
   }, []);
   const deviceWidth = window.innerWidth;
+
+  const login = useGoogleLogin({
+    onSuccess: (codeResponse) => console.log(codeResponse),
+    flow: "auth-code",
+  });
+
   return (
     <React.Fragment>
       {isLoading ? (
@@ -535,20 +544,34 @@ const TimetableScreen = ({
                     {">"}
                   </span>
                 </div>
-                {deviceWidth >= 1000 &&
-                <div
-                  className="downloadButton"
-                  onClick={handleDownloadScreenshot}
-                >
+                {deviceWidth >= 1000 && (
+                  <div
+                    className="downloadButton"
+                    onClick={handleDownloadScreenshot}
+                  >
+                    <img src={DownloadIcon} alt="" />
+                  </div>
+                )}
+                {deviceWidth < 1000 && (
+                  <div
+                    className="downloadButton"
+                    onClick={handleDownloadScreenshot2}
+                  >
+                    <img src={DownloadIcon} alt="" />
+                  </div>
+                )}
+                <GoogleLogin
+                  onSuccess={(credentialResponse) => {
+                    console.log(credentialResponse);
+                  }}
+                  onError={() => {
+                    console.log("Login Failed");
+                  }}
+                />
+
+                {/* <div className="downloadButton" onClick={login()}>
                   <img src={DownloadIcon} alt="" />
-                </div>}
-                {deviceWidth < 1000 &&
-                <div
-                  className="downloadButton"
-                  onClick={handleDownloadScreenshot2}
-                >
-                  <img src={DownloadIcon} alt="" />
-                </div>}
+                </div> */}
               </div>
               <p className="units-paragraph">
                 50 is the max number of timetables shown here
