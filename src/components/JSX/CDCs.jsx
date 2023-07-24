@@ -63,6 +63,13 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
 
     return formattedArray;
   };
+  // useEffect(() => {
+  //   let cdcsContainer = document.querySelector("#cdc-course-container");
+  //   console.log(cdcsContainer);
+  //   cdcsContainer.style.display = 'flex';
+  //   cdcsContainer.style.flexWrap = 'wrap';
+  //   cdcsContainer.style.justifyContent = 'flex-start';
+  // }, [sectionArray.length])
 
   const [checkSections, setCheckSections] = useState(false);
   const deleteCourse = (e) => {
