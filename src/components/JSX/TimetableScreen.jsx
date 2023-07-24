@@ -271,6 +271,7 @@ const TimetableScreen = ({
     }, 0);
   }, []);
 
+  console.log(fetchedTable["time_table"])
   const handleRetryWithNoCompreClash = async () => {
     setIsLoading(true);
     const courses = sectionArray.map((item) => {
@@ -560,14 +561,14 @@ const TimetableScreen = ({
                     <img src={DownloadIcon} alt="" />
                   </div>
                 )}
-                <GoogleLogin
+                {/* <GoogleLogin
                   onSuccess={(credentialResponse) => {
                     console.log(credentialResponse);
                   }}
                   onError={() => {
                     console.log("Login Failed");
                   }}
-                />
+                /> */}
 
                 {/* <div className="downloadButton" onClick={login()}>
                   <img src={DownloadIcon} alt="" />
