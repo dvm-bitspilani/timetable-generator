@@ -110,6 +110,7 @@
     .cell-overlay-mobile{
         margin-top: .15rem;
         display: flex;
+        font-weight: 500;
     }
     .cell-section{
         display: flex;
@@ -123,6 +124,9 @@
     .cell-overlay-content{
         margin-top: .5rem;
         margin-left: -.5rem;
+    }
+    .cell-overlay-title{
+        font-weight: 500;
     }
 }
 @media (max-width: 400px) {
