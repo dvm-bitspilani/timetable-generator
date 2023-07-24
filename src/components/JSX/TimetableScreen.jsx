@@ -249,7 +249,7 @@ const TimetableScreen = ({
         courses: courses,
         compre_check: true,
       };
-
+console.log(requestOption)
       const requestOptionsFinal = {
         method: "POST",
         headers: { "Content-Type": "application/json" },

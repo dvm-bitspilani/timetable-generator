@@ -235,6 +235,8 @@ const CourseList = ({
                   onCourseClick={onCourseClick}
                   fetchedArray={fetchedArray}
                   courseIsSelectedGreen={courseIsSelectedGreen}
+                  sectionArray={sectionArray}
+                  setSectionArray={setSectionArray}
                 />}
                 {!cdcs && <p className={styles["errorpara"]}>You have no CDCs. Please add more courses!</p>}
                 {moreCoursesAdded ? (

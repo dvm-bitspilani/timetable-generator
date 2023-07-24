@@ -3,7 +3,7 @@ import IconBookWhite from "../../assets/IconBookWhite.svg";
 import styles from "../CSS/CDCs.module.css";
 import cross from "../../assets/IconCross.svg";
 
-const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
+const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArray,setSectionArray }) => {
   const courseClickUnique = (id) => {
     onCourseClick(id);
   };
@@ -66,33 +66,61 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen }) => {
 
   const [checkSections, setCheckSections] = useState(false);
   const deleteCourse = (e) => {
+    // Find the parent div of the course to be deleted
     const targetDiv = e.currentTarget.parentElement.parentElement;
     targetDiv.style.display = "none";
-    
+  
+    // Find the heading of the deleted course
     const headingElement = targetDiv.querySelector('h3');
     if (headingElement) {
-      const heading = headingElement.innerHTML.toUpperCase();
+      const heading = headingElement.innerHTML.trim().toUpperCase();
       const deletedCDCs = JSON.parse(localStorage.getItem('deletedCDCs')) || [];
+  
       if (!deletedCDCs.includes(heading)) {
         deletedCDCs.push(heading);
         localStorage.setItem('deletedCDCs', JSON.stringify(deletedCDCs));
       }
+  
+      // Remove the deleted course from the sectionArray
+      if (Array.isArray(sectionArray)) {
+        let sectionArrayNew = sectionArray.filter((course) => {
+          return course.course_title.trim().toUpperCase() !== heading;
+        });
+  
+        // Remove all items from sectionArray that are also in deletedCDCs
+        sectionArrayNew = sectionArrayNew.filter((course) => {
+          console.log(course)
+          return !deletedCDCs.includes(course.course_title.trim().toUpperCase());
+        });
+  
+        setSectionArray(sectionArrayNew);
+      }
     }
   };
   
+
+  console.log(sectionArray)
+  
+  
   useEffect(() => {
     const deletedCDCs = JSON.parse(localStorage.getItem('deletedCDCs')) || [];
-    // Select all the elements with h3 tag
     const headingElements = document.querySelectorAll('h3');
 
-    // Loop through the headingElements and check if their text matches any deletedCDCs
     headingElements.forEach((element) => {
       const heading = element.innerHTML.toUpperCase();
       if (deletedCDCs.includes(heading)) {
         const targetDiv = element.parentElement.parentElement;
-        targetDiv.style.display = "none";
+        targetDiv.style.display = 'none';
       }
     });
+
+    // Remove the deleted courses from sectionArray
+    if (Array.isArray(sectionArray)) {
+      let sectionArrayNew = sectionArray.filter((course) => {
+        return !deletedCDCs.includes(course.course_title.trim().toUpperCase());
+      });
+      setSectionArray(sectionArrayNew);
+    }
   }, []);
   
   return (
