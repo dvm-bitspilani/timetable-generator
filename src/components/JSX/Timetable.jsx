@@ -41,8 +41,10 @@ const Timetable = ({
   
           tableData.style.display = "none";
           if (prevprevCell) {
+            prevprevCell.style.gridRow = ``;
             prevprevCell.style.gridRow = `${prevRow - 1}/${parseInt(currentRow) + 1}`;
-          } else if (prevCell) {
+          }  if (prevCell) {
+            prevCell.style.gridRow = ``;
             prevCell.style.gridRow = `${prevRow}/${parseInt(currentRow) + 1}`;
           }
         }

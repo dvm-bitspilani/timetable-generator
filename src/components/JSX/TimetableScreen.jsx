@@ -494,6 +494,8 @@ const TimetableScreen = ({
   //   flow: "auth-code",
   // });
 
+  console.log(fetchedTable)
+
   return (
     <React.Fragment>
       {isLoading ? (
