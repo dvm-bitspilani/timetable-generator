@@ -80,14 +80,8 @@ const MoreCourses = ({
     const updatedCourses = courses.filter((course) => course.id !== courseId);
     setCourses(updatedCourses);
     localStorage.setItem("storedMoreCourses", JSON.stringify(updatedCourses));
-
-    // const updatedSectionArray = sectionArray.filter(
-    //   (section) => section.course_title.replace(/\s+/g, ' ').trim() !== courseId.replace(/\s+/g, ' ').trim()
-    // );
-    // setSectionArray(updatedSectionArray);
     updateKey();
   };
-
   return (
     <div className={styles["courses-container"]}>
       {courses.map((item) => (

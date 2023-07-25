@@ -73,11 +73,8 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
 
   const [checkSections, setCheckSections] = useState(false);
   const deleteCourse = (e) => {
-    // Find the parent div of the course to be deleted
     const targetDiv = e.currentTarget.parentElement.parentElement;
     targetDiv.style.display = "none";
-  
-    // Find the heading of the deleted course
     const headingElement = targetDiv.querySelector('h3');
     if (headingElement) {
       const heading = headingElement.innerHTML.trim().toUpperCase();
@@ -87,26 +84,19 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
         deletedCDCs.push(heading);
         localStorage.setItem('deletedCDCs', JSON.stringify(deletedCDCs));
       }
-  
-      // Remove the deleted course from the sectionArray
       if (Array.isArray(sectionArray)) {
         let sectionArrayNew = sectionArray.filter((course) => {
           return course.course_title.trim().toUpperCase() !== heading;
         });
-  
-        // Remove all items from sectionArray that are also in deletedCDCs
         sectionArrayNew = sectionArrayNew.filter((course) => {
           console.log(course)
           return !deletedCDCs.includes(course.course_title.trim().toUpperCase());
         });
-  
         setSectionArray(sectionArrayNew);
       }
     }
   };
   
-
-  // console.log(sectionArray)
   
   
   useEffect(() => {
@@ -121,7 +111,6 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
       }
     });
 
-    // Remove the deleted courses from sectionArray
     if (Array.isArray(sectionArray)) {
       let sectionArrayNew = sectionArray.filter((course) => {
         return !deletedCDCs.includes(course.course_title.trim().toUpperCase());

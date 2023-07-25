@@ -80,14 +80,6 @@ const CourseList = ({
   const [selectedCourseId, setSelectedCourseId] = useState(null);
   const initialMoreCoursesAdded =
     storedMoreCourses !== null && JSON.parse(storedMoreCourses).length !== 0;
-  // useEffect(() => {
-  //   setSelectedCourseId((prev) =>{
-  //     if(prev){
-  //     return prev.replace(/\s+/g, ' ').trim()}
-  //     return;
-  //   })
-  // }, [ selectedCourseId]);
-
 
 
   const [moreCoursesAdded, setMoreCoursesAdded] = useState(
