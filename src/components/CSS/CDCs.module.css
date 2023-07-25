@@ -1,6 +1,7 @@
 .courses-container{
   width: 75vw;
   margin: 0 auto;
+  margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -123,6 +124,22 @@
 }
 .course-div-detail p{
   margin-right: 1rem;
+}
+.cdc-reset{
+  display: flex;
+  justify-content: center;
+
+}
+.reset-btn{
+  cursor: pointer;
+  border:.5px solid #f7e188;
+  border-radius: 10px;
+  padding: .85rem 1rem;
+  font-weight: 500;
+}
+.reset-btn:hover{
+  background-color: #F7E188;
+  color: black;
 }
 @media (min-width: 1000px){
   
