@@ -22,7 +22,7 @@ function App() {
   };
   useEffect(() => {
     const handleBeforeUnload = () => {
-      localStorage.removeItem("deletedCDCs");
+      // localStorage.removeItem("deletedCDCs");
     };
 
     window.addEventListener("beforeunload", handleBeforeUnload);
