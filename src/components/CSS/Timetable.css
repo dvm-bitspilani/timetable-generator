@@ -80,6 +80,9 @@ visibility: hidden;
     .table{
         width: 90%;
     }
+    .hidden-table{
+        display: none;
+      }
 }
 @media (max-width: 470px) {
     .table{

@@ -574,7 +574,7 @@ const TimetableScreen = ({
                   }}
                 /> */}
 
-                {/* <div className="g-login-btn" onClick={login()}>
+                {/* <div className="g-login-btn" onClick={login}>
                   <img src={GoogleLoginLogo} alt="" />
                 </div> */}
               </div>

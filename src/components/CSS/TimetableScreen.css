@@ -59,6 +59,13 @@
   background: #f7e188;
   padding: 0.5rem 1.5rem;
   cursor: pointer;
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.downloadButton img{
+  height: 2.5vh;
+  width: 2.5vh; */
 }
 .nextprevarrow {
   scale: 1.5;
@@ -76,7 +83,7 @@
 }
 .g-login-btn{
   cursor: pointer;
-  display: none;
+  /* display: none; */
 }
 @media (max-width: 900px) {
   .backButton{
@@ -84,6 +91,9 @@
     top: 2%;
     left: 3%;
     cursor: pointer;
+  }
+  .hidden-table{
+    display: none;
   }
 }
 @media (max-width: 470px) {
