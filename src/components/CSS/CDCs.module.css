@@ -21,6 +21,7 @@
   backface-visibility: hidden;
 }
 .crossicon{
+  cursor: default;
   position: absolute;
   right: 0%;
   top: 20%;
@@ -87,11 +88,11 @@
   justify-content: space-evenly;
 }
 .courseIsSelectedGreen:hover{
-  transform: scaleY(1.3) scaleX(1.15);
+  transform: scaleY(1.2) scaleX(1.15);
   z-index: 10;
 }
 .courseIsSelectedGreen:hover .course-overlay-content{
-  transform: scaleY(0.67) scaleX(0.834);
+  transform: scaleY(0.87) scaleX(0.834);
 }
 .courseIsSelectedGreen:hover .course-div-overlay{
   opacity: 1;

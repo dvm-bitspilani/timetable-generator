@@ -74,6 +74,7 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
   const [checkSections, setCheckSections] = useState(false);
   const deleteCourse = (e) => {
     const targetDiv = e.currentTarget.parentElement.parentElement;
+    targetDiv.className = `${styles["course-div"]}`;
     targetDiv.style.display = "none";
     const headingElement = targetDiv.querySelector('h3');
     if (headingElement) {
@@ -136,13 +137,21 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
     const courseDivList = document.querySelectorAll('#cdc-div');
     for (let i of courseDivList) {
       i.style.display = 'flex';
+      console.log()
+      i.className = `${styles["course-div"]} ${
+        courseIsSelectedGreen(i.querySelector('h3').innerHTML.trim().toUpperCase())
+          ? checkSections
+            ? ""
+            : styles["courseIsSelectedGreen"]
+          : ""
+      }`
     }
     localStorage.setItem('deletedCDCs', JSON.stringify([]));
     const resetButton = document.querySelector('#reset-btn');
     resetButton.style.display = 'none';
     setSectionArray((prev) => [...prev , ...cdcsdetail])
   } 
-  
+ 
   return (
     <div className="cdc-container">
     <div className={styles["courses-container"]}>
