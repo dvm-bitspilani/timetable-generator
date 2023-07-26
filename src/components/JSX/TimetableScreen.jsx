@@ -38,20 +38,14 @@ const TimetableScreen = ({
     const filteredCourses = fetchedArray.courses.filter(course =>
       storedMoreCourses.some(storedCourse => storedCourse.course_title === course.course_title)
     );
-
-
-
     const sumArray = [...fetchedArray.cdcs, ...filteredCourses];
-
-
-
-
-
-
-
     const deletedCDCs = JSON.parse(localStorage.getItem('deletedCDCs')) || [];
+    if(deletedCDCs){
     const filteredArray = sumArray.filter(item => !deletedCDCs.includes(item.course_title));
-    setSendArray(filteredArray);
+    setSendArray(filteredArray);}
+    else{
+      setSendArray(sumArray)
+    }
   }, []); 
 
 
@@ -88,7 +82,7 @@ const TimetableScreen = ({
       const coursesWithDuplicates = sendArray
         .filter((course) => {
           // console.log(course);
-          return !deletedCDCs.includes(
+          return !deletedCDCs?.includes(
             course.course_title.trim().toUpperCase()
           );
         })
