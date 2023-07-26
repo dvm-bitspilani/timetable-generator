@@ -33,6 +33,18 @@ const TimetableScreen = ({
   const [compreClash, setCompreClash] = useState(false);
   const [key, setKey] = useState(0);
   const [sendArray, setSendArray] = useState([]);
+  function getTotalCredits(arr) {
+    let totalCredits = 0;
+  
+    for (const obj of arr) {
+      if (obj.hasOwnProperty('credits') && typeof obj.credits === 'number') {
+        totalCredits += obj.credits;
+      }
+    }
+  
+    return totalCredits;
+  }
+  
   useEffect(() => {
     const storedMoreCourses = JSON.parse(localStorage.getItem('storedMoreCourses')) || [];
     const filteredCourses = fetchedArray.courses.filter(course =>
@@ -551,7 +563,7 @@ const TimetableScreen = ({
                 alt=""
               />
               <h1 className="units-heading">
-                Units Taken: <span>{courseUnits}</span>
+                Units Taken: <span>{getTotalCredits(sendArray)}</span>
               </h1>
               <p className="units-paragraph">
                 If you don’t see a section here, it must be because the hours
