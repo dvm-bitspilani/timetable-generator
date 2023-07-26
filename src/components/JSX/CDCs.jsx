@@ -95,6 +95,8 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
         setSectionArray(sectionArrayNew);
       }
     }
+    const resetButton = document.querySelector('#reset-btn');
+    resetButton.style.display = 'block';
   };
   
   
@@ -130,14 +132,15 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
     if (deletedCDCs.length > 0) {
       resetButton.style.display = 'block';
     }
-  }, [deletedCDCs])
-
+  }, [])
   const resetCourses = () => {
     const courseDivList = document.querySelectorAll('#cdc-div');
     for (let i of courseDivList) {
       i.style.display = 'flex';
     }
     localStorage.setItem('deletedCDCs', JSON.stringify([]));
+    const resetButton = document.querySelector('#reset-btn');
+    resetButton.style.display = 'none';
   } 
   
   return (

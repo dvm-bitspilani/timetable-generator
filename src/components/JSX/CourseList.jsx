@@ -185,6 +185,7 @@ const CourseList = ({
           sectionArray={sectionArray}
           courseUnits={courseUnits}
           freeDay={freeDay}
+          fetchedArray={fetchedArray}
         />
       )}
       {!timetableGenerated && (

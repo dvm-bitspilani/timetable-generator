@@ -24,6 +24,7 @@ const TimetableScreen = ({
   courseUnits,
   freeDay,
   closeTimetable,
+  fetchedArray
 }) => {
   const [fetchedTable, setFetchedTable] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,6 +32,28 @@ const TimetableScreen = ({
   const [currentTimetableIndex, setCurrentTimetableIndex] = useState(0);
   const [compreClash, setCompreClash] = useState(false);
   const [key, setKey] = useState(0);
+  const [sendArray, setSendArray] = useState([]);
+  useEffect(() => {
+    const storedMoreCourses = JSON.parse(localStorage.getItem('storedMoreCourses')) || [];
+    const filteredCourses = fetchedArray.courses.filter(course =>
+      storedMoreCourses.some(storedCourse => storedCourse.course_title === course.course_title)
+    );
+
+
+
+    const sumArray = [...fetchedArray.cdcs, ...filteredCourses];
+
+
+
+
+
+
+
+    const deletedCDCs = JSON.parse(localStorage.getItem('deletedCDCs')) || [];
+    const filteredArray = sumArray.filter(item => !deletedCDCs.includes(item.course_title));
+    setSendArray(filteredArray);
+  }, []); 
+
 
   function shiftToNextTimetable() {
     if (tableDataSent === 1) {
@@ -60,8 +83,9 @@ const TimetableScreen = ({
   const deletedCDCs = JSON.parse(localStorage.getItem("deletedCDCs"));
 
   useEffect(() => {
+    if (sendArray.length > 0) {
     const fetchData = async () => {
-      const coursesWithDuplicates = sectionArray
+      const coursesWithDuplicates = sendArray
         .filter((course) => {
           // console.log(course);
           return !deletedCDCs.includes(
@@ -265,11 +289,13 @@ const TimetableScreen = ({
         courses: courses,
         compre_check: true,
       };
+
       const requestOptionsFinal = {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(requestOption),
       };
+
 
       const response = await fetch(
         "https://timetable.bits-dvm.org/timetable/timetables/",
@@ -284,15 +310,13 @@ const TimetableScreen = ({
     };
     setTimeout(() => {
       fetchData();
-    }, 0);
-  }, []);
+    }, 0);}
+  }, [sendArray]);
 
-  // console.log(fetchedTable["time_table"]);
   const handleRetryWithNoCompreClash = async () => {
     setIsLoading(true);
     const courses = sectionArray
       .filter((course) => {
-        console.log(course);
         return !deletedCDCs.includes(course.course_title.trim().toUpperCase());
       })
       .map((item) => {
