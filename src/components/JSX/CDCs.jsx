@@ -137,7 +137,6 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
     const courseDivList = document.querySelectorAll('#cdc-div');
     for (let i of courseDivList) {
       i.style.display = 'flex';
-      console.log()
       i.className = `${styles["course-div"]} ${
         courseIsSelectedGreen(i.querySelector('h3').innerHTML.trim().toUpperCase())
           ? checkSections
