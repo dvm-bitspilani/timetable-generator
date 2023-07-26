@@ -3,7 +3,7 @@ import IconBookWhite from "../../assets/IconBookWhite.svg";
 import styles from "../CSS/CDCs.module.css";
 import cross from "../../assets/IconCross.svg";
 
-const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArray,setSectionArray }) => {
+const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArray,setSectionArray,setcdcsdetail,cdcsdetail }) => {
   const courseClickUnique = (id) => {
     onCourseClick(id);
   };
@@ -89,7 +89,6 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
           return course.course_title.trim().toUpperCase() !== heading;
         });
         sectionArrayNew = sectionArrayNew.filter((course) => {
-          console.log(course)
           return !deletedCDCs.includes(course.course_title.trim().toUpperCase());
         });
         setSectionArray(sectionArrayNew);
@@ -141,6 +140,7 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
     localStorage.setItem('deletedCDCs', JSON.stringify([]));
     const resetButton = document.querySelector('#reset-btn');
     resetButton.style.display = 'none';
+    setSectionArray((prev) => [...prev , ...cdcsdetail])
   } 
   
   return (

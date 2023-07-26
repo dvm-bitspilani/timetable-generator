@@ -18,6 +18,8 @@ const CourseList = ({
   key2,
   goToInput,
   setSectionArray,
+  cdcsdetail,
+  setcdcsdetail
 }) => {
   const [freeDay, setFreeDay] = useState("");
   const [cdcs , setcdcs] = useState(false);
@@ -176,7 +178,6 @@ const CourseList = ({
     };
   }, [timetableGenerated,addMoreCourse]);
 
-  // console.log(sectionArray)
   return (
     <>
       {timetableGenerated && (
@@ -230,6 +231,8 @@ const CourseList = ({
                   courseIsSelectedGreen={courseIsSelectedGreen}
                   sectionArray={sectionArray}
                   setSectionArray={setSectionArray}
+                  setcdcsdetail={setcdcsdetail}
+                  cdcsdetail={cdcsdetail}
                 />}
                 {!cdcs && <p className={styles["errorpara"]}>You have no CDCs. Please add more courses!</p>}
                 {moreCoursesAdded ? (
