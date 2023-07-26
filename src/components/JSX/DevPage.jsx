@@ -45,7 +45,7 @@ const DevPage = ({ showDevs, showDev }) => {
       setTeamData([]);
     }
   };
-  console.log;
+
   return (
     <>
       {showDevTeam ? (

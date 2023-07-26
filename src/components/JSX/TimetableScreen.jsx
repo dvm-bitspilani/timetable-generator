@@ -12,7 +12,7 @@ import CompreErrorMobile from "../../assets/CompreErrorMobile.png";
 import noTTError from "../../assets/noTTError.png";
 import NoTTErrorMobile from "../../assets/NoTTErrorMobile.png";
 import backButton from "../../assets/IconBack.png";
-import GoogleLoginLogo from "../../assets/GoogleCalendarLogo.png"
+import GoogleLoginLogo from "../../assets/GoogleCalendarLogo.png";
 import {
   useGoogleLogin,
   GoogleOAuthProvider,
@@ -24,6 +24,7 @@ const TimetableScreen = ({
   courseUnits,
   freeDay,
   closeTimetable,
+  fetchedArray
 }) => {
   const [fetchedTable, setFetchedTable] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,6 +32,34 @@ const TimetableScreen = ({
   const [currentTimetableIndex, setCurrentTimetableIndex] = useState(0);
   const [compreClash, setCompreClash] = useState(false);
   const [key, setKey] = useState(0);
+  const [sendArray, setSendArray] = useState([]);
+  function getTotalCredits(arr) {
+    let totalCredits = 0;
+  
+    for (const obj of arr) {
+      if (obj.hasOwnProperty('credits') && typeof obj.credits === 'number') {
+        totalCredits += obj.credits;
+      }
+    }
+  
+    return totalCredits;
+  }
+  
+  useEffect(() => {
+    const storedMoreCourses = JSON.parse(localStorage.getItem('storedMoreCourses')) || [];
+    const filteredCourses = fetchedArray.courses.filter(course =>
+      storedMoreCourses.some(storedCourse => storedCourse.course_title === course.course_title)
+    );
+    const sumArray = [...fetchedArray.cdcs, ...filteredCourses];
+    const deletedCDCs = JSON.parse(localStorage.getItem('deletedCDCs')) || [];
+    if(deletedCDCs){
+    const filteredArray = sumArray.filter(item => !deletedCDCs.includes(item.course_title));
+    setSendArray(filteredArray);}
+    else{
+      setSendArray(sumArray)
+    }
+  }, []); 
+
 
   function shiftToNextTimetable() {
     if (tableDataSent === 1) {
@@ -57,9 +86,246 @@ const TimetableScreen = ({
     setTableDataSent(dataSent);
   };
 
+  const deletedCDCs = JSON.parse(localStorage.getItem("deletedCDCs"));
+
   useEffect(() => {
+    if (sendArray.length > 0) {
     const fetchData = async () => {
-      const coursesWithDuplicates = sectionArray.map((item) => {
+      const coursesWithDuplicates = sendArray
+        .filter((course) => {
+          // console.log(course);
+          return !deletedCDCs?.includes(
+            course.course_title.trim().toUpperCase()
+          );
+        })
+        .map((item) => {
+          const item_title = item["course_title"].replace(/\s/g, "");
+
+          const wantedSections = JSON.parse(
+            localStorage.getItem("wantedSections")
+          );
+          const unWantedSections = JSON.parse(
+            localStorage.getItem("unwantedSections")
+          );
+
+          let lecDesired = 0;
+          const lecSec = [];
+          let tutDesired = 0;
+          const tutSec = [];
+          let pracDesired = 0;
+          const pracSec = [];
+
+          if (
+            wantedSections &&
+            wantedSections.some(
+              (section) =>
+                section.startsWith("L") && section.split("-")[1] === item_title
+            )
+          ) {
+            lecDesired = 1;
+            wantedSections
+              .filter(
+                (section) =>
+                  section.startsWith("L") &&
+                  section.split("-")[1] === item_title
+              )
+              .forEach((section) => {
+                lecSec.push(parseInt(section.split("-").pop()));
+              });
+          } else if (
+            unWantedSections &&
+            unWantedSections.some(
+              (section) =>
+                section.startsWith("L") && section.split("-")[1] === item_title
+            )
+          ) {
+            lecDesired = 0;
+            unWantedSections
+              .filter(
+                (section) =>
+                  section.startsWith("L") &&
+                  section.split("-")[1] === item_title
+              )
+              .forEach((section) => {
+                lecSec.push(parseInt(section.split("-").pop()));
+              });
+          }
+          if (
+            wantedSections &&
+            wantedSections.some(
+              (section) =>
+                section.startsWith("T") && section.split("-")[1] === item_title
+            )
+          ) {
+            tutDesired = 1;
+            wantedSections
+              .filter(
+                (section) =>
+                  section.startsWith("T") &&
+                  section.split("-")[1] === item_title
+              )
+              .forEach((section) => {
+                tutSec.push(parseInt(section.split("-").pop()));
+              });
+          } else if (
+            unWantedSections &&
+            unWantedSections.some(
+              (section) =>
+                section.startsWith("T") && section.split("-")[1] === item_title
+            )
+          ) {
+            tutDesired = 0;
+            unWantedSections
+              .filter(
+                (section) =>
+                  section.startsWith("T") &&
+                  section.split("-")[1] === item_title
+              )
+              .forEach((section) => {
+                tutSec.push(parseInt(section.split("-").pop()));
+              });
+          }
+          if (
+            wantedSections &&
+            wantedSections.some(
+              (section) =>
+                section.startsWith("P") && section.split("-")[1] === item_title
+            )
+          ) {
+            pracDesired = 1;
+            wantedSections
+              .filter(
+                (section) =>
+                  section.startsWith("P") &&
+                  section.split("-")[1] === item_title
+              )
+              .forEach((section) => {
+                pracSec.push(parseInt(section.split("-").pop()));
+              });
+          } else if (
+            unWantedSections &&
+            unWantedSections.some(
+              (section) =>
+                section.startsWith("P") && section.split("-")[1] === item_title
+            )
+          ) {
+            pracDesired = 0;
+            unWantedSections
+              .filter(
+                (section) =>
+                  section.startsWith("P") &&
+                  section.split("-")[1] === item_title
+              )
+              .forEach((section) => {
+                pracSec.push(parseInt(section.split("-").pop()));
+              });
+          }
+
+          return {
+            course_id: item["course_id"],
+            lecture: {
+              desired: lecDesired,
+              sec: lecSec,
+            },
+            tutorial: {
+              desired: tutDesired,
+              sec: tutSec,
+            },
+            practical: {
+              desired: pracDesired,
+              sec: pracSec,
+            },
+            misc: {
+              desired: 0,
+              sec: [],
+            },
+          };
+        });
+
+      const courses = coursesWithDuplicates.reduce((acc, course) => {
+        const existingCourse = acc.find(
+          (c) => c.course_id === course.course_id
+        );
+
+        if (!existingCourse) {
+          acc.push(course);
+        } else {
+          if (course.lecture.desired && !existingCourse.lecture.desired) {
+            existingCourse.lecture.desired = course.lecture.desired;
+            existingCourse.lecture.sec = course.lecture.sec;
+          }
+          if (course.tutorial.desired && !existingCourse.tutorial.desired) {
+            existingCourse.tutorial.desired = course.tutorial.desired;
+            existingCourse.tutorial.sec = course.tutorial.sec;
+          }
+          if (course.practical.desired && !existingCourse.practical.desired) {
+            existingCourse.practical.desired = course.practical.desired;
+            existingCourse.practical.sec = course.practical.sec;
+          }
+          if (course.misc.desired && !existingCourse.misc.desired) {
+            existingCourse.misc.desired = course.misc.desired;
+            existingCourse.misc.sec = course.misc.sec;
+          }
+        }
+
+        return acc;
+      }, []);
+
+      // if (!compreClash) {
+      //   var requestOption = {
+      //     "number": 50,
+      //     "free_day": `${freeDay}`,
+      //     "courses": courses,
+      //     "compre_check": true
+      //   }
+      //   return requestOption;
+      // }
+      // if (compreClash) {
+      //   var requestOption = {
+      //     "number": 50,
+      //     "free_day": `${freeDay}`,
+      //     "courses": courses,
+      //     "compre_check": 0
+      //   }
+      //   return requestOption;
+      // }
+      const requestOption = {
+        number: 50,
+        free_day: `${freeDay}`,
+        courses: courses,
+        compre_check: true,
+      };
+
+      const requestOptionsFinal = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(requestOption),
+      };
+
+
+      const response = await fetch(
+        "https://timetable.bits-dvm.org/timetable/timetables/",
+        requestOptionsFinal
+      );
+      const data = await response.json();
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+
+      setFetchedTable(data);
+    };
+    setTimeout(() => {
+      fetchData();
+    }, 0);}
+  }, [sendArray]);
+
+  const handleRetryWithNoCompreClash = async () => {
+    setIsLoading(true);
+    const courses = sectionArray
+      .filter((course) => {
+        return !deletedCDCs.includes(course.course_title.trim().toUpperCase());
+      })
+      .map((item) => {
         const item_title = item["course_title"].replace(/\s/g, "");
 
         const wantedSections = JSON.parse(
@@ -197,220 +463,6 @@ const TimetableScreen = ({
         };
       });
 
-      const courses = coursesWithDuplicates.reduce((acc, course) => {
-        const existingCourse = acc.find(
-          (c) => c.course_id === course.course_id
-        );
-
-        if (!existingCourse) {
-          acc.push(course);
-        } else {
-          if (course.lecture.desired && !existingCourse.lecture.desired) {
-            existingCourse.lecture.desired = course.lecture.desired;
-            existingCourse.lecture.sec = course.lecture.sec;
-          }
-          if (course.tutorial.desired && !existingCourse.tutorial.desired) {
-            existingCourse.tutorial.desired = course.tutorial.desired;
-            existingCourse.tutorial.sec = course.tutorial.sec;
-          }
-          if (course.practical.desired && !existingCourse.practical.desired) {
-            existingCourse.practical.desired = course.practical.desired;
-            existingCourse.practical.sec = course.practical.sec;
-          }
-          if (course.misc.desired && !existingCourse.misc.desired) {
-            existingCourse.misc.desired = course.misc.desired;
-            existingCourse.misc.sec = course.misc.sec;
-          }
-        }
-
-        return acc;
-      }, []);
-
-      // if (!compreClash) {
-      //   var requestOption = {
-      //     "number": 50,
-      //     "free_day": `${freeDay}`,
-      //     "courses": courses,
-      //     "compre_check": true
-      //   }
-      //   return requestOption;
-      // }
-      // if (compreClash) {
-      //   var requestOption = {
-      //     "number": 50,
-      //     "free_day": `${freeDay}`,
-      //     "courses": courses,
-      //     "compre_check": 0
-      //   }
-      //   return requestOption;
-      // }
-      const requestOption = {
-        number: 50,
-        free_day: `${freeDay}`,
-        courses: courses,
-        compre_check: true,
-      };
-      const requestOptionsFinal = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(requestOption),
-      };
-
-      const response = await fetch(
-        "https://timetable.bits-dvm.org/timetable/timetables/",
-        requestOptionsFinal
-      );
-      const data = await response.json();
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 2000);
-
-      setFetchedTable(data);
-    };
-    setTimeout(() => {
-      fetchData();
-    }, 0);
-  }, []);
-
-  console.log(fetchedTable["time_table"])
-  const handleRetryWithNoCompreClash = async () => {
-    setIsLoading(true);
-    const courses = sectionArray.map((item) => {
-      const item_title = item["course_title"].replace(/\s/g, "");
-
-      const wantedSections = JSON.parse(localStorage.getItem("wantedSections"));
-      const unWantedSections = JSON.parse(
-        localStorage.getItem("unwantedSections")
-      );
-
-      let lecDesired = 0;
-      const lecSec = [];
-      let tutDesired = 0;
-      const tutSec = [];
-      let pracDesired = 0;
-      const pracSec = [];
-
-      if (
-        wantedSections &&
-        wantedSections.some(
-          (section) =>
-            section.startsWith("L") && section.split("-")[1] === item_title
-        )
-      ) {
-        lecDesired = 1;
-        wantedSections
-          .filter(
-            (section) =>
-              section.startsWith("L") && section.split("-")[1] === item_title
-          )
-          .forEach((section) => {
-            lecSec.push(parseInt(section.split("-").pop()));
-          });
-      } else if (
-        unWantedSections &&
-        unWantedSections.some(
-          (section) =>
-            section.startsWith("L") && section.split("-")[1] === item_title
-        )
-      ) {
-        lecDesired = 0;
-        unWantedSections
-          .filter(
-            (section) =>
-              section.startsWith("L") && section.split("-")[1] === item_title
-          )
-          .forEach((section) => {
-            lecSec.push(parseInt(section.split("-").pop()));
-          });
-      }
-      if (
-        wantedSections &&
-        wantedSections.some(
-          (section) =>
-            section.startsWith("T") && section.split("-")[1] === item_title
-        )
-      ) {
-        tutDesired = 1;
-        wantedSections
-          .filter(
-            (section) =>
-              section.startsWith("T") && section.split("-")[1] === item_title
-          )
-          .forEach((section) => {
-            tutSec.push(parseInt(section.split("-").pop()));
-          });
-      } else if (
-        unWantedSections &&
-        unWantedSections.some(
-          (section) =>
-            section.startsWith("T") && section.split("-")[1] === item_title
-        )
-      ) {
-        tutDesired = 0;
-        unWantedSections
-          .filter(
-            (section) =>
-              section.startsWith("T") && section.split("-")[1] === item_title
-          )
-          .forEach((section) => {
-            tutSec.push(parseInt(section.split("-").pop()));
-          });
-      }
-      if (
-        wantedSections &&
-        wantedSections.some(
-          (section) =>
-            section.startsWith("P") && section.split("-")[1] === item_title
-        )
-      ) {
-        pracDesired = 1;
-        wantedSections
-          .filter(
-            (section) =>
-              section.startsWith("P") && section.split("-")[1] === item_title
-          )
-          .forEach((section) => {
-            pracSec.push(parseInt(section.split("-").pop()));
-          });
-      } else if (
-        unWantedSections &&
-        unWantedSections.some(
-          (section) =>
-            section.startsWith("P") && section.split("-")[1] === item_title
-        )
-      ) {
-        pracDesired = 0;
-        unWantedSections
-          .filter(
-            (section) =>
-              section.startsWith("P") && section.split("-")[1] === item_title
-          )
-          .forEach((section) => {
-            pracSec.push(parseInt(section.split("-").pop()));
-          });
-      }
-
-      return {
-        course_id: item["course_id"],
-        lecture: {
-          desired: lecDesired,
-          sec: lecSec,
-        },
-        tutorial: {
-          desired: tutDesired,
-          sec: tutSec,
-        },
-        practical: {
-          desired: pracDesired,
-          sec: pracSec,
-        },
-        misc: {
-          desired: 0,
-          sec: [],
-        },
-      };
-    });
-
     const requestOption = {
       number: 50,
       free_day: `${freeDay}`,
@@ -494,7 +546,7 @@ const TimetableScreen = ({
   //   flow: "auth-code",
   // });
 
-  console.log(fetchedTable)
+  // console.log(fetchedTable);
 
   return (
     <React.Fragment>
@@ -504,68 +556,68 @@ const TimetableScreen = ({
         !fetchedTable["error"] && (
           <React.Fragment>
             <div className="main-timetable-screen">
-            <img
-              src={backButton}
-              className="backButton"
-              onClick={closeTimetable}
-              alt=""
-            />
-            <h1 className="units-heading">
-              Units Taken: <span>{courseUnits}</span>
-            </h1>
-            <p className="units-paragraph">
-              If you don’t see a section here, it must be because the hours and
-              days are empty in the original TT provided by AUGSD
-            </p>
+              <img
+                src={backButton}
+                className="backButton"
+                onClick={closeTimetable}
+                alt=""
+              />
+              <h1 className="units-heading">
+                Units Taken: <span>{getTotalCredits(sendArray)}</span>
+              </h1>
+              <p className="units-paragraph">
+                If you don’t see a section here, it must be because the hours
+                and days are empty in the original TT provided by AUGSD
+              </p>
 
-            <div className="table-container">
-              <div className="table-area">
-                <Timetable
-                  timetableData={fetchedTable}
-                  tableDataSent={tableDataSent}
-                  downloadableTimetableData={downloadableTimetableData}
-                  setDownloadableTimetableData={setDownloadableTimetableData}
-                  onTableDataSent={handleTableDataSent}
-                  currentTimetableIndex={currentTimetableIndex}
-                />
-              </div>
-              <div className="timetableButtons">
-                <div className="timetableNumber">
-                  <span
-                    className="nextprevarrow"
-                    style={{ marginLeft: "0.75rem" }}
-                    onClick={shiftToPrevTimetable}
-                  >
-                    {"<"}
-                  </span>
-                  <span className="timetableNumberData">{`${
-                    currentTimetableIndex + 1
-                  }/${tableDataSent}`}</span>
-                  <span
-                    className="nextprevarrow"
-                    style={{ marginRight: "0.75rem" }}
-                    onClick={shiftToNextTimetable}
-                  >
-                    {">"}
-                  </span>
+              <div className="table-container">
+                <div className="table-area">
+                  <Timetable
+                    timetableData={fetchedTable}
+                    tableDataSent={tableDataSent}
+                    downloadableTimetableData={downloadableTimetableData}
+                    setDownloadableTimetableData={setDownloadableTimetableData}
+                    onTableDataSent={handleTableDataSent}
+                    currentTimetableIndex={currentTimetableIndex}
+                  />
                 </div>
-                {deviceWidth >= 1000 && (
-                  <div
-                    className="downloadButton"
-                    onClick={handleDownloadScreenshot}
-                  >
-                    <img src={DownloadIcon} alt="" />
+                <div className="timetableButtons">
+                  <div className="timetableNumber">
+                    <span
+                      className="nextprevarrow"
+                      style={{ marginLeft: "0.75rem" }}
+                      onClick={shiftToPrevTimetable}
+                    >
+                      {"<"}
+                    </span>
+                    <span className="timetableNumberData">{`${
+                      currentTimetableIndex + 1
+                    }/${tableDataSent}`}</span>
+                    <span
+                      className="nextprevarrow"
+                      style={{ marginRight: "0.75rem" }}
+                      onClick={shiftToNextTimetable}
+                    >
+                      {">"}
+                    </span>
                   </div>
-                )}
-                {deviceWidth < 1000 && (
-                  <div
-                    className="downloadButton"
-                    onClick={handleDownloadScreenshot2}
-                  >
-                    <img src={DownloadIcon} alt="" />
-                  </div>
-                )}
-                {/* <GoogleLogin
+                  {deviceWidth >= 1000 && (
+                    <div
+                      className="downloadButton"
+                      onClick={handleDownloadScreenshot}
+                    >
+                      <img src={DownloadIcon} alt="" />
+                    </div>
+                  )}
+                  {deviceWidth < 1000 && (
+                    <div
+                      className="downloadButton"
+                      onClick={handleDownloadScreenshot2}
+                    >
+                      <img src={DownloadIcon} alt="" />
+                    </div>
+                  )}
+                  {/* <GoogleLogin
                   onSuccess={(credentialResponse) => {
                     console.log(credentialResponse);
                   }}
@@ -574,23 +626,23 @@ const TimetableScreen = ({
                   }}
                 /> */}
 
-                {/* <div className="g-login-btn" onClick={login}>
+                  {/* <div className="g-login-btn" onClick={login}>
                   <img src={GoogleLoginLogo} alt="" />
                 </div> */}
+                </div>
+                <p className="units-paragraph">
+                  50 is the max number of timetables shown here
+                </p>
+                <p className="units-paragraph">
+                  <a
+                    href="https://forms.gle/5kMXBA6ncKSuYkbB6"
+                    target="_blank"
+                    className="units-paragraph margin-bottom-05"
+                  >
+                    Please share your feedback with us
+                  </a>
+                </p>
               </div>
-              <p className="units-paragraph">
-                50 is the max number of timetables shown here
-              </p>
-              <p className="units-paragraph">
-                <a
-                  href="https://forms.gle/5kMXBA6ncKSuYkbB6"
-                  target="_blank"
-                  className="units-paragraph margin-bottom-05"
-                >
-                  Please share your feedback with us
-                </a>
-              </p>
-            </div>
             </div>
           </React.Fragment>
         )

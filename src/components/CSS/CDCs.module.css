@@ -1,6 +1,7 @@
 .courses-container{
   width: 75vw;
   margin: 0 auto;
+  margin-top: 1rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -20,6 +21,7 @@
   backface-visibility: hidden;
 }
 .crossicon{
+  cursor: default;
   position: absolute;
   right: 0%;
   top: 20%;
@@ -86,11 +88,11 @@
   justify-content: space-evenly;
 }
 .courseIsSelectedGreen:hover{
-  transform: scaleY(1.3) scaleX(1.15);
+  transform: scaleY(1.2) scaleX(1.15);
   z-index: 10;
 }
 .courseIsSelectedGreen:hover .course-overlay-content{
-  transform: scaleY(0.67) scaleX(0.834);
+  transform: scaleY(0.87) scaleX(0.834);
 }
 .courseIsSelectedGreen:hover .course-div-overlay{
   opacity: 1;
@@ -123,6 +125,22 @@
 }
 .course-div-detail p{
   margin-right: 1rem;
+}
+.cdc-reset{
+  display: flex;
+  justify-content: center;
+
+}
+.reset-btn{
+  cursor: pointer;
+  border:.5px solid #f7e188;
+  border-radius: 10px;
+  padding: .85rem 1rem;
+  font-weight: 500;
+}
+.reset-btn:hover{
+  background-color: #F7E188;
+  color: black;
 }
 @media (min-width: 1000px){
   

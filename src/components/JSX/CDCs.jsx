@@ -3,7 +3,7 @@ import IconBookWhite from "../../assets/IconBookWhite.svg";
 import styles from "../CSS/CDCs.module.css";
 import cross from "../../assets/IconCross.svg";
 
-const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArray,setSectionArray }) => {
+const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArray,setSectionArray,setcdcsdetail,cdcsdetail }) => {
   const courseClickUnique = (id) => {
     onCourseClick(id);
   };
@@ -74,6 +74,7 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
   const [checkSections, setCheckSections] = useState(false);
   const deleteCourse = (e) => {
     const targetDiv = e.currentTarget.parentElement.parentElement;
+    targetDiv.className = `${styles["course-div"]}`;
     targetDiv.style.display = "none";
     const headingElement = targetDiv.querySelector('h3');
     if (headingElement) {
@@ -89,14 +90,14 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
           return course.course_title.trim().toUpperCase() !== heading;
         });
         sectionArrayNew = sectionArrayNew.filter((course) => {
-          console.log(course)
           return !deletedCDCs.includes(course.course_title.trim().toUpperCase());
         });
         setSectionArray(sectionArrayNew);
       }
     }
+    const resetButton = document.querySelector('#reset-btn');
+    resetButton.style.display = 'block';
   };
-  
   
   
   useEffect(() => {
@@ -111,18 +112,50 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
       }
     });
 
-    if (Array.isArray(sectionArray)) {
-      let sectionArrayNew = sectionArray.filter((course) => {
-        return !deletedCDCs.includes(course.course_title.trim().toUpperCase());
-      });
-      setSectionArray(sectionArrayNew);
-    }
+    // if (Array.isArray(sectionArray)) {
+    //   let sectionArrayNew = sectionArray.filter((course) => {
+    //     return !deletedCDCs.includes(course.course_title.trim().toUpperCase());
+    //   });
+    //   setSectionArray(sectionArrayNew);
+    // }
   }, []);
-  
+
+  var deletedCDCs =  JSON.parse(localStorage.getItem('deletedCDCs')) || [];
+
+
+  useEffect(() => {
+    const resetButton = document.querySelector('#reset-btn');
+    const deletedCDCs = JSON.parse(localStorage.getItem('deletedCDCs')) || [];
+    if (deletedCDCs.length <= 0) {
+      resetButton.style.display = 'none';
+    }
+    if (deletedCDCs.length > 0) {
+      resetButton.style.display = 'block';
+    }
+  }, [])
+  const resetCourses = () => {
+    const courseDivList = document.querySelectorAll('#cdc-div');
+    for (let i of courseDivList) {
+      i.style.display = 'flex';
+      i.className = `${styles["course-div"]} ${
+        courseIsSelectedGreen(i.querySelector('h3').innerHTML.trim().toUpperCase())
+          ? checkSections
+            ? ""
+            : styles["courseIsSelectedGreen"]
+          : ""
+      }`
+    }
+    localStorage.setItem('deletedCDCs', JSON.stringify([]));
+    const resetButton = document.querySelector('#reset-btn');
+    resetButton.style.display = 'none';
+    setSectionArray((prev) => [...prev , ...cdcsdetail])
+  } 
+ 
   return (
+    <div className="cdc-container">
     <div className={styles["courses-container"]}>
       {fetchedArray?.cdcs?.map((item) => (
-        <div
+        <div id="cdc-div"
           key={item.course_id}
           className={`${styles["course-div"]} ${
             courseIsSelectedGreen(item.course_title)
@@ -171,6 +204,10 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
           </div>
         </div>
       ))}
+    </div>
+    <div className={styles["cdc-reset"]}>
+        <div id="reset-btn" className={styles["reset-btn"]} onClick={resetCourses}>Reset CDCs</div>
+      </div>
     </div>
   );
 };

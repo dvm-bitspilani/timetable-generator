@@ -9,6 +9,7 @@ const Courses = ({ inputValue, goToInput }) => {
   const [fetchedArray, setFetchedArray] = useState(null);
   const [sectionArray, setSectionArray] = useState([]);
   const [key2, setKey] = useState(0);
+  const [cdcsdetail , setcdcsdetail]=useState([])
 
   const updateKey = () => {
     setKey((prev) => prev + 1);
@@ -58,6 +59,7 @@ const Courses = ({ inputValue, goToInput }) => {
           )
             .then((response2) => response2.json())
             .then((data2) => {
+              setcdcsdetail((prev) => [...prev , data2])
               return data2;
             });
         });
@@ -117,6 +119,7 @@ const Courses = ({ inputValue, goToInput }) => {
         updateKey={updateKey}
         key2={key2}
         setSectionArray={setSectionArray}
+        cdcsdetail={cdcsdetail}
       />
     );
   }

@@ -35,15 +35,15 @@ const CourseDetail = ({
   const [tutorialSelected, setTutorialSelected] = useState(false);
   const [practicalSelected, setPracticalSelected] = useState(false);
   useEffect(() => {
-    if (filteredSections && filteredSections[0] && filteredSections[0].lecture.length > 0) {
+    if (filteredSections && filteredSections[0] && filteredSections[0]?.lecture?.length > 0) {
       setLectureSelected(true);
       setPracticalSelected(false);
       setTutorialSelected(false);
-    } else if (filteredSections && filteredSections[0]  && filteredSections[0].tutorial.length > 0) {
+    } else if (filteredSections && filteredSections[0]  && filteredSections[0]?.tutorial?.length > 0) {
       setTutorialSelected(true);
       setLectureSelected(false);
       setPracticalSelected(false);
-    } else if (filteredSections && filteredSections[0]  && filteredSections[0].practical.length > 0) {
+    } else if (filteredSections && filteredSections[0]  && filteredSections[0]?.practical?.length > 0) {
       setTutorialSelected(false);
       setLectureSelected(false);
       setPracticalSelected(true);
@@ -201,7 +201,7 @@ const CourseDetail = ({
           onClick={onCourseClickClose}
         />
         {filteredSections && filteredSections[0]  &&
-          filteredSections[0].lecture.length > 0 &&
+          filteredSections[0]?.lecture?.length > 0 &&
           lectureSelected && (
             <Lectures
               courseId={courseId}
@@ -240,7 +240,7 @@ const CourseDetail = ({
             <img src={LeftArrow} alt="Left Arrow" /> <p>Previous Course</p>
           </div>
           <div className={styles["lecture-tut-btns"]}>
-            {filteredSections && filteredSections[0]  && filteredSections[0].lecture.length > 0 && (
+            {filteredSections && filteredSections[0]  && filteredSections[0]?.lecture?.length > 0 && (
               <div
                 className={`${styles["lecture-btn"]} ${
                   lectureSelected ? styles["lect-tut-selected"] : ""
@@ -251,7 +251,7 @@ const CourseDetail = ({
                 <div className={styles["mobile-view-btns"]}>L</div>
               </div>
             )}
-            {filteredSections && filteredSections[0]  && filteredSections[0].tutorial.length > 0 && (
+            {filteredSections && filteredSections[0]  && filteredSections[0]?.tutorial?.length > 0 && (
               <div
                 className={`${styles["lecture-btn"]} ${
                   tutorialSelected ? styles["lect-tut-selected"] : ""
@@ -262,7 +262,7 @@ const CourseDetail = ({
                 <div className={styles["mobile-view-btns"]}>T</div>
               </div>
             )}
-            {filteredSections && filteredSections[0]  && filteredSections[0].practical.length > 0 && (
+            {filteredSections && filteredSections[0]  && filteredSections[0]?.practical?.length > 0 && (
               <div
                 className={`${styles["lecture-btn"]} ${
                   practicalSelected ? styles["lect-tut-selected"] : ""
