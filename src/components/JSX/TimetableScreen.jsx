@@ -24,7 +24,7 @@ const TimetableScreen = ({
   courseUnits,
   freeDay,
   closeTimetable,
-  fetchedArray
+  fetchedArray,
 }) => {
   const [fetchedTable, setFetchedTable] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -35,31 +35,35 @@ const TimetableScreen = ({
   const [sendArray, setSendArray] = useState([]);
   function getTotalCredits(arr) {
     let totalCredits = 0;
-  
+
     for (const obj of arr) {
-      if (obj.hasOwnProperty('credits') && typeof obj.credits === 'number') {
+      if (obj.hasOwnProperty("credits") && typeof obj.credits === "number") {
         totalCredits += obj.credits;
       }
     }
-  
+
     return totalCredits;
   }
-  
+
   useEffect(() => {
-    const storedMoreCourses = JSON.parse(localStorage.getItem('storedMoreCourses')) || [];
-    const filteredCourses = fetchedArray.courses.filter(course =>
-      storedMoreCourses.some(storedCourse => storedCourse.course_title === course.course_title)
+    const storedMoreCourses =
+      JSON.parse(localStorage.getItem("storedMoreCourses")) || [];
+    const filteredCourses = fetchedArray.courses.filter((course) =>
+      storedMoreCourses.some(
+        (storedCourse) => storedCourse.course_title === course.course_title
+      )
     );
     const sumArray = [...fetchedArray.cdcs, ...filteredCourses];
-    const deletedCDCs = JSON.parse(localStorage.getItem('deletedCDCs')) || [];
-    if(deletedCDCs){
-    const filteredArray = sumArray.filter(item => !deletedCDCs.includes(item.course_title));
-    setSendArray(filteredArray);}
-    else{
-      setSendArray(sumArray)
+    const deletedCDCs = JSON.parse(localStorage.getItem("deletedCDCs")) || [];
+    if (deletedCDCs) {
+      const filteredArray = sumArray.filter(
+        (item) => !deletedCDCs.includes(item.course_title)
+      );
+      setSendArray(filteredArray);
+    } else {
+      setSendArray(sumArray);
     }
-  }, []); 
-
+  }, []);
 
   function shiftToNextTimetable() {
     if (tableDataSent === 1) {
@@ -90,233 +94,279 @@ const TimetableScreen = ({
 
   useEffect(() => {
     if (sendArray.length > 0) {
-    const fetchData = async () => {
-      const coursesWithDuplicates = sendArray
-        .filter((course) => {
-          // console.log(course);
-          return !deletedCDCs?.includes(
-            course.course_title.trim().toUpperCase()
-          );
-        })
-        .map((item) => {
-          const item_title = item["course_title"].replace(/\s/g, "");
+      const fetchData = async () => {
+        const coursesWithDuplicates = sendArray
+          .filter((course) => {
+            // console.log(course);
+            return !deletedCDCs?.includes(
+              course.course_title.trim().toUpperCase()
+            );
+          })
+          .map((item) => {
+            const item_title = item["course_title"].replace(/\s/g, "");
 
-          const wantedSections = JSON.parse(
-            localStorage.getItem("wantedSections")
-          );
-          const unWantedSections = JSON.parse(
-            localStorage.getItem("unwantedSections")
-          );
+            const wantedSections = JSON.parse(
+              localStorage.getItem("wantedSections")
+            );
+            const unWantedSections = JSON.parse(
+              localStorage.getItem("unwantedSections")
+            );
 
-          let lecDesired = 0;
-          const lecSec = [];
-          let tutDesired = 0;
-          const tutSec = [];
-          let pracDesired = 0;
-          const pracSec = [];
+            let lecDesired = 0;
+            const lecSec = [];
+            let tutDesired = 0;
+            const tutSec = [];
+            let pracDesired = 0;
+            const pracSec = [];
 
-          if (
-            wantedSections &&
-            wantedSections.some(
-              (section) =>
-                section.startsWith("L") && section.split("-")[1] === item_title
-            )
-          ) {
-            lecDesired = 1;
-            wantedSections
-              .filter(
+            if (
+              wantedSections &&
+              wantedSections.some(
                 (section) =>
                   section.startsWith("L") &&
                   section.split("-")[1] === item_title
               )
-              .forEach((section) => {
-                lecSec.push(parseInt(section.split("-").pop()));
-              });
-          } else if (
-            unWantedSections &&
-            unWantedSections.some(
-              (section) =>
-                section.startsWith("L") && section.split("-")[1] === item_title
-            )
-          ) {
-            lecDesired = 0;
-            unWantedSections
-              .filter(
+            ) {
+              lecDesired = 1;
+              wantedSections
+                .filter(
+                  (section) =>
+                    section.startsWith("L") &&
+                    section.split("-")[1] === item_title
+                )
+                .forEach((section) => {
+                  lecSec.push(parseInt(section.split("-").pop()));
+                });
+            } else if (
+              unWantedSections &&
+              unWantedSections.some(
                 (section) =>
                   section.startsWith("L") &&
                   section.split("-")[1] === item_title
               )
-              .forEach((section) => {
-                lecSec.push(parseInt(section.split("-").pop()));
-              });
-          }
-          if (
-            wantedSections &&
-            wantedSections.some(
-              (section) =>
-                section.startsWith("T") && section.split("-")[1] === item_title
-            )
-          ) {
-            tutDesired = 1;
-            wantedSections
-              .filter(
+            ) {
+              lecDesired = 0;
+              unWantedSections
+                .filter(
+                  (section) =>
+                    section.startsWith("L") &&
+                    section.split("-")[1] === item_title
+                )
+                .forEach((section) => {
+                  lecSec.push(parseInt(section.split("-").pop()));
+                });
+            }
+            if (
+              wantedSections &&
+              wantedSections.some(
                 (section) =>
                   section.startsWith("T") &&
                   section.split("-")[1] === item_title
               )
-              .forEach((section) => {
-                tutSec.push(parseInt(section.split("-").pop()));
-              });
-          } else if (
-            unWantedSections &&
-            unWantedSections.some(
-              (section) =>
-                section.startsWith("T") && section.split("-")[1] === item_title
-            )
-          ) {
-            tutDesired = 0;
-            unWantedSections
-              .filter(
+            ) {
+              tutDesired = 1;
+              wantedSections
+                .filter(
+                  (section) =>
+                    section.startsWith("T") &&
+                    section.split("-")[1] === item_title
+                )
+                .forEach((section) => {
+                  tutSec.push(parseInt(section.split("-").pop()));
+                });
+            } else if (
+              unWantedSections &&
+              unWantedSections.some(
                 (section) =>
                   section.startsWith("T") &&
                   section.split("-")[1] === item_title
               )
-              .forEach((section) => {
-                tutSec.push(parseInt(section.split("-").pop()));
-              });
-          }
-          if (
-            wantedSections &&
-            wantedSections.some(
-              (section) =>
-                section.startsWith("P") && section.split("-")[1] === item_title
-            )
-          ) {
-            pracDesired = 1;
-            wantedSections
-              .filter(
+            ) {
+              tutDesired = 0;
+              unWantedSections
+                .filter(
+                  (section) =>
+                    section.startsWith("T") &&
+                    section.split("-")[1] === item_title
+                )
+                .forEach((section) => {
+                  tutSec.push(parseInt(section.split("-").pop()));
+                });
+            }
+            if (
+              wantedSections &&
+              wantedSections.some(
                 (section) =>
                   section.startsWith("P") &&
                   section.split("-")[1] === item_title
               )
-              .forEach((section) => {
-                pracSec.push(parseInt(section.split("-").pop()));
-              });
-          } else if (
-            unWantedSections &&
-            unWantedSections.some(
-              (section) =>
-                section.startsWith("P") && section.split("-")[1] === item_title
-            )
-          ) {
-            pracDesired = 0;
-            unWantedSections
-              .filter(
+            ) {
+              pracDesired = 1;
+              wantedSections
+                .filter(
+                  (section) =>
+                    section.startsWith("P") &&
+                    section.split("-")[1] === item_title
+                )
+                .forEach((section) => {
+                  pracSec.push(parseInt(section.split("-").pop()));
+                });
+            } else if (
+              unWantedSections &&
+              unWantedSections.some(
                 (section) =>
                   section.startsWith("P") &&
                   section.split("-")[1] === item_title
               )
-              .forEach((section) => {
-                pracSec.push(parseInt(section.split("-").pop()));
-              });
-          }
+            ) {
+              pracDesired = 0;
+              unWantedSections
+                .filter(
+                  (section) =>
+                    section.startsWith("P") &&
+                    section.split("-")[1] === item_title
+                )
+                .forEach((section) => {
+                  pracSec.push(parseInt(section.split("-").pop()));
+                });
+            }
 
-          return {
-            course_id: item["course_id"],
-            lecture: {
-              desired: lecDesired,
-              sec: lecSec,
-            },
-            tutorial: {
-              desired: tutDesired,
-              sec: tutSec,
-            },
-            practical: {
-              desired: pracDesired,
-              sec: pracSec,
-            },
-            misc: {
-              desired: 0,
-              sec: [],
-            },
-          };
-        });
+            return {
+              course_title: item["course_title"],
+              course_id: item["course_id"],
+              lecture: {
+                desired: lecDesired,
+                sec: lecSec,
+              },
+              tutorial: {
+                desired: tutDesired,
+                sec: tutSec,
+              },
+              practical: {
+                desired: pracDesired,
+                sec: pracSec,
+              },
+              misc: {
+                desired: 0,
+                sec: [],
+              },
+            };
+          });
+        const coursesFilteredById = coursesWithDuplicates.reduce(
+          (acc, course) => {
+            const existingCourse = acc.find(
+              (c) => c.course_id === course.course_id
+            );
 
-      const courses = coursesWithDuplicates.reduce((acc, course) => {
-        const existingCourse = acc.find(
-          (c) => c.course_id === course.course_id
+            if (!existingCourse) {
+              acc.push(course);
+            } else {
+              if (course.lecture.desired && !existingCourse.lecture.desired) {
+                existingCourse.lecture.desired = course.lecture.desired;
+                existingCourse.lecture.sec = course.lecture.sec;
+              }
+              if (course.tutorial.desired && !existingCourse.tutorial.desired) {
+                existingCourse.tutorial.desired = course.tutorial.desired;
+                existingCourse.tutorial.sec = course.tutorial.sec;
+              }
+              if (
+                course.practical.desired &&
+                !existingCourse.practical.desired
+              ) {
+                existingCourse.practical.desired = course.practical.desired;
+                existingCourse.practical.sec = course.practical.sec;
+              }
+              if (course.misc.desired && !existingCourse.misc.desired) {
+                existingCourse.misc.desired = course.misc.desired;
+                existingCourse.misc.sec = course.misc.sec;
+              }
+            }
+
+            return acc;
+          },
+          []
         );
 
-        if (!existingCourse) {
-          acc.push(course);
-        } else {
-          if (course.lecture.desired && !existingCourse.lecture.desired) {
-            existingCourse.lecture.desired = course.lecture.desired;
-            existingCourse.lecture.sec = course.lecture.sec;
-          }
-          if (course.tutorial.desired && !existingCourse.tutorial.desired) {
-            existingCourse.tutorial.desired = course.tutorial.desired;
-            existingCourse.tutorial.sec = course.tutorial.sec;
-          }
-          if (course.practical.desired && !existingCourse.practical.desired) {
-            existingCourse.practical.desired = course.practical.desired;
-            existingCourse.practical.sec = course.practical.sec;
-          }
-          if (course.misc.desired && !existingCourse.misc.desired) {
-            existingCourse.misc.desired = course.misc.desired;
-            existingCourse.misc.sec = course.misc.sec;
-          }
-        }
+        const courses = coursesFilteredById.reduce(
+          (acc, course) => {
+            const existingCourse = acc.find(
+              (c) => c.course_title === course.course_title
+            );
 
-        return acc;
-      }, []);
+            if (!existingCourse) {
+              acc.push(course);
+            } else {
+              if (course.lecture.desired && !existingCourse.lecture.desired) {
+                existingCourse.lecture.desired = course.lecture.desired;
+                existingCourse.lecture.sec = course.lecture.sec;
+              }
+              if (course.tutorial.desired && !existingCourse.tutorial.desired) {
+                existingCourse.tutorial.desired = course.tutorial.desired;
+                existingCourse.tutorial.sec = course.tutorial.sec;
+              }
+              if (
+                course.practical.desired &&
+                !existingCourse.practical.desired
+              ) {
+                existingCourse.practical.desired = course.practical.desired;
+                existingCourse.practical.sec = course.practical.sec;
+              }
+              if (course.misc.desired && !existingCourse.misc.desired) {
+                existingCourse.misc.desired = course.misc.desired;
+                existingCourse.misc.sec = course.misc.sec;
+              }
+            }
 
-      // if (!compreClash) {
-      //   var requestOption = {
-      //     "number": 50,
-      //     "free_day": `${freeDay}`,
-      //     "courses": courses,
-      //     "compre_check": true
-      //   }
-      //   return requestOption;
-      // }
-      // if (compreClash) {
-      //   var requestOption = {
-      //     "number": 50,
-      //     "free_day": `${freeDay}`,
-      //     "courses": courses,
-      //     "compre_check": 0
-      //   }
-      //   return requestOption;
-      // }
-      const requestOption = {
-        number: 50,
-        free_day: `${freeDay}`,
-        courses: courses,
-        compre_check: true,
+            return acc;
+          },
+          []
+        );
+
+        // if (!compreClash) {
+        //   var requestOption = {
+        //     "number": 50,
+        //     "free_day": `${freeDay}`,
+        //     "courses": courses,
+        //     "compre_check": true
+        //   }
+        //   return requestOption;
+        // }
+        // if (compreClash) {
+        //   var requestOption = {
+        //     "number": 50,
+        //     "free_day": `${freeDay}`,
+        //     "courses": courses,
+        //     "compre_check": 0
+        //   }
+        //   return requestOption;
+        // }
+        const requestOption = {
+          number: 50,
+          free_day: `${freeDay}`,
+          courses: courses,
+          compre_check: true,
+        };
+
+        const requestOptionsFinal = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(requestOption),
+        };
+        const response = await fetch(
+          "https://timetable.bits-dvm.org/timetable/timetables/",
+          requestOptionsFinal
+        );
+        const data = await response.json();
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000);
+
+        setFetchedTable(data);
       };
-
-      const requestOptionsFinal = {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(requestOption),
-      };
-
-
-      const response = await fetch(
-        "https://timetable.bits-dvm.org/timetable/timetables/",
-        requestOptionsFinal
-      );
-      const data = await response.json();
       setTimeout(() => {
-        setIsLoading(false);
-      }, 2000);
-
-      setFetchedTable(data);
-    };
-    setTimeout(() => {
-      fetchData();
-    }, 0);}
+        fetchData();
+      }, 0);
+    }
   }, [sendArray]);
 
   const handleRetryWithNoCompreClash = async () => {
