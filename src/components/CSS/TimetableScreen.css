@@ -92,9 +92,7 @@
     left: 3%;
     cursor: pointer;
   }
-  .hidden-table{
-    display: none;
-  }
+  
 }
 @media (max-width: 470px) {
   .units-heading {
