@@ -91,6 +91,26 @@ const TimetableScreen = ({
   };
 
   const deletedCDCs = JSON.parse(localStorage.getItem("deletedCDCs"));
+  function titleCase(str) {
+    let fstr = str.replace(/\s+/g, " ").trim();
+    return fstr
+      .toLowerCase()
+      .split(" ")
+      .map(function (word) {
+        if (
+          word.toLowerCase() === "ii" ||
+          word.toLowerCase() === "iii" ||
+          word.toLowerCase() === "iv" ||
+          word.toLowerCase() === "v"
+        ) {
+          return word.toUpperCase();
+        }
+        return word.replace(word[0], word[0].toUpperCase());
+      })
+      .join(" ");
+
+    // return str;
+  }
 
   useEffect(() => {
     if (sendArray.length > 0) {
@@ -99,7 +119,7 @@ const TimetableScreen = ({
           .filter((course) => {
             // console.log(course);
             return !deletedCDCs?.includes(
-              course.course_title.trim().toUpperCase()
+              titleCase(course.course_title.trim()).toUpperCase()
             );
           })
           .map((item) => {
