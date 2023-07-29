@@ -254,6 +254,7 @@ const TimetableScreen = ({
             return {
               course_title: item["course_title"],
               course_id: item["course_id"],
+              credits: item["credits"],
               lecture: {
                 desired: lecDesired,
                 sec: lecSec,
@@ -341,25 +342,8 @@ const TimetableScreen = ({
           },
           []
         );
+        localStorage.setItem('courses', JSON.stringify(courses));
 
-        // if (!compreClash) {
-        //   var requestOption = {
-        //     "number": 50,
-        //     "free_day": `${freeDay}`,
-        //     "courses": courses,
-        //     "compre_check": true
-        //   }
-        //   return requestOption;
-        // }
-        // if (compreClash) {
-        //   var requestOption = {
-        //     "number": 50,
-        //     "free_day": `${freeDay}`,
-        //     "courses": courses,
-        //     "compre_check": 0
-        //   }
-        //   return requestOption;
-        // }
         const requestOption = {
           number: 50,
           free_day: `${freeDay}`,
@@ -617,7 +601,7 @@ const TimetableScreen = ({
   // });
 
   // console.log(fetchedTable);
-
+  const courses = JSON.parse(localStorage.getItem("courses")) || [];
   return (
     <React.Fragment>
       {isLoading ? (
@@ -633,7 +617,7 @@ const TimetableScreen = ({
                 alt=""
               />
               <h1 className="units-heading">
-                Units Taken: <span>{getTotalCredits(sendArray)}</span>
+                Units Taken: <span>{getTotalCredits(courses)}</span>
               </h1>
               <p className="units-paragraph">
                 If you don’t see a section here, it must be because the hours
