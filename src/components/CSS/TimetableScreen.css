@@ -116,4 +116,7 @@
   .units-paragraph{
     margin-bottom: .25rem;
   }
+  .timetableButtons{
+    margin: .5rem 0 .25rem 0;
+  }
 }

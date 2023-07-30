@@ -4,7 +4,7 @@ const Footer = () => {
   
   return (
     <footer>
-      Made with <a href='https://bits-dvm.org/' target='/'> ❤️ </a> By DVM
+      Made with <a href='https://bits-dvm.org/' target='/' style={{textDecoration: 'none'}}> ❤️ </a> By DVM
     </footer>
   )
 }

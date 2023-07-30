@@ -12,23 +12,9 @@ footer {
   width: 100%;
   text-align: center;
 }
-@keyframes beat {
-  to {
-    transform: scale(1.2);
+@media (max-width: 470px) {
+  footer {
+    font-size: 0.5rem;
   }
 }
 
-.heart {
-  transform-origin: center;
-  animation: beat 0.35s infinite alternate;
-}
-@media (max-width: 470px) {
-  footer {
-    font-size: 0.75rem;
-  }
-}
-@media (max-height: 700px) {
-  footer {
-    display: none;
-  }
-}
