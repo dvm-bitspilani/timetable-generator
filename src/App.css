@@ -17,4 +17,8 @@ footer {
     font-size: 0.5rem;
   }
 }
-
+@media (max-height: 700px) {
+  footer {
+    display: none;
+  }
+}
