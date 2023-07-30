@@ -10,6 +10,7 @@ import CourseDetail from "./CourseDetail";
 import AddMoreCourse from "./AddMoreCourse";
 import TimetableScreen from "./TimetableScreen";
 import backButton from "../../assets/IconBack.png";
+import Footer from "./Footer";
 
 const CourseList = ({
   fetchedArray,
@@ -277,6 +278,7 @@ const CourseList = ({
           )}
         </>
       )}
+      <Footer></Footer>
     </>
   );
 };

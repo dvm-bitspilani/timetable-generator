@@ -18,6 +18,7 @@ import {
   GoogleOAuthProvider,
   GoogleLogin,
 } from "@react-oauth/google";
+import Footer from "./Footer";
 
 const TimetableScreen = ({
   sectionArray,
@@ -697,6 +698,7 @@ const TimetableScreen = ({
                   </a>
                 </p>
               </div>
+              <Footer></Footer>
             </div>
           </React.Fragment>
         )

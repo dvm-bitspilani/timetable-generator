@@ -3,6 +3,7 @@ import ReactGa from 'react-ga4';
 import InputParent from './components/JSX/InputParent';
 import './App.css'
 import Courses from './components/JSX/Courses';
+import Footer from './components/JSX/Footer';
 
 
 function App() {
@@ -34,9 +35,13 @@ function App() {
   return (
     <>
       {showInputBox ? (
-        <InputParent setShowInputBox={setShowInputBox} setInputValue={setInputValue} inputValue={inputValue}/>
+        <InputParent setShowInputBox={setShowInputBox} setInputValue={setInputValue} inputValue={inputValue}>
+          <Footer />
+        </InputParent>
       ) : (
-        <Courses inputValue={inputValue} goToInput={goToInput} />
+        <Courses inputValue={inputValue} goToInput={goToInput} > 
+        <Footer />
+        </Courses>
       )}
     </>
   )
