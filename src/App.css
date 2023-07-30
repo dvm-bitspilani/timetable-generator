@@ -15,10 +15,11 @@ footer {
 @media (max-width: 470px) {
   footer {
     font-size: 0.5rem;
+    bottom: 2px;
   }
 }
-@media (max-height: 700px) {
+/* @media (max-height: 700px) {
   footer {
     display: none;
   }
-}
+} */

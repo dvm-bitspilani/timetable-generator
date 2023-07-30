@@ -1,12 +1,18 @@
-import React from 'react'
+import React from "react";
 
 const Footer = () => {
-  
   return (
     <footer>
-      Made with <a href='https://bits-dvm.org/' target='/' style={{textDecoration: 'none'}}> ❤️ </a> By DVM
+      <a
+        href="https://bits-dvm.org/"
+        target="/"
+        style={{ textDecoration: "none", color: "white" }}
+      >
+        {" "}
+        Made with ❤️ By DVM{" "}
+      </a>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
