@@ -18,8 +18,8 @@ footer {
     bottom: 2px;
   }
 }
-/* @media (max-height: 700px) {
+@media (max-height: 700px) {
   footer {
     display: none;
   }
-} */
+}
