@@ -273,12 +273,13 @@ const CourseList = ({
                   onAddMoreCourse={onAddMoreCourse}
                   generateTimetable={generateTimetable}
                 />
+                <Footer></Footer>
               </div>
             </div>
           )}
         </>
       )}
-      <Footer></Footer>
+      
     </>
   );
 };

@@ -1,7 +1,7 @@
 .course-buttons-container{
   display: flex;
   gap: 0.75rem;
-  margin-bottom: 4vh;
+  margin-bottom: 2vh;
 }
 .course-buttons{
   background: #F7E188;

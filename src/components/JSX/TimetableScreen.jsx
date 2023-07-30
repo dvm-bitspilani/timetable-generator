@@ -697,8 +697,9 @@ const TimetableScreen = ({
                     Please share your feedback with us
                   </a>
                 </p>
+                <Footer></Footer>
               </div>
-              <Footer></Footer>
+              
             </div>
           </React.Fragment>
         )
