@@ -9,7 +9,7 @@ import GenerateButtons from "./GenerateButtons";
 import CourseDetail from "./CourseDetail";
 import AddMoreCourse from "./AddMoreCourse";
 import TimetableScreen from "./TimetableScreen";
-import backButton from "../../assets/IconBack.png";
+import backButton from "../../assets/back-btn.svg";
 import Footer from "./Footer";
 
 const CourseList = ({
@@ -216,6 +216,7 @@ const CourseList = ({
               <img
                 src={backButton}
                 className="backButton"
+                id="course-back"
                 onClick={goToInput}
                 alt=""
               />

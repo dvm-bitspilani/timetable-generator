@@ -24,7 +24,7 @@
   cursor: default;
   position: absolute;
   right: 0%;
-  top: 20%;
+  top: 1rem;
   display: none;
   z-index: 99;
   fill: white;
@@ -181,12 +181,15 @@
   }
 }
 @media (max-width: 470px) {
+  .courses-container{
+    margin-left: 1rem;
+  }
   .crossicon{
     transform: scale(.75);
     display: block;
     opacity: 1;
     filter: brightness(100);
-    right: -4%;
+    right: -2%;
     top: 10%;
   }
   .course-div{

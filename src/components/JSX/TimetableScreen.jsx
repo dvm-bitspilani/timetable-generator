@@ -11,7 +11,7 @@ import compreError from "../../assets/compreError.png";
 import CompreErrorMobile from "../../assets/CompreErrorMobile.png";
 import noTTError from "../../assets/noTTError.png";
 import NoTTErrorMobile from "../../assets/NoTTErrorMobile.png";
-import backButton from "../../assets/IconBack.png";
+import backButton from "../../assets/back-btn.svg";
 import GoogleLoginLogo from "../../assets/GoogleCalendarLogo.png";
 import {
   useGoogleLogin,
