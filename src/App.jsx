@@ -39,7 +39,7 @@ function App() {
           <Footer />
         </InputParent>
       ) : (
-        <Courses inputValue={inputValue} goToInput={goToInput} > 
+        <Courses inputValue={inputValue} goToInput={goToInput} setShowInputBox={setShowInputBox} > 
         <Footer />
         </Courses>
       )}

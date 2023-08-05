@@ -67,7 +67,7 @@ const TimetableScreen = ({
   }, []);
 
   function shiftToNextTimetable() {
-    if (tableDataSent === 1) {
+    if (tableDataSent <= 1) {
       setKey((prev) => prev + 1);
       return;
     } else if (currentTimetableIndex === tableDataSent - 1) {
@@ -77,7 +77,7 @@ const TimetableScreen = ({
     }
   }
   function shiftToPrevTimetable() {
-    if (tableDataSent === 1) {
+    if (tableDataSent <= 1) {
       setKey((prev) => prev + 1);
       return;
     } else if (currentTimetableIndex === 0) {
@@ -571,10 +571,12 @@ const TimetableScreen = ({
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.keyCode === 37) {
+      if (event.key === "ArrowLeft") {
         shiftToPrevTimetable();
-      } else if (event.keyCode === 39) {
+      } else if (event.key === "ArrowRight") {
         shiftToNextTimetable();
+      } else if (event.key === "Escape") {
+        closeTimetable();
       }
     };
     document.addEventListener("keydown", handleKeyDown);
@@ -583,17 +585,6 @@ const TimetableScreen = ({
     };
   }, [currentTimetableIndex, key]);
 
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.keyCode === 27) {
-        closeTimetable();
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
   const deviceWidth = window.innerWidth;
 
   // const login = useGoogleLogin({

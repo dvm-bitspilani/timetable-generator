@@ -15,6 +15,7 @@ const CourseDetail = ({
   onCourseClick,
   sectionArray,
   setRequiredSections,
+  setCourseSelected
 }) => {
   const [courseArray, setCourseArray] = useState([]);
   const [want, setWant] = useState(true);
@@ -101,18 +102,7 @@ const CourseDetail = ({
       setWant(true);
     }
   };
-  
-  useEffect(() => {
-    const handleKeyDown = (event) => {
-      if (event.keyCode === 27) {
-        onCourseClickClose();
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, []);
+
 
   useEffect(() => {
 
@@ -172,6 +162,9 @@ const CourseDetail = ({
         handleNextCourseArrow();
       } else if (event.keyCode === 37) {
         handlePrevCourseArrow();
+      }else if (event.keyCode === 27) {
+        event.stopPropagation();
+        setCourseSelected(false)
       }
     };
     document.addEventListener("keydown", handleKeyDown);

@@ -173,7 +173,7 @@ const Timetable = ({
 
         {indents}
 
-        {shownTimetable.map((object, index) => {
+        {shownTimetable?.map((object, index) => {
           let lectures = object["lecture"];
           let tutorial = object["tutorial"];
           let practical = object["practical"];
@@ -382,7 +382,7 @@ const Timetable = ({
 
           {indents}
 
-          {shownTimetable.map((object, index) => {
+          {shownTimetable?.map((object, index) => {
             let lectures = object["lecture"];
             let tutorial = object["tutorial"];
             let practical = object["practical"];

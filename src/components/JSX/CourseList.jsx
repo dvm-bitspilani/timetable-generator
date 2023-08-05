@@ -11,6 +11,7 @@ import AddMoreCourse from "./AddMoreCourse";
 import TimetableScreen from "./TimetableScreen";
 import backButton from "../../assets/back-btn.svg";
 import Footer from "./Footer";
+import Courses from "./Courses";
 
 const CourseList = ({
   fetchedArray,
@@ -20,7 +21,8 @@ const CourseList = ({
   goToInput,
   setSectionArray,
   cdcsdetail,
-  setcdcsdetail
+  setcdcsdetail,
+  setShowInputBox
 }) => {
   const [freeDay, setFreeDay] = useState("");
   const [cdcs , setcdcs] = useState(false);
@@ -88,12 +90,17 @@ const CourseList = ({
   }, [courseUnits]);
   const generateTimetable = () => {
     if (courseUnits <= 25) {
-      setTimetableGenerated(true);
+      if (!areAllCDCsDeleted()) {
+        setTimetableGenerated(true);
+      } else {
+alert("No Courses Added!")
+      }
     } else {
       document.getElementsByClassName(styles["errorpara"])[0].innerHTML =
-        "Please remove some courses to generate timetable!";
+        "Please remove some courses to generate a timetable!";
     }
   };
+  
 
   const [courseSelected, setCourseSelected] = useState(false);
   const [addMoreCourse, setAddMoreCourse] = useState(false);
@@ -112,6 +119,7 @@ const CourseList = ({
   const onCourseClickClose = () => {
     setCourseSelected(false);
     setSelectedCourseId(null);
+    setShowInputBox(false)
   };
   const onCourseClickClose2 = (e) => {
     if (e.target === e.currentTarget) {
@@ -141,6 +149,13 @@ const CourseList = ({
   const wantedSections = JSON.parse(localStorage.getItem("wantedSections"));
   const unWantedSections = JSON.parse(localStorage.getItem("unwantedSections"));
 
+  const areAllCDCsDeleted = () => {
+    const deletedCDCs = JSON.parse(localStorage.getItem("deletedCDCs")) || [];
+    const cdcTitles = fetchedArray.cdcs.map((cdc) => cdc.course_title.replace(/\s+/g, " "));
+
+    return cdcTitles.every((title) => deletedCDCs.includes(title.replace(/\s+/g, " ")));
+  };
+  
   const courseIsSelectedGreen = (courseTitle) => {
     if (!courseTitle) {
       return false;
@@ -217,6 +232,7 @@ const CourseList = ({
               courseId={selectedCourseId}
               fetchedArray={fetchedArray}
               sectionArray={sectionArray}
+              setCourseSelected={setCourseSelected}
               // setRequiredSections={setRequiredSections}
             />
           ) : addMoreCourse ? (

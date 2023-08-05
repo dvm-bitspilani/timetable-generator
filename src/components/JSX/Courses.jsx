@@ -5,7 +5,7 @@ import CourseList from "./CourseList";
 import compreError from "../../assets/compreError.png";
 import CompreErrorMobile from "../../assets/CompreErrorMobile.png";
 
-const Courses = ({ inputValue, goToInput }) => {
+const Courses = ({ inputValue, goToInput,setShowInputBox }) => {
   const [fetchedArray, setFetchedArray] = useState(null);
   const [sectionArray, setSectionArray] = useState([]);
   const [key2, setKey] = useState(0);
@@ -116,6 +116,7 @@ const Courses = ({ inputValue, goToInput }) => {
   if (sectionArray.length >= 0) {
     return (
       <CourseList
+      setShowInputBox={setShowInputBox}
         goToInput={goToInput}
         fetchedArray={fetchedArray}
         sectionArray={sectionArray}
