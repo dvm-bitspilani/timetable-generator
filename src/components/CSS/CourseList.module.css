@@ -45,6 +45,10 @@
   margin-bottom: 1.5rem;
   text-align: center;
 }
+.last-update{
+  text-align: center;
+  font-weight: bold;
+}
 @media (max-width: 470px) {
   .courses-heading{
     font-size: 1.25rem;
@@ -56,6 +60,9 @@
     margin-top: 2vh;
   }
   .errorpara{
+    font-size: .75rem;
+  }
+  .last-update{
     font-size: .75rem;
   }
 }

@@ -3,7 +3,15 @@ import IconBookWhite from "../../assets/IconBookWhite.svg";
 import styles from "../CSS/CDCs.module.css";
 import cross from "../../assets/IconCross.svg";
 
-const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArray,setSectionArray,setcdcsdetail,cdcsdetail }) => {
+const CDCs = ({
+  onCourseClick,
+  fetchedArray,
+  courseIsSelectedGreen,
+  sectionArray,
+  setSectionArray,
+  setcdcsdetail,
+  cdcsdetail,
+}) => {
   const courseClickUnique = (id) => {
     onCourseClick(id);
   };
@@ -76,39 +84,40 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
     const targetDiv = e.currentTarget.parentElement.parentElement;
     targetDiv.className = `${styles["course-div"]}`;
     targetDiv.style.display = "none";
-    const headingElement = targetDiv.querySelector('h3');
+    const headingElement = targetDiv.querySelector("h3");
     if (headingElement) {
       const heading = headingElement.innerHTML.trim().toUpperCase();
-      const deletedCDCs = JSON.parse(localStorage.getItem('deletedCDCs')) || [];
-  
+      const deletedCDCs = JSON.parse(localStorage.getItem("deletedCDCs")) || [];
+
       if (!deletedCDCs.includes(heading)) {
         deletedCDCs.push(heading);
-        localStorage.setItem('deletedCDCs', JSON.stringify(deletedCDCs));
+        localStorage.setItem("deletedCDCs", JSON.stringify(deletedCDCs));
       }
       if (Array.isArray(sectionArray)) {
         let sectionArrayNew = sectionArray.filter((course) => {
           return course.course_title.trim().toUpperCase() !== heading;
         });
         sectionArrayNew = sectionArrayNew.filter((course) => {
-          return !deletedCDCs.includes(course.course_title.trim().toUpperCase());
+          return !deletedCDCs.includes(
+            course.course_title.trim().toUpperCase()
+          );
         });
         setSectionArray(sectionArrayNew);
       }
     }
-    const resetButton = document.querySelector('#reset-btn');
-    resetButton.style.display = 'block';
+    const resetButton = document.querySelector("#reset-btn");
+    resetButton.style.display = "block";
   };
-  
-  
+
   useEffect(() => {
-    const deletedCDCs = JSON.parse(localStorage.getItem('deletedCDCs')) || [];
-    const headingElements = document.querySelectorAll('h3');
+    const deletedCDCs = JSON.parse(localStorage.getItem("deletedCDCs")) || [];
+    const headingElements = document.querySelectorAll("h3");
 
     headingElements.forEach((element) => {
       const heading = element.innerHTML.toUpperCase();
       if (deletedCDCs.includes(heading)) {
         const targetDiv = element.parentElement.parentElement;
-        targetDiv.style.display = 'none';
+        targetDiv.style.display = "none";
       }
     });
 
@@ -120,93 +129,103 @@ const CDCs = ({ onCourseClick, fetchedArray, courseIsSelectedGreen , sectionArra
     // }
   }, []);
 
-  var deletedCDCs =  JSON.parse(localStorage.getItem('deletedCDCs')) || [];
-
+  var deletedCDCs = JSON.parse(localStorage.getItem("deletedCDCs")) || [];
 
   useEffect(() => {
-    const resetButton = document.querySelector('#reset-btn');
-    const deletedCDCs = JSON.parse(localStorage.getItem('deletedCDCs')) || [];
+    const resetButton = document.querySelector("#reset-btn");
+    const deletedCDCs = JSON.parse(localStorage.getItem("deletedCDCs")) || [];
     if (deletedCDCs.length <= 0) {
-      resetButton.style.display = 'none';
+      resetButton.style.display = "none";
     }
     if (deletedCDCs.length > 0) {
-      resetButton.style.display = 'block';
+      resetButton.style.display = "block";
     }
-  }, [])
+  }, []);
   const resetCourses = () => {
-    const courseDivList = document.querySelectorAll('#cdc-div');
+    const courseDivList = document.querySelectorAll("#cdc-div");
     for (let i of courseDivList) {
-      i.style.display = 'flex';
+      i.style.display = "flex";
       i.className = `${styles["course-div"]} ${
-        courseIsSelectedGreen(i.querySelector('h3').innerHTML.trim().toUpperCase())
+        courseIsSelectedGreen(
+          i.querySelector("h3").innerHTML.trim().toUpperCase()
+        )
           ? checkSections
             ? ""
             : styles["courseIsSelectedGreen"]
           : ""
-      }`
+      }`;
     }
-    localStorage.setItem('deletedCDCs', JSON.stringify([]));
-    const resetButton = document.querySelector('#reset-btn');
-    resetButton.style.display = 'none';
-    setSectionArray((prev) => [...prev , ...cdcsdetail])
-  } 
- 
+    localStorage.setItem("deletedCDCs", JSON.stringify([]));
+    const resetButton = document.querySelector("#reset-btn");
+    resetButton.style.display = "none";
+    setSectionArray((prev) => [...prev, ...cdcsdetail]);
+  };
+
   return (
     <div className="cdc-container">
-    <div className={styles["courses-container"]}>
-      {fetchedArray?.cdcs?.map((item) => (
-        <div id="cdc-div"
-          key={item.course_id}
-          className={`${styles["course-div"]} ${
-            courseIsSelectedGreen(item.course_title)
-              ? checkSections
-                ? ""
-                : styles["courseIsSelectedGreen"]
-              : ""
-          }`}
-          onClick={() => courseClickUnique(item.course_title)}
-        >
-          <div className={styles["course-div-overlay"]}>
-            <div className={styles["course-overlay-content"]}>
-              {getWantedSection(item.course_title) != "" ? (
-                <div className={styles["want-content"]}>
-                  Want: {getWantedSection(item.course_title)}
-                </div>
-              ) : (
-                ""
-              )}
-              {getUnWantedSection(item.course_title) != "" ? (
-                <div className={styles["want-content"]}>
-                  Don't Want: {getUnWantedSection(item.course_title)}
-                </div>
-              ) : (
-                ""
-              )}
+      {" "}
+      
+      <div className={styles["courses-container"]}>
+        {fetchedArray?.cdcs?.map((item) => (
+          <div
+            id="cdc-div"
+            key={item.course_id}
+            className={`${styles["course-div"]} ${
+              courseIsSelectedGreen(item.course_title)
+                ? checkSections
+                  ? ""
+                  : styles["courseIsSelectedGreen"]
+                : ""
+            }`}
+            onClick={() => courseClickUnique(item.course_title)}
+          >
+            <div className={styles["course-div-overlay"]}>
+              <div className={styles["course-overlay-content"]}>
+                {getWantedSection(item.course_title) != "" ? (
+                  <div className={styles["want-content"]}>
+                    Want: {getWantedSection(item.course_title)}
+                  </div>
+                ) : (
+                  ""
+                )}
+                {getUnWantedSection(item.course_title) != "" ? (
+                  <div className={styles["want-content"]}>
+                    Don't Want: {getUnWantedSection(item.course_title)}
+                  </div>
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
+            <div className={styles["course-div-main-content"]}>
+              <img
+                src={cross}
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  deleteCourse(e);
+                }}
+                alt=""
+                className={styles["crossicon"]}
+              />
+              <img src={IconBookWhite} alt="book" />
+              <h3>{titleCase(item.course_title)}</h3>
+            </div>
+            <div className={styles["course-div-detail"]}>
+              <h6>{item.course_no}</h6>
+              <p>{item.credits} Credits</p>
             </div>
           </div>
-          <div className={styles["course-div-main-content"]}>
-            <img
-              src={cross}
-              onMouseDown={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                deleteCourse(e);
-              }}
-              alt=""
-              className={styles["crossicon"]}
-            />
-            <img src={IconBookWhite} alt="book" />
-            <h3>{titleCase(item.course_title)}</h3>
-          </div>
-          <div className={styles["course-div-detail"]}>
-            <h6>{item.course_no}</h6>
-            <p>{item.credits} Credits</p>
-          </div>
+        ))}
+      </div>
+      <div className={styles["cdc-reset"]}>
+        <div
+          id="reset-btn"
+          className={styles["reset-btn"]}
+          onClick={resetCourses}
+        >
+          Reset CDCs
         </div>
-      ))}
-    </div>
-    <div className={styles["cdc-reset"]}>
-        <div id="reset-btn" className={styles["reset-btn"]} onClick={resetCourses}>Reset CDCs</div>
       </div>
     </div>
   );

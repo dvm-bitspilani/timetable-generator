@@ -227,6 +227,9 @@ const CourseList = ({
                   </span>
                   Your CDCs
                 </h2>
+                <div className={styles["last-update"]}>
+        Last updated on 5 August 2023
+      </div>
                { cdcs && <CDCs
                   onCourseClick={onCourseClick}
                   fetchedArray={fetchedArray}
