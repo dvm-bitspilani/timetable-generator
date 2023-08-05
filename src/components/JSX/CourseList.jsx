@@ -204,11 +204,11 @@ const CourseList = ({
         return;
       } else if ((event.keyCode === 27) && courseSelected) {
         setCourseSelected(false);
-        console.log(1);
+        // console.log(1);
         return;
       } else if ((event.keyCode === 27) && !timetableGenerated && !addMoreCourse && !courseSelected ) {
         goToInput();
-        console.log(2);
+        // console.log(2);
         return;
       } else if ((event.keyCode === 27) && addMoreCourse) {
         onAddMoreCourseBack();
