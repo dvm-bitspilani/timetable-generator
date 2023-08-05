@@ -90,23 +90,32 @@ const CourseList = ({
       setCreditsExceeded(false);
     }
   }, [courseUnits]);
+
+
   const generateTimetable = () => {
-    const progress = localStorage.getItem("progress")
-    if(progress<=20){
-      alert("Select atleast 20% of the Courses to proceed!");
-      return;
+    const progress = localStorage.getItem("progress");
+    const userID = localStorage.getItem("userID");
+    
+    if (userID && userID.startsWith("2023")) {
+      //  (IDs starting with "2023")
+      if (progress < 20) {
+        alert("Select at least 20% of the Courses to proceed!");
+        return;
+      }
     }
+  
     if (courseUnits <= 25) {
       if (!areAllCDCsDeleted()) {
         setTimetableGenerated(true);
       } else {
-        alert("No Courses Added!")
+        alert("No Courses Added!");
       }
     } else {
       document.getElementsByClassName(styles["errorpara"])[0].innerHTML =
         "Please remove some courses to generate a timetable!";
     }
   };
+  
 
   const [addMoreCourse, setAddMoreCourse] = useState(false);
   const [selectedCourseId, setSelectedCourseId] = useState(null);
