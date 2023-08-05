@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, version } from "react";
 import Loader from "./Loader";
 import Error1Component from "../ErrorComponents/JSX/Error1Component";
 import CourseList from "./CourseList";
@@ -32,6 +32,8 @@ const Courses = ({ inputValue, goToInput }) => {
         setTimeout(() => {
           setFetchedArray(data1);
         }, 1000);
+
+        
 
         const cdcsArray = data1.cdcs;
         // console.log(cdcsArray);
@@ -97,6 +99,7 @@ const Courses = ({ inputValue, goToInput }) => {
       fetchData();
     }, 0);
   }, [key2]);
+  
 
   const [courses, setCourses] = useState([]);
 
@@ -108,6 +111,9 @@ const Courses = ({ inputValue, goToInput }) => {
 
   if (!fetchedArray) {
     return <Loader title="Getting Courses" />;
+  }
+  if (fetchedArray.hasOwnProperty('version')) {
+    localStorage.clear()
   }
 
   if (sectionArray.length >= 0) {
