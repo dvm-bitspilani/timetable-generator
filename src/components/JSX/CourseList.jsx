@@ -30,6 +30,23 @@ const CourseList = ({
       setcdcs(true)
     }
   },[fetchedArray])
+  useEffect(() => {
+    if (fetchedArray && fetchedArray["version"]) {
+      const version = fetchedArray["version"];
+      const storedVersion = localStorage.getItem('version');
+      if(storedVersion == null){
+        const userID = localStorage.getItem('userID');
+        localStorage.clear();
+        localStorage.setItem("userID",userID)
+        localStorage.setItem('version', version);
+      }
+      if(version === storedVersion){
+        const userID = localStorage.getItem('userID');
+        localStorage.clear();
+        localStorage.setItem("userID",userID)
+      }
+    }
+  }, [fetchedArray]);
 
   const [timetableGenerated, setTimetableGenerated] = useState(false);
   const closeTimetable = () => {

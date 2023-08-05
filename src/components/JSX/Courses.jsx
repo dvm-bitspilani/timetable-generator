@@ -108,12 +108,9 @@ const Courses = ({ inputValue, goToInput }) => {
       JSON.parse(localStorage.getItem("storedMoreCourses")) || [];
     setCourses(storedCourses);
   }, []);
-
+  
   if (!fetchedArray) {
     return <Loader title="Getting Courses" />;
-  }
-  if (fetchedArray.hasOwnProperty('version')) {
-    localStorage.clear()
   }
 
   if (sectionArray.length >= 0) {
