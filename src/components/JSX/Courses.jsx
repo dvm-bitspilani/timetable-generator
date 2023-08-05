@@ -100,7 +100,7 @@ const Courses = ({ inputValue, goToInput,setShowInputBox }) => {
     }, 0);
   }, [key2]);
   
-
+  const [courseSelected, setCourseSelected] = useState(false);
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
@@ -124,6 +124,8 @@ const Courses = ({ inputValue, goToInput,setShowInputBox }) => {
         key2={key2}
         setSectionArray={setSectionArray}
         cdcsdetail={cdcsdetail}
+        courseSelected={courseSelected}
+        setCourseSelected={setCourseSelected}
       />
     );
   }

@@ -22,7 +22,9 @@ const CourseList = ({
   setSectionArray,
   cdcsdetail,
   setcdcsdetail,
-  setShowInputBox
+  setShowInputBox,
+  courseSelected,
+  setCourseSelected
 }) => {
   const [freeDay, setFreeDay] = useState("");
   const [cdcs , setcdcs] = useState(false);
@@ -105,9 +107,7 @@ const CourseList = ({
         "Please remove some courses to generate a timetable!";
     }
   };
-  
 
-  const [courseSelected, setCourseSelected] = useState(false);
   const [addMoreCourse, setAddMoreCourse] = useState(false);
   const [selectedCourseId, setSelectedCourseId] = useState(null);
   const initialMoreCoursesAdded =
@@ -124,7 +124,6 @@ const CourseList = ({
   const onCourseClickClose = () => {
     setCourseSelected(false);
     setSelectedCourseId(null);
-    setShowInputBox(false)
   };
   const onCourseClickClose2 = (e) => {
     if (e.target === e.currentTarget) {
@@ -202,19 +201,25 @@ const CourseList = ({
     const handleKeyDown = (event) => {
       if ((event.keyCode === 13) && !addMoreCourse) {
         generateTimetable();
-      }
-      if ((event.keyCode === 27) && !timetableGenerated && !addMoreCourse) {
+        return;
+      } else if ((event.keyCode === 27) && courseSelected) {
+        setCourseSelected(false);
+        console.log(1);
+        return;
+      } else if ((event.keyCode === 27) && !timetableGenerated && !addMoreCourse && !courseSelected ) {
         goToInput();
-      }
-      if ((event.keyCode === 27) && addMoreCourse) {
+        console.log(2);
+        return;
+      } else if ((event.keyCode === 27) && addMoreCourse) {
         onAddMoreCourseBack();
       }
+
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [timetableGenerated,addMoreCourse]);
+  }, [timetableGenerated,addMoreCourse , courseSelected ]);
 
   return (
     <>

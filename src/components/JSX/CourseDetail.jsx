@@ -157,20 +157,20 @@ const CourseDetail = ({
       }
     };
 
-    const handleKeyDown = (event) => {
-      if (event.keyCode === 39) {
-        handleNextCourseArrow();
-      } else if (event.keyCode === 37) {
-        handlePrevCourseArrow();
-      }else if (event.keyCode === 27) {
-        event.stopPropagation();
-        setCourseSelected(false)
-      }
-    };
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
+    // const handleKeyDown = (event) => {
+    //   if (event.keyCode === 39) {
+    //     handleNextCourseArrow();
+    //   } else if (event.keyCode === 37) {
+    //     handlePrevCourseArrow();
+    //   }else if (event.keyCode === 27) {
+    //     event.stopPropagation();
+    //     setCourseSelected(false)
+    //   }
+    // };
+    // document.addEventListener("keydown", handleKeyDown);
+    // return () => {
+    //   document.removeEventListener("keydown", handleKeyDown);
+    // };
   }, [courseId , courseArray , lectureSelected , tutorialSelected , practicalSelected]);
 
 
