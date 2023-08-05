@@ -89,11 +89,16 @@ const CourseList = ({
     }
   }, [courseUnits]);
   const generateTimetable = () => {
+    const progress = localStorage.getItem("progress")
+    if(progress<=20){
+      alert("Select atleast 20% of the Courses to proceed!");
+      return;
+    }
     if (courseUnits <= 25) {
       if (!areAllCDCsDeleted()) {
         setTimetableGenerated(true);
       } else {
-alert("No Courses Added!")
+        alert("No Courses Added!")
       }
     } else {
       document.getElementsByClassName(styles["errorpara"])[0].innerHTML =

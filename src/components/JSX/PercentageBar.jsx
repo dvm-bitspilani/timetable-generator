@@ -27,6 +27,7 @@ const PercentageBar = ({ prop }) => {
       const greenCoursesLength = greenCourses.length;
       const newWidth = (greenCoursesLength / totalCoursesLength) * 100;
       setProgressWidth(newWidth);
+      localStorage.setItem("progress" , newWidth)
     }, 50);
 
     return () => {
