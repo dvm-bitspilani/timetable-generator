@@ -95,6 +95,8 @@ const CourseList = ({
   const generateTimetable = () => {
     const progress = localStorage.getItem("progress");
     const userID = localStorage.getItem("userID");
+    const storedMoreCoursesArray =
+    JSON.parse(localStorage.getItem("storedMoreCourses")) || [];
     
     if (userID && userID.startsWith("2023")) {
       //  (IDs starting with "2023")
@@ -103,12 +105,15 @@ const CourseList = ({
         return;
       }
     }
-  
+
     if (courseUnits <= 25) {
-      if (!areAllCDCsDeleted()) {
-        setTimetableGenerated(true);
-      } else {
+      // console.log(areAllCDCsDeleted())
+      // console.log(storedMoreCoursesArray)
+      if(areAllCDCsDeleted() && storedMoreCoursesArray.length == 0){
         alert("No Courses Added!");
+      }else {
+        setTimetableGenerated(true);
+
       }
     } else {
       document.getElementsByClassName(styles["errorpara"])[0].innerHTML =
