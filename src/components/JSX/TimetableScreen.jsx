@@ -51,9 +51,12 @@ const TimetableScreen = ({
       JSON.parse(localStorage.getItem("storedMoreCourses")) || [];
     const filteredCourses = fetchedArray.courses.filter((course) =>
       storedMoreCourses.some(
-        (storedCourse) => storedCourse.course_title === course.course_title
+        (storedCourse) => storedCourse.course_title === course.course_title.replace(/\s{2,}/g, ' ').trim() 
       )
     );
+    // console.log(storedMoreCourses);
+    // console.log(filteredCourses);
+    // console.log(fetchedArray.courses);
     const sumArray = [...fetchedArray.cdcs, ...filteredCourses];
     const deletedCDCs = JSON.parse(localStorage.getItem("deletedCDCs")) || [];
     if (deletedCDCs) {
@@ -351,7 +354,7 @@ const TimetableScreen = ({
           courses: courses,
           compre_check: true,
         };
-
+        // console.log(requestOption)
         const requestOptionsFinal = {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -367,6 +370,7 @@ const TimetableScreen = ({
         }, 2000);
 
         setFetchedTable(data);
+        // console.log(data);
       };
       setTimeout(() => {
         fetchData();
