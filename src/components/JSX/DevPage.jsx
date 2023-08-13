@@ -11,11 +11,13 @@ import Bharat from "../../assets/bharat-min.jpg"
 import Himanshu from "../../assets/hima-min.jpg"
 import Sunpreet from "../../assets/sunpreet.jpg"
 import Praneel from "../../assets/praneel-min.jpg"
+import Krishay from "../../assets/krishay.jfif"
 
 const DevPage = ({ showDevs, showDev }) => {
   const designTeam = [
     { id: 1, name: "Sunpreet Brar", logo: `${Sunpreet}`, linkedin: "https://www.linkedin.com/in/sunpreet-brar-a7806a251", instagram: "https://instagram.com/sunpreetbrar?igshid=ZGUzMzM3NWJiOQ==" },
-    { id: 2, name: "Praneel Maddula", logo: `${Praneel}`, github: "https://github.com/PraWater", linkedin: "https://www.linkedin.com/in/praneel-maddula-409421261/", behance: "https://www.behance.net/praneelmaddula", instagram: "https://instagram.com/praneel710?igshid=YmMyMTA2M2Y=" },
+    { id: 2, name: "Praneel Maddula", logo: `${Praneel}`, linkedin: "https://www.linkedin.com/in/praneel-maddula-409421261/", behance: "https://www.behance.net/praneelmaddula", instagram: "https://instagram.com/praneel710?igshid=YmMyMTA2M2Y=" },
+    { id: 3, name: "Krishay Prakash", logo: `${Krishay}`,  linkedin: "https://instagram.com/kr4y1sh.png?igshid=OGQ5ZDc2ODk2ZA==", behance: "https://www.behance.net/krishayp", instagram: "https://instagram.com/praneel710?igshid=YmMyMTA2M2Y=" },
   ];
   const frontTeam = [
     { id: 1, name: "Bharat Raj Singal", logo: `${Bharat}`, github: "https://github.com/GeekWolf007", linkedin: "https://www.linkedin.com/in/bharatrajsingal000", instagram: "https://www.instagram.com/bharatrajsingal/" },

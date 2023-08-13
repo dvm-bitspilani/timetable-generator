@@ -43,11 +43,11 @@ const DevTeam = ({ showTeam, currentTeam, teamArray, showDev }) => {
                         <img src={Linkedin} alt="Linkedin" />
                       </a>
                     )}
-                    {/* {!item.behance ? "" : (
+                    {!item.behance ? "" : (
                       <a href={item.behance} target="/blank">
                         <img src={Behance} alt="Behance" />
                       </a>
-                    )} */}
+                    )}
                     {!item.instagram ? "" : (
                       <a href={item.instagram} target="/blank">
                         <img src={Instagram} alt="Instagram" />
