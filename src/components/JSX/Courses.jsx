@@ -44,7 +44,7 @@ const Courses = ({ inputValue, goToInput,setShowInputBox }) => {
           (storedCourse) =>
             storedMoreCourses &&
             storedMoreCourses.some(
-              (course) => course.course_id === storedCourse.course_id
+              (course) => course.course_no === storedCourse.course_no
             )
         );
 
