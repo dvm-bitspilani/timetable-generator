@@ -43,11 +43,12 @@ const CourseList = ({
         localStorage.clear();
         localStorage.setItem("userID",userID)
         localStorage.setItem('version', version);
+        return
       }
-      if(version === storedVersion){
+      if(version != storedVersion){
         const userID = localStorage.getItem('userID');
         localStorage.clear();
-        localStorage.setItem("userID",userID)
+        localStorage.setItem("userID", userID)
       }
     }
   }, [fetchedArray]);
